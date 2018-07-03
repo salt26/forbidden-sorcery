@@ -6,21 +6,44 @@ public class Node : MonoBehaviour
 {
     [SerializeField]
     private bool isKing;
-    public List<Node> edges;
+    public bool isEnemySpawner;
+    public List<Node> edges = new List<Node>();
     [HideInInspector]
-    public List<Unit> allies;
+    public List<Unit> allies = new List<Unit>();
     [HideInInspector]
-    public List<Unit> enemies;
+    public List<Unit> enemies = new List<Unit>();
     bool isRed;
+    public GameObject unitPrefab;
 
     void Awake()
     {
         isRed = false;
+        if (isKing)
+            isEnemySpawner = false;
         foreach (var edge in edges)
         {
+            /*
+            if (edge.isEnemySpawner)
+            {
+                Manager.manager.enemySpawners.Add(edge);
+            }
+            */
             if (!edge.edges.Contains(this))
             {
                 edge.edges.Add(this);
+            }
+        }
+    }
+
+    void Start()
+    {
+        if (isKing)
+            Manager.manager.kingTower = this;
+        foreach (var edge in edges)
+        {
+            if (edge.isEnemySpawner)
+            {
+                Manager.manager.enemySpawners.Add(edge);
             }
         }
     }
@@ -39,6 +62,42 @@ public class Node : MonoBehaviour
     {
         if (isRed == false)
             StartCoroutine(RedLightAnimation());
+    }
+
+    public Unit SpawnEnemy()
+    {
+        if (isEnemySpawner)
+        {
+            var unitClone = Instantiate(unitPrefab);
+            var unitComponent = unitClone.GetComponent<Unit>();
+            unitComponent.transform.localPosition = this.transform.localPosition;
+            unitComponent.IsAlly = false;
+            unitComponent.Position = this;
+            unitComponent.IsMove = false;
+            unitComponent.movableLength = 2;
+            unitComponent.Initialize();
+            enemies.Add(unitClone.GetComponent<Unit>());
+            return unitClone.GetComponent<Unit>();
+        }
+        return null;
+    }
+
+    public Unit SpawnAlly()
+    {
+        if (isKing)
+        {
+            var unitClone = Instantiate(unitPrefab);
+            var unitComponent = unitClone.GetComponent<Unit>();
+            unitComponent.transform.localPosition = this.transform.localPosition;
+            unitComponent.IsAlly = true;
+            unitComponent.Position = this;
+            unitComponent.IsMove = false;
+            unitComponent.movableLength = 2;
+            unitComponent.Initialize();
+            enemies.Add(unitClone.GetComponent<Unit>());
+            return unitClone.GetComponent<Unit>();
+        }
+        return null;
     }
 
     IEnumerator RedLightAnimation()

@@ -79,8 +79,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isKing: 0
-  edge: []
-  units: []
+  isEnemySpawner: 0
+  edges: []
+  allies: []
+  enemies: []
+  unitPrefab: {fileID: 1246434854016618, guid: 4c12def1f2a6f304d9bc7222f2594eb6, type: 2}
 --- !u!212 &212553964481955670
 SpriteRenderer:
   m_ObjectHideFlags: 1
