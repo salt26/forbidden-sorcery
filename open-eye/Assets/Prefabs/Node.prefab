@@ -83,7 +83,11 @@ MonoBehaviour:
   edges: []
   allies: []
   enemies: []
-  unitPrefab: {fileID: 1246434854016618, guid: 4c12def1f2a6f304d9bc7222f2594eb6, type: 2}
+  allyPrefab: {fileID: 1336427352160124, guid: be90a6a5750cbd94f95536761f570929, type: 2}
+  enemyPrefab: {fileID: 1246434854016618, guid: 4c12def1f2a6f304d9bc7222f2594eb6,
+    type: 2}
+  isTerritory: 0
+  distance: 2147483647
 --- !u!212 &212553964481955670
 SpriteRenderer:
   m_ObjectHideFlags: 1

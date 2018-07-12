@@ -15,13 +15,29 @@ public class Unit : MonoBehaviour
     [HideInInspector]
     public int movableLength;
     public Queue<IEnumerator> moveQueue = new Queue<IEnumerator>();
+    public string kind;//kind
+    public int cost = 1;
+    public int attck;
+    public int health;
 
     private void FixedUpdate()
     {
         if (moveQueue.Count != 0 && isMoved)
             StartCoroutine(moveQueue.Dequeue());
     }
+    
 
+    public string Kind
+    {
+        get
+        {
+            return kind;
+        }
+        set
+        {
+            kind = value;
+        }
+    }
     public Node Position
     {
         get
@@ -72,13 +88,12 @@ public class Unit : MonoBehaviour
 
     public void Initialize()
     {
-        if (isAlly)
-            position.allies.Add(this);
-        else
+        /*
+        if (!isAlly)
         {
-            position.enemies.Add(this);
             this.GetComponent<SpriteRenderer>().color = Color.black;
         }
+        */
         isInitialized = true;
     }
 
@@ -89,7 +104,6 @@ public class Unit : MonoBehaviour
         else if (isInitialized && movableLength > 0)
         {
             isMove = true;
-            movableLength--;
             position = to;
             moveQueue.Enqueue(MoveAnimation(from, to));
         }
@@ -113,7 +127,7 @@ public class Unit : MonoBehaviour
 
         transform.localPosition = to.transform.localPosition;
         toUnitList.Add(this);
-        fromUnitList.Clear();
+        fromUnitList.Remove(this);
         isMoved = true;
         //Manager.manager.isAllMoved += 1;
         //if (Manager.manager.isAllMoved == Manager.manager.haveToMove)

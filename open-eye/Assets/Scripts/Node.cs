@@ -13,21 +13,29 @@ public class Node : MonoBehaviour
     [HideInInspector]
     public List<Unit> enemies = new List<Unit>();
     bool isRed;
-    public GameObject unitPrefab;
+    public GameObject allyPrefab;
+    public GameObject enemyPrefab;
+    public int isTerritory;//negative(-1) is enemy territory, 0 is neutral territory, possitive(1) is ally territory. if positive, add value to spell when turn ends
+    public int distance = int.MaxValue;
+
+    public bool IsKing
+    {
+        get
+        {
+            return isKing;
+        }
+    }
 
     void Awake()
     {
         isRed = false;
         if (isKing)
+        {
+            isTerritory = 1;
             isEnemySpawner = false;
+        }
         foreach (var edge in edges)
         {
-            /*
-            if (edge.isEnemySpawner)
-            {
-                Manager.manager.enemySpawners.Add(edge);
-            }
-            */
             if (!edge.edges.Contains(this))
             {
                 edge.edges.Add(this);
@@ -38,14 +46,21 @@ public class Node : MonoBehaviour
     void Start()
     {
         if (isKing)
-            Manager.manager.kingTower = this;
-        foreach (var edge in edges)
         {
-            if (edge.isEnemySpawner)
-            {
-                Manager.manager.enemySpawners.Add(edge);
-            }
+            Manager.manager.kingTower = this;
+            isTerritory = 1;
         }
+        //foreach (var edge in edges)
+        //{
+        if (isEnemySpawner)
+        {
+            Manager.manager.enemySpawners.Add(this);
+            isTerritory = -1;
+        }
+        //}
+        if (isTerritory > 0)
+            Manager.manager.territories.Add(this);
+        Manager.manager.allNodes.Add(this);
     }
 
     public void OnClick()
@@ -68,13 +83,14 @@ public class Node : MonoBehaviour
     {
         if (isEnemySpawner)
         {
-            var unitClone = Instantiate(unitPrefab);
+            var unitClone = Instantiate(enemyPrefab);
             var unitComponent = unitClone.GetComponent<Unit>();
             unitComponent.transform.localPosition = this.transform.localPosition;
             unitComponent.IsAlly = false;
             unitComponent.Position = this;
             unitComponent.IsMove = false;
             unitComponent.movableLength = 2;
+            unitComponent.Kind = "" + Manager.manager.i++;
             unitComponent.Initialize();
             enemies.Add(unitClone.GetComponent<Unit>());
             return unitClone.GetComponent<Unit>();
@@ -86,15 +102,16 @@ public class Node : MonoBehaviour
     {
         if (isKing)
         {
-            var unitClone = Instantiate(unitPrefab);
+            var unitClone = Instantiate(allyPrefab);
             var unitComponent = unitClone.GetComponent<Unit>();
             unitComponent.transform.localPosition = this.transform.localPosition;
             unitComponent.IsAlly = true;
             unitComponent.Position = this;
             unitComponent.IsMove = false;
             unitComponent.movableLength = 2;
+            unitComponent.Kind = "" + Manager.manager.i++;
             unitComponent.Initialize();
-            enemies.Add(unitClone.GetComponent<Unit>());
+            allies.Add(unitClone.GetComponent<Unit>());
             return unitClone.GetComponent<Unit>();
         }
         return null;
@@ -125,5 +142,17 @@ public class Node : MonoBehaviour
             yield return null;
         }
         isRed = false;
+    }
+
+    public void SetDIstance(int distance)
+    {
+        this.distance = distance;
+        foreach(var node in edges)
+        {
+            if(node.distance > distance + 1)
+            {
+                node.SetDIstance(distance + 1);
+            }
+        }
     }
 }

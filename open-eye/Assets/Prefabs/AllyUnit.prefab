@@ -9,44 +9,44 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1246434854016618}
+  m_RootGameObject: {fileID: 1336427352160124}
   m_IsPrefabParent: 1
---- !u!1 &1246434854016618
+--- !u!1 &1336427352160124
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4545880752657368}
-  - component: {fileID: 212357172608913536}
-  - component: {fileID: 114752506595329596}
+  - component: {fileID: 4358427810362634}
+  - component: {fileID: 212101620524006532}
+  - component: {fileID: 114503548575859210}
   m_Layer: 0
-  m_Name: Unit
+  m_Name: AllyUnit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4545880752657368
+--- !u!4 &4358427810362634
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1246434854016618}
+  m_GameObject: {fileID: 1336427352160124}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5637745, y: 0.56075263, z: 0.8040015}
+  m_LocalPosition: {x: -0.38, y: -0.05, z: 0}
+  m_LocalScale: {x: 0.20759854, y: 0.20648578, z: 0.29605725}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114752506595329596
+--- !u!114 &114503548575859210
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1246434854016618}
+  m_GameObject: {fileID: 1336427352160124}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e14ff196e7d31d43965a4518e729c55, type: 3}
@@ -56,16 +56,16 @@ MonoBehaviour:
   isAlly: 0
   isOldOne: 0
   movableLength: 0
-  kind: 
+  kind: ally
   cost: 1
   attck: 1
-  health: 2
---- !u!212 &212357172608913536
+  health: 3
+--- !u!212 &212101620524006532
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1246434854016618}
+  m_GameObject: {fileID: 1336427352160124}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -95,7 +95,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 783e08742f10a2f46a94ca06dc89b0d9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 21c62d336893ae04a8eaf8b0e19b541f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
