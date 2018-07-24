@@ -59,7 +59,11 @@ public class Node : MonoBehaviour
         }
         //}
         if (isTerritory > 0)
+        {
             Manager.manager.territories.Add(this);
+            if (!isKing)
+                this.GetComponent<SpriteRenderer>().color = Color.green;
+        }
         Manager.manager.allNodes.Add(this);
     }
 
@@ -147,9 +151,9 @@ public class Node : MonoBehaviour
     public void SetDIstance(int distance)
     {
         this.distance = distance;
-        foreach(var node in edges)
+        foreach (var node in edges)
         {
-            if(node.distance > distance + 1)
+            if (node.distance > distance + 1)
             {
                 node.SetDIstance(distance + 1);
             }

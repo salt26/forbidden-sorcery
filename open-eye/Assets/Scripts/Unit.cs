@@ -13,7 +13,7 @@ public class Unit : MonoBehaviour
     bool isInitialized = false;
     public bool isOldOne = false;
     [HideInInspector]
-    public int movableLength;
+    public int movableLength;//enemy movableLength is static, ally movableLength is changeable
     public Queue<IEnumerator> moveQueue = new Queue<IEnumerator>();
     public string kind;//kind
     public int cost = 1;

@@ -16,10 +16,10 @@ public class ScrollViewContent : MonoBehaviour {
     public void AddComponent(Unit u, bool isForMove)
     {
         Button listCom = (Button) Instantiate(listButtonPrefab, this.transform);
-        //listCom.GetComponent<RectTransform>().pivot = new Vector2((float)0.5, 1);
-        //listCom.GetComponent<RectTransform>().anchorMax = new Vector2(1, (float) 0.5);
-        //listCom.GetComponent<RectTransform>().anchorMin = new Vector2(0, (float) 0.5);
-        listCom.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -this.GetComponent<RectTransform>().sizeDelta.y, 0);
+        listCom.GetComponent<RectTransform>().pivot = new Vector2((float)0.5, 1);
+        listCom.GetComponent<RectTransform>().anchorMax = new Vector2(1, 1);
+        listCom.GetComponent<RectTransform>().anchorMin = new Vector2(0, 1);
+        listCom.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -GetComponent<RectTransform>().sizeDelta.y, 0);
         listCom.GetComponentInChildren<Text>().text = u.kind;
         listCom.GetComponent<UnitButton>().AddUnit(u, isForMove);
         list.Add(listCom);

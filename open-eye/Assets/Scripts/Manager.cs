@@ -10,13 +10,15 @@ public class Manager : MonoBehaviour
     Node to = null;
     Color originColor = Color.white;
     private int state;
-    private int notoriety;//delta karma
-    private int spell;
-    private int karma;//accumulated notoriety
+    public int notoriety;//delta karma
+    public int spell;
+    public int karma;//accumulated notoriety
+    public int enemySpawnBound = 2;
     bool isStateReady = false;
     public Node kingTower;
     bool isNodeClickable;
     bool isEnemyMoveDone = false;
+    public string whichTurn = "a";
     public List<Node> enemySpawners = new List<Node>();
     [HideInInspector]
     public List<Unit> allies = new List<Unit>();
@@ -67,12 +69,13 @@ public class Manager : MonoBehaviour
                 PlayerAction();
             }
         }
-        
-        if (spawnableUnitList.Count != 0)
+
+        if (spawnableUnitList.Count != 0 && spell > 0)
         {
             Unit unit = kingTower.SpawnAlly();
             allies.Add(unit);
             ScrollViewContent.manager.AddComponent(unit, true);
+            spell -= 1;
             spawnableUnitList.Clear();
         }
     }
@@ -81,6 +84,7 @@ public class Manager : MonoBehaviour
     {
         buttonUnitList.Clear();
         scrollview.SetActive(false);
+        //here
         ScrollViewContent.manager.Reset();
         if (from != null && from.GetComponent<SpriteRenderer>().color != originColor)
             from.GetComponent<SpriteRenderer>().color = originColor;
@@ -140,7 +144,7 @@ public class Manager : MonoBehaviour
             }
             */
 
-            if(from == null && (n.IsKing || n.allies.Count != 0 || n.enemies.Count != 0))
+            if (from == null && (n.IsKing || n.allies.Count != 0 || n.enemies.Count != 0))
             {
                 from = n;
                 var spriteRenderer = from.GetComponent<SpriteRenderer>();
@@ -189,6 +193,8 @@ public class Manager : MonoBehaviour
                 {
                     unit.Move(from, to);
                     unit.movableLength--;
+                    if (to.enemies.Count > 0)
+                        unit.movableLength = 0;
                     if (!unit.IsMove)
                         isAllAlliesMoved = false;
                 }
@@ -215,8 +221,9 @@ public class Manager : MonoBehaviour
     {
         isStateReady = false;
         endTurnButton.interactable = false;
-        if (karma > 2)
+        if (karma > enemySpawnBound)
         {
+            enemySpawnBound += 2;
             foreach (Node node in enemySpawners)
             {
                 enemies.Add(node.SpawnEnemy());
@@ -234,7 +241,7 @@ public class Manager : MonoBehaviour
 
             if (enemy.isOldOne)
             {
-                for (int i = 0; i < enemy.movableLength;i++)
+                for (int i = 0; i < enemy.movableLength; i++)
                 {
                     Node nextNode = enemy.Position.edges[0];
                     foreach (Node n in enemy.Position.edges)
@@ -251,6 +258,10 @@ public class Manager : MonoBehaviour
                         }
                     }
                     enemy.Move(enemy.Position, nextNode);
+                    if (nextNode.Equals(kingTower))
+                        enemy.movableLength = 0;
+                    if (nextNode.allies.Count > 0)
+                        break;
                 }
             }
             else
@@ -259,13 +270,13 @@ public class Manager : MonoBehaviour
     }
     public void PlayerAction()
     {
-        foreach(Unit n in allies)
+        foreach (Unit n in allies)
         {
             n.movableLength = 2;
         }
         endTurnButton.interactable = true;
         isNodeClickable = true;
-
+        whichTurn = "Move ally";
         isStateReady = true;
     }
     public void Fight()
@@ -297,15 +308,15 @@ public class Manager : MonoBehaviour
                         destroyEnemy.Add(enemy);
                     }
                 }
-                foreach(Unit enemy in destroyEnemy)
+                foreach (Unit enemy in destroyEnemy)
                 {
                     n.enemies.Remove(enemy);
                     Destroy(enemy.gameObject);
                 }
 
-                foreach(Unit ally in n.allies)
+                foreach (Unit ally in n.allies)
                 {
-                    if(enemyAttack < ally.health)
+                    if (enemyAttack < ally.health)
                     {
                         ally.health -= enemyAttack;
                         enemyAttack = 0;
@@ -316,7 +327,7 @@ public class Manager : MonoBehaviour
                         destroyAlly.Add(ally);
                     }
                 }
-                foreach(Unit ally in destroyAlly)
+                foreach (Unit ally in destroyAlly)
                 {
                     n.allies.Remove(ally);
                     Destroy(ally.gameObject);
@@ -325,7 +336,7 @@ public class Manager : MonoBehaviour
             if (n.allies.Count > 0 && n.enemies.Count > 0)
             {
                 n.isTerritory = 0;
-                foreach(Unit enemy in n.enemies)
+                foreach (Unit enemy in n.enemies)
                 {
                     enemy.movableLength = 0;
                 }
@@ -334,33 +345,49 @@ public class Manager : MonoBehaviour
         isStateReady = false;
         endTurnButton.interactable = false;
 
+        whichTurn = "Fight";
 
         EndPhase();
     }
     public void EndPhase()
     {
         karma += notoriety;
-        spell += territories.Count;
 
         foreach (Node n in allNodes)
         {
             if (n.allies.Count > 0 && n.enemies.Count == 0)
             {
                 n.isTerritory = 1;
-                territories.Add(n);
+                if (!territories.Contains(n))
+                    territories.Add(n);//replace?
             }
             else if (n.allies.Count == 0 && n.enemies.Count > 0)
             {
                 n.isTerritory = -1;
                 if (territories.Contains(n))
                     territories.Remove(n);
-                foreach (Unit enemy in n.enemies)
-                    enemy.movableLength = 2;
+//                foreach (Unit enemy in n.enemies)
+//                    enemy.movableLength = 2;
             }
             else if (n.allies.Count == 0 && n.enemies.Count == 0)
                 n.isTerritory = 0;
         }
+        foreach (Node n in allNodes)
+        {
+            if (!n.IsKing)
+            {
+                n.GetComponent<SpriteRenderer>().color = Color.white;
+            }
+        }
+        foreach (Node n in territories)
+        {
+            if (!n.IsKing)
+            {
+                n.GetComponent<SpriteRenderer>().color = Color.green;
+            }
+        }
 
+        spell += territories.Count;
         endTurnButton.interactable = true;
         isStateReady = true;
     }
