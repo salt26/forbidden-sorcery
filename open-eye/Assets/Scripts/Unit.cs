@@ -19,6 +19,9 @@ public class Unit : MonoBehaviour
     public int cost = 1;
     public int attck;
     public int health;
+    [HideInInspector]
+    public UnitData unitData;
+    
 
     private void FixedUpdate()
     {
@@ -117,6 +120,8 @@ public class Unit : MonoBehaviour
         float rate = deltaTime / duration;
         List<Unit> fromUnitList = isAlly ? from.allies : from.enemies;
         List<Unit> toUnitList = isAlly ? to.allies : to.enemies;
+        toUnitList.Add(this);
+        fromUnitList.Remove(this);
         while (rate < 1f)
         {
             deltaTime += Time.deltaTime;
@@ -126,8 +131,7 @@ public class Unit : MonoBehaviour
         }
 
         transform.localPosition = to.transform.localPosition;
-        toUnitList.Add(this);
-        fromUnitList.Remove(this);
+
         isMoved = true;
         //Manager.manager.isAllMoved += 1;
         //if (Manager.manager.isAllMoved == Manager.manager.haveToMove)

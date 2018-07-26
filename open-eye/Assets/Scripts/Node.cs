@@ -7,16 +7,16 @@ public class Node : MonoBehaviour
     [SerializeField]
     private bool isKing;
     public bool isEnemySpawner;
-    public List<Node> edges = new List<Node>();
+    public List<Node> edges;
     [HideInInspector]
     public List<Unit> allies = new List<Unit>();
     [HideInInspector]
     public List<Unit> enemies = new List<Unit>();
+    public List<Unit> destroyedEnemies = new List<Unit>();
     bool isRed;
-    public GameObject allyPrefab;
-    public GameObject enemyPrefab;
     public int isTerritory;//negative(-1) is enemy territory, 0 is neutral territory, possitive(1) is ally territory. if positive, add value to spell when turn ends
     public int distance = int.MaxValue;
+    public GameObject prefab;
 
     public bool IsKing
     {
@@ -28,6 +28,7 @@ public class Node : MonoBehaviour
 
     void Awake()
     {
+
         isRed = false;
         if (isKing)
         {
@@ -83,39 +84,80 @@ public class Node : MonoBehaviour
             StartCoroutine(RedLightAnimation());
     }
 
-    public Unit SpawnEnemy()
-    {
-        if (isEnemySpawner)
-        {
-            var unitClone = Instantiate(enemyPrefab);
-            var unitComponent = unitClone.GetComponent<Unit>();
-            unitComponent.transform.localPosition = this.transform.localPosition;
-            unitComponent.IsAlly = false;
-            unitComponent.Position = this;
-            unitComponent.IsMove = false;
-            unitComponent.movableLength = 2;
-            unitComponent.Kind = "" + Manager.manager.i++;
-            unitComponent.Initialize();
-            enemies.Add(unitClone.GetComponent<Unit>());
-            return unitClone.GetComponent<Unit>();
-        }
-        return null;
-    }
+    //public Unit SpawnEnemy(GameObject enemyPrefab)
+    //{
+    //    if (isEnemySpawner)
+    //    {
+    //        var unitClone = Instantiate(enemyPrefab);
+    //        var unitComponent = unitClone.GetComponent<Unit>();
+    //        unitComponent.transform.localPosition = this.transform.localPosition;
+    //        unitComponent.IsAlly = false;
+    //        unitComponent.Position = this;
+    //        unitComponent.IsMove = false;
+    //        unitComponent.movableLength = 2;
+    //        unitComponent.Kind = "" + Manager.manager.i++;
+    //        unitComponent.Initialize();
+    //        enemies.Add(unitClone.GetComponent<Unit>());
+    //        return unitClone.GetComponent<Unit>();
+    //    }
+    //    return null;
+    //}
 
-    public Unit SpawnAlly()
+    //public Unit SpawnAlly(GameObject allyPrefab)
+    //{
+    //    if (isKing)
+    //    {
+    //        var unitClone = Instantiate(allyPrefab);
+    //        var unitComponent = unitClone.GetComponent<Unit>();
+    //        unitComponent.transform.localPosition = this.transform.localPosition;
+    //        unitComponent.IsAlly = true;
+    //        unitComponent.Position = this;
+    //        unitComponent.IsMove = false;
+    //        unitComponent.movableLength = 2;
+    //        unitComponent.Kind = "" + Manager.manager.i++;
+    //        unitComponent.Initialize();
+    //        allies.Add(unitClone.GetComponent<Unit>());
+    //        return unitClone.GetComponent<Unit>();
+    //    }
+    //    return null;
+    //}
+
+    public Unit Spawn(UnitData unitData)
     {
-        if (isKing)
+        if (isKing && unitData.IsAlly)
         {
-            var unitClone = Instantiate(allyPrefab);
+            var unitClone = Instantiate(prefab);
             var unitComponent = unitClone.GetComponent<Unit>();
+            unitClone.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(unitData.Kind);
             unitComponent.transform.localPosition = this.transform.localPosition;
             unitComponent.IsAlly = true;
             unitComponent.Position = this;
             unitComponent.IsMove = false;
-            unitComponent.movableLength = 2;
-            unitComponent.Kind = "" + Manager.manager.i++;
+            unitComponent.movableLength = unitData.MovableLength;
+            unitComponent.Kind = unitData.Kind;
+            unitComponent.attck = unitData.Attack;
+            unitComponent.health = unitData.Health;
+            unitComponent.unitData = unitData;
             unitComponent.Initialize();
             allies.Add(unitClone.GetComponent<Unit>());
+            return unitClone.GetComponent<Unit>();
+        }
+        else if (isEnemySpawner && !unitData.IsAlly)
+        {
+            var unitClone = Instantiate(prefab);
+            var unitComponent = unitClone.GetComponent<Unit>();
+            unitClone.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(unitData.Kind);
+            unitComponent.transform.localPosition = this.transform.localPosition;
+            unitComponent.IsAlly = false;
+            unitComponent.Position = this;
+            unitComponent.IsMove = false;
+            unitComponent.movableLength = unitData.MovableLength;
+            unitComponent.Kind = unitData.Kind;
+            unitComponent.attck = unitData.Attack;
+            unitComponent.health = unitData.Health;
+            unitComponent.unitData = unitData;
+            unitComponent.Initialize();
+            enemies.Add(unitClone.GetComponent<Unit>());
             return unitClone.GetComponent<Unit>();
         }
         return null;

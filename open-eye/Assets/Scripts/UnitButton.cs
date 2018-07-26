@@ -6,42 +6,75 @@ using UnityEngine.UI;
 public class UnitButton : MonoBehaviour
 {
     Unit unit;
+    UnitData unitData;
     bool isRed;
     bool selected;
     bool isForMove = true;
 
-    public void Awake()
+    public Unit Unit
+    {
+        get
+        {
+            return unit;
+        }
+    }
+
+    private void Awake()
     {
         selected = false;
     }
 
-    public void AddUnit(Unit u, bool isForMove)
+    public void AddUnit(Unit u, UnitData unitData, bool isForMove = false)
     {
         unit = u;
+        this.unitData = unitData;
         this.isForMove = isForMove;
     }
 
     public void OnButtonClick()
     {
-        if (isForMove)
+        if (unit != null)
+            Manager.manager.AHText.stateAH(false, unit.attck.ToString(), unit.health.ToString());
+        if (Manager.manager.isPlayerActionTurn)
         {
-            if (Manager.manager.allies.Contains(unit))
+            if (isForMove)
             {
-                if (!selected)
+                if (Manager.manager.allies.Contains(unit))
                 {
-                    Manager.manager.buttonUnitList.Add(unit);
-                    selected = true;
-                }
-                else
-                {
-                    Manager.manager.buttonUnitList.Remove(unit);
-                    selected = false;
+                    if (!selected)
+                    {
+                        Manager.manager.buttonUnitList.Add(unit);
+                        GetComponent<Image>().color = Color.black;
+                        selected = true;
+                    }
+                    else
+                    {
+                        Manager.manager.buttonUnitList.Remove(unit);
+                        GetComponent<Image>().color = Color.white;
+                        selected = false;
+                    }
                 }
             }
+            else
+            {
+                Manager.manager.spawnUnitList.Add(unitData);
+            }
         }
+
         else
         {
-            Manager.manager.spawnableUnitList.Add(unit);
+            if (!selected)
+            {
+                Manager.manager.destroyEnemySelectButtons.Add(this.GetComponent<Button>());
+                GetComponent<Image>().color = Color.black;
+                selected = true;
+            }
+            else
+            {
+                Manager.manager.destroyEnemySelectButtons.Remove(this.GetComponent<Button>());
+                GetComponent<Image>().color = Color.white;
+                selected = false;
+            }
         }
     }
 }
