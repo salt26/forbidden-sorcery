@@ -40,7 +40,6 @@ public class Manager : MonoBehaviour
     public List<Button> destroyEnemySelectButtons = new List<Button>();
     [HideInInspector]
     public int destroyedEnemyCount = 0;
-    public int i = 0;
 
     private void Awake()
     {
@@ -100,10 +99,13 @@ public class Manager : MonoBehaviour
     {
         if (spawnUnitList != null)
             spawnUnitList.Clear();
-        AHText.stateAH(true, "", "");
+        AHText.stateAH(true, "", "", "");
         scrollview.SetActive(false);
         if (from != null && from.GetComponent<SpriteRenderer>().color != originColor)
             from.GetComponent<SpriteRenderer>().color = originColor;
+        originColor = Color.white;
+        from = null;
+        to = null;
         if (state == 0 && isStateReady)
         {
             isPlayerActionTurn = true;
@@ -117,7 +119,7 @@ public class Manager : MonoBehaviour
             state = 0;
         }
     }
-    
+
     public void SetNode(Node n)
     {
         if (isStateReady)
@@ -236,10 +238,12 @@ public class Manager : MonoBehaviour
 
             else
             {
+                originColor = n.GetComponent<SpriteRenderer>().color;
                 if (from == n)
                 {
                     from = null;
                     ScrollViewContent.scrollViewContent.Reset();
+                    destroyEnemySelectButtons.Clear();
                     scrollview.SetActive(false);
                 }
                 else
@@ -247,6 +251,7 @@ public class Manager : MonoBehaviour
                     from = n;
                     scrollview.SetActive(true);
                     ScrollViewContent.scrollViewContent.Reset();
+                    destroyEnemySelectButtons.Clear();
                     foreach (Unit unit in n.destroyedEnemies)
                     {
                         ScrollViewContent.scrollViewContent.AddComponent(unit, false);
@@ -311,7 +316,7 @@ public class Manager : MonoBehaviour
     {
         foreach (Unit n in allies)
         {
-            n.movableLength = 2;
+            n.movableLength = n.staticMovableLength;
         }
         endTurnButton.interactable = true;
         whichTurn = "Move ally";
@@ -386,7 +391,7 @@ public class Manager : MonoBehaviour
         }
         isStateReady = false;
         endTurnButton.interactable = false;
-        if(destroyedEnemyCount > 0)
+        if (destroyedEnemyCount > 0)
         {
             foreach (GameObject go in destroyedUnitControlButton)
                 go.GetComponent<Button>().interactable = true;
@@ -413,10 +418,12 @@ public class Manager : MonoBehaviour
                 n.isTerritory = -1;
                 if (territories.Contains(n))
                     territories.Remove(n);
-                //                foreach (Unit enemy in n.enemies)
-                //                    enemy.movableLength = 2;
+                foreach (Unit enemy in n.enemies)
+                    enemy.movableLength = enemy.staticMovableLength;
             }
             else if (n.allies.Count == 0 && n.enemies.Count == 0)
+                n.isTerritory = 0;
+            else
                 n.isTerritory = 0;
         }
         foreach (Node n in allNodes)

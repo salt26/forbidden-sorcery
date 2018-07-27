@@ -360,7 +360,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   classify: 3
-  destroyEnemySelectButtons: []
 --- !u!114 &226685883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -775,7 +774,6 @@ MonoBehaviour:
   whichTurn: a
   enemySpawners: []
   AHText: {fileID: 0}
-  alliedEnemyManage: {fileID: 0}
   allies: []
   enemies: []
   territories: []
@@ -794,14 +792,16 @@ MonoBehaviour:
     attack: 1
     health: 3
     movableLength: 2
+    cost: 0
   enemyPrefab:
   - kind: dia
     isAlly: 0
     attack: 1
     health: 2
     movableLength: 2
+    cost: 0
+  destroyEnemySelectButtons: []
   destroyedEnemyCount: 0
-  i: 0
 --- !u!4 &545173162
 Transform:
   m_ObjectHideFlags: 0
@@ -981,7 +981,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   classify: 2
-  destroyEnemySelectButtons: []
 --- !u!114 &915961662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2086,8 +2085,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -126.7, y: -238.57}
-  m_SizeDelta: {x: 258.6, y: 98.85}
+  m_AnchoredPosition: {x: -129.3, y: -225.8}
+  m_SizeDelta: {x: 258.6, y: 170.86}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1723243317
 MonoBehaviour:
@@ -2447,7 +2446,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   classify: 1
-  destroyEnemySelectButtons: []
 --- !u!114 &1997733656
 MonoBehaviour:
   m_ObjectHideFlags: 0

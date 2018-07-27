@@ -133,6 +133,7 @@ public class Node : MonoBehaviour
             unitComponent.IsAlly = true;
             unitComponent.Position = this;
             unitComponent.IsMove = false;
+            unitComponent.staticMovableLength = unitData.MovableLength;
             unitComponent.movableLength = unitData.MovableLength;
             unitComponent.Kind = unitData.Kind;
             unitComponent.attck = unitData.Attack;
@@ -151,6 +152,7 @@ public class Node : MonoBehaviour
             unitComponent.IsAlly = false;
             unitComponent.Position = this;
             unitComponent.IsMove = false;
+            unitComponent.staticMovableLength = unitData.MovableLength;
             unitComponent.movableLength = unitData.MovableLength;
             unitComponent.Kind = unitData.Kind;
             unitComponent.attck = unitData.Attack;

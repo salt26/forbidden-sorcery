@@ -34,7 +34,7 @@ public class UnitButton : MonoBehaviour
     public void OnButtonClick()
     {
         if (unit != null)
-            Manager.manager.AHText.stateAH(false, unit.attck.ToString(), unit.health.ToString());
+            Manager.manager.AHText.stateAH(false, unit.attck.ToString(), unit.health.ToString(), unit.movableLength.ToString());
         if (Manager.manager.isPlayerActionTurn)
         {
             if (isForMove)

@@ -15,12 +15,16 @@ public class UnitData
     int health;
     [SerializeField]
     int movableLength;
-    public UnitData(string kind, bool isAlly, int attack, int health)
+    [SerializeField]
+    int cost;
+    public UnitData(string kind, bool isAlly, int attack, int health, int movableLength, int cost)
     {
         this.kind = kind;
         this.isAlly = isAlly;
         this.attack = attack;
         this.health = health;
+        this.movableLength = movableLength;
+        this.cost = cost;
     }
 
     public string Kind
@@ -85,6 +89,19 @@ public class UnitData
         set
         {
             movableLength = value;
+        }
+    }
+
+    public int Cost
+    {
+        get
+        {
+            return cost;
+        }
+
+        set
+        {
+            cost = value;
         }
     }
 }

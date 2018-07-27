@@ -13,7 +13,8 @@ public class Unit : MonoBehaviour
     bool isInitialized = false;
     public bool isOldOne = false;
     [HideInInspector]
-    public int movableLength;//enemy movableLength is static, ally movableLength is changeable
+    public int movableLength;//changeable
+    public int staticMovableLength;
     public Queue<IEnumerator> moveQueue = new Queue<IEnumerator>();
     public string kind;//kind
     public int cost = 1;
@@ -22,7 +23,6 @@ public class Unit : MonoBehaviour
     [HideInInspector]
     public UnitData unitData;
     
-
     private void FixedUpdate()
     {
         if (moveQueue.Count != 0 && isMoved)
@@ -98,6 +98,7 @@ public class Unit : MonoBehaviour
         }
         */
         isInitialized = true;
+        movableLength = staticMovableLength;
     }
 
     public void Move(Node from, Node to)
