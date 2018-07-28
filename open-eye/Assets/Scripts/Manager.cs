@@ -40,6 +40,10 @@ public class Manager : MonoBehaviour
     public List<Button> destroyEnemySelectButtons = new List<Button>();
     [HideInInspector]
     public int destroyedEnemyCount = 0;
+    /// <summary>
+    /// this is for renew node's destroyedEnemies
+    /// </summary>
+    public List<Unit> nodeDestroyedEnemies;
 
     private void Awake()
     {
@@ -126,41 +130,6 @@ public class Manager : MonoBehaviour
         {
             if (isPlayerActionTurn)
             {
-                /*
-                if (selected == n)
-                {
-                    buttonUnitList.Clear();
-                    scrollview.SetActive(false);
-                    ScrollViewContent.manager.Reset();
-                    selected = null;
-                }
-                else if (from == null && n.allies.Count != 0)
-                {
-                    from = n;
-                    var spriteRenderer = from.GetComponent<SpriteRenderer>();
-                    originColor = spriteRenderer.color;
-                    spriteRenderer.color = Color.black;
-
-                    buttonUnitList.Clear();
-                    scrollview.SetActive(true);
-                    ScrollViewContent.manager.Reset();
-                    foreach (Unit u in n.allies)
-                    {
-                        ScrollViewContent.manager.AddComponent(u);
-                    }
-                }
-                else if (from == null && n.enemies.Count != 0)
-                {
-                    buttonUnitList.Clear();
-                    ScrollViewContent.manager.Reset();
-                    scrollview.SetActive(true);
-                    foreach (Unit u in n.enemies)
-                    {
-                        ScrollViewContent.manager.AddComponent(u);
-                    }
-                    selected = n;
-                }
-                */
 
                 if (from == null && (n.IsKing || n.allies.Count != 0 || n.enemies.Count != 0))
                 {
@@ -256,6 +225,7 @@ public class Manager : MonoBehaviour
                     {
                         ScrollViewContent.scrollViewContent.AddComponent(unit, false);
                     }
+                    nodeDestroyedEnemies = n.destroyedEnemies;
                 }
             }
         }

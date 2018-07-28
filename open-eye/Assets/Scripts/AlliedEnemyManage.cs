@@ -24,6 +24,7 @@ public class AlliedEnemyManage : MonoBehaviour {
                 UnitData ud = button.GetComponent<UnitButton>().Unit.unitData;
                 ud = new UnitData(ud.Kind, true, ud.Attack, ud.Health, ud.MovableLength, ud.Cost);
                 Manager.manager.allyPrefab.Add(ud);
+                Manager.manager.nodeDestroyedEnemies.Remove(button.GetComponent<UnitButton>().Unit);
                 ScrollViewContent.scrollViewContent.Remove(button);
                 Destroy(button.GetComponent<UnitButton>().Unit.gameObject);
                 Manager.manager.destroyedEnemyCount--;
@@ -35,6 +36,8 @@ public class AlliedEnemyManage : MonoBehaviour {
             foreach (Button button in destroyEnemySelectButtons)
             {
                 Manager.manager.spell += 3;
+                Manager.manager.notoriety += 1;
+                Manager.manager.nodeDestroyedEnemies.Remove(button.GetComponent<UnitButton>().Unit);
                 ScrollViewContent.scrollViewContent.Remove(button);
                 Destroy(button.GetComponent<UnitButton>().Unit.gameObject);
                 Manager.manager.destroyedEnemyCount--;
@@ -46,6 +49,7 @@ public class AlliedEnemyManage : MonoBehaviour {
             foreach (Button button in destroyEnemySelectButtons)
             {
                 Manager.manager.notoriety -= Manager.manager.notoriety < 3 ? Manager.manager.notoriety : 3;
+                Manager.manager.nodeDestroyedEnemies.Remove(button.GetComponent<UnitButton>().Unit);
                 ScrollViewContent.scrollViewContent.Remove(button);
                 Destroy(button.GetComponent<UnitButton>().Unit.gameObject);
                 Manager.manager.destroyedEnemyCount--;
