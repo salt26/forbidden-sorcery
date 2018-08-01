@@ -33,8 +33,8 @@ public class UnitButton : MonoBehaviour
 
     public void OnButtonClick()
     {
-        if (unit != null)
-            Manager.manager.AHText.stateAH(false, unit.attck.ToString(), unit.health.ToString(), unit.movableLength.ToString());
+//        if (unit != null)
+//            Manager.manager.AHText.stateAH(false, unit.attck.ToString(), unit.health.ToString(), unit.movableLength.ToString());
         if (Manager.manager.isPlayerActionTurn)
         {
             if (isForMove)
@@ -43,12 +43,14 @@ public class UnitButton : MonoBehaviour
                 {
                     if (!selected)
                     {
+                        Manager.manager.AHText.stateAH(false, unit.attck.ToString(), unit.health.ToString(), unit.movableLength.ToString());
                         Manager.manager.buttonUnitList.Add(unit);
                         GetComponent<Image>().color = Color.black;
                         selected = true;
                     }
                     else
                     {
+                        Manager.manager.AHText.stateAH(true, "", "", "");
                         Manager.manager.buttonUnitList.Remove(unit);
                         GetComponent<Image>().color = Color.white;
                         selected = false;
@@ -65,12 +67,14 @@ public class UnitButton : MonoBehaviour
         {
             if (!selected)
             {
+                Manager.manager.AHText.stateAH(false, unit.attck.ToString(), unit.health.ToString(), unit.movableLength.ToString());
                 Manager.manager.destroyEnemySelectButtons.Add(this.GetComponent<Button>());
                 GetComponent<Image>().color = Color.black;
                 selected = true;
             }
             else
             {
+                Manager.manager.AHText.stateAH(true, "", "", "");
                 Manager.manager.destroyEnemySelectButtons.Remove(this.GetComponent<Button>());
                 GetComponent<Image>().color = Color.white;
                 selected = false;

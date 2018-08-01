@@ -103,14 +103,18 @@ public class Unit : MonoBehaviour
 
     public void Move(Node from, Node to)
     {
-        if (movableLength <= 0)
-            isMove = false;
-        else if (isInitialized && movableLength > 0)
+        //if (movableLength <= 0)
+        //    isMove = false;
+        //else 
+        if (isInitialized && movableLength > 0)
         {
             isMove = true;
+            movableLength--;
             position = to;
             moveQueue.Enqueue(MoveAnimation(from, to));
         }
+        else
+            isMove = false;
     }
 
     IEnumerator MoveAnimation(Node from, Node to)

@@ -128,6 +128,7 @@ public class Manager : MonoBehaviour
     {
         if (isStateReady)
         {
+            AHText.stateAH(true, "", "", "");
             if (isPlayerActionTurn)
             {
 
@@ -180,7 +181,6 @@ public class Manager : MonoBehaviour
                     foreach (Unit unit in buttonUnitList)
                     {
                         unit.Move(from, to);
-                        unit.movableLength--;
                         if (to.enemies.Count > 0)
                             unit.movableLength = 0;
                         if (!unit.IsMove)
@@ -198,8 +198,13 @@ public class Manager : MonoBehaviour
                     }
                     else
                     {
-                        to.RedLight();
+                        //warn
+                        to.RedLight(); from.GetComponent<SpriteRenderer>().color = originColor;
+                        from = null;
                         to = null;
+                        buttonUnitList.Clear();
+                        ScrollViewContent.scrollViewContent.Reset();
+                        scrollview.SetActive(false);
                     }
                 }
             }
@@ -255,7 +260,8 @@ public class Manager : MonoBehaviour
 
             if (enemy.isOldOne)
             {
-                for (int i = 0; i < enemy.movableLength; i++)
+                //warn
+                while (enemy.movableLength > 0)
                 {
                     Node nextNode = enemy.Position.edges[0];
                     foreach (Node n in enemy.Position.edges)
