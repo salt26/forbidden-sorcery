@@ -6,19 +6,12 @@ public class Node : MonoBehaviour
 {
     [SerializeField]
     private bool isCastle;
+
+    [SerializeField]
     public bool isEnemySpawner;
+
+    [SerializeField]
     public List<Node> edges;
-    [HideInInspector]
-    public List<Unit> allies = new List<Unit>();
-    [HideInInspector]
-    public List<Unit> enemies = new List<Unit>();
-    [HideInInspector]
-    public List<Unit> destroyedEnemies = new List<Unit>();
-    bool isRed;
-    [HideInInspector]
-    public bool isPlayerTerritory;
-    [HideInInspector]
-    public int distance = int.MaxValue;
 
     public bool IsCastle
     {
@@ -27,6 +20,28 @@ public class Node : MonoBehaviour
             return isCastle;
         }
     }
+    
+    [HideInInspector]
+    public List<Unit> allies = new List<Unit>();
+    [HideInInspector]
+    public List<Unit> enemies = new List<Unit>();
+    [HideInInspector]
+    public List<Unit> destroyedEnemies = new List<Unit>();
+
+    [HideInInspector]
+    public bool isPlayerTerritory;
+    [HideInInspector]
+    public int distance = int.MaxValue;
+
+    public bool isFighting
+    {
+        get
+        {
+            return allies.Count > 0 && enemies.Count > 0;
+        }
+    }
+
+    bool isRed;
 
     void Awake()
     {
@@ -50,21 +65,19 @@ public class Node : MonoBehaviour
     {
         if (isCastle)
         {
-            Manager.manager.kingTower = this;
+            GameManager.instance.SetCastle(this);
             isPlayerTerritory = true;
         }
         if (isEnemySpawner)
         {
-            Manager.manager.enemySpawners.Add(this);
             isPlayerTerritory = false;
         }
         if (isPlayerTerritory)
         {
-            Manager.manager.territories.Add(this);
             if (!isCastle)
                 this.GetComponent<SpriteRenderer>().color = Color.green;
         }
-        Manager.manager.allNodes.Add(this);
+        GameManager.instance.allNodes.Add(this);
     }
 
     public void OnClick()
@@ -74,7 +87,7 @@ public class Node : MonoBehaviour
 
     void OnMouseUpAsButton()
     {
-        Manager.manager.SetNode(this);
+        GameManager.instance.SetNode(this);
     }
 
     public void RedLight()
@@ -83,47 +96,26 @@ public class Node : MonoBehaviour
             StartCoroutine(RedLightAnimation());
     }
     
-    public Unit Spawn(UnitData unitData)
+    public Unit Spawn(UnitData unitData, bool isAlly)
     {
-        if (isCastle && unitData.isAlly)
+        var unitObject = Instantiate(AssetManager.Instance.GetPrefab("Unit"));
+        var unit = unitObject.GetComponent<Unit>();
+        unit.SetUnit(unitData);
+        unit.isAlly = isAlly;
+
+        unit.transform.localPosition = this.transform.localPosition;
+        unit.position = this;
+
+        if (isAlly)
         {
-            var unitClone = Instantiate(PrefabManager.Instance.GetPrefab("Unit"));
-            var unitComponent = unitClone.GetComponent<Unit>();
-            unitClone.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(unitData.kind);
-            unitComponent.transform.localPosition = this.transform.localPosition;
-            unitComponent.isAlly = true;
-            unitComponent.position = this;
-            unitComponent.isMove = false;
-            unitComponent.staticMovableLength = unitData.movableLength;
-            unitComponent.movableLength = unitData.movableLength;
-            unitComponent.kind = unitData.kind;
-            unitComponent.attck = unitData.attack;
-            unitComponent.health = unitData.health;
-            unitComponent.unitData = unitData;
-            unitComponent.Initialize();
-            allies.Add(unitClone.GetComponent<Unit>());
-            return unitClone.GetComponent<Unit>();
+            allies.Add(unit);
         }
-        else if (isEnemySpawner && !unitData.isAlly)
+        else
         {
-            var unitClone = Instantiate(PrefabManager.Instance.GetPrefab("Unit"));
-            var unitComponent = unitClone.GetComponent<Unit>();
-            unitClone.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(unitData.kind);
-            unitComponent.transform.localPosition = this.transform.localPosition;
-            unitComponent.isAlly = false;
-            unitComponent.position = this;
-            unitComponent.isMove = false;
-            unitComponent.staticMovableLength = unitData.movableLength;
-            unitComponent.movableLength = unitData.movableLength;
-            unitComponent.kind = unitData.kind;
-            unitComponent.attck = unitData.attack;
-            unitComponent.health = unitData.health;
-            unitComponent.unitData = unitData;
-            unitComponent.Initialize();
-            enemies.Add(unitClone.GetComponent<Unit>());
-            return unitClone.GetComponent<Unit>();
+            enemies.Add(unit);
         }
-        return null;
+
+        return unit;
     }
 
     IEnumerator RedLightAnimation()

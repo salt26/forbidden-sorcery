@@ -4,20 +4,10 @@ using UnityEngine;
 
 public class UnitData : ScriptableObject
 {
-    public string kind;
-    public bool isAlly;
+    public string unitName;
+    public string spriteName;
     public int attack;
     public int health;
-    public int movableLength;
+    public int movement;
     public int cost;
-
-    public UnitData(string kind, bool isAlly, int attack, int health, int movableLength, int cost)
-    {
-        this.kind = kind;
-        this.isAlly = isAlly;
-        this.attack = attack;
-        this.health = health;
-        this.movableLength = movableLength;
-        this.cost = cost;
-    }
 }

@@ -33,25 +33,21 @@ public class UnitButton : MonoBehaviour
 
     public void OnButtonClick()
     {
-//        if (unit != null)
-//            Manager.manager.AHText.stateAH(false, unit.attck.ToString(), unit.health.ToString(), unit.movableLength.ToString());
-        if (Manager.manager.isPlayerActionTurn)
+        if (GameManager.instance.currentState == GameManager.RoundState.PlayerAction)
         {
             if (isForMove)
             {
-                if (Manager.manager.allies.Contains(unit))
+                if (GameManager.instance.allies.Contains(unit))
                 {
                     if (!selected)
                     {
-                        Manager.manager.AHText.stateAH(false, unit.attck.ToString(), unit.health.ToString(), unit.movableLength.ToString());
-                        Manager.manager.buttonUnitList.Add(unit);
+                        GameManager.instance.buttonUnitList.Add(unit);
                         GetComponent<Image>().color = Color.black;
                         selected = true;
                     }
                     else
                     {
-                        Manager.manager.AHText.stateAH(true, "", "", "");
-                        Manager.manager.buttonUnitList.Remove(unit);
+                        GameManager.instance.buttonUnitList.Remove(unit);
                         GetComponent<Image>().color = Color.white;
                         selected = false;
                     }
@@ -59,7 +55,7 @@ public class UnitButton : MonoBehaviour
             }
             else
             {
-                Manager.manager.spawnUnitList.Add(unitData);
+                GameManager.instance.spawnUnitList.Add(unitData);
             }
         }
 
@@ -67,15 +63,13 @@ public class UnitButton : MonoBehaviour
         {
             if (!selected)
             {
-                Manager.manager.AHText.stateAH(false, unit.attck.ToString(), unit.health.ToString(), unit.movableLength.ToString());
-                Manager.manager.destroyEnemySelectButtons.Add(this.GetComponent<Button>());
+                GameManager.instance.destroyEnemySelectButtons.Add(this.GetComponent<Button>());
                 GetComponent<Image>().color = Color.black;
                 selected = true;
             }
             else
             {
-                Manager.manager.AHText.stateAH(true, "", "", "");
-                Manager.manager.destroyEnemySelectButtons.Remove(this.GetComponent<Button>());
+                GameManager.instance.destroyEnemySelectButtons.Remove(this.GetComponent<Button>());
                 GetComponent<Image>().color = Color.white;
                 selected = false;
             }
