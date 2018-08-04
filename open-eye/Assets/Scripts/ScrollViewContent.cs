@@ -21,7 +21,7 @@ public class ScrollViewContent : MonoBehaviour
         listCom.GetComponent<RectTransform>().anchorMax = new Vector2(1, 1);
         listCom.GetComponent<RectTransform>().anchorMin = new Vector2(0, 1);
         listCom.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -GetComponent<RectTransform>().sizeDelta.y, 0);
-        listCom.GetComponentInChildren<Text>().text = u.kind;
+        listCom.GetComponentInChildren<Text>().text = u.unitData.unitName;
         listCom.GetComponent<UnitButton>().AddUnit(u, u.unitData, isForMove);
         list.Add(listCom);
         this.GetComponent<RectTransform>().sizeDelta = new Vector2(this.GetComponent<RectTransform>().sizeDelta.x, this.GetComponent<RectTransform>().sizeDelta.y + listCom.GetComponent<RectTransform>().sizeDelta.y);
@@ -35,7 +35,7 @@ public class ScrollViewContent : MonoBehaviour
         listCom.GetComponent<RectTransform>().anchorMax = new Vector2(1, 1);
         listCom.GetComponent<RectTransform>().anchorMin = new Vector2(0, 1);
         listCom.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -GetComponent<RectTransform>().sizeDelta.y, 0);
-        listCom.GetComponentInChildren<Text>().text = "Spawn : " + unitData.kind;
+        listCom.GetComponentInChildren<Text>().text = "Spawn : " + unitData.unitName;
         //warn
         listCom.GetComponent<UnitButton>().AddUnit(null, unitData);
         list.Add(listCom);

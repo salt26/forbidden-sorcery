@@ -4,56 +4,77 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
+    public delegate void OnMoveDone();
+
     [HideInInspector]
     public Node position;
-    [SerializeField]
+
     [HideInInspector]
     public bool isAlly;
-    [HideInInspector]
-    public bool isMove;
-    [HideInInspector]
-    public bool isMoved = true;
-    bool isInitialized = false;
-    public bool isOldOne = false;
-    [HideInInspector]
-    public int movableLength;//changeable
-    public int staticMovableLength;
-    public Queue<IEnumerator> moveQueue = new Queue<IEnumerator>();
-    public string kind;//kind
-    public int cost = 1;
-    public int attck;
-    public int health;
-    [HideInInspector]
-    public UnitData unitData;
     
-    private void FixedUpdate()
+    public Queue<IEnumerator> moveQueue = new Queue<IEnumerator>();
+    
+    public UnitData unitData;
+    public OnMoveDone onMoveDone;
+
+    public int currentHealth
     {
-        if (moveQueue.Count != 0 && isMoved)
-            StartCoroutine(moveQueue.Dequeue());
+        get;
+        private set;
+    }
+    private int movement;
+    private bool isMoving;
+
+    public bool canMove
+    {
+        get
+        {
+            return movement > 0 && !position.isFighting;
+        }
+    }
+
+    public void Refresh()
+    {
+        movement = unitData.movement;
+    }
+
+    public void Damage(int damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth < 0)
+        {
+            currentHealth = 0;
+        }
     }
     
-    public void Initialize()
+    public void SetUnit(UnitData unitData)
     {
-        isInitialized = true;
-        movableLength = staticMovableLength;
+        this.unitData = unitData;
+        GetComponent<SpriteRenderer>().sprite = AssetManager.Instance.GetSprite(unitData.spriteName);
+        currentHealth = unitData.health;
+        movement = 0;
     }
 
     public void Move(Node from, Node to)
     {
-        if (isInitialized && movableLength > 0)
+        if (movement > 0)
         {
-            isMove = true;
-            movableLength--;
+            movement--;
             position = to;
             moveQueue.Enqueue(MoveAnimation(from, to));
         }
-        else
-            isMove = false;
+
+        if (!isMoving && moveQueue.Count > 0)
+        {
+            isMoving = true;
+            StartCoroutine(moveQueue.Dequeue());
+        }
     }
 
     IEnumerator MoveAnimation(Node from, Node to)
     {
-        isMoved = false;
+        GameManager.instance.movingUnits.Add(this);
+
         float duration = 0.5f;
         float deltaTime = 0;
         float rate = deltaTime / duration;
@@ -71,6 +92,26 @@ public class Unit : MonoBehaviour
 
         transform.localPosition = to.transform.localPosition;
 
-        isMoved = true;
+        OnMoveAnimationFinished();
     }
+
+    public void OnMoveAnimationFinished()
+    {
+        if (moveQueue.Count > 0)
+        {
+            StartCoroutine(moveQueue.Dequeue());
+        }
+        else
+        {
+            isMoving = false;
+
+            GameManager.instance.movingUnits.Remove(this);
+
+            if (onMoveDone != null)
+            {
+                onMoveDone();
+            }
+        }
+    }
+
 }
