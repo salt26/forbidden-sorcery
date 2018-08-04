@@ -72,7 +72,7 @@ public class Manager : MonoBehaviour
             bool isAllEnemyMoved = true;
             foreach (Unit enemy in enemies)
             {
-                if (enemy.moveQueue.Count != 0 || !enemy.IsMoved)
+                if (enemy.moveQueue.Count != 0 || !enemy.isMoved)
                     isAllEnemyMoved = false;
             }
             if (isAllEnemyMoved)
@@ -132,7 +132,7 @@ public class Manager : MonoBehaviour
             if (isPlayerActionTurn)
             {
 
-                if (from == null && (n.IsKing || n.allies.Count != 0 || n.enemies.Count != 0))
+                if (from == null && (n.IsCastle || n.allies.Count != 0 || n.enemies.Count != 0))
                 {
                     from = n;
                     var spriteRenderer = from.GetComponent<SpriteRenderer>();
@@ -142,7 +142,7 @@ public class Manager : MonoBehaviour
                     scrollview.SetActive(true);
                     buttonUnitList.Clear();
                     ScrollViewContent.scrollViewContent.Reset();
-                    if (n.IsKing)
+                    if (n.IsCastle)
                     {
                         for (int i = 0; i < allyPrefab.Count; i++)
                             ScrollViewContent.scrollViewContent.AddGenButton(allyPrefab[i]);
@@ -183,7 +183,7 @@ public class Manager : MonoBehaviour
                         unit.Move(from, to);
                         if (to.enemies.Count > 0)
                             unit.movableLength = 0;
-                        if (!unit.IsMove)
+                        if (!unit.isMove)
                             isAllAlliesMoved = false;
                     }
 
@@ -263,8 +263,8 @@ public class Manager : MonoBehaviour
                 //warn
                 while (enemy.movableLength > 0)
                 {
-                    Node nextNode = enemy.Position.edges[0];
-                    foreach (Node n in enemy.Position.edges)
+                    Node nextNode = enemy.position.edges[0];
+                    foreach (Node n in enemy.position.edges)
                     {
                         if (n.distance < nextNode.distance)
                         {
@@ -277,7 +277,7 @@ public class Manager : MonoBehaviour
                                 nextNode = n;
                         }
                     }
-                    enemy.Move(enemy.Position, nextNode);
+                    enemy.Move(enemy.position, nextNode);
                     if (nextNode.Equals(kingTower))
                         enemy.movableLength = 0;
                     if (nextNode.allies.Count > 0)
@@ -358,7 +358,7 @@ public class Manager : MonoBehaviour
             }
             if (n.allies.Count > 0 && n.enemies.Count > 0)
             {
-                n.isTerritory = 0;
+                n.isPlayerTerritory = false;
                 foreach (Unit enemy in n.enemies)
                 {
                     enemy.movableLength = 0;
@@ -385,33 +385,33 @@ public class Manager : MonoBehaviour
         {
             if (n.allies.Count > 0 && n.enemies.Count == 0)
             {
-                n.isTerritory = 1;
+                n.isPlayerTerritory = true;
                 if (!territories.Contains(n))
                     territories.Add(n);//replace?
             }
             else if (n.allies.Count == 0 && n.enemies.Count > 0)
             {
-                n.isTerritory = -1;
+                n.isPlayerTerritory = false;
                 if (territories.Contains(n))
                     territories.Remove(n);
                 foreach (Unit enemy in n.enemies)
                     enemy.movableLength = enemy.staticMovableLength;
             }
             else if (n.allies.Count == 0 && n.enemies.Count == 0)
-                n.isTerritory = 0;
+                n.isPlayerTerritory = true;
             else
-                n.isTerritory = 0;
+                n.isPlayerTerritory = true;
         }
         foreach (Node n in allNodes)
         {
-            if (!n.IsKing)
+            if (!n.IsCastle)
             {
                 n.GetComponent<SpriteRenderer>().color = Color.white;
             }
         }
         foreach (Node n in territories)
         {
-            if (!n.IsKing)
+            if (!n.IsCastle)
             {
                 n.GetComponent<SpriteRenderer>().color = Color.green;
             }

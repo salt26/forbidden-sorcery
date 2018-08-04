@@ -35,7 +35,7 @@ public class ScrollViewContent : MonoBehaviour
         listCom.GetComponent<RectTransform>().anchorMax = new Vector2(1, 1);
         listCom.GetComponent<RectTransform>().anchorMin = new Vector2(0, 1);
         listCom.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -GetComponent<RectTransform>().sizeDelta.y, 0);
-        listCom.GetComponentInChildren<Text>().text = "Spawn : " + unitData.Kind;
+        listCom.GetComponentInChildren<Text>().text = "Spawn : " + unitData.kind;
         //warn
         listCom.GetComponent<UnitButton>().AddUnit(null, unitData);
         list.Add(listCom);

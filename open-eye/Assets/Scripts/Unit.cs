@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
+    [HideInInspector]
+    public Node position;
     [SerializeField]
-    Node position;
-    [SerializeField]
-    bool isAlly;
-    bool isMove;
-    bool isMoved = true;
+    [HideInInspector]
+    public bool isAlly;
+    [HideInInspector]
+    public bool isMove;
+    [HideInInspector]
+    public bool isMoved = true;
     bool isInitialized = false;
     public bool isOldOne = false;
     [HideInInspector]
@@ -29,83 +32,14 @@ public class Unit : MonoBehaviour
             StartCoroutine(moveQueue.Dequeue());
     }
     
-
-    public string Kind
-    {
-        get
-        {
-            return kind;
-        }
-        set
-        {
-            kind = value;
-        }
-    }
-    public Node Position
-    {
-        get
-        {
-            return position;
-        }
-        set
-        {
-            position = value;
-        }
-    }
-
-    public bool IsMoved
-    {
-        set
-        {
-            isMoved = value;
-        }
-        get
-        {
-            return isMoved;
-        }
-    }
-
-    public bool IsMove
-    {
-        get
-        {
-            return isMove;
-        }
-        set
-        {
-            isMove = value;
-        }
-    }
-
-    public bool IsAlly
-    {
-        get
-        {
-            return isAlly;
-        }
-        set
-        {
-            isAlly = value;
-        }
-    }
-
     public void Initialize()
     {
-        /*
-        if (!isAlly)
-        {
-            this.GetComponent<SpriteRenderer>().color = Color.black;
-        }
-        */
         isInitialized = true;
         movableLength = staticMovableLength;
     }
 
     public void Move(Node from, Node to)
     {
-        //if (movableLength <= 0)
-        //    isMove = false;
-        //else 
         if (isInitialized && movableLength > 0)
         {
             isMove = true;
@@ -138,12 +72,5 @@ public class Unit : MonoBehaviour
         transform.localPosition = to.transform.localPosition;
 
         isMoved = true;
-        //Manager.manager.isAllMoved += 1;
-        //if (Manager.manager.isAllMoved == Manager.manager.haveToMove)
-        //{
-        //    Manager.manager.isAllMoved = 0;
-        //    Manager.manager.haveToMove = 0;
-        //    Manager.manager.PlayerAction();
-        //}
     }
 }

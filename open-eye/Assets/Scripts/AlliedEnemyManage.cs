@@ -22,7 +22,7 @@ public class AlliedEnemyManage : MonoBehaviour {
             foreach (Button button in destroyEnemySelectButtons)
             {
                 UnitData ud = button.GetComponent<UnitButton>().Unit.unitData;
-                ud = new UnitData(ud.Kind, true, ud.Attack, ud.Health, ud.MovableLength, ud.Cost);
+                ud = new UnitData(ud.kind, true, ud.attack, ud.health, ud.movableLength, ud.cost);
                 Manager.manager.allyPrefab.Add(ud);
                 Manager.manager.nodeDestroyedEnemies.Remove(button.GetComponent<UnitButton>().Unit);
                 ScrollViewContent.scrollViewContent.Remove(button);
