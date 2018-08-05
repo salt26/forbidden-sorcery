@@ -78,15 +78,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd7938cce7d8cf042a1d0bd52841c15a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isKing: 0
+  isCastle: 0
   isEnemySpawner: 0
   edges: []
   allies: []
   enemies: []
   destroyedEnemies: []
-  isTerritory: 0
+  isPlayerTerritory: 0
   distance: 2147483647
-  prefab: {fileID: 1246434854016618, guid: 4c12def1f2a6f304d9bc7222f2594eb6, type: 2}
 --- !u!212 &212553964481955670
 SpriteRenderer:
   m_ObjectHideFlags: 1

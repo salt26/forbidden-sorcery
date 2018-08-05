@@ -37,7 +37,7 @@ public class UnitButton : MonoBehaviour
         {
             if (isForMove)
             {
-                if (GameManager.instance.allies.Contains(unit))
+                if (unit.isAlly)
                 {
                     if (!selected)
                     {

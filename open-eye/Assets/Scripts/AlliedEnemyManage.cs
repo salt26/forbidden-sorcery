@@ -23,10 +23,8 @@ public class AlliedEnemyManage : MonoBehaviour {
             {
                 UnitData ud = button.GetComponent<UnitButton>().Unit.unitData;
                 GameManager.instance.allyPrefab.Add(ud);
-                GameManager.instance.nodeDestroyedEnemies.Remove(button.GetComponent<UnitButton>().Unit);
                 ScrollViewContent.scrollViewContent.Remove(button);
                 Destroy(button.GetComponent<UnitButton>().Unit.gameObject);
-                GameManager.instance.destroyedEnemyCount--;
             }
             destroyEnemySelectButtons.Clear();
         }
@@ -36,10 +34,8 @@ public class AlliedEnemyManage : MonoBehaviour {
             {
                 GameManager.instance.mana += 3;
                 GameManager.instance.notoriety += 1;
-                GameManager.instance.nodeDestroyedEnemies.Remove(button.GetComponent<UnitButton>().Unit);
                 ScrollViewContent.scrollViewContent.Remove(button);
                 Destroy(button.GetComponent<UnitButton>().Unit.gameObject);
-                GameManager.instance.destroyedEnemyCount--;
             }
             destroyEnemySelectButtons.Clear();
         }
@@ -48,10 +44,8 @@ public class AlliedEnemyManage : MonoBehaviour {
             foreach (Button button in destroyEnemySelectButtons)
             {
                 GameManager.instance.notoriety -= GameManager.instance.notoriety < 3 ? GameManager.instance.notoriety : 3;
-                GameManager.instance.nodeDestroyedEnemies.Remove(button.GetComponent<UnitButton>().Unit);
                 ScrollViewContent.scrollViewContent.Remove(button);
                 Destroy(button.GetComponent<UnitButton>().Unit.gameObject);
-                GameManager.instance.destroyedEnemyCount--;
             }
             destroyEnemySelectButtons.Clear();
         }

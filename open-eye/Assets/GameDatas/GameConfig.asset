@@ -8,12 +8,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 613be670f9fd4ca4a892bafb6de7f020, type: 3}
-  m_Name: SampleAlly
+  m_Script: {fileID: 11500000, guid: 5b952d90b864dea4a907e27927234ae2, type: 3}
+  m_Name: GameConfig
   m_EditorClassIdentifier: 
-  unitName: 
-  spriteName: AllyUnit
-  attack: 1
-  health: 6
-  movement: 1
-  cost: 100
+  baseMana: 0
+  baseNotoriety: 5
+  enemySpawnDataContainer: {fileID: 11400000, guid: f4326abb4553a2e45bf07b3da098ce6d,
+    type: 2}

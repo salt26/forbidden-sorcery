@@ -51,20 +51,38 @@ public partial class GameManager
         }
     }
 
+    private int manaProduce
+    {
+        get
+        {
+            int produce = 0;
+            foreach (var territory in territories)
+            {
+                produce += territory.manaValue;
+            }
+            return produce;
+        }
+    }
+
+    private EnemySpawnDataContainer.EnemySpawnData nextSpawnData;
+
+
+
     public void Standby()
     {
         currentState = RoundState.Standby;
         endTurnButton.interactable = false
             ;
-        if (karma > enemySpawnBound)
+        if (karma > nextSpawnData.requiredKarma)
         {
-            enemySpawnBound += 2;
             foreach (Node node in enemySpawners)
             {
                 Unit enemy = node.Spawn(AssetManager.Instance.GetUnitData("SampleEnemy"), false);
                 enemy.onMoveDone += OnEnemyMoveDone;
                 enemies.Add(enemy);
             }
+
+            nextSpawnData = config.enemySpawnDataContainer.GetNextEnemySpawnData(karma);
         }
 
         EnemyMove();
@@ -80,17 +98,17 @@ public partial class GameManager
             while (enemy.canMove)
             {
                 Node nextNode = enemy.position.edges[0];
-                foreach (Node n in enemy.position.edges)
+                foreach (Node node in enemy.position.edges)
                 {
-                    if (n.distance < nextNode.distance)
+                    if (node.distance < nextNode.distance)
                     {
-                        nextNode = n;
+                        nextNode = node;
                     }
-                    else if (nextNode.distance == n.distance)
+                    else if (nextNode.distance == node.distance)
                     {
                         int r = Random.Range(0, 1);
                         if (r == 0)
-                            nextNode = n;
+                            nextNode = node;
                     }
                 }
                 enemy.Move(enemy.position, nextNode);
@@ -152,7 +170,6 @@ public partial class GameManager
                         n.destroyedEnemies.Add(enemy);
                         enemies.Remove(enemy);
                         destroyEnemy.Add(enemy);
-                        destroyedEnemyCount++;
                     }
                 }
                 foreach (Unit enemy in destroyEnemy)
@@ -230,8 +247,8 @@ public partial class GameManager
         {
             enemy.Refresh();
         }
-
-        mana += territories.Count;
+        
+        mana += manaProduce;
 
         Standby();
     }

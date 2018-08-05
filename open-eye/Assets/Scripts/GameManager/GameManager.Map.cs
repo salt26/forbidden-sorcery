@@ -27,4 +27,9 @@ public partial class GameManager
     {
         this.castle = castle;
     }
+
+    private void InitializeMap()
+    {
+        castle.SetDIstance(0);
+    }
 }

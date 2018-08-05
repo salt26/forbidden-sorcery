@@ -7,23 +7,29 @@ public partial class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    Node from = null;
-    Node to = null;
-    Color originColor = Color.white;
-    public int enemySpawnBound = 2;
-    [HideInInspector]
-    public List<Unit> allies = new List<Unit>();
+    [Header("게임데이터")]
     [SerializeField]
-    List<Unit> enemies = new List<Unit>();
-    public Button endTurnButton;
-    public GameObject scrollview;
+    private GameConfig config;
+    
+    [Header("UI")]
+    [SerializeField]
+    private Button endTurnButton;
+
+    [SerializeField]
+    private GameObject scrollViewObject;
+
+    [Header("정리중")]
     public List<Unit> buttonUnitList = new List<Unit>();
     public List<UnitData> spawnUnitList = new List<UnitData>();
     public List<UnitData> allyPrefab = new List<UnitData>();
     public List<Button> destroyEnemySelectButtons = new List<Button>();
-    [HideInInspector]
-    public int destroyedEnemyCount = 0;
-    public List<Unit> nodeDestroyedEnemies;
+
+    private Node from = null;
+    private Node to = null;
+    private Color originColor = Color.white;
+
+    private List<Unit> allies = new List<Unit>();
+    private List<Unit> enemies = new List<Unit>();
 
     private void Awake()
     {
@@ -32,10 +38,11 @@ public partial class GameManager : MonoBehaviour
 
     private void Start()
     {
-        mana = 3;
-        karma = 0;
-        notoriety = 1;
-        castle.SetDIstance(0);
+        InitializeMap();
+        InitializeResource();
+
+        nextSpawnData = config.enemySpawnDataContainer.GetNextEnemySpawnData(karma);
+
         Standby();
     }
 
@@ -55,7 +62,7 @@ public partial class GameManager : MonoBehaviour
     {
         if (spawnUnitList != null)
             spawnUnitList.Clear();
-        scrollview.SetActive(false);
+        scrollViewObject.SetActive(false);
         if (from != null && from.GetComponent<SpriteRenderer>().color != originColor)
             from.GetComponent<SpriteRenderer>().color = originColor;
         originColor = Color.white;
@@ -84,7 +91,7 @@ public partial class GameManager : MonoBehaviour
                     originColor = spriteRenderer.color;
                     spriteRenderer.color = Color.black;
 
-                    scrollview.SetActive(true);
+                    scrollViewObject.SetActive(true);
                     buttonUnitList.Clear();
                     ScrollViewContent.scrollViewContent.Reset();
                     if (node.IsCastle)
@@ -113,7 +120,7 @@ public partial class GameManager : MonoBehaviour
 
                     buttonUnitList.Clear();
                     ScrollViewContent.scrollViewContent.Reset();
-                    scrollview.SetActive(false);
+                    scrollViewObject.SetActive(false);
                 }
                 else if (!from.edges.Contains(node) && buttonUnitList.Count > 0)
                 {
@@ -140,7 +147,7 @@ public partial class GameManager : MonoBehaviour
                     to = null;
                     buttonUnitList.Clear();
                     ScrollViewContent.scrollViewContent.Reset();
-                    scrollview.SetActive(false);
+                    scrollViewObject.SetActive(false);
 
                 }
             }
@@ -154,19 +161,18 @@ public partial class GameManager : MonoBehaviour
                     from = null;
                     ScrollViewContent.scrollViewContent.Reset();
                     destroyEnemySelectButtons.Clear();
-                    scrollview.SetActive(false);
+                    scrollViewObject.SetActive(false);
                 }
                 else
                 {
                     from = node;
-                    scrollview.SetActive(true);
+                    scrollViewObject.SetActive(true);
                     ScrollViewContent.scrollViewContent.Reset();
                     destroyEnemySelectButtons.Clear();
                     foreach (Unit unit in node.destroyedEnemies)
                     {
                         ScrollViewContent.scrollViewContent.AddComponent(unit, false);
                     }
-                    nodeDestroyedEnemies = node.destroyedEnemies;
                 }
             }
         }

@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class Node : MonoBehaviour
 {
-    [SerializeField]
-    private bool isCastle;
+    public enum NodeType
+    {
+        Normal,
+        Castle,
+        EnemySpawner,
+    }
 
     [SerializeField]
-    public bool isEnemySpawner;
+    private NodeType type;
+
+    [SerializeField]
+    public int manaValue;
 
     [SerializeField]
     public List<Node> edges;
@@ -32,6 +39,22 @@ public class Node : MonoBehaviour
     public bool isPlayerTerritory;
     [HideInInspector]
     public int distance = int.MaxValue;
+    
+    private bool isCastle
+    {
+        get
+        {
+            return type == NodeType.Castle;
+        }
+    }
+    
+    public bool isEnemySpawner
+    {
+        get
+        {
+            return type == NodeType.EnemySpawner;
+        }
+    }
 
     public bool isFighting
     {
@@ -45,12 +68,10 @@ public class Node : MonoBehaviour
 
     void Awake()
     {
-
         isRed = false;
         if (isCastle)
         {
             isPlayerTerritory = true;
-            isEnemySpawner = false;
         }
         foreach (var edge in edges)
         {
