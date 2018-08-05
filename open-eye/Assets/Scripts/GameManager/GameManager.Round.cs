@@ -68,31 +68,132 @@ public partial class GameManager
 
 
 
-    public void Standby()
+    private void StandbyPhase()
     {
         currentState = RoundState.Standby;
-        endTurnButton.interactable = false
-            ;
-        if (karma > nextSpawnData.requiredKarma)
-        {
-            foreach (Node node in enemySpawners)
-            {
-                Unit enemy = node.Spawn(AssetManager.Instance.GetUnitData("SampleEnemy"), false);
-                enemy.onMoveDone += OnEnemyMoveDone;
-                enemies.Add(enemy);
-            }
+        endTurnButton.interactable = false;
 
-            nextSpawnData = config.enemySpawnDataContainer.GetNextEnemySpawnData(karma);
-        }
+        CheckWin();
+        CheckAndSpawnEnemy();
 
-        EnemyMove();
+        EnemyMovePhase();
     }
 
-    public void EnemyMove()
+    private void EnemyMovePhase()
     {
         currentState = RoundState.EnemyMove;
         endTurnButton.interactable = false;
 
+        MoveEnemy();
+
+        OnEnemyMoveDone();
+    }
+
+    private void PlayerActionPhase()
+    {
+        currentState = RoundState.PlayerAction;
+        endTurnButton.interactable = true;
+
+        foreach (Unit ally in allies)
+        {
+            ally.Refresh();
+        }
+    }
+
+    private void FightPhase()
+    {
+        currentState = RoundState.Fight;
+        endTurnButton.interactable = false;
+
+        ResolveAllFight();
+
+        UpkeepPhase();
+    }
+
+    private void UpkeepPhase()
+    {
+        currentState = RoundState.Upkeep;
+        endTurnButton.interactable = false;
+
+        karma += notoriety;
+
+        foreach (Node n in allNodes)
+        {
+            if (n.isFighting)
+            {
+                continue;
+            }
+
+            if (n.enemies.Count > 0)
+            {
+                n.isPlayerTerritory = false;
+            }
+
+            if (n.allies.Count > 0)
+            {
+                n.isPlayerTerritory = true;
+            }
+
+            if (!n.IsCastle)
+            {
+                n.GetComponent<SpriteRenderer>().color = Color.white;
+            }
+        }
+
+        foreach (Node n in territories)
+        {
+            if (!n.IsCastle)
+            {
+                n.GetComponent<SpriteRenderer>().color = Color.green;
+            }
+        }
+
+        foreach (Unit enemy in enemies)
+        {
+            enemy.Refresh();
+        }
+        
+        mana += manaProduce;
+
+        StandbyPhase();
+    }
+
+
+
+
+
+    private void CheckWin()
+    {
+        if (nextSpawnData.enemyDatas == null && enemies.Count == 0)
+        {
+            //TODO : 승리 처리
+        }
+    }
+
+    private void CheckAndSpawnEnemy()
+    {
+        if (karma > nextSpawnData.requiredKarma)
+        {
+            var spawners = enemySpawners;
+
+            foreach (var enemyData in nextSpawnData.enemyDatas)
+            {
+                if (enemyData.requiredNotoriety <= notoriety)
+                {
+                    var spawnNode = spawners[Random.Range(0, spawners.Count)];
+
+                    Unit enemy = spawnNode.Spawn(AssetManager.Instance.GetUnitData("SampleEnemy"), false);
+                    enemy.onMoveDone += OnEnemyMoveDone;
+                    enemies.Add(enemy);
+                }
+            }
+            
+            nextSpawnData = config.enemySpawnDataContainer.GetNextEnemySpawnData(karma);
+        }
+    }
+
+    private void MoveEnemy()
+    {
         foreach (Unit enemy in enemies)
         {
             while (enemy.canMove)
@@ -114,34 +215,18 @@ public partial class GameManager
                 enemy.Move(enemy.position, nextNode);
             }
         }
-
-        OnEnemyMoveDone();
     }
 
     private void OnEnemyMoveDone()
     {
         if (!isEnemyMoving)
         {
-            PlayerAction();
+            PlayerActionPhase();
         }
     }
 
-    public void PlayerAction()
+    private void ResolveAllFight()
     {
-        currentState = RoundState.PlayerAction;
-        endTurnButton.interactable = true;
-
-        foreach (Unit ally in allies)
-        {
-            ally.Refresh();
-        }
-    }
-
-    public void Fight()
-    {
-        currentState = RoundState.Fight;
-        endTurnButton.interactable = false;
-
         foreach (Node n in allNodes)
         {
             if (n.allies.Count > 0 && n.enemies.Count > 0)
@@ -201,55 +286,6 @@ public partial class GameManager
                 n.isPlayerTerritory = false;
             }
         }
-
-        Upkeep();
     }
 
-    public void Upkeep()
-    {
-        currentState = RoundState.Upkeep;
-        endTurnButton.interactable = false;
-
-        karma += notoriety;
-
-        foreach (Node n in allNodes)
-        {
-            if (n.isFighting)
-            {
-                continue;
-            }
-
-            if (n.enemies.Count > 0)
-            {
-                n.isPlayerTerritory = false;
-            }
-
-            if (n.allies.Count > 0)
-            {
-                n.isPlayerTerritory = true;
-            }
-
-            if (!n.IsCastle)
-            {
-                n.GetComponent<SpriteRenderer>().color = Color.white;
-            }
-        }
-
-        foreach (Node n in territories)
-        {
-            if (!n.IsCastle)
-            {
-                n.GetComponent<SpriteRenderer>().color = Color.green;
-            }
-        }
-
-        foreach (Unit enemy in enemies)
-        {
-            enemy.Refresh();
-        }
-        
-        mana += manaProduce;
-
-        Standby();
-    }
 }

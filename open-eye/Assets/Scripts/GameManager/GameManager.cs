@@ -43,7 +43,7 @@ public partial class GameManager : MonoBehaviour
 
         nextSpawnData = config.enemySpawnDataContainer.GetNextEnemySpawnData(karma);
 
-        Standby();
+        StandbyPhase();
     }
 
     private void FixedUpdate()
@@ -70,11 +70,11 @@ public partial class GameManager : MonoBehaviour
         to = null;
         if (currentState == RoundState.Captive)
         {
-            Upkeep();
+            UpkeepPhase();
         }
         else if (currentState == RoundState.PlayerAction)
         {
-            Fight();
+            FightPhase();
         }
     }
 
