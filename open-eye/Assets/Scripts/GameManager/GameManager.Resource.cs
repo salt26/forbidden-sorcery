@@ -4,8 +4,10 @@ using UnityEngine;
 
 public partial class GameManager
 {
+    [HideInInspector]
     public int notoriety;
-    public int karma;
+    private int karma;
+    [HideInInspector]
     public int mana;
 
     private void InitializeResource()

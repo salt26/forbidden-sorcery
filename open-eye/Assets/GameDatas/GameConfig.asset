@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b952d90b864dea4a907e27927234ae2, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: 
-  baseMana: 0
+  baseMana: 500
   baseNotoriety: 5
   enemySpawnDataContainer: {fileID: 11400000, guid: f4326abb4553a2e45bf07b3da098ce6d,
     type: 2}
