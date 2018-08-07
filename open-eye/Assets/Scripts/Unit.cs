@@ -4,127 +4,78 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    [SerializeField]
-    Node position;
-    [SerializeField]
-    bool isAlly;
-    bool isMove;
-    bool isMoved = true;
-    bool isInitialized = false;
-    public bool isOldOne = false;
+    public delegate void OnMoveDone();
+
     [HideInInspector]
-    public int movableLength;//changeable
-    public int staticMovableLength;
+    public Node position;
+
+    [HideInInspector]
+    public bool isAlly;
+    
     public Queue<IEnumerator> moveQueue = new Queue<IEnumerator>();
-    public string kind;//kind
-    public int cost = 1;
-    public int attck;
-    public int health;
-    [HideInInspector]
+    
     public UnitData unitData;
+    public OnMoveDone onMoveDone;
+
+    public int currentHealth { get; private set; }
+    public int movement { get; private set; }
+    private bool isMoving;
+
+    public bool canMove
+    {
+        get
+        {
+            return movement > 0 && !position.isFighting;
+        }
+    }
+
+    public void Refresh()
+    {
+        movement = unitData.movement;
+    }
+
+    public void Damage(int damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth < 0)
+        {
+            currentHealth = 0;
+        }
+    }
     
-    private void FixedUpdate()
+    public void SetUnit(UnitData unitData)
     {
-        if (moveQueue.Count != 0 && isMoved)
-            StartCoroutine(moveQueue.Dequeue());
-    }
-    
-
-    public string Kind
-    {
-        get
-        {
-            return kind;
-        }
-        set
-        {
-            kind = value;
-        }
-    }
-    public Node Position
-    {
-        get
-        {
-            return position;
-        }
-        set
-        {
-            position = value;
-        }
-    }
-
-    public bool IsMoved
-    {
-        set
-        {
-            isMoved = value;
-        }
-        get
-        {
-            return isMoved;
-        }
-    }
-
-    public bool IsMove
-    {
-        get
-        {
-            return isMove;
-        }
-        set
-        {
-            isMove = value;
-        }
-    }
-
-    public bool IsAlly
-    {
-        get
-        {
-            return isAlly;
-        }
-        set
-        {
-            isAlly = value;
-        }
-    }
-
-    public void Initialize()
-    {
-        /*
-        if (!isAlly)
-        {
-            this.GetComponent<SpriteRenderer>().color = Color.black;
-        }
-        */
-        isInitialized = true;
-        movableLength = staticMovableLength;
+        this.unitData = unitData;
+        GetComponent<SpriteRenderer>().sprite = AssetManager.Instance.GetSprite(unitData.spriteName);
+        currentHealth = unitData.health;
+        movement = 0;
     }
 
     public void Move(Node from, Node to)
     {
-        //if (movableLength <= 0)
-        //    isMove = false;
-        //else 
-        if (isInitialized && movableLength > 0)
+        if (movement > 0)
         {
-            isMove = true;
-            movableLength--;
+            movement--;
             position = to;
             moveQueue.Enqueue(MoveAnimation(from, to));
         }
-        else
-            isMove = false;
+
+        if (!isMoving && moveQueue.Count > 0)
+        {
+            isMoving = true;
+            StartCoroutine(moveQueue.Dequeue());
+        }
     }
 
     IEnumerator MoveAnimation(Node from, Node to)
     {
-        isMoved = false;
+        GameManager.instance.movingUnits.Add(this);
+
         float duration = 0.5f;
         float deltaTime = 0;
         float rate = deltaTime / duration;
-        List<Unit> fromUnitList = isAlly ? from.allies : from.enemies;
-        List<Unit> toUnitList = isAlly ? to.allies : to.enemies;
+        List<Unit> fromUnitList = from.units;
+        List<Unit> toUnitList = to.units;
         toUnitList.Add(this);
         fromUnitList.Remove(this);
         while (rate < 1f)
@@ -137,13 +88,26 @@ public class Unit : MonoBehaviour
 
         transform.localPosition = to.transform.localPosition;
 
-        isMoved = true;
-        //Manager.manager.isAllMoved += 1;
-        //if (Manager.manager.isAllMoved == Manager.manager.haveToMove)
-        //{
-        //    Manager.manager.isAllMoved = 0;
-        //    Manager.manager.haveToMove = 0;
-        //    Manager.manager.PlayerAction();
-        //}
+        OnMoveAnimationFinished();
     }
+
+    public void OnMoveAnimationFinished()
+    {
+        if (moveQueue.Count > 0)
+        {
+            StartCoroutine(moveQueue.Dequeue());
+        }
+        else
+        {
+            isMoving = false;
+
+            GameManager.instance.movingUnits.Remove(this);
+
+            if (onMoveDone != null)
+            {
+                onMoveDone();
+            }
+        }
+    }
+
 }
