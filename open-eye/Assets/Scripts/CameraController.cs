@@ -17,10 +17,7 @@ public class CameraController : MonoBehaviour
     private float currentCameraSize = 5f;
 
     public Vector3 cameraDestination { get; private set; }
-
-    private Vector2 previousInput;
-    private bool isDragging = false;
-
+    
     private void Awake()
     {
         if (targetCamera == null)
@@ -38,10 +35,13 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        currentCameraSize -= Input.GetAxis("Mouse ScrollWheel") * scrollSpeed;
-        currentCameraSize = Mathf.Clamp(currentCameraSize, minCameraSize, maxCameraSize);
+        if (GameManager.instance.isMouseInMap)
+        {
+            currentCameraSize -= Input.GetAxis("Mouse ScrollWheel") * scrollSpeed;
+            currentCameraSize = Mathf.Clamp(currentCameraSize, minCameraSize, maxCameraSize);
 
-        targetCamera.orthographicSize = currentCameraSize;
+            targetCamera.orthographicSize = currentCameraSize;
+        }
         
         float moveRatio = 0.5f;
         Vector3 newPosition = transform.localPosition * (1.0f - moveRatio) + cameraDestination * moveRatio;

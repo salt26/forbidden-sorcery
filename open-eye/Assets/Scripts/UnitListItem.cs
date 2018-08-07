@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class UnitListItem : MonoBehaviour
 {
+    public delegate void OnClickUnitListItem(UnitListItem listItem);
+
     [SerializeField]
     Text unitName;
 
@@ -29,16 +31,24 @@ public class UnitListItem : MonoBehaviour
     [SerializeField]
     Text movementValue;
 
-    public void SetUnit(Unit unit)
+    public Unit unit { get; private set; }
+    public UnitData unitData { get; private set; }
+    private OnClickUnitListItem onClick;
+
+    public void SetUnit(Unit unit, OnClickUnitListItem onClick = null)
     {
-        SetUnitData(unit.unitData);
+        this.unit = unit;
+        this.onClick = onClick;
+        SetUnitData(unit.unitData, onClick);
         healthValue.text = string.Format("{0}/{1}", unit.currentHealth, unit.unitData.health);
         movementValue.text = string.Format("{0}/{1}", unit.movement, unit.unitData.movement);
         ShowCostObject(false);
     }
 
-    public void SetUnitData(UnitData unitData)
+    public void SetUnitData(UnitData unitData, OnClickUnitListItem onClick = null)
     {
+        this.unitData = unitData;
+        this.onClick = onClick;
         unitName.text = unitData.unitName;
         unitIcon.sprite = AssetManager.Instance.GetSprite(unitData.iconName);
         attackValue.text = unitData.attack.ToString();
@@ -56,5 +66,9 @@ public class UnitListItem : MonoBehaviour
 
     public void OnItemClick()
     {
+        if (onClick != null)
+        {
+            onClick(this);
+        }
     }
 }

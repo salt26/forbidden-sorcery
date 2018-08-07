@@ -74,8 +74,8 @@ public class Unit : MonoBehaviour
         float duration = 0.5f;
         float deltaTime = 0;
         float rate = deltaTime / duration;
-        List<Unit> fromUnitList = isAlly ? from.allies : from.enemies;
-        List<Unit> toUnitList = isAlly ? to.allies : to.enemies;
+        List<Unit> fromUnitList = from.units;
+        List<Unit> toUnitList = to.units;
         toUnitList.Add(this);
         fromUnitList.Remove(this);
         while (rate < 1f)

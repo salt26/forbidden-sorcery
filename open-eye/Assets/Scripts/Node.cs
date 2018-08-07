@@ -27,11 +27,24 @@ public class Node : MonoBehaviour
             return isCastle;
         }
     }
-    
+
+
     [HideInInspector]
-    public List<Unit> allies = new List<Unit>();
-    [HideInInspector]
-    public List<Unit> enemies = new List<Unit>();
+    public List<Unit> units = new List<Unit>();
+    public List<Unit> allies
+    {
+        get
+        {
+            return units.FindAll((unit) => unit.isAlly);
+        }
+    }
+    public List<Unit> enemies
+    {
+        get
+        {
+            return units.FindAll((unit) => !unit.isAlly);
+        }
+    }
     [HideInInspector]
     public List<Unit> destroyedEnemies = new List<Unit>();
 
@@ -127,14 +140,7 @@ public class Node : MonoBehaviour
         unit.transform.localPosition = this.transform.localPosition;
         unit.position = this;
 
-        if (isAlly)
-        {
-            allies.Add(unit);
-        }
-        else
-        {
-            enemies.Add(unit);
-        }
+        units.Add(unit);
 
         return unit;
     }

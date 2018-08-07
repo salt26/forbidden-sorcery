@@ -21,6 +21,7 @@ public partial class GameManager
         private set;
     }
 
+    [HideInInspector]
     public List<Unit> movingUnits = new List<Unit>();
     public bool isEnemyMoving
     {
@@ -72,6 +73,7 @@ public partial class GameManager
     {
         currentState = RoundState.Standby;
         endTurnButton.interactable = false;
+        produceButton.interactable = false;
 
         CheckWin();
         CheckAndSpawnEnemy();
@@ -83,6 +85,7 @@ public partial class GameManager
     {
         currentState = RoundState.EnemyMove;
         endTurnButton.interactable = false;
+        produceButton.interactable = false;
 
         MoveEnemy();
 
@@ -93,6 +96,7 @@ public partial class GameManager
     {
         currentState = RoundState.PlayerAction;
         endTurnButton.interactable = true;
+        produceButton.interactable = true;
 
         foreach (Unit ally in allies)
         {
@@ -104,6 +108,7 @@ public partial class GameManager
     {
         currentState = RoundState.Fight;
         endTurnButton.interactable = false;
+        produceButton.interactable = false;
 
         ResolveAllFight();
 
@@ -114,46 +119,11 @@ public partial class GameManager
     {
         currentState = RoundState.Upkeep;
         endTurnButton.interactable = false;
+        produceButton.interactable = false;
 
-        karma += notoriety;
-
-        foreach (Node n in allNodes)
-        {
-            if (n.isFighting)
-            {
-                continue;
-            }
-
-            if (n.enemies.Count > 0)
-            {
-                n.isPlayerTerritory = false;
-            }
-
-            if (n.allies.Count > 0)
-            {
-                n.isPlayerTerritory = true;
-            }
-
-            if (!n.IsCastle)
-            {
-                n.GetComponent<SpriteRenderer>().color = Color.white;
-            }
-        }
-
-        foreach (Node n in territories)
-        {
-            if (!n.IsCastle)
-            {
-                n.GetComponent<SpriteRenderer>().color = Color.green;
-            }
-        }
-
-        foreach (Unit enemy in enemies)
-        {
-            enemy.Refresh();
-        }
-        
-        mana += manaProduce;
+        CaptureTerritories();
+        UpkeepResources();
+        RefreshStatus();
 
         StandbyPhase();
     }
@@ -187,7 +157,7 @@ public partial class GameManager
                     enemies.Add(enemy);
                 }
             }
-            
+
             nextSpawnData = config.enemySpawnDataContainer.GetNextEnemySpawnData(karma);
         }
     }
@@ -259,7 +229,7 @@ public partial class GameManager
                 }
                 foreach (Unit enemy in destroyEnemy)
                 {
-                    n.enemies.Remove(enemy);
+                    n.units.Remove(enemy);
                 }
 
                 foreach (Unit ally in n.allies)
@@ -277,7 +247,7 @@ public partial class GameManager
                 }
                 foreach (Unit ally in destroyAlly)
                 {
-                    n.allies.Remove(ally);
+                    n.units.Remove(ally);
                     Destroy(ally.gameObject);
                 }
             }
@@ -288,4 +258,45 @@ public partial class GameManager
         }
     }
 
+    private void CaptureTerritories()
+    {
+        foreach (Node n in allNodes)
+        {
+            if (n.isFighting)
+            {
+                continue;
+            }
+
+            if (n.enemies.Count > 0)
+            {
+                n.isPlayerTerritory = false;
+            }
+
+            if (n.allies.Count > 0)
+            {
+                n.isPlayerTerritory = true;
+            }
+
+            if (!n.IsCastle)
+            {
+                n.GetComponent<SpriteRenderer>().color = Color.white;
+            }
+        }
+    }
+
+    private void RefreshStatus()
+    {
+        foreach (Node n in territories)
+        {
+            if (!n.IsCastle)
+            {
+                n.GetComponent<SpriteRenderer>().color = Color.green;
+            }
+        }
+
+        foreach (Unit enemy in enemies)
+        {
+            enemy.Refresh();
+        }
+    }
 }
