@@ -5,9 +5,6 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField]
-    private float cameraSpeed = 0.25f;
-
-    [SerializeField]
     private float scrollSpeed = 5f;
 
     [SerializeField]
@@ -16,10 +13,10 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private float minCameraSize = 3f;
     
-    private Camera targetCamera;
+    public Camera targetCamera { get; private set; }
     private float currentCameraSize = 5f;
 
-    private Vector3 cameraDestination;
+    public Vector3 cameraDestination { get; private set; }
 
     private Vector2 previousInput;
     private bool isDragging = false;
@@ -29,29 +26,18 @@ public class CameraController : MonoBehaviour
         if (targetCamera == null)
         {
             targetCamera = GetComponent<Camera>();
+
+            if (targetCamera == null)
+            {
+                targetCamera = Camera.main;
+            }
+
             currentCameraSize = targetCamera.orthographicSize;
         }
     }
 
     private void Update()
     {
-        if (Input.GetMouseButton(0))
-        {
-            if (isDragging)
-            {
-                Vector3 beforeWorld = targetCamera.ScreenToWorldPoint(previousInput);
-                Vector3 currentWorld = targetCamera.ScreenToWorldPoint(Input.mousePosition);
-
-                cameraDestination += beforeWorld - currentWorld;
-            }
-            isDragging = true;
-            previousInput = Input.mousePosition;
-        }
-        else
-        {
-            isDragging = false;
-        }
-        
         currentCameraSize -= Input.GetAxis("Mouse ScrollWheel") * scrollSpeed;
         currentCameraSize = Mathf.Clamp(currentCameraSize, minCameraSize, maxCameraSize);
 
@@ -61,5 +47,10 @@ public class CameraController : MonoBehaviour
         Vector3 newPosition = transform.localPosition * (1.0f - moveRatio) + cameraDestination * moveRatio;
         
         transform.localPosition = new Vector3(newPosition.x, newPosition.y, transform.localPosition.z);
+    }
+
+    public void SetDestination(Vector3 destination)
+    {
+        cameraDestination = destination;
     }
 }

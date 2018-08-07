@@ -17,12 +17,8 @@ public class Unit : MonoBehaviour
     public UnitData unitData;
     public OnMoveDone onMoveDone;
 
-    public int currentHealth
-    {
-        get;
-        private set;
-    }
-    private int movement;
+    public int currentHealth { get; private set; }
+    public int movement { get; private set; }
     private bool isMoving;
 
     public bool canMove
