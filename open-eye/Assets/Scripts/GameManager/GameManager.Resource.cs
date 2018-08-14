@@ -4,13 +4,42 @@ using UnityEngine;
 
 public partial class GameManager
 {
+    [SerializeField]
+    private ManaAmount manaAmountText;
+
     private int notoriety;
     private int karma;
-    private int mana;
 
+    private int mana;
+    private int Mana
+    {
+        get
+        {
+            return mana;
+        }
+        set
+        {
+            mana = value;
+            manaAmountText.SetManaAmount(mana, manaProduce);
+        }
+    }
+
+    private int manaProduce
+    {
+        get
+        {
+            int produce = 0;
+            foreach (var territory in territories)
+            {
+                produce += territory.manaValue;
+            }
+            return produce;
+        }
+    }
+    
     private void InitializeResource()
     {
-        mana = config.baseMana;
+        Mana = config.baseMana;
         notoriety = config.baseNotoriety;
         karma = 0;
     }
@@ -18,6 +47,6 @@ public partial class GameManager
     private void UpkeepResources()
     {
         karma += notoriety;
-        mana += manaProduce;
+        Mana += manaProduce;
     }
 }

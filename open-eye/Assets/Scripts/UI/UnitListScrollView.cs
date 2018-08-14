@@ -7,6 +7,12 @@ public class UnitListScrollView : MonoBehaviour
     [SerializeField]
     Transform content;
 
+    [SerializeField]
+    Vector3 contentInactive;
+
+    [SerializeField]
+    Vector3 contentActive;
+    
     private List<UnitListItem> listItems = new List<UnitListItem>();
 
     public void SetUnitList(List<Unit> unitList, UnitListItem.OnClickUnitListItem onClick = null)
@@ -43,6 +49,6 @@ public class UnitListScrollView : MonoBehaviour
 
     public void ShowList(bool show)
     {
-        gameObject.SetActive(show);
+        transform.localPosition = show ? contentActive : contentInactive;
     }
 }

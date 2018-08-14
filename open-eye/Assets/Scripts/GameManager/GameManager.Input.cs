@@ -23,6 +23,7 @@ public partial class GameManager
     private void InitializeInput()
     {
         isMouseInMap = true;
+        unitListScrollView.ShowList(false);
     }
 
     public void OnMouseEnterMap()
@@ -50,9 +51,9 @@ public partial class GameManager
 
     public void OnSelectUnitForProduce(UnitListItem item)
     {
-        if (item.unitData.cost <= mana)
+        if (item.unitData.cost <= Mana)
         {
-            mana -= item.unitData.cost;
+            Mana -= item.unitData.cost;
             Unit spawnedAlly = castle.Spawn(item.unitData, true);
             allies.Add(spawnedAlly);
         }

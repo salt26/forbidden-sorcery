@@ -52,19 +52,6 @@ public partial class GameManager
         }
     }
 
-    private int manaProduce
-    {
-        get
-        {
-            int produce = 0;
-            foreach (var territory in territories)
-            {
-                produce += territory.manaValue;
-            }
-            return produce;
-        }
-    }
-
     private EnemySpawnDataContainer.EnemySpawnData nextSpawnData;
 
 
@@ -282,6 +269,7 @@ public partial class GameManager
                 n.GetComponent<SpriteRenderer>().color = Color.white;
             }
         }
+        manaAmountText.SetManaAmount(mana, manaProduce);
     }
 
     private void RefreshStatus()
