@@ -16,7 +16,9 @@ public class UIMapInput : MonoBehaviour
     
     public void OnMouseDown()
     {
-        isDragging = true;
+        if (!Node.nodeBeingClicked) {
+            isDragging = true;
+        }
         previousInput = Input.mousePosition;
         inititalInput = Input.mousePosition;
     }
@@ -28,6 +30,7 @@ public class UIMapInput : MonoBehaviour
         {
             GameManager.instance.UnitListDown();
         }
+        Node.nodeBeingClicked = false;
     }
 
     public void OnMouseDrag()
