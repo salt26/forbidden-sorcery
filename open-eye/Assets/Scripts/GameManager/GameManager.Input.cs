@@ -23,6 +23,7 @@ public partial class GameManager
     private void InitializeInput()
     {
         isMouseInMap = true;
+        unitListScrollView.ShowList(false);
     }
 
     public void OnMouseEnterMap()
