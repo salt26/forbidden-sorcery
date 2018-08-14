@@ -6,19 +6,28 @@ public class UIMapInput : MonoBehaviour
 {
     [SerializeField]
     CameraController cameraController;
-    
+
+    [SerializeField]
+    int dragLength;
+
     private Vector2 previousInput;
+    private Vector2 inititalInput;
     private bool isDragging = false;
     
     public void OnMouseDown()
     {
         isDragging = true;
         previousInput = Input.mousePosition;
+        inititalInput = Input.mousePosition;
     }
 
     public void OnMouseUp()
     {
         isDragging = false;
+        if ( (previousInput - inititalInput).magnitude < dragLength )
+        {
+            GameManager.instance.UnitListDown();
+        }
     }
 
     public void OnMouseDrag()

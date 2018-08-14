@@ -35,6 +35,11 @@ public partial class GameManager
         isMouseInMap = false;
     }
 
+    public void UnitListDown()
+    {
+        unitListScrollView.ShowList(false);
+    }
+
     public void OnSelectUnitForMove(UnitListItem item)
     {
         if (item.unit != null && item.unit.isAlly)
