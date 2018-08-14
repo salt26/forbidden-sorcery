@@ -36,9 +36,9 @@ public partial class GameManager
         isMouseInMap = false;
     }
 
-    public void UnitListDown()
+    public void UnitListShow(bool show)
     {
-        unitListScrollView.ShowList(false);
+        unitListScrollView.ShowList(show);
     }
 
     public void OnSelectUnitForMove(UnitListItem item)
@@ -84,7 +84,7 @@ public partial class GameManager
         {
             return;
         }
-
+        
         if (selectedNode != null && selectedNode.GetComponent<SpriteRenderer>().color != originColor)
         {
             selectedNode.GetComponent<SpriteRenderer>().color = originColor;
