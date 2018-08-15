@@ -84,8 +84,32 @@ public partial class GameManager
         {
             return;
         }
+
+        if (unitListScrollView.nowListShown == false)
+        {
+            unitListScrollView.ShowList(true);
+            unitListScrollView.SetUnitDataList(config.producableUnits, OnSelectUnitForProduce);
+        }
+        else
+        {
+            if (selectedNode != null)
+            {
+                unitListScrollView.SetUnitDataList(config.producableUnits, OnSelectUnitForProduce);
+                if (selectedNode.GetComponent<SpriteRenderer>().color != originColor)
+                {
+                    selectedNode.GetComponent<SpriteRenderer>().color = originColor;
+                }
+            }
+            else
+            {
+                unitListScrollView.ShowList(false);
+            }
+            originColor = Color.white;
+            selectedNode = null;
+        }
         
-        if (selectedNode != null && selectedNode.GetComponent<SpriteRenderer>().color != originColor)
+
+        /*if (selectedNode != null && selectedNode.GetComponent<SpriteRenderer>().color != originColor)
         {
             selectedNode.GetComponent<SpriteRenderer>().color = originColor;
         }
@@ -93,7 +117,7 @@ public partial class GameManager
         selectedNode = null;
 
         unitListScrollView.ShowList(true);
-        unitListScrollView.SetUnitDataList(config.producableUnits, OnSelectUnitForProduce);
+        unitListScrollView.SetUnitDataList(config.producableUnits, OnSelectUnitForProduce);*/
     }
 
     public void SetNode(Node node)
