@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Unit : MonoBehaviour
+public class Unit : MonoBehaviour, IUnitInterface
 {
     public delegate void OnMoveDone();
 
@@ -10,52 +10,65 @@ public class Unit : MonoBehaviour
     public Node position;
 
     [HideInInspector]
-    public bool isAlly;
-    
+    public bool isAlly { get; set; }
+
     public Queue<IEnumerator> moveQueue = new Queue<IEnumerator>();
-    
+
     public UnitData unitData;
     public OnMoveDone onMoveDone;
 
-    public int currentHealth { get; private set; }
-    public int movement { get; private set; }
+    public UnitData UD
+    {
+        get
+        {
+            return unitData;
+        }
+        set
+        {
+            if (value is UnitData)
+                unitData = value;
+        }
+    }
+    public int ID { get; set; }
+    public int CurrentHealth { get; set; }
+    public int Movement { get; set; }
     private bool isMoving;
 
     public bool canMove
     {
         get
         {
-            return movement > 0 && !position.isFighting;
+            return Movement > 0 && !position.isFighting;
         }
     }
 
     public void Refresh()
     {
-        movement = unitData.movement;
+        Movement = unitData.movement;
     }
 
     public void Damage(int damage)
     {
-        currentHealth -= damage;
-        if (currentHealth < 0)
+        CurrentHealth -= damage;
+        if (CurrentHealth < 0)
         {
-            currentHealth = 0;
+            CurrentHealth = 0;
         }
     }
-    
+
     public void SetUnit(UnitData unitData)
     {
         this.unitData = unitData;
         GetComponent<SpriteRenderer>().sprite = AssetManager.Instance.GetSprite(unitData.spriteName);
-        currentHealth = unitData.health;
-        movement = 0;
+        CurrentHealth = unitData.health;
+        Movement = 0;
     }
 
     public void Move(Node from, Node to)
     {
-        if (movement > 0)
+        if (Movement > 0)
         {
-            movement--;
+            Movement--;
             position = to;
             moveQueue.Enqueue(MoveAnimation(from, to));
         }
@@ -109,5 +122,15 @@ public class Unit : MonoBehaviour
             }
         }
     }
-
+    public int CompareTo(object obj)
+    {
+        IUnitInterface imaginaryUnit;
+        if (!(obj is IUnitInterface))
+            return 1;
+        else
+        {
+            imaginaryUnit = obj as IUnitInterface;
+            return this.UD.aggro - imaginaryUnit.UD.aggro;
+        }
+    }
 }

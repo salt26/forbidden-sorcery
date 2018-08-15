@@ -139,7 +139,7 @@ public partial class GameManager
                 {
                     var spawnNode = spawners[Random.Range(0, spawners.Count)];
 
-                    Unit enemy = spawnNode.Spawn(AssetManager.Instance.GetUnitData("SampleEnemy"), false);
+                    Unit enemy = Spawner.spawner.Spawn(AssetManager.Instance.GetUnitData("SampleEnemy"), false, spawnNode);
                     enemy.onMoveDone += OnEnemyMoveDone;
                     enemies.Add(enemy);
                 }
@@ -186,62 +186,7 @@ public partial class GameManager
     {
         foreach (Node n in allNodes)
         {
-            if (n.allies.Count > 0 && n.enemies.Count > 0)
-            {
-                int allyAttack = 0;
-                int enemyAttack = 0;
-                List<Unit> destroyAlly = new List<Unit>();
-                List<Unit> destroyEnemy = new List<Unit>();
-                n.destroyedEnemies.Clear();
-                foreach (Unit ally in n.allies)
-                {
-                    allyAttack += ally.unitData.attack;
-                }
-
-                foreach (Unit enemy in n.enemies)
-                {
-                    enemyAttack += enemy.unitData.attack;
-                    if (allyAttack < enemy.currentHealth)
-                    {
-                        enemy.Damage(allyAttack);
-                        allyAttack = 0;
-                    }
-                    else
-                    {
-                        allyAttack -= enemy.currentHealth;
-                        n.destroyedEnemies.Add(enemy);
-                        enemies.Remove(enemy);
-                        destroyEnemy.Add(enemy);
-                    }
-                }
-                foreach (Unit enemy in destroyEnemy)
-                {
-                    n.units.Remove(enemy);
-                }
-
-                foreach (Unit ally in n.allies)
-                {
-                    if (enemyAttack < ally.currentHealth)
-                    {
-                        ally.Damage(enemyAttack);
-                        enemyAttack = 0;
-                    }
-                    else
-                    {
-                        enemyAttack -= ally.currentHealth;
-                        destroyAlly.Add(ally);
-                    }
-                }
-                foreach (Unit ally in destroyAlly)
-                {
-                    n.units.Remove(ally);
-                    Destroy(ally.gameObject);
-                }
-            }
-            if (n.allies.Count > 0 && n.enemies.Count > 0)
-            {
-                n.isPlayerTerritory = false;
-            }
+            n.FetchFight( Fight.Fighting(n.units) );
         }
     }
 

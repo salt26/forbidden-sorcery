@@ -54,7 +54,7 @@ public partial class GameManager
         if (item.unitData.cost <= Mana)
         {
             Mana -= item.unitData.cost;
-            Unit spawnedAlly = castle.Spawn(item.unitData, true);
+            Unit spawnedAlly = Spawner.spawner.Spawn(item.unitData, true, castle);
             allies.Add(spawnedAlly);
         }
     }

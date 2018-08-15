@@ -53,7 +53,7 @@ public class Node : MonoBehaviour
 
     [HideInInspector]
     public int distance = int.MaxValue;
-    
+
     [HideInInspector]
     static public bool nodeBeingClicked;
 
@@ -64,7 +64,7 @@ public class Node : MonoBehaviour
             return type == NodeType.Castle;
         }
     }
-    
+
     public bool isEnemySpawner
     {
         get
@@ -133,21 +133,21 @@ public class Node : MonoBehaviour
         if (isRed == false)
             StartCoroutine(RedLightAnimation());
     }
-    
-    public Unit Spawn(UnitData unitData, bool isAlly)
-    {
-        var unitObject = Instantiate(AssetManager.Instance.GetPrefab("Unit"));
-        var unit = unitObject.GetComponent<Unit>();
-        unit.SetUnit(unitData);
-        unit.isAlly = isAlly;
 
-        unit.transform.localPosition = this.transform.localPosition;
-        unit.position = this;
+    //public Unit Spawn(UnitData unitData, bool isAlly)
+    //{
+    //    var unitObject = Instantiate(AssetManager.Instance.GetPrefab("Unit"));
+    //    var unit = unitObject.GetComponent<Unit>();
+    //    unit.SetUnit(unitData);
+    //    unit.isAlly = isAlly;
 
-        units.Add(unit);
+    //    unit.transform.localPosition = this.transform.localPosition;
+    //    unit.position = this;
 
-        return unit;
-    }
+    //    units.Add(unit);
+
+    //    return unit;
+    //}
 
     IEnumerator RedLightAnimation()
     {
@@ -186,5 +186,23 @@ public class Node : MonoBehaviour
                 node.SetDIstance(distance + 1);
             }
         }
+    }
+
+    public void FetchFight(ExpectedFightResult EFR)
+    {
+        foreach (IUnitInterface ui in EFR.unitList)
+        {
+            foreach (Unit u in units)
+            {
+                if (ui.ID == u.ID)
+                {
+                    u.Movement = ui.Movement;
+                    u.CurrentHealth = ui.CurrentHealth;
+                }
+            }
+        }
+        foreach (Unit u in units.FindAll((unit) => unit.CurrentHealth == 0))
+            Destroy(u.gameObject);
+        units.RemoveAll((unit) => unit.CurrentHealth == 0);
     }
 }

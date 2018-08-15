@@ -40,8 +40,8 @@ public class UnitListItem : MonoBehaviour
         this.unit = unit;
         this.onClick = onClick;
         SetUnitData(unit.unitData, onClick);
-        healthValue.text = string.Format("{0}/{1}", unit.currentHealth, unit.unitData.health);
-        movementValue.text = string.Format("{0}/{1}", unit.movement, unit.unitData.movement);
+        healthValue.text = string.Format("{0}/{1}", unit.CurrentHealth, unit.unitData.health);
+        movementValue.text = string.Format("{0}/{1}", unit.Movement, unit.unitData.movement);
         ShowCostObject(false);
     }
 
