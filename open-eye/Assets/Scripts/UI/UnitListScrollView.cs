@@ -12,6 +12,13 @@ public class UnitListScrollView : MonoBehaviour
 
     [SerializeField]
     Vector3 contentActive;
+
+    public bool nowListShown { get; private set; }
+
+    void Awake()
+    {
+        nowListShown = false;
+    }
     
     private List<UnitListItem> listItems = new List<UnitListItem>();
 
@@ -50,5 +57,6 @@ public class UnitListScrollView : MonoBehaviour
     public void ShowList(bool show)
     {
         transform.localPosition = show ? contentActive : contentInactive;
+        nowListShown = show;
     }
 }

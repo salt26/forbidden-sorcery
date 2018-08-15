@@ -13,10 +13,14 @@ public class UIMapInput : MonoBehaviour
     private Vector2 previousInput;
     private Vector2 inititalInput;
     private bool isDragging = false;
+    private bool dragged = false;
     
     public void OnMouseDown()
     {
-        isDragging = true;
+        dragged = false;
+        if (!Node.nodeBeingClicked) {
+            isDragging = true;
+        }
         previousInput = Input.mousePosition;
         inititalInput = Input.mousePosition;
     }
@@ -24,10 +28,11 @@ public class UIMapInput : MonoBehaviour
     public void OnMouseUp()
     {
         isDragging = false;
-        if ( (previousInput - inititalInput).magnitude < dragLength )
+        if ( !dragged && !Node.nodeBeingClicked )
         {
-            GameManager.instance.UnitListDown();
+            GameManager.instance.UnitListShow(false);
         }
+        Node.nodeBeingClicked = false;
     }
 
     public void OnMouseDrag()
@@ -40,6 +45,12 @@ public class UIMapInput : MonoBehaviour
             cameraController.SetDestination(cameraController.cameraDestination + beforeWorld - currentWorld);
 
             previousInput = Input.mousePosition;
+
+            if ( !dragged && (previousInput - inititalInput).magnitude < dragLength )
+            {
+                dragged = true;
+            }
+
         }
     }
 }

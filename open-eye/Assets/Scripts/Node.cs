@@ -50,9 +50,13 @@ public class Node : MonoBehaviour
 
     [HideInInspector]
     public bool isPlayerTerritory;
+
     [HideInInspector]
     public int distance = int.MaxValue;
     
+    [HideInInspector]
+    static public bool nodeBeingClicked;
+
     private bool isCastle
     {
         get
@@ -114,9 +118,9 @@ public class Node : MonoBehaviour
         GameManager.instance.allNodes.Add(this);
     }
 
-    public void OnClick()
+    void OnMouseDown()
     {
-
+        nodeBeingClicked = true;
     }
 
     void OnMouseUpAsButton()
