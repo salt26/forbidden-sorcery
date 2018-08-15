@@ -42,8 +42,12 @@ public partial class GameManager
     }
 
     public void OnSelectUnitForMove(UnitListItem item)
-    {
-        if (item.unit != null && item.unit.isAlly)
+    {  
+        if (selectedUnitList.Contains(item.unit))
+        {
+            selectedUnitList.Remove(item.unit);
+        }
+        else if (item.unit != null && item.unit.isAlly)
         {
             selectedUnitList.Add(item.unit);
         }
