@@ -239,7 +239,6 @@ public partial class GameManager
                     }
                 }
                 enemy.Move(enemy.position, nextNode);
-                nextNode.DecideAndShowMainUnit();
             }
         }
     }

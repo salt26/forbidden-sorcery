@@ -69,7 +69,6 @@ public class Unit : MonoBehaviour, IUnitInterface
 
     public void Move(Node from, Node to)
     {
-        from.DecideAndShowMainUnit();
         GetComponent<SpriteRenderer>().enabled = true;
 
         if (Movement > 0)
@@ -97,6 +96,7 @@ public class Unit : MonoBehaviour, IUnitInterface
         List<Unit> toUnitList = to.units;
         toUnitList.Add(this);
         fromUnitList.Remove(this);
+        from.DecideAndShowMainUnit();
         while (rate < 1f)
         {
             deltaTime += Time.deltaTime;
@@ -108,6 +108,7 @@ public class Unit : MonoBehaviour, IUnitInterface
         transform.localPosition = to.transform.localPosition;
 
         OnMoveAnimationFinished();
+        to.DecideAndShowMainUnit();
     }
 
     public void OnMoveAnimationFinished()
