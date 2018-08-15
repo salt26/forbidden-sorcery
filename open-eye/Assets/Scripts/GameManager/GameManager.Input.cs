@@ -68,14 +68,7 @@ public partial class GameManager
         }
         originColor = Color.white;
         selectedNode = null;
-        if (currentState == RoundState.Captive)
-        {
-            UpkeepPhase();
-        }
-        else if (currentState == RoundState.PlayerAction)
-        {
-            FightPhase();
-        }
+        StartCoroutine(ChangePhase());
     }
 
     public void OnClickProduceButton()
