@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UnitListScrollView : MonoBehaviour
 {
@@ -31,6 +32,7 @@ public class UnitListScrollView : MonoBehaviour
             var listItemObject = Instantiate(AssetManager.Instance.GetPrefab("UnitListItem"), content);
             var unitListItem = listItemObject.GetComponent<UnitListItem>();
             unitListItem.SetUnit(unit, onClick);
+            unitListItem.SetColor();
             listItems.Add(unitListItem);
         }
     }

@@ -5,6 +5,13 @@ using UnityEngine.UI;
 
 public partial class GameManager
 {
+
+    public float phaseNoticeDuration;
+
+    public Text PhaseAlertText;
+
+    private bool isPhaseNoticeDone = false;
+
     public enum RoundState
     {
         Standby,
@@ -54,7 +61,59 @@ public partial class GameManager
 
     private EnemySpawnDataContainer.EnemySpawnData nextSpawnData;
 
+    IEnumerator AlertPhase()
+    {
+        isPhaseNoticeDone = false;
+        switch ((int)currentState)
+        {
+            case 0:
+                PhaseAlertText.text = "Standby";
+                break;
+            case 1:
+                PhaseAlertText.text = "EnemyMove";
+                break;
+            case 2:
+                PhaseAlertText.text = "PlayerAction";
+                break;
+            case 3:
+                PhaseAlertText.text = "Fight";
+                break;
+            case 4:
+                PhaseAlertText.text = "Captive";
+                break;
+            case 5:
+                PhaseAlertText.text = "Upkeep";
+                break;
+        }
+        yield return new WaitForSeconds(phaseNoticeDuration);
+        PhaseAlertText.text = "";
+        isPhaseNoticeDone = true;
+    }
 
+    IEnumerator ChangePhase()
+    {
+        yield return new WaitUntil(() => isPhaseNoticeDone);
+        switch ((int)currentState)
+        {
+            case 0:
+                EnemyMovePhase();
+                break;
+            case 1:
+                PlayerActionPhase();
+                break;
+            case 2:
+                FightPhase();
+                break;
+            case 3:
+                UpkeepPhase();
+                break;
+            case 4: // Captive가 들어갈 수 있음.
+                break;
+            case 5:
+                StandbyPhase();
+                break;
+        }
+    }
 
     private void StandbyPhase()
     {
@@ -62,10 +121,12 @@ public partial class GameManager
         endTurnButton.interactable = false;
         produceButton.interactable = false;
 
+        StartCoroutine(AlertPhase());
+
         CheckWin();
         CheckAndSpawnEnemy();
 
-        EnemyMovePhase();
+        StartCoroutine(ChangePhase()); 
     }
 
     private void EnemyMovePhase()
@@ -73,6 +134,8 @@ public partial class GameManager
         currentState = RoundState.EnemyMove;
         endTurnButton.interactable = false;
         produceButton.interactable = false;
+
+        StartCoroutine(AlertPhase());
 
         MoveEnemy();
 
@@ -84,6 +147,8 @@ public partial class GameManager
         currentState = RoundState.PlayerAction;
         endTurnButton.interactable = true;
         produceButton.interactable = true;
+
+        StartCoroutine(AlertPhase());
 
         foreach (Unit ally in allies)
         {
@@ -97,9 +162,11 @@ public partial class GameManager
         endTurnButton.interactable = false;
         produceButton.interactable = false;
 
+        StartCoroutine(AlertPhase());
+
         ResolveAllFight();
 
-        UpkeepPhase();
+        StartCoroutine(ChangePhase());
     }
 
     private void UpkeepPhase()
@@ -108,11 +175,13 @@ public partial class GameManager
         endTurnButton.interactable = false;
         produceButton.interactable = false;
 
+        StartCoroutine(AlertPhase());
+
         CaptureTerritories();
         UpkeepResources();
         RefreshStatus();
 
-        StandbyPhase();
+        StartCoroutine(ChangePhase());
     }
 
 
@@ -178,7 +247,7 @@ public partial class GameManager
     {
         if (!isEnemyMoving)
         {
-            PlayerActionPhase();
+            StartCoroutine(ChangePhase());
         }
     }
 
