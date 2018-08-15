@@ -16,4 +16,5 @@ MonoBehaviour:
   enemySpawnDataContainer: {fileID: 11400000, guid: f4326abb4553a2e45bf07b3da098ce6d,
     type: 2}
   producableUnits:
+  - {fileID: 11400000, guid: c52cc95bd9c4c6747a10654882f5c566, type: 2}
   - {fileID: 11400000, guid: e43500cbbe1771642ab4e73b5f5b3c67, type: 2}
