@@ -7,8 +7,11 @@ public partial class GameManager
     [SerializeField]
     private ManaAmount manaAmountText;
 
-    private int notoriety;
-    private int karma;
+    [HideInInspector]
+    public int notoriety;
+
+    [HideInInspector]
+    public int karma;
 
     private int mana;
     private int Mana
@@ -42,11 +45,13 @@ public partial class GameManager
         Mana = config.baseMana;
         notoriety = config.baseNotoriety;
         karma = 0;
+        GameObject.Find("KarmaGaugeMid").GetComponent<KarmaGaugeIncrease>().ChangeKarmaGauge();
     }
 
     private void UpkeepResources()
     {
         karma += notoriety;
         Mana += manaProduce;
+        GameObject.Find("KarmaGaugeMid").GetComponent<KarmaGaugeIncrease>().ChangeKarmaGauge();
     }
 }
