@@ -239,6 +239,7 @@ public partial class GameManager
                     }
                 }
                 enemy.Move(enemy.position, nextNode);
+                nextNode.DecideAndShowMainUnit();
             }
         }
     }
@@ -256,6 +257,7 @@ public partial class GameManager
         foreach (Node n in allNodes)
         {
             n.FetchFight( Fight.Fighting(n.units) );
+            n.DecideAndShowMainUnit();
         }
     }
 

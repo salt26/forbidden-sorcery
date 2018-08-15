@@ -12,6 +12,9 @@ public class Unit : MonoBehaviour, IUnitInterface
     [HideInInspector]
     public bool isAlly { get; set; }
 
+    [HideInInspector]
+    public bool mainUnitInNode = false;
+
     public Queue<IEnumerator> moveQueue = new Queue<IEnumerator>();
 
     public UnitData unitData;
@@ -66,6 +69,9 @@ public class Unit : MonoBehaviour, IUnitInterface
 
     public void Move(Node from, Node to)
     {
+        from.DecideAndShowMainUnit();
+        GetComponent<SpriteRenderer>().enabled = true;
+
         if (Movement > 0)
         {
             Movement--;
@@ -113,7 +119,7 @@ public class Unit : MonoBehaviour, IUnitInterface
         else
         {
             isMoving = false;
-
+            
             GameManager.instance.movingUnits.Remove(this);
 
             if (onMoveDone != null)

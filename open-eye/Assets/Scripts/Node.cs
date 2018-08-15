@@ -128,6 +128,41 @@ public class Node : MonoBehaviour
         GameManager.instance.SetNode(this);
     }
 
+    public void DecideAndShowMainUnit()
+    {
+        bool decideAllyMainUnit = false, decideEnemyMainUnit = false;
+
+        foreach (Unit unit in units)
+        {
+            if (!decideAllyMainUnit && unit.isAlly)
+            {
+                unit.mainUnitInNode = true;
+                decideAllyMainUnit = true;
+            }
+            else if (!decideEnemyMainUnit && !unit.isAlly)
+            {
+                unit.mainUnitInNode = true;
+                decideEnemyMainUnit = true;
+            }
+            else
+            {
+                unit.mainUnitInNode = false;
+            }
+        }
+
+        foreach (Unit unit in units)
+        {
+            if (unit.mainUnitInNode)
+            {
+                unit.GetComponent<SpriteRenderer>().enabled = true;
+            }
+            else
+            {
+                unit.GetComponent<SpriteRenderer>().enabled = false;
+            }
+        }
+    }
+
     public void RedLight()
     {
         if (isRed == false)

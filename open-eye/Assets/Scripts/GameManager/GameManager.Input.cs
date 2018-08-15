@@ -157,6 +157,7 @@ public partial class GameManager
                             unit.Move(selectedNode, node);
                         }
                     }
+                    node.DecideAndShowMainUnit();
 
                     if (isAllyMoving)
                     {
