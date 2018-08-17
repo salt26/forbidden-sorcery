@@ -11,12 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 613be670f9fd4ca4a892bafb6de7f020, type: 3}
   m_Name: SampleAlly
   m_EditorClassIdentifier: 
-  type: unit
   unitName: Skeleton
   spriteName: shielder
   iconName: shielder
   attack: 1
   health: 6
   aggro: 80
-  movement: 1
+  movement: 5
   cost: 100

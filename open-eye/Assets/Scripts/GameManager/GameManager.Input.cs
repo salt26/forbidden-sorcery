@@ -38,6 +38,10 @@ public partial class GameManager
 
     public void UnitListShow(bool show)
     {
+        if (!show)
+        {
+            selectedNode = null;
+        }
         unitListScrollView.ShowList(show);
     }
 
@@ -154,7 +158,7 @@ public partial class GameManager
                     {
                         if (unit.canMove)
                         {
-                            unit.Move(selectedNode, node);
+                            unit.MoveBetweenNodes(selectedNode, node);
                         }
                     }
 

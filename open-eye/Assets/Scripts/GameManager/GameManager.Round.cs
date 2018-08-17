@@ -238,7 +238,7 @@ public partial class GameManager
                             nextNode = node;
                     }
                 }
-                enemy.Move(enemy.position, nextNode);
+                enemy.MoveBetweenNodes(enemy.position, nextNode);
             }
         }
     }

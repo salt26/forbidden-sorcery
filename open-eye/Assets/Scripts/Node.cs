@@ -20,6 +20,8 @@ public class Node : MonoBehaviour
     [SerializeField]
     public List<Node> edges;
 
+    private Vector3 centralStandingPosition, allyStandingPosition, enemyStandingPosition;
+    
     public bool IsCastle
     {
         get
@@ -27,8 +29,7 @@ public class Node : MonoBehaviour
             return isCastle;
         }
     }
-
-
+    
     [HideInInspector]
     public List<Unit> units = new List<Unit>();
     public List<Unit> allies
@@ -56,6 +57,8 @@ public class Node : MonoBehaviour
 
     [HideInInspector]
     static public bool nodeBeingClicked;
+
+    public GameObject centralPositionIndicator, allyPositionIndicator, enemyPositionIndicator;
 
     private bool isCastle
     {
@@ -85,6 +88,10 @@ public class Node : MonoBehaviour
 
     void Awake()
     {
+        centralStandingPosition = this.GetComponent<Transform>().position;
+        allyStandingPosition = centralStandingPosition + allyPositionIndicator.transform.localPosition;
+        enemyStandingPosition = centralStandingPosition + enemyPositionIndicator.transform.localPosition;
+
         isRed = false;
         if (isCastle)
         {
@@ -159,6 +166,39 @@ public class Node : MonoBehaviour
             else
             {
                 unit.GetComponent<SpriteRenderer>().enabled = false;
+            }
+        }
+    }
+
+    public void SetUnitPosition()
+    {
+        bool allyExisting = false;
+        bool enemyExisting = false;
+        foreach (Unit unit in units)
+        {
+            if (unit.isAlly) allyExisting = true;
+            else enemyExisting = true;
+        }
+
+        if (allyExisting && enemyExisting)
+        {
+            foreach (Unit unit in units)
+            {
+                if (unit.isAlly)
+                {
+                    StartCoroutine(unit.MoveInNode(allyStandingPosition));
+                }
+                else
+                {
+                    StartCoroutine(unit.MoveInNode(enemyStandingPosition));
+                }
+            }
+        }
+        else
+        {
+            foreach (Unit unit in units)
+            {
+                StartCoroutine(unit.MoveInNode(centralStandingPosition));
             }
         }
     }

@@ -31,6 +31,7 @@ public class UIMapInput : MonoBehaviour
         if ( !dragged && !Node.nodeBeingClicked )
         {
             GameManager.instance.UnitListShow(false);
+            //selectedNode = null; 코드는 private이라 UnitListShow 함수에 적었습니다
         }
         Node.nodeBeingClicked = false;
     }

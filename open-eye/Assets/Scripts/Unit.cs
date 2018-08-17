@@ -67,7 +67,7 @@ public class Unit : MonoBehaviour, IUnitInterface
         Movement = 0;
     }
 
-    public void Move(Node from, Node to)
+    public void MoveBetweenNodes(Node from, Node to)
     {
         GetComponent<SpriteRenderer>().enabled = true;
 
@@ -75,7 +75,7 @@ public class Unit : MonoBehaviour, IUnitInterface
         {
             Movement--;
             position = to;
-            moveQueue.Enqueue(MoveAnimation(from, to));
+            moveQueue.Enqueue(MoveBetweenNodesAnimation(from, to));
         }
 
         if (!isMoving && moveQueue.Count > 0)
@@ -85,30 +85,38 @@ public class Unit : MonoBehaviour, IUnitInterface
         }
     }
 
-    IEnumerator MoveAnimation(Node from, Node to)
+    IEnumerator MoveBetweenNodesAnimation(Node from, Node to)
     {
         GameManager.instance.movingUnits.Add(this);
 
         float duration = 0.5f;
         float deltaTime = 0;
         float rate = deltaTime / duration;
+
         List<Unit> fromUnitList = from.units;
-        List<Unit> toUnitList = to.units;
-        toUnitList.Add(this);
         fromUnitList.Remove(this);
         from.DecideAndShowMainUnit();
+        from.SetUnitPosition();
+        var initialPosition = this.transform.localPosition;
+
         while (rate < 1f)
         {
             deltaTime += Time.deltaTime;
             rate = deltaTime / duration;
-            transform.localPosition = Vector3.Lerp(from.transform.localPosition, to.transform.localPosition, rate);
+            transform.localPosition = Vector3.Lerp(initialPosition, to.transform.localPosition, rate);
             yield return null;
         }
 
         transform.localPosition = to.transform.localPosition;
+        
+        List<Unit> toUnitList = to.units;
+        toUnitList.Add(this);
+
+
+        to.SetUnitPosition();
+        to.DecideAndShowMainUnit();
 
         OnMoveAnimationFinished();
-        to.DecideAndShowMainUnit();
     }
 
     public void OnMoveAnimationFinished()
@@ -129,6 +137,24 @@ public class Unit : MonoBehaviour, IUnitInterface
             }
         }
     }
+
+    public IEnumerator MoveInNode(Vector3 destination)
+    {
+        Vector3 initialPosition = this.transform.position;
+
+        float duration = 0.5f;
+        float deltaTime = 0;
+        float rate = deltaTime / duration;
+
+        while (rate < 1f)
+        {
+            deltaTime += Time.deltaTime;
+            rate = deltaTime / duration;
+            transform.position = Vector3.Lerp(initialPosition, destination, rate);
+            yield return null;
+        }
+    }
+
     public int CompareTo(object obj)
     {
         IUnitInterface imaginaryUnit;
