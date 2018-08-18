@@ -38,6 +38,7 @@ public partial class GameManager
 
     public void UnitListShow(bool show)
     {
+        selectedUnitList.Clear();
         if (!show)
         {
             selectedNode = null;
@@ -67,8 +68,13 @@ public partial class GameManager
         }
     }
 
+    public void OnSelectUnitForControlDestroyedEnemy(UnitListItem item)
+    {
+    }
+
     public void OnClickEndTurnButton()
     {
+        selectedUnitList.Clear();
         unitListScrollView.ShowList(false);
         if (selectedNode != null && selectedNode.GetComponent<SpriteRenderer>().color != originColor)
         {
@@ -105,6 +111,7 @@ public partial class GameManager
             {
                 unitListScrollView.ShowList(false);
             }
+            selectedUnitList.Clear();
             originColor = Color.white;
             selectedNode = null;
         }
@@ -146,6 +153,7 @@ public partial class GameManager
                     selectedNode.GetComponent<SpriteRenderer>().color = originColor;
                     selectedNode = null;
 
+                    selectedUnitList.Clear();
                     unitListScrollView.ShowList(false);
                 }
                 else if (!selectedNode.edges.Contains(node) && selectedUnitList.Count > 0)
@@ -183,6 +191,7 @@ public partial class GameManager
                 if (selectedNode == node)
                 {
                     selectedNode = null;
+                    selectedUnitList.Clear();
                     unitListScrollView.ShowList(false);
                 }
                 else
