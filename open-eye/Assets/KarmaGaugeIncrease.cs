@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class KarmaGaugeIncrease : MonoBehaviour {
 
-    float pivotGuage = 0.5f; //임시 값, GameManager.instance.karma / (최후의 레이드 필요 업보)로 바꿔줘요
+    [HideInInspector]
+    public float pivotGuage = 0.5f; /*(float)GameManager.instance.karma / GameManager.instance.config.enemySpawnDataContainer.enemySpawnDatas
+        [GameManager.instance.config.enemySpawnDataContainer.enemySpawnDatas.Count - 1].requiredKarma;*/
 
     public void ChangeKarmaGauge()
     {

@@ -9,7 +9,7 @@ public partial class GameManager : MonoBehaviour
 
     [Header("게임데이터")]
     [SerializeField]
-    private GameConfig config;
+    public GameConfig config;
     
     [Header("UI")]
     [SerializeField]

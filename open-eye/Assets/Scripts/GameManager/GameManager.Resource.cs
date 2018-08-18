@@ -46,6 +46,7 @@ public partial class GameManager
         notoriety = config.baseNotoriety;
         karma = 0;
         GameObject.Find("KarmaGaugeMid").GetComponent<KarmaGaugeIncrease>().ChangeKarmaGauge();
+        GameObject.Find("NotorietyAlert").GetComponent<NotorietyColorChange>().ChangeNotorietyColor();
     }
 
     private void UpkeepResources()
@@ -53,5 +54,6 @@ public partial class GameManager
         karma += notoriety;
         Mana += manaProduce;
         GameObject.Find("KarmaGaugeMid").GetComponent<KarmaGaugeIncrease>().ChangeKarmaGauge();
+        GameObject.Find("NotorietyAlert").GetComponent<NotorietyColorChange>().ChangeNotorietyColor();
     }
 }
