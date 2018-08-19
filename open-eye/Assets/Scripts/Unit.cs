@@ -262,8 +262,6 @@ public class Unit : MonoBehaviour, IUnitInterface
                             }
                         }
                     }
-                    Debug.Log(distance);
-                    Debug.Log(distanceMin);
                     if (distance < distanceMin)
                     {
                         nextNode = nextNodeCandidate;

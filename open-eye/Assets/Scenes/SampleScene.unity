@@ -1088,17 +1088,17 @@ Prefab:
         type: 2}
       propertyPath: centralPositionIndicator
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 578102003}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: allyPositionIndicator
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 763681046}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: enemyPositionIndicator
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1725126715}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
   m_IsPrefabParent: 0
@@ -4097,17 +4097,17 @@ Prefab:
         type: 2}
       propertyPath: centralPositionIndicator
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 186920014}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: allyPositionIndicator
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 14879021}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: enemyPositionIndicator
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2089653255}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
   m_IsPrefabParent: 0
@@ -4849,17 +4849,17 @@ Prefab:
         type: 2}
       propertyPath: centralPositionIndicator
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1703375934}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: allyPositionIndicator
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1849440325}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: enemyPositionIndicator
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1922511222}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
   m_IsPrefabParent: 0
@@ -7116,17 +7116,17 @@ Prefab:
         type: 2}
       propertyPath: centralPositionIndicator
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1290401746}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: allyPositionIndicator
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1543113053}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: enemyPositionIndicator
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 301050049}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
   m_IsPrefabParent: 0
