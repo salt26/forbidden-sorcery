@@ -21,7 +21,7 @@ public class Node : MonoBehaviour
     public List<Node> edges;
 
     private Vector3 centralStandingPosition, allyStandingPosition, enemyStandingPosition;
-    
+
     public bool IsCastle
     {
         get
@@ -29,7 +29,7 @@ public class Node : MonoBehaviour
             return isCastle;
         }
     }
-    
+
     [HideInInspector]
     public List<Unit> units = new List<Unit>();
     public List<Unit> allies
@@ -57,6 +57,9 @@ public class Node : MonoBehaviour
 
     [HideInInspector]
     static public bool nodeBeingClicked;
+
+    [HideInInspector]
+    public bool isChecked;
 
     public GameObject centralPositionIndicator, allyPositionIndicator, enemyPositionIndicator;
 

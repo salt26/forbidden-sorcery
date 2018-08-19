@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class UnitData : ScriptableObject
 {
+
+    public enum MoveType
+    {
+        directToCastle,
+        nearTerritory
+    }
+
+    public MoveType currentMoveType;
     public string unitName;
     public string spriteName;
     public string iconName;

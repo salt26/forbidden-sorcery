@@ -213,7 +213,6 @@ public partial class GameManager
                     enemies.Add(enemy);
                 }
             }
-
             nextSpawnData = config.enemySpawnDataContainer.GetNextEnemySpawnData(karma);
         }
     }
@@ -224,20 +223,7 @@ public partial class GameManager
         {
             while (enemy.canMove)
             {
-                Node nextNode = enemy.position.edges[0];
-                foreach (Node node in enemy.position.edges)
-                {
-                    if (node.distance < nextNode.distance)
-                    {
-                        nextNode = node;
-                    }
-                    else if (nextNode.distance == node.distance)
-                    {
-                        int r = Random.Range(0, 1);
-                        if (r == 0)
-                            nextNode = node;
-                    }
-                }
+                Node nextNode = enemy.NextNode();
                 enemy.MoveBetweenNodes(enemy.position, nextNode);
             }
         }
