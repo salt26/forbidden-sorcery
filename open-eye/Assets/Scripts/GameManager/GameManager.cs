@@ -21,14 +21,19 @@ public partial class GameManager : MonoBehaviour
     [SerializeField]
     private UnitListScrollView unitListScrollView;
 
+    public DestroyedEnemyControlScrollView destroyedEnemyControlScrollView;
+
     private List<Unit> selectedUnitList = new List<Unit>();
 
     private Node selectedNode = null;
     private Color originColor = Color.white;
-    
+
+    private List<Unit> destroyedEnemies;
     private List<Unit> selectedDestroyedEnemyList;
     [SerializeField]
     private List<DestroyedEnemyControlButton> destroyedEnemyControlButtons = new List<DestroyedEnemyControlButton>();
+    [SerializeField]
+    private List<Button> destroyedEnemyControlResetButtons = new List<Button>();
     [SerializeField]
     private GameObject destroyedEnemyControlUnit;
     public List<Unit> SelectedDestroyedEnemyList

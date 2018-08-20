@@ -75,10 +75,18 @@ public partial class GameManager
         if (SelectedDestroyedEnemyList != null && SelectedDestroyedEnemyList.Contains(item.unit))
         {
             SelectedDestroyedEnemyList.Remove(item.unit);
+            destroyedEnemies.Add(item.unit);
         }
         else if (item.unit != null)
         {
             SelectedDestroyedEnemyList.Add(item.unit);
+            destroyedEnemies.Remove(item.unit);
+        }
+        var unitScrollView = unitListScrollView.SetControlDestroyedEnemiesList(destroyedEnemies, OnSelectUnitForControlDestroyedEnemy);
+        destroyedEnemyControlScrollView.SetControlDestroyedEnemiesList(selectedDestroyedEnemyList, OnSelectUnitForControlDestroyedEnemy);
+        foreach (var g in unitScrollView.listItems)
+        {
+            g.GetComponent<Button>().interactable = false;
         }
     }
 
@@ -92,6 +100,16 @@ public partial class GameManager
             {
                 b.GetComponent<Button>().interactable = true;
                 b.isSelected = false;
+            }
+            destroyedEnemyControlUnit = null;
+            foreach(Button g in destroyedEnemyControlResetButtons)
+            {
+                g.interactable = false;
+            }
+            var unitScrollView = unitListScrollView.SetControlDestroyedEnemiesList(destroyedEnemies, OnSelectUnitForControlDestroyedEnemy);
+            foreach (var g in unitScrollView.listItems)
+            {
+                g.GetComponent<Button>().interactable = false;
             }
         }
         else
@@ -108,7 +126,26 @@ public partial class GameManager
                     b.isSelected = false;
                 }
             }
+            destroyedEnemyControlUnit = button.gameObject;
+            destroyedEnemyControlResetButtons[(int)destroyedEnemyControlUnit.GetComponent<DestroyedEnemyControlButton>().kindOfButton].interactable = true;
+            var unitScrollView = unitListScrollView.SetControlDestroyedEnemiesList(destroyedEnemies, OnSelectUnitForControlDestroyedEnemy);
+            foreach (var g in unitScrollView.listItems)
+            {
+                g.GetComponent<Button>().interactable = true;
+            }
         }
+    }
+
+    public void OnClickRefreshControlButton()
+    {
+        destroyedEnemies.AddRange(selectedDestroyedEnemyList);
+        selectedDestroyedEnemyList.Clear();
+        var unitScrollView = unitListScrollView.SetControlDestroyedEnemiesList(destroyedEnemies, OnSelectUnitForControlDestroyedEnemy);
+        foreach (var g in unitScrollView.listItems)
+        {
+            g.GetComponent<Button>().interactable = true;
+        }
+        destroyedEnemyControlScrollView.SetControlDestroyedEnemiesList(selectedDestroyedEnemyList, OnSelectUnitForControlDestroyedEnemy);
     }
 
     public void OnClickEndTurnButton()
