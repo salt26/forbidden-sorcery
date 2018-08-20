@@ -23,6 +23,7 @@ class Fight
         {
             int allyAttack = 0;
             int enemyAttack = 0;
+
             foreach (ImaginaryUnit ally in result.unitList.FindAll((unit) => unit is ImaginaryUnit && unit.isAlly))
             {
                 allyAttack += ally.UD.attack;
@@ -56,6 +57,29 @@ class Fight
                     ally.CurrentHealth = 0;
                 }
             }
+
+            foreach (ImaginaryUnit ally in result.unitList.FindAll((unit) => unit is ImaginaryUnit && !unit.isAlly))
+            {
+                if (ally.UD.herotype == UnitData.HeroType.mage)
+                {
+                    foreach (ImaginaryUnit enemy in result.unitList.FindAll((unit) => unit is ImaginaryUnit && unit.isAlly))
+                    {
+                        enemy.Damage(ally.UD.mageSpecialAttackDamage);
+                    }
+                }
+            }
+
+            foreach (ImaginaryUnit enemy in result.unitList.FindAll((unit) => unit is ImaginaryUnit && !unit.isAlly))
+            {
+                if (enemy.UD.herotype == UnitData.HeroType.mage)
+                {
+                    foreach (ImaginaryUnit ally in result.unitList.FindAll((unit) => unit is ImaginaryUnit && unit.isAlly))
+                    {
+                        ally.Damage(enemy.UD.mageSpecialAttackDamage);
+                    }
+                }
+            }
+
         }
         return result;
     }
