@@ -288,5 +288,6 @@ public class Node : MonoBehaviour
         foreach (Unit u in tempU)
             Destroy(u.gameObject);
         DecideAndShowMainUnit();
+        SetUnitPosition();
     }
 }

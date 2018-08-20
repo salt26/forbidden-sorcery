@@ -286,6 +286,7 @@ public partial class GameManager
         {
             n.FetchFight(Fight.Fighting(n.units));
             n.DecideAndShowMainUnit();
+            n.SetUnitPosition();
         }
     }
 
