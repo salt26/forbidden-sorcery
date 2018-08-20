@@ -33,7 +33,7 @@ public class DestroyedEnemyControlButton : MonoBehaviour
         List<Unit> managerDestroyedEnemies = GameManager.instance.SelectedDestroyedEnemyList;
         if (managerDestroyedEnemies != null && managerDestroyedEnemies.Equals(selectedDestroyedEnemyList))
         {
-            GameManager.instance.OnClickDestroyedEnemyControlButton(null, this);
+            GameManager.instance.OnClickDestroyedEnemyControlButton(new List<Unit>(), this);
         }
         else
         {
@@ -62,22 +62,34 @@ public class DestroyedEnemyControlButton : MonoBehaviour
         }
 
     }
-    
+
+    public void Clear()
+    {
+        selectedDestroyedEnemyList.ForEach((item) => Destroy(item.gameObject));
+        selectedDestroyedEnemyList.Clear();
+    }
+
     private void Dominate()
     {
         foreach (Unit u in selectedDestroyedEnemyList)
         {
-            GameManager.instance.config.producableUnits.Add(u.unitData);
+            //TODO
         }
     }
 
     private void Kill()
     {
-
+        foreach (Unit u in selectedDestroyedEnemyList)
+        {
+            //TODO
+        }
     }
 
     private void Free()
     {
-
+        foreach (Unit u in selectedDestroyedEnemyList)
+        {
+            //TODO
+        }
     }
 }

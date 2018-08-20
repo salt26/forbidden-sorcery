@@ -7,8 +7,8 @@ public class DestroyedEnemyControlScrollView : MonoBehaviour
     [SerializeField]
     Transform content;
 
-    private List<UnitListItem> listItems = new List<UnitListItem>();
-    public void SetControlDestroyedEnemiesList(List<Unit> destroyedEnemies, UnitListItem.OnClickUnitListItem onClick = null)
+    public List<UnitListItem> listItems = new List<UnitListItem>();
+    public DestroyedEnemyControlScrollView SetControlDestroyedEnemiesList(List<Unit> destroyedEnemies, UnitListItem.OnClickUnitListItem onClick = null)
     {
         ClearItem();
         //destroyedEnemies.Sort(new UnitSort.UnitMoveListCompare());
@@ -19,6 +19,7 @@ public class DestroyedEnemyControlScrollView : MonoBehaviour
             unitListItem.SetDestroyedEnemyDataForControlScrollView(dEnemy, onClick);
             listItems.Add(unitListItem);
         }
+        return this;
     }
 
     private void ClearItem()

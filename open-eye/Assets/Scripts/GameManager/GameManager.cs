@@ -36,6 +36,8 @@ public partial class GameManager : MonoBehaviour
     private List<Button> destroyedEnemyControlResetButtons = new List<Button>();
     [SerializeField]
     private GameObject destroyedEnemyControlUnit;
+    [SerializeField]
+    private GameObject destroyedEnemyControlButton;
     public List<Unit> SelectedDestroyedEnemyList
     {
         get
@@ -56,6 +58,8 @@ public partial class GameManager : MonoBehaviour
 
     private void Start()
     {
+        selectedDestroyedEnemyList = new List<Unit>();
+
         destroyedEnemyControlUnit.SetActive(false);
         InitializeInput();
         InitializeMap();

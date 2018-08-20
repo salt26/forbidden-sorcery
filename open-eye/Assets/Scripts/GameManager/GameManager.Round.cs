@@ -187,8 +187,11 @@ public partial class GameManager
             destroyedEnemies.AddRange(n.enemies.FindAll((unit) => unit.CurrentHealth == 0));
         }
 
+        if (destroyedEnemies.Count > 0)
+            endTurnButton.interactable = false;
+
         var unitScrollView = unitListScrollView.SetControlDestroyedEnemiesList(destroyedEnemies, OnSelectUnitForControlDestroyedEnemy);
-        foreach(var g in unitScrollView.listItems)
+        foreach (var g in unitScrollView.listItems)
         {
             g.GetComponent<Button>().interactable = false;
         }
@@ -210,11 +213,17 @@ public partial class GameManager
         produceButton.interactable = false;
 
         destroyedEnemyControlUnit.SetActive(false);
-
+        destroyedEnemyControlButtons.ForEach((button) => button.Clear());
+        
         //foreach (DestroyedEnemyControlButton button in destroyedEnemyControlButtons)
         //{
         //    button.gameObject.SetActive(false);
         //}
+
+        foreach (var button in destroyedEnemyControlButtons)
+        {
+            button.Fetch();
+        }
 
         foreach (Node n in allNodes)
         {
