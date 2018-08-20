@@ -21,7 +21,7 @@ public class Spawner : MonoBehaviour
         unit.position = n;
 
         n.units.Add(unit);
-        n.SetUnitPosition();
+        n.RefineUnitPosition();
         n.DecideAndShowMainUnit();
 
         return unit;

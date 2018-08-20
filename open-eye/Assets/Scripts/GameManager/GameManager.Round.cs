@@ -30,6 +30,7 @@ public partial class GameManager
 
     [HideInInspector]
     public List<Unit> movingUnits = new List<Unit>();
+
     public bool isEnemyMoving
     {
         get
@@ -44,6 +45,7 @@ public partial class GameManager
             return false;
         }
     }
+
     public bool isAllyMoving
     {
         get
@@ -139,7 +141,7 @@ public partial class GameManager
         StartCoroutine(AlertPhase());
 
         MoveEnemy();
-
+        
         OnEnemyMoveDone();
     }
 
@@ -285,8 +287,6 @@ public partial class GameManager
         foreach (Node n in allNodes)
         {
             n.FetchFight(Fight.Fighting(n.units));
-            n.DecideAndShowMainUnit();
-            n.SetUnitPosition();
         }
     }
 

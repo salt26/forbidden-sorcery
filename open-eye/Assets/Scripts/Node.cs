@@ -22,6 +22,8 @@ public class Node : MonoBehaviour
 
     private Vector3 centralStandingPosition, allyStandingPosition, enemyStandingPosition;
 
+    public bool unitMovedThisTurn = false;
+
     public bool IsCastle
     {
         get
@@ -173,7 +175,19 @@ public class Node : MonoBehaviour
         }
     }
 
-    public void SetUnitPosition()
+    public static void RefineUnitPositionInAllNodes()
+    {
+        foreach (Node n in GameManager.instance.allNodes)
+        {
+            if(n.unitMovedThisTurn)
+            {
+                n.unitMovedThisTurn = false;
+                n.RefineUnitPosition();
+            }
+        }
+    }
+
+    public void RefineUnitPosition()
     {
         bool allyExisting = false;
         bool enemyExisting = false;
@@ -190,10 +204,12 @@ public class Node : MonoBehaviour
                 if (unit.isAlly)
                 {
                     StartCoroutine(unit.MoveInNode(allyStandingPosition));
+                    unit.transform.SetParent(this.allyPositionIndicator.GetComponent<Transform>());
                 }
                 else
                 {
                     StartCoroutine(unit.MoveInNode(enemyStandingPosition));
+                    unit.transform.SetParent(this.enemyPositionIndicator.GetComponent<Transform>());
                 }
             }
         }
@@ -202,8 +218,10 @@ public class Node : MonoBehaviour
             foreach (Unit unit in units)
             {
                 StartCoroutine(unit.MoveInNode(centralStandingPosition));
+                unit.transform.SetParent(this.centralPositionIndicator.GetComponent<Transform>());
             }
         }
+        GameManager.instance.DelayTime(Unit.movingTimeInNode);
     }
 
     public void RedLight()
@@ -288,6 +306,6 @@ public class Node : MonoBehaviour
         foreach (Unit u in tempU)
             Destroy(u.gameObject);
         DecideAndShowMainUnit();
-        SetUnitPosition();
+        RefineUnitPosition();
     }
 }

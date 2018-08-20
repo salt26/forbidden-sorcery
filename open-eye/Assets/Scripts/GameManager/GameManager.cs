@@ -39,6 +39,11 @@ public partial class GameManager : MonoBehaviour
         }
     }
 
+    public IEnumerator DelayTime (float second)
+    {
+        yield return new WaitForSeconds(second);
+    }
+
     private void Awake()
     {
         instance = this;

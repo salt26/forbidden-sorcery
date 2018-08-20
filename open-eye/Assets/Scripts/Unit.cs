@@ -17,6 +17,9 @@ public class Unit : MonoBehaviour, IUnitInterface
 
     public Queue<IEnumerator> moveQueue = new Queue<IEnumerator>();
 
+    [HideInInspector]
+    public static float movingTimeInNode = 0.2f;
+
     public UnitData unitData;
     public OnMoveDone onMoveDone;
 
@@ -78,7 +81,7 @@ public class Unit : MonoBehaviour, IUnitInterface
             moveQueue.Enqueue(MoveBetweenNodesAnimation(from, to));
         }
 
-        if (!isMoving && moveQueue.Count > 0)
+        if (!isMoving && moveQueue.Count > 0)               //맨 첫번째만을 움직이게 하기 위한 것
         {
             isMoving = true;
             StartCoroutine(moveQueue.Dequeue());
@@ -89,49 +92,50 @@ public class Unit : MonoBehaviour, IUnitInterface
     {
         GameManager.instance.movingUnits.Add(this);
 
-        float duration = 0.5f;
-        float deltaTime = 0;
-        float rate = deltaTime / duration;
-
         List<Unit> fromUnitList = from.units;
         fromUnitList.Remove(this);
+        from.unitMovedThisTurn = true;
         from.DecideAndShowMainUnit();
-        from.SetUnitPosition();
-        var initialPosition = this.transform.localPosition;
+        List<Unit> toUnitList = to.units;
+        toUnitList.Add(this);
+        to.unitMovedThisTurn = true;
 
+        float duration = 0.5f;                                                  //여기서부터
+        float deltaTime = 0;
+        float rate = deltaTime / duration;
+        var initialPosition = this.transform.position;
         while (rate < 1f)
         {
             deltaTime += Time.deltaTime;
             rate = deltaTime / duration;
-            transform.localPosition = Vector3.Lerp(initialPosition, to.transform.localPosition, rate);
+            transform.position = Vector3.Lerp(initialPosition, to.transform.position, rate);
             yield return null;
         }
-
-        transform.localPosition = to.transform.localPosition;
+        transform.position = to.transform.position;                   //여기까지의 코드를 실행하는 데 0.5초(=이동시간)이 걸림
         
-        List<Unit> toUnitList = to.units;
-        toUnitList.Add(this);
-
-
-        to.SetUnitPosition();
         to.DecideAndShowMainUnit();
 
-        OnMoveAnimationFinished();
+        OnMoveAnimationFinished();                  //하나의 동작이 끝나는 순간 무엇을 할 것인가?
     }
 
     public void OnMoveAnimationFinished()
     {
-        if (moveQueue.Count > 0)
+        if (moveQueue.Count > 0)                                //큐에 쌓인 게 남았을 때
         {
-            StartCoroutine(moveQueue.Dequeue());
+            StartCoroutine(moveQueue.Dequeue());                //다음 큐를 실행해야지
         }
         else
-        {
+        {                                               //큐가 비었을 때 - 이젠 끝내야지?
             isMoving = false;
-            
+
             GameManager.instance.movingUnits.Remove(this);
 
-            if (onMoveDone != null)
+            if(GameManager.instance.movingUnits.Count == 0)         //이동한 놈들 재배치해야지
+            {
+                Node.RefineUnitPositionInAllNodes();
+            }
+            
+            if (onMoveDone != null)                             //이건 아군 유닛일 경우 비어 있으므로 아군 움직임 턴에 대해서는 신경쓰지 않아도 됨
             {
                 onMoveDone();
             }
@@ -141,11 +145,9 @@ public class Unit : MonoBehaviour, IUnitInterface
     public IEnumerator MoveInNode(Vector3 destination)
     {
         Vector3 initialPosition = this.transform.position;
-
-        float duration = 0.5f;
+        float duration = movingTimeInNode;
         float deltaTime = 0;
         float rate = deltaTime / duration;
-
         while (rate < 1f)
         {
             deltaTime += Time.deltaTime;
@@ -153,6 +155,7 @@ public class Unit : MonoBehaviour, IUnitInterface
             transform.position = Vector3.Lerp(initialPosition, destination, rate);
             yield return null;
         }
+        transform.position = destination;
     }
 
     public int CompareTo(object obj)
