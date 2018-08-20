@@ -141,7 +141,6 @@ public partial class GameManager
         StartCoroutine(AlertPhase());
 
         MoveEnemy();
-        
         OnEnemyMoveDone();
     }
 
@@ -181,9 +180,17 @@ public partial class GameManager
         endTurnButton.interactable = true;
         produceButton.interactable = false;
 
+        destroyedEnemies = new List<Unit>();
+
         foreach (Node n in allNodes)
         {
-            unitListScrollView.SetControlDestroyedEnemiesList(n.enemies.FindAll((unit) => unit.CurrentHealth == 0), OnSelectUnitForControlDestroyedEnemy);
+            destroyedEnemies.AddRange(n.enemies.FindAll((unit) => unit.CurrentHealth == 0));
+        }
+
+        var unitScrollView = unitListScrollView.SetControlDestroyedEnemiesList(destroyedEnemies, OnSelectUnitForControlDestroyedEnemy);
+        foreach(var g in unitScrollView.listItems)
+        {
+            g.GetComponent<Button>().interactable = false;
         }
 
         foreach (DestroyedEnemyControlButton button in destroyedEnemyControlButtons)
@@ -192,6 +199,7 @@ public partial class GameManager
         }
 
         unitListScrollView.ShowList(true);
+        unitListScrollView.ShowUnitTab(false);
         destroyedEnemyControlUnit.SetActive(true);
     }
 

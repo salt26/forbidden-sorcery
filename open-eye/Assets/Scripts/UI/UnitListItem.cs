@@ -48,7 +48,7 @@ public class UnitListItem : MonoBehaviour
     private OnClickUnitListItem onClick;
     public bool isSelected { get; private set; }
 
-    public void SetUnit(Unit unit, OnClickUnitListItem onClick = null)
+    public void SetUnit(Unit unit, OnClickUnitListItem onClick)
     {
         this.unit = unit;
         this.onClick = onClick;
@@ -58,7 +58,7 @@ public class UnitListItem : MonoBehaviour
         ShowCostObject(false);
     }
 
-    public void SetUnitData(UnitData unitData, OnClickUnitListItem onClick = null)
+    public void SetUnitData(UnitData unitData, OnClickUnitListItem onClick)
     {
         this.unitData = unitData;
         this.onClick = onClick;
@@ -72,6 +72,20 @@ public class UnitListItem : MonoBehaviour
         ShowCostObject(true);
     }
 
+    public void SetDestroyedEnemyDataForControlScrollView(Unit unit, OnClickUnitListItem onClick)
+    {
+        this.unit = unit;
+        this.onClick = onClick;
+        this.unitData = unit.unitData;
+        GetComponent<Image>().sprite = AssetManager.Instance.GetSprite(unitData.iconName);
+    }
+
+    public void SetDestroyedEnemyDataForUnitList(Unit unit, OnClickUnitListItem onClick)
+    {
+        this.unit = unit;
+        SetUnitData(unit.unitData, onClick);
+    }
+    
     public void ShowCostObject(bool show)
     {
         costObject.SetActive(show);
@@ -106,6 +120,14 @@ public class UnitListItem : MonoBehaviour
         colors.normalColor = color;
         colors.highlightedColor = color;
         button.colors = colors;
+    }
+
+    public void OnIconClick()
+    {
+        if (onClick != null)
+        {
+            onClick(this);
+        }
     }
     
     public void SetColor()

@@ -6,6 +6,12 @@ using UnityEngine.UI;
 public class UnitListScrollView : MonoBehaviour
 {
     [SerializeField]
+    private GameObject ManaTab;
+
+    [SerializeField]
+    private GameObject UnitTab;
+
+    [SerializeField]
     Transform content;
 
     [SerializeField]
@@ -14,6 +20,25 @@ public class UnitListScrollView : MonoBehaviour
     [SerializeField]
     Vector3 contentActive;
 
+    [SerializeField]
+    public Image allyTabFake;
+
+    [SerializeField]
+    public Image enemyTabFake;
+
+    [SerializeField]
+    public Color allyTabNormalColor;
+
+    [SerializeField]
+    public Color enemyTabNormalColor;
+
+    [SerializeField]
+    public Color allyTabPressedColor;
+
+    [SerializeField]
+    public Color enemyTabPressedColor;
+
+    [SerializeField]
     public bool nowListShown { get; private set; }
 
     void Awake()
@@ -21,7 +46,7 @@ public class UnitListScrollView : MonoBehaviour
         nowListShown = false;
     }
     
-    private List<UnitListItem> listItems = new List<UnitListItem>();
+    public List<UnitListItem> listItems = new List<UnitListItem>();
     public class UnitSort
     {
         public class UnitMoveListCompare : IComparer<Unit>
@@ -36,9 +61,9 @@ public class UnitListScrollView : MonoBehaviour
                 {
                     return unit1.CurrentHealth.CompareTo(unit2.CurrentHealth);
                 }
-                else if (unit1.Movement.CompareTo(unit2.Movement) != 0)
+                else if (unit2.Movement.CompareTo(unit1.Movement) != 0)
                 {
-                    return unit1.Movement.CompareTo(unit2.Movement);
+                    return unit2.Movement.CompareTo(unit1.Movement);
                 }
                 else if (unit1.isAlly.CompareTo(unit2.isAlly) != 0)
                 {
@@ -97,18 +122,18 @@ public class UnitListScrollView : MonoBehaviour
         }
     }
 
-    public void SetControlDestroyedEnemiesList(List<Unit> destroyedEnemies, UnitListItem.OnClickUnitListItem onClick = null)
+    public UnitListScrollView SetControlDestroyedEnemiesList(List<Unit> destroyedEnemies, UnitListItem.OnClickUnitListItem onClick = null)
     {
         ClearItem();
         //destroyedEnemies.Sort(new UnitSort.UnitMoveListCompare());
         foreach(var dEnemy in destroyedEnemies)
         {
-            Debug.Log(dEnemy.unitData.iconName);
             var listItemObject = Instantiate(AssetManager.Instance.GetPrefab("UnitListItem"), content);
             var unitListItem = listItemObject.GetComponent<UnitListItem>();
-            unitListItem.SetUnitData(dEnemy.unitData, onClick);
+            unitListItem.SetDestroyedEnemyDataForUnitList(dEnemy, onClick);
             listItems.Add(unitListItem);
         }
+        return this;
     }
 
     private void ClearItem()
@@ -121,5 +146,16 @@ public class UnitListScrollView : MonoBehaviour
     {
         transform.localPosition = show ? contentActive : contentInactive;
         nowListShown = show;
+    }
+    
+    public void ShowUnitTab(bool show)
+    {
+        if (!show)
+        {
+            allyTabFake.color = allyTabPressedColor;
+            enemyTabFake.color = enemyTabNormalColor;
+        }
+        ManaTab.SetActive(!show);
+        UnitTab.SetActive(show);
     }
 }

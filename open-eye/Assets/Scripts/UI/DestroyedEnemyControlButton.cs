@@ -29,6 +29,7 @@ public class DestroyedEnemyControlButton : MonoBehaviour
 
     public void OnClick()
     {
+        GameManager.instance.destroyedEnemyControlScrollView = GetComponent<DestroyedEnemyControlScrollView>();
         List<Unit> managerDestroyedEnemies = GameManager.instance.SelectedDestroyedEnemyList;
         if (managerDestroyedEnemies != null && managerDestroyedEnemies.Equals(selectedDestroyedEnemyList))
         {
@@ -38,6 +39,11 @@ public class DestroyedEnemyControlButton : MonoBehaviour
         {
             GameManager.instance.OnClickDestroyedEnemyControlButton(selectedDestroyedEnemyList, this);
         }
+    }
+
+    public void OnClickResetButton()
+    {
+        GameManager.instance.OnClickRefreshControlButton();
     }
 
     public void Fetch()
