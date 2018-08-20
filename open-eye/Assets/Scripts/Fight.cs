@@ -29,6 +29,36 @@ class Fight
                 allyAttack += ally.UD.attack;
             }
 
+            foreach (ImaginaryUnit ally in result.unitList.FindAll((unit) => unit is ImaginaryUnit && unit.isAlly))
+            {
+                if (ally.UD.herotype == UnitData.HeroType.mage)
+                {
+                    ImaginaryUnit weekenemy = new ImaginaryUnit();
+                    weekenemy.UD.aggro = int.MaxValue;
+
+                    foreach (ImaginaryUnit enemy in result.unitList.FindAll((unit) => unit is ImaginaryUnit && unit.isAlly))
+                    {
+                        if (weekenemy.UD.aggro > enemy.UD.aggro) weekenemy = enemy;
+                    }
+                    weekenemy.Damage(ally.UD.assassinSpecialAttackDamage);
+                }
+            }
+
+            foreach (ImaginaryUnit enemy in result.unitList.FindAll((unit) => unit is ImaginaryUnit && unit.isAlly))
+            {
+                if (enemy.UD.herotype == UnitData.HeroType.mage)
+                {
+                    ImaginaryUnit weekenemy = new ImaginaryUnit();
+                    weekenemy.UD.aggro = int.MaxValue;
+
+                    foreach (ImaginaryUnit ally in result.unitList.FindAll((unit) => unit is ImaginaryUnit && unit.isAlly))
+                    {
+                        if (weekenemy.UD.aggro > ally.UD.aggro) weekenemy = ally;
+                    }
+                    weekenemy.Damage(enemy.UD.assassinSpecialAttackDamage);
+                }
+            }
+
             foreach (ImaginaryUnit enemy in result.unitList.FindAll((unit) => unit is ImaginaryUnit && !unit.isAlly))
             {
                 enemyAttack += enemy.UD.attack;
@@ -79,7 +109,6 @@ class Fight
                     }
                 }
             }
-
         }
         return result;
     }
