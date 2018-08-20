@@ -25,6 +25,7 @@ public partial class GameManager
     {
         isMouseInMap = true;
         unitListScrollView.ShowList(false);
+        unitListScrollView.ShowUnitTab(false);
     }
 
     public void OnMouseEnterMap()
@@ -45,6 +46,7 @@ public partial class GameManager
             selectedNode = null;
         }
         unitListScrollView.ShowList(show);
+        unitListScrollView.ShowUnitTab(false);
     }
 
     public void OnSelectUnitForMove(UnitListItem item)
@@ -113,6 +115,7 @@ public partial class GameManager
     {
         selectedUnitList.Clear();
         unitListScrollView.ShowList(false);
+        unitListScrollView.ShowUnitTab(false);
         if (selectedNode != null && selectedNode.GetComponent<SpriteRenderer>().color != originColor)
         {
             selectedNode.GetComponent<SpriteRenderer>().color = originColor;
@@ -124,6 +127,8 @@ public partial class GameManager
 
     public void OnClickProduceButton()
     {
+        unitListScrollView.ShowUnitTab(false);
+
         if (currentState != RoundState.PlayerAction)
         {
             return;
@@ -179,7 +184,8 @@ public partial class GameManager
                     spriteRenderer.color = Color.black;
 
                     unitListScrollView.ShowList(true);
-                    unitListScrollView.SetUnitList(node.units, OnSelectUnitForMove);
+                    unitListScrollView.ShowUnitTab(true);
+                    unitListScrollView.SetUnitList(node.allies, OnSelectUnitForMove);
                 }
                 else if (selectedNode == null)
                 {
@@ -192,6 +198,7 @@ public partial class GameManager
 
                     selectedUnitList.Clear();
                     unitListScrollView.ShowList(false);
+                    unitListScrollView.ShowUnitTab(false);
                 }
                 else if (!selectedNode.edges.Contains(node) && selectedUnitList.Count > 0)
                 {
@@ -219,6 +226,7 @@ public partial class GameManager
                     selectedNode = null;
                     selectedUnitList.Clear();
                     unitListScrollView.ShowList(false);
+                    unitListScrollView.ShowUnitTab(false);
 
                 }
             }
@@ -230,15 +238,35 @@ public partial class GameManager
                     selectedNode = null;
                     selectedUnitList.Clear();
                     unitListScrollView.ShowList(false);
+                    unitListScrollView.ShowUnitTab(false);
                 }
                 else
                 {
                     selectedNode = node;
 
                     unitListScrollView.ShowList(true);
+                    unitListScrollView.ShowUnitTab(false);
                     unitListScrollView.SetUnitList(node.destroyedEnemies);
                 }
             }
         }
+    }
+
+    public void OnClickAllyTabButton()
+    {
+        unitListScrollView.allyTabFake.color = unitListScrollView.allyTabPressedColor;
+        unitListScrollView.enemyTabFake.color = unitListScrollView.enemyTabNormalColor;
+        unitListScrollView.ShowList(true);
+        unitListScrollView.ShowUnitTab(true);
+        unitListScrollView.SetUnitList(selectedNode.allies, OnSelectUnitForMove);
+    }
+
+    public void OnClickEnemyTabButton()
+    {
+        unitListScrollView.enemyTabFake.color = unitListScrollView.enemyTabPressedColor;
+        unitListScrollView.allyTabFake.color = unitListScrollView.allyTabNormalColor;
+        unitListScrollView.ShowList(true);
+        unitListScrollView.ShowUnitTab(true);
+        unitListScrollView.SetUnitList(selectedNode.enemies, OnSelectUnitForMove);
     }
 }

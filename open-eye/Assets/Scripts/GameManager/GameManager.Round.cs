@@ -190,6 +190,7 @@ public partial class GameManager
         }
 
         unitListScrollView.ShowList(true);
+        unitListScrollView.ShowUnitTab(false);
         destroyedEnemyControlUnit.SetActive(true);
     }
 

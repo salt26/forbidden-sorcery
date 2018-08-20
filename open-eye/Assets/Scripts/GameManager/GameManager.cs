@@ -17,10 +17,10 @@ public partial class GameManager : MonoBehaviour
 
     [SerializeField]
     private Button produceButton;
-
+    
     [SerializeField]
     private UnitListScrollView unitListScrollView;
-    
+
     private List<Unit> selectedUnitList = new List<Unit>();
 
     private Node selectedNode = null;

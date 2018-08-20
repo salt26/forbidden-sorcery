@@ -6,6 +6,12 @@ using UnityEngine.UI;
 public class UnitListScrollView : MonoBehaviour
 {
     [SerializeField]
+    private GameObject ManaTab;
+
+    [SerializeField]
+    private GameObject UnitTab;
+
+    [SerializeField]
     Transform content;
 
     [SerializeField]
@@ -14,6 +20,25 @@ public class UnitListScrollView : MonoBehaviour
     [SerializeField]
     Vector3 contentActive;
 
+    [SerializeField]
+    public Image allyTabFake;
+
+    [SerializeField]
+    public Image enemyTabFake;
+
+    [SerializeField]
+    public Color allyTabNormalColor;
+
+    [SerializeField]
+    public Color enemyTabNormalColor;
+
+    [SerializeField]
+    public Color allyTabPressedColor;
+
+    [SerializeField]
+    public Color enemyTabPressedColor;
+
+    [SerializeField]
     public bool nowListShown { get; private set; }
 
     void Awake()
@@ -36,9 +61,9 @@ public class UnitListScrollView : MonoBehaviour
                 {
                     return unit1.CurrentHealth.CompareTo(unit2.CurrentHealth);
                 }
-                else if (unit1.Movement.CompareTo(unit2.Movement) != 0)
+                else if (unit2.Movement.CompareTo(unit1.Movement) != 0)
                 {
-                    return unit1.Movement.CompareTo(unit2.Movement);
+                    return unit2.Movement.CompareTo(unit1.Movement);
                 }
                 else if (unit1.isAlly.CompareTo(unit2.isAlly) != 0)
                 {
@@ -121,5 +146,16 @@ public class UnitListScrollView : MonoBehaviour
     {
         transform.localPosition = show ? contentActive : contentInactive;
         nowListShown = show;
+    }
+    
+    public void ShowUnitTab(bool show)
+    {
+        if (!show)
+        {
+            allyTabFake.color = allyTabNormalColor;
+            enemyTabFake.color = enemyTabNormalColor;
+        }
+        ManaTab.SetActive(!show);
+        UnitTab.SetActive(show);
     }
 }
