@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public partial class GameManager
 {
@@ -47,7 +48,7 @@ public partial class GameManager
     }
 
     public void OnSelectUnitForMove(UnitListItem item)
-    {  
+    {
         if (selectedUnitList.Contains(item.unit))
         {
             selectedUnitList.Remove(item.unit);
@@ -63,13 +64,49 @@ public partial class GameManager
         if (item.unitData.cost <= Mana)
         {
             Mana -= item.unitData.cost;
-            Unit spawnedAlly = Spawner.spawner.Spawn(item.unitData, true, castle);
-            allies.Add(spawnedAlly);
+            Spawner.spawner.Spawn(item.unitData, true, castle);
         }
     }
 
     public void OnSelectUnitForControlDestroyedEnemy(UnitListItem item)
     {
+        if (SelectedDestroyedEnemyList != null && SelectedDestroyedEnemyList.Contains(item.unit))
+        {
+            SelectedDestroyedEnemyList.Remove(item.unit);
+        }
+        else if (item.unit != null)
+        {
+            SelectedDestroyedEnemyList.Add(item.unit);
+        }
+    }
+
+    public void OnClickDestroyedEnemyControlButton(List<Unit> units, DestroyedEnemyControlButton button)
+    {
+        selectedDestroyedEnemyList = units;
+
+        if (button.isSelected)
+        {
+            foreach (DestroyedEnemyControlButton b in destroyedEnemyControlButtons)
+            {
+                b.GetComponent<Button>().interactable = true;
+                b.isSelected = false;
+            }
+        }
+        else
+        {
+            foreach (DestroyedEnemyControlButton b in destroyedEnemyControlButtons)
+            {
+                if (b.Equals(button))
+                {
+                    b.isSelected = true;
+                }
+                else
+                {
+                    b.GetComponent<Button>().interactable = false;
+                    b.isSelected = false;
+                }
+            }
+        }
     }
 
     public void OnClickEndTurnButton()
@@ -115,7 +152,7 @@ public partial class GameManager
             originColor = Color.white;
             selectedNode = null;
         }
-        
+
 
         /*if (selectedNode != null && selectedNode.GetComponent<SpriteRenderer>().color != originColor)
         {

@@ -97,6 +97,20 @@ public class UnitListScrollView : MonoBehaviour
         }
     }
 
+    public void SetControlDestroyedEnemiesList(List<Unit> destroyedEnemies, UnitListItem.OnClickUnitListItem onClick = null)
+    {
+        ClearItem();
+        //destroyedEnemies.Sort(new UnitSort.UnitMoveListCompare());
+        foreach(var dEnemy in destroyedEnemies)
+        {
+            Debug.Log(dEnemy.unitData.iconName);
+            var listItemObject = Instantiate(AssetManager.Instance.GetPrefab("UnitListItem"), content);
+            var unitListItem = listItemObject.GetComponent<UnitListItem>();
+            unitListItem.SetUnitData(dEnemy.unitData, onClick);
+            listItems.Add(unitListItem);
+        }
+    }
+
     private void ClearItem()
     {
         listItems.ForEach((item) => Destroy(item.gameObject));

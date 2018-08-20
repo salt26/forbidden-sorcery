@@ -279,8 +279,14 @@ public class Node : MonoBehaviour
                 }
             }
         }
-        foreach (Unit u in units.FindAll((unit) => unit.CurrentHealth == 0))
-            Destroy(u.gameObject);
+    }
+
+    public void FetchDestroy()
+    {
+        List<Unit> tempU = units.FindAll((unit) => unit.CurrentHealth == 0);
         units.RemoveAll((unit) => unit.CurrentHealth == 0);
+        foreach (Unit u in tempU)
+            Destroy(u.gameObject);
+        DecideAndShowMainUnit();
     }
 }

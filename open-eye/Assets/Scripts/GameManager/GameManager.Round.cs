@@ -105,9 +105,10 @@ public partial class GameManager
                 FightPhase();
                 break;
             case 3:
-                UpkeepPhase();
+                Captive();
                 break;
-            case 4: // Captive가 들어갈 수 있음.
+            case 4:
+                UpkeepPhase();
                 break;
             case 5:
                 StandbyPhase();
@@ -126,7 +127,7 @@ public partial class GameManager
         CheckWin();
         CheckAndSpawnEnemy();
 
-        StartCoroutine(ChangePhase()); 
+        StartCoroutine(ChangePhase());
     }
 
     private void EnemyMovePhase()
@@ -150,9 +151,12 @@ public partial class GameManager
 
         StartCoroutine(AlertPhase());
 
-        foreach (Unit ally in allies)
+        foreach (Node n in allNodes)
         {
-            ally.Refresh();
+            foreach (Unit ally in n.allies)
+            {
+                ally.Refresh();
+            }
         }
     }
 
@@ -169,11 +173,43 @@ public partial class GameManager
         StartCoroutine(ChangePhase());
     }
 
+    private void Captive()
+    {
+        currentState = RoundState.Captive;
+        endTurnButton.interactable = true;
+        produceButton.interactable = false;
+
+        foreach (Node n in allNodes)
+        {
+            unitListScrollView.SetControlDestroyedEnemiesList(n.enemies.FindAll((unit) => unit.CurrentHealth == 0), OnSelectUnitForControlDestroyedEnemy);
+        }
+
+        foreach (DestroyedEnemyControlButton button in destroyedEnemyControlButtons)
+        {
+            button.gameObject.SetActive(true);
+        }
+
+        unitListScrollView.ShowList(true);
+        destroyedEnemyControlUnit.SetActive(true);
+    }
+
     private void UpkeepPhase()
     {
         currentState = RoundState.Upkeep;
         endTurnButton.interactable = false;
         produceButton.interactable = false;
+
+        destroyedEnemyControlUnit.SetActive(false);
+
+        //foreach (DestroyedEnemyControlButton button in destroyedEnemyControlButtons)
+        //{
+        //    button.gameObject.SetActive(false);
+        //}
+
+        foreach (Node n in allNodes)
+        {
+            n.FetchDestroy();
+        }
 
         StartCoroutine(AlertPhase());
 
@@ -190,7 +226,12 @@ public partial class GameManager
 
     private void CheckWin()
     {
-        if (nextSpawnData.enemyDatas == null && enemies.Count == 0)
+        int numberOfEnemies = 0;
+        foreach (Node n in allNodes)
+        {
+            numberOfEnemies += n.enemies.Count;
+        }
+        if (nextSpawnData.enemyDatas == null && numberOfEnemies == 0)
         {
             //TODO : 승리 처리
         }
@@ -210,7 +251,6 @@ public partial class GameManager
 
                     Unit enemy = Spawner.spawner.Spawn(AssetManager.Instance.GetUnitData("SampleEnemy"), false, spawnNode);
                     enemy.onMoveDone += OnEnemyMoveDone;
-                    enemies.Add(enemy);
                 }
             }
             nextSpawnData = config.enemySpawnDataContainer.GetNextEnemySpawnData(karma);
@@ -219,12 +259,15 @@ public partial class GameManager
 
     private void MoveEnemy()
     {
-        foreach (Unit enemy in enemies)
+        foreach (Node n in allNodes)
         {
-            while (enemy.canMove)
+            foreach (Unit enemy in n.enemies)
             {
-                Node nextNode = enemy.NextNode();
-                enemy.MoveBetweenNodes(enemy.position, nextNode);
+                while (enemy.canMove)
+                {
+                    Node nextNode = enemy.NextNode();
+                    enemy.MoveBetweenNodes(enemy.position, nextNode);
+                }
             }
         }
     }
@@ -241,7 +284,7 @@ public partial class GameManager
     {
         foreach (Node n in allNodes)
         {
-            n.FetchFight( Fight.Fighting(n.units) );
+            n.FetchFight(Fight.Fighting(n.units));
             n.DecideAndShowMainUnit();
         }
     }
@@ -282,10 +325,12 @@ public partial class GameManager
                 n.GetComponent<SpriteRenderer>().color = Color.green;
             }
         }
-
-        foreach (Unit enemy in enemies)
+        foreach (Node n in allNodes)
         {
-            enemy.Refresh();
+            foreach (Unit enemy in n.enemies)
+            {
+                enemy.Refresh();
+            }
         }
     }
 }
