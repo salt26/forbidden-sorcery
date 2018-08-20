@@ -11,6 +11,17 @@ public class UnitData : ScriptableObject
         nearTerritory
     }
 
+    public enum HeroType
+    {
+        soldier,
+        tanker,
+        mage,
+        archer,
+        assassin
+    }
+
+    public HeroType herotype;
+
     public MoveType currentMoveType;
     public string unitName;
     public string spriteName;
@@ -20,4 +31,6 @@ public class UnitData : ScriptableObject
     public int aggro;
     public int movement;
     public int cost;
+    public int mageSpecialAttackDamage;
+    public int assassinSpecialAttackDamage;
 }

@@ -23,9 +23,40 @@ class Fight
         {
             int allyAttack = 0;
             int enemyAttack = 0;
+
             foreach (ImaginaryUnit ally in result.unitList.FindAll((unit) => unit is ImaginaryUnit && unit.isAlly))
             {
                 allyAttack += ally.UD.attack;
+            }
+
+            foreach (ImaginaryUnit ally in result.unitList.FindAll((unit) => unit is ImaginaryUnit && unit.isAlly))
+            {
+                if (ally.UD.herotype == UnitData.HeroType.mage)
+                {
+                    ImaginaryUnit weekenemy = new ImaginaryUnit();
+                    weekenemy.UD.aggro = int.MaxValue;
+
+                    foreach (ImaginaryUnit enemy in result.unitList.FindAll((unit) => unit is ImaginaryUnit && unit.isAlly))
+                    {
+                        if (weekenemy.UD.aggro > enemy.UD.aggro) weekenemy = enemy;
+                    }
+                    weekenemy.Damage(ally.UD.assassinSpecialAttackDamage);
+                }
+            }
+
+            foreach (ImaginaryUnit enemy in result.unitList.FindAll((unit) => unit is ImaginaryUnit && unit.isAlly))
+            {
+                if (enemy.UD.herotype == UnitData.HeroType.mage)
+                {
+                    ImaginaryUnit weekenemy = new ImaginaryUnit();
+                    weekenemy.UD.aggro = int.MaxValue;
+
+                    foreach (ImaginaryUnit ally in result.unitList.FindAll((unit) => unit is ImaginaryUnit && unit.isAlly))
+                    {
+                        if (weekenemy.UD.aggro > ally.UD.aggro) weekenemy = ally;
+                    }
+                    weekenemy.Damage(enemy.UD.assassinSpecialAttackDamage);
+                }
             }
 
             foreach (ImaginaryUnit enemy in result.unitList.FindAll((unit) => unit is ImaginaryUnit && !unit.isAlly))
@@ -54,6 +85,28 @@ class Fight
                 {
                     enemyAttack -= ally.CurrentHealth;
                     ally.CurrentHealth = 0;
+                }
+            }
+
+            foreach (ImaginaryUnit ally in result.unitList.FindAll((unit) => unit is ImaginaryUnit && !unit.isAlly))
+            {
+                if (ally.UD.herotype == UnitData.HeroType.mage)
+                {
+                    foreach (ImaginaryUnit enemy in result.unitList.FindAll((unit) => unit is ImaginaryUnit && unit.isAlly))
+                    {
+                        enemy.Damage(ally.UD.mageSpecialAttackDamage);
+                    }
+                }
+            }
+
+            foreach (ImaginaryUnit enemy in result.unitList.FindAll((unit) => unit is ImaginaryUnit && !unit.isAlly))
+            {
+                if (enemy.UD.herotype == UnitData.HeroType.mage)
+                {
+                    foreach (ImaginaryUnit ally in result.unitList.FindAll((unit) => unit is ImaginaryUnit && unit.isAlly))
+                    {
+                        ally.Damage(enemy.UD.mageSpecialAttackDamage);
+                    }
                 }
             }
         }
