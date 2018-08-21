@@ -719,8 +719,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 326, y: 0.0000076293945}
-  m_SizeDelta: {x: 636.9, y: 0}
+  m_AnchoredPosition: {x: 326, y: -0.000038146973}
+  m_SizeDelta: {x: 0, y: 232}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &137072946
 MonoBehaviour:
@@ -738,12 +738,12 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 1
+  m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 291, y: 116}
-  m_Spacing: {x: 20, y: 0}
-  m_Constraint: 1
+  m_CellSize: {x: 76, y: 72}
+  m_Spacing: {x: 20, y: 20}
+  m_Constraint: 2
   m_ConstraintCount: 2
 --- !u!114 &137072947
 MonoBehaviour:
@@ -756,8 +756,8 @@ MonoBehaviour:
   m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalFit: 0
-  m_VerticalFit: 2
+  m_HorizontalFit: 2
+  m_VerticalFit: 0
 --- !u!1 &146976131
 GameObject:
   m_ObjectHideFlags: 0
@@ -2005,6 +2005,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c3824af1de4ad64bb919c9455d4225b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normalColor: {r: 0.8679245, g: 0.25792095, b: 0.8420572, a: 1}
+  disabledColor: {r: 0.5943396, g: 0.1541919, b: 0.5691409, a: 1}
   kind: 1
 --- !u!114 &550273854
 MonoBehaviour:
@@ -2116,8 +2118,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Content: {fileID: 2117000370}
-  m_Horizontal: 0
-  m_Vertical: 1
+  m_Horizontal: 1
+  m_Vertical: 0
   m_MovementType: 1
   m_Elasticity: 0.1
   m_Inertia: 1
@@ -4447,8 +4449,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 326, y: -0.000015607637}
-  m_SizeDelta: {x: 636.92, y: 0}
+  m_AnchoredPosition: {x: 326, y: 0.000015258789}
+  m_SizeDelta: {x: 0, y: 232}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1009783347
 MonoBehaviour:
@@ -4466,12 +4468,12 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 1
+  m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 291, y: 116}
-  m_Spacing: {x: 20, y: 0}
-  m_Constraint: 1
+  m_CellSize: {x: 76, y: 72}
+  m_Spacing: {x: 20, y: 20}
+  m_Constraint: 2
   m_ConstraintCount: 2
 --- !u!114 &1009783348
 MonoBehaviour:
@@ -4484,8 +4486,8 @@ MonoBehaviour:
   m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalFit: 0
-  m_VerticalFit: 2
+  m_HorizontalFit: 2
+  m_VerticalFit: 0
 --- !u!1001 &1022754866
 Prefab:
   m_ObjectHideFlags: 0
@@ -8497,6 +8499,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c3824af1de4ad64bb919c9455d4225b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normalColor: {r: 0.6509434, g: 0.15045391, b: 0.15045391, a: 1}
+  disabledColor: {r: 0.4811321, g: 0.17928979, b: 0.17928979, a: 1}
   kind: 0
 --- !u!114 &1844344082
 MonoBehaviour:
@@ -8562,7 +8566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.87482494, g: 0.62473303, b: 0.9528302, a: 1}
+  m_Color: {r: 0.94190806, g: 0.5518868, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -8595,8 +8599,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Content: {fileID: 1009783346}
-  m_Horizontal: 0
-  m_Vertical: 1
+  m_Horizontal: 1
+  m_Vertical: 0
   m_MovementType: 1
   m_Elasticity: 0.1
   m_Inertia: 1
@@ -8986,6 +8990,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c3824af1de4ad64bb919c9455d4225b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normalColor: {r: 0.7264151, g: 0.66816485, b: 0.66816485, a: 1}
+  disabledColor: {r: 0.509434, g: 0.48780707, b: 0.48780707, a: 1}
   kind: 2
 --- !u!114 &1902908173
 MonoBehaviour:
@@ -9097,8 +9103,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Content: {fileID: 137072945}
-  m_Horizontal: 0
-  m_Vertical: 1
+  m_Horizontal: 1
+  m_Vertical: 0
   m_MovementType: 1
   m_Elasticity: 0.1
   m_Inertia: 1
@@ -10234,8 +10240,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 326, y: -0.000043607382}
-  m_SizeDelta: {x: 636.9, y: 0}
+  m_AnchoredPosition: {x: 326, y: -0.000045776367}
+  m_SizeDelta: {x: 0, y: 232}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2117000371
 MonoBehaviour:
@@ -10253,12 +10259,12 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 1
+  m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 291, y: 116}
-  m_Spacing: {x: 20, y: 0}
-  m_Constraint: 1
+  m_CellSize: {x: 76, y: 72}
+  m_Spacing: {x: 20, y: 20}
+  m_Constraint: 2
   m_ConstraintCount: 2
 --- !u!114 &2117000372
 MonoBehaviour:
@@ -10271,8 +10277,8 @@ MonoBehaviour:
   m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalFit: 0
-  m_VerticalFit: 2
+  m_HorizontalFit: 2
+  m_VerticalFit: 0
 --- !u!4 &2128569373 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4875684727609178, guid: 45654e04616bdfe44bcd6794e83a6409,

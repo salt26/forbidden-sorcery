@@ -96,6 +96,15 @@ public partial class GameManager
 
     public void OnClickDestroyedEnemyControlButton(List<Unit> units, DestroyedEnemyControlButton button)
     {
+        if (pastDestroyedEnemyControlScrollView != null)
+        {
+            var temp = pastDestroyedEnemyControlScrollView.SetControlDestroyedEnemiesList(selectedDestroyedEnemyList, OnSelectUnitForControlDestroyedEnemy);
+            foreach (var g in temp.listItems)
+            {
+                g.GetComponent<Image>().raycastTarget = false;
+                g.GetComponent<Button>().interactable = false;
+            }
+        }
         selectedDestroyedEnemyList = units;
         var controlScrollView = destroyedEnemyControlScrollView.SetControlDestroyedEnemiesList(selectedDestroyedEnemyList, OnSelectUnitForControlDestroyedEnemy);
 
@@ -103,7 +112,7 @@ public partial class GameManager
         {
             foreach (DestroyedEnemyControlButton b in destroyedEnemyControlButtons)
             {
-                b.GetComponent<Button>().interactable = true;
+                b.GetComponent<Image>().color = b.normalColor;
                 b.isSelected = false;
             }
             destroyedEnemyControlButton = null;
@@ -118,6 +127,7 @@ public partial class GameManager
             }
             foreach (var g in controlScrollView.listItems)
             {
+                g.GetComponent<Image>().raycastTarget = false;
                 g.GetComponent<Button>().interactable = false;
             }
         }
@@ -127,13 +137,18 @@ public partial class GameManager
             {
                 if (b.Equals(button))
                 {
+                    b.GetComponent<Image>().color = b.normalColor;
                     b.isSelected = true;
                 }
                 else
                 {
-                    b.GetComponent<Button>().interactable = false;
+                    b.GetComponent<Image>().color = b.disabledColor;
                     b.isSelected = false;
                 }
+            }
+            foreach (Button g in destroyedEnemyControlResetButtons)
+            {
+                g.interactable = false;
             }
             destroyedEnemyControlButton = button.gameObject;
             destroyedEnemyControlResetButtons[(int)destroyedEnemyControlButton.GetComponent<DestroyedEnemyControlButton>().kindOfButton].interactable = true;
@@ -144,9 +159,11 @@ public partial class GameManager
             }
             foreach (var g in controlScrollView.listItems)
             {
+                g.GetComponent<Image>().raycastTarget = true;
                 g.GetComponent<Button>().interactable = true;
             }
         }
+        pastDestroyedEnemyControlScrollView = destroyedEnemyControlScrollView;
     }
 
     public void OnClickRefreshControlButton()

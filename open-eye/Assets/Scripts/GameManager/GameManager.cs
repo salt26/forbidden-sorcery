@@ -22,6 +22,7 @@ public partial class GameManager : MonoBehaviour
     private UnitListScrollView unitListScrollView;
 
     public DestroyedEnemyControlScrollView destroyedEnemyControlScrollView;
+    private DestroyedEnemyControlScrollView pastDestroyedEnemyControlScrollView;
 
     private List<Unit> selectedUnitList = new List<Unit>();
 

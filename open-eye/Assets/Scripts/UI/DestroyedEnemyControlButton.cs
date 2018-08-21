@@ -11,6 +11,9 @@ public class DestroyedEnemyControlButton : MonoBehaviour
         kill,
         free
     }
+    
+    public Color normalColor;
+    public Color disabledColor;
 
     [SerializeField]
     KindOfButton kind;
@@ -30,15 +33,15 @@ public class DestroyedEnemyControlButton : MonoBehaviour
     public void OnClick()
     {
         GameManager.instance.destroyedEnemyControlScrollView = GetComponent<DestroyedEnemyControlScrollView>();
-        List<Unit> managerDestroyedEnemies = GameManager.instance.SelectedDestroyedEnemyList;
-        if (managerDestroyedEnemies != null && managerDestroyedEnemies.Equals(selectedDestroyedEnemyList))
-        {
-            GameManager.instance.OnClickDestroyedEnemyControlButton(new List<Unit>(), this);
-        }
-        else
-        {
-            GameManager.instance.OnClickDestroyedEnemyControlButton(selectedDestroyedEnemyList, this);
-        }
+        GameManager.instance.OnClickDestroyedEnemyControlButton(selectedDestroyedEnemyList, this);
+        //if (managerDestroyedEnemies != null && managerDestroyedEnemies.Equals(selectedDestroyedEnemyList))
+        //{
+        //    GameManager.instance.OnClickDestroyedEnemyControlButton(selectedDestroyedEnemyList, this);
+        //}
+        //else
+        //{
+        //    GameManager.instance.OnClickDestroyedEnemyControlButton(selectedDestroyedEnemyList, this);
+        //}
     }
 
     public void OnClickResetButton()

@@ -28,7 +28,7 @@ public class UIMapInput : MonoBehaviour
     public void OnMouseUp()
     {
         isDragging = false;
-        if ( !dragged && !Node.nodeBeingClicked )
+        if ( !dragged && !Node.nodeBeingClicked && GameManager.instance.currentState == GameManager.RoundState.PlayerAction )
         {
             GameManager.instance.UnitListShow(false);
             //selectedNode = null; 코드는 private이라 UnitListShow 함수에 적었습니다
