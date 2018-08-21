@@ -15,92 +15,136 @@ MonoBehaviour:
   - requiredKarma: 15
     enemyDatas:
     - requiredNotoriety: 0
-      enemyName: SampleEnemy
+      enemyStatus: SampleEnemy1 3
+      enemySpawnNodes:
+      - 19
     - requiredNotoriety: 0
-      enemyName: SampleEnemy
+      enemyStatus: SampleEnemy2 4
+      enemySpawnNodes:
+      - 18
     - requiredNotoriety: 0
-      enemyName: SampleEnemy
+      enemyStatus: SampleEnemy3 5
+      enemySpawnNodes:
+      - 20
   - requiredKarma: 60
     enemyDatas:
     - requiredNotoriety: 0
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
     - requiredNotoriety: 0
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
     - requiredNotoriety: 0
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
     - requiredNotoriety: 0
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
     - requiredNotoriety: 6
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
     - requiredNotoriety: 7
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
     - requiredNotoriety: 9
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
     - requiredNotoriety: 10
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
     - requiredNotoriety: 12
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
     - requiredNotoriety: 13
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
   - requiredKarma: 140
     enemyDatas:
     - requiredNotoriety: 0
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
     - requiredNotoriety: 0
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
     - requiredNotoriety: 0
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
     - requiredNotoriety: 0
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
     - requiredNotoriety: 6
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
     - requiredNotoriety: 6
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
     - requiredNotoriety: 7
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
     - requiredNotoriety: 7
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
     - requiredNotoriety: 8
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
     - requiredNotoriety: 8
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
     - requiredNotoriety: 9
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
     - requiredNotoriety: 9
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
     - requiredNotoriety: 10
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
     - requiredNotoriety: 12
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
     - requiredNotoriety: 12
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
     - requiredNotoriety: 13
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
     - requiredNotoriety: 14
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
     - requiredNotoriety: 15
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
     - requiredNotoriety: 16
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
     - requiredNotoriety: 17
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
   - requiredKarma: 240
     enemyDatas:
     - requiredNotoriety: 0
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
     - requiredNotoriety: 0
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
     - requiredNotoriety: 0
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
     - requiredNotoriety: 0
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
   - requiredKarma: 350
     enemyDatas:
     - requiredNotoriety: 0
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
     - requiredNotoriety: 0
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
     - requiredNotoriety: 0
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []
     - requiredNotoriety: 0
-      enemyName: SampleEnemy
+      enemyStatus: 
+      enemySpawnNodes: []

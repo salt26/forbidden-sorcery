@@ -19,6 +19,7 @@ public class Node : MonoBehaviour
 
     [SerializeField]
     public List<Node> edges;
+    public List<Unit> startEnemies;
 
     private Vector3 centralStandingPosition, allyStandingPosition, enemyStandingPosition;
 
@@ -108,6 +109,11 @@ public class Node : MonoBehaviour
             {
                 edge.edges.Add(this);
             }
+        }
+
+        foreach (Unit enemy in startEnemies)
+        {
+            enemies.Add(enemy);
         }
     }
 

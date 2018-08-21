@@ -8,7 +8,8 @@ public class EnemySpawnDataContainer : ScriptableObject
     public class EnemyData
     {
         public int requiredNotoriety;
-        public string enemyName;
+        public string enemyStatus;
+        public List<string> enemySpawnNodes;
     }
 
     [System.Serializable]

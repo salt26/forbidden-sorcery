@@ -39,6 +39,7 @@ public class Unit : MonoBehaviour, IUnitInterface
     public int CurrentHealth { get; set; }
     public int Movement { get; set; }
     private bool isMoving;
+    public int level;
 
     public bool canMove
     {

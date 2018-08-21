@@ -260,16 +260,32 @@ public partial class GameManager
     {
         if (karma > nextSpawnData.requiredKarma)
         {
-            var spawners = enemySpawners;
-
             foreach (var enemyData in nextSpawnData.enemyDatas)
             {
+                List<Node> spawners = new List<Node>();
+                foreach (var enemySpawnNode in enemyData.enemySpawnNodes)
+                {
+                    foreach (Node spawner in enemySpawners)
+                    {
+                        string[] spawnerPosition = spawner.name.Split("_"[0]);
+                        if (enemySpawnNode.CompareTo(spawnerPosition[0]) == 0)
+                        {
+                            spawners.Add(spawner);
+                        }
+                    }
+                }
+                string[] spawnData;
+                spawnData = enemyData.enemyStatus.Split(" "[0]);
+                string spawnName = spawnData[0];
+                int howMuchSpawn = int.Parse(spawnData[1]);
                 if (enemyData.requiredNotoriety <= notoriety)
                 {
-                    var spawnNode = spawners[Random.Range(0, spawners.Count)];
-
-                    Unit enemy = Spawner.spawner.Spawn(AssetManager.Instance.GetUnitData("SampleEnemy"), false, spawnNode);
-                    enemy.onMoveDone += OnEnemyMoveDone;
+                    for (int i=0; i<howMuchSpawn; i++)
+                    {
+                        var spawnNode = spawners[Random.Range(0, spawners.Count)];
+                        Unit enemy = Spawner.spawner.Spawn(AssetManager.Instance.GetUnitData(spawnName), false, spawnNode);
+                        enemy.onMoveDone += OnEnemyMoveDone;
+                    }
                 }
             }
             nextSpawnData = config.enemySpawnDataContainer.GetNextEnemySpawnData(karma);
