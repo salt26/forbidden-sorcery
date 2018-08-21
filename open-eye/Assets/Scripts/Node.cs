@@ -11,6 +11,10 @@ public class Node : MonoBehaviour
         EnemySpawner,
     }
 
+    public Sprite allySprite;
+    public Sprite enemySprite;
+    public Sprite neutralSprite;
+
     [SerializeField]
     private NodeType type;
 
@@ -56,6 +60,9 @@ public class Node : MonoBehaviour
     public bool isPlayerTerritory;
 
     [HideInInspector]
+    public bool isNeutralTerritory = true;
+
+    [HideInInspector]
     public int distance = int.MaxValue;
 
     [HideInInspector]
@@ -94,6 +101,7 @@ public class Node : MonoBehaviour
 
     void Awake()
     {
+        GetComponent<Transform>().localScale = new Vector3 (0.4f, 0.4f, 1f);
         centralStandingPosition = this.GetComponent<Transform>().position;
         allyStandingPosition = centralStandingPosition + allyPositionIndicator.transform.localPosition;
         enemyStandingPosition = centralStandingPosition + enemyPositionIndicator.transform.localPosition;
@@ -128,10 +136,15 @@ public class Node : MonoBehaviour
         {
             isPlayerTerritory = false;
         }
+
         if (isPlayerTerritory)
         {
-            if (!isCastle)
-                this.GetComponent<SpriteRenderer>().color = Color.green;
+            this.GetComponent<SpriteRenderer>().sprite = allySprite;
+        }
+        if (!isPlayerTerritory) 
+        {
+            if (isNeutralTerritory) GetComponent<SpriteRenderer>().sprite = neutralSprite;
+            else GetComponent<SpriteRenderer>().sprite = enemySprite;
         }
         GameManager.instance.allNodes.Add(this);
     }
@@ -185,7 +198,7 @@ public class Node : MonoBehaviour
     {
         foreach (Node n in GameManager.instance.allNodes)
         {
-            if(n.unitMovedThisTurn)
+            if (n.unitMovedThisTurn)
             {
                 n.unitMovedThisTurn = false;
                 n.RefineUnitPosition();
@@ -233,7 +246,9 @@ public class Node : MonoBehaviour
     public void RedLight()
     {
         if (isRed == false)
+        {
             StartCoroutine(RedLightAnimation());
+        }
     }
 
     //public Unit Spawn(UnitData unitData, bool isAlly)

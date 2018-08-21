@@ -335,16 +335,13 @@ public partial class GameManager
             if (n.enemies.Count > 0)
             {
                 n.isPlayerTerritory = false;
+                n.isNeutralTerritory = false;
             }
 
             if (n.allies.Count > 0)
             {
                 n.isPlayerTerritory = true;
-            }
-
-            if (!n.IsCastle)
-            {
-                n.GetComponent<SpriteRenderer>().color = Color.white;
+                n.isNeutralTerritory = false;
             }
         }
         manaAmountText.SetManaAmount(mana, manaProduce);
@@ -356,11 +353,16 @@ public partial class GameManager
         {
             if (!n.IsCastle)
             {
-                n.GetComponent<SpriteRenderer>().color = Color.green;
+                n.GetComponent<SpriteRenderer>().sprite = n.allySprite;
             }
         }
+
         foreach (Node n in allNodes)
         {
+            if (!n.isPlayerTerritory && !n.isNeutralTerritory)
+            {
+                n.GetComponent<SpriteRenderer>().sprite = n.enemySprite;
+            }
             foreach (Unit enemy in n.enemies)
             {
                 enemy.Refresh();
