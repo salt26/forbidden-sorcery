@@ -11,7 +11,7 @@ class ImaginaryUnit : IUnitInterface
     public int CurrentHealth { get; set; }
     public int ID { get; set; }
 
-    public void Damage(int damage)
+    public void GetDamaged(int damage)
     {
         CurrentHealth -= damage;
         if (CurrentHealth < 0)
@@ -28,7 +28,24 @@ class ImaginaryUnit : IUnitInterface
         else
         {
             imaginaryUnit = obj as IUnitInterface;
-            return this.UD.aggro - imaginaryUnit.UD.aggro;
+            if (UD.aggro != imaginaryUnit.UD.aggro)
+            {
+                return UD.aggro - imaginaryUnit.UD.aggro;
+            }
+            
+            else if (UD.health != imaginaryUnit.UD.health)
+            {
+                return UD.health - imaginaryUnit.UD.health;
+            }
+            else if (UD.movement != imaginaryUnit.UD.movement)
+            {
+                return UD.movement - imaginaryUnit.UD.movement;
+            }
+            else
+            {
+                return 0;
+                //TODO
+            }
         }
     }
 }

@@ -31,6 +31,4 @@ public class UnitData : ScriptableObject
     public int aggro;
     public int movement;
     public int cost;
-    public int mageSpecialAttackDamage;
-    public int assassinSpecialAttackDamage;
 }
