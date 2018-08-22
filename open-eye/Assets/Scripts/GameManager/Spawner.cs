@@ -20,8 +20,12 @@ public class Spawner : MonoBehaviour
         unit.transform.localPosition = n.transform.localPosition;
         unit.position = n;
 
-        n.units.Add(unit);
-        n.RefineUnitPosition();
+        n.units.Add(unit);n.RefineUnitPosition(n.allies.Count, n.enemies.Count);
+        foreach (Unit i in n.units)
+        {
+            if (i.moveQueue.Count > 0 && !i.IsMoving)
+                StartCoroutine(i.moveQueue.Dequeue());
+        }
         n.DecideAndShowMainUnit();
 
         return unit;

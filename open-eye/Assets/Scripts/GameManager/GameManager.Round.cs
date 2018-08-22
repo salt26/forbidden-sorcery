@@ -301,8 +301,19 @@ public partial class GameManager
                 while (enemy.canMove)
                 {
                     Node nextNode = enemy.NextNode();
+                    Node tempN = enemy.position;
                     enemy.MoveBetweenNodes(enemy.position, nextNode);
                 }
+            }
+        }
+        foreach(Node n in allNodes)
+        {
+            n.RefineUnitPosition(n.allies.Count, n.enemies.Count);
+            n.DecideAndShowMainUnit();
+            foreach (Unit unit in n.units)
+            {
+                if (unit.moveQueue.Count > 0 && !unit.IsMoving)
+                    StartCoroutine(unit.moveQueue.Dequeue());
             }
         }
     }

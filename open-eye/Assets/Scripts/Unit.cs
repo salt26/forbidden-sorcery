@@ -17,7 +17,6 @@ public class Unit : MonoBehaviour, IUnitInterface
 
     public Queue<IEnumerator> moveQueue = new Queue<IEnumerator>();
 
-    [HideInInspector]
     public static float movingTimeInNode = 0.2f;
 
     public UnitData unitData;
@@ -38,7 +37,10 @@ public class Unit : MonoBehaviour, IUnitInterface
     public int ID { get; set; }
     public int CurrentHealth { get; set; }
     public int Movement { get; set; }
-    private bool isMoving;
+    private bool isMoving = false;
+    public bool IsMoving { get { return isMoving; } }
+    private bool isMoved = false;
+    //private bool isMovingInNode = false;
     public int level;
 
     public bool canMove
@@ -48,6 +50,14 @@ public class Unit : MonoBehaviour, IUnitInterface
             return Movement > 0 && !position.isFighting;
         }
     }
+
+    //private void FixedUpdate()
+    //{
+    //    if (moveQueue.Count > 0)
+    //        isMoving = true;
+    //    else
+    //        isMoving = false;
+    //}
 
     public void Refresh()
     {
@@ -73,33 +83,51 @@ public class Unit : MonoBehaviour, IUnitInterface
 
     public void MoveBetweenNodes(Node from, Node to)
     {
+        Debug.Log(moveQueue.Count);
         GetComponent<SpriteRenderer>().enabled = true;
+
+        if (!GameManager.instance.movingUnits.Contains(this))
+            GameManager.instance.movingUnits.Add(this);
 
         if (Movement > 0)
         {
             Movement--;
             position = to;
+
+            //if (isAlly)
+            //{
+            //    from.RefineUnitPosition(from.allies.Count - 1, from.enemies.Count, this);
+            //}
+            //else
+            //{
+            //    from.RefineUnitPosition(from.allies.Count, from.enemies.Count - 1, this);
+            //}
+            List<Unit> fromUnitList = from.units;
+            fromUnitList.Remove(this);
+            List<Unit> toUnitList = to.units;
+            toUnitList.Add(this);
             moveQueue.Enqueue(MoveBetweenNodesAnimation(from, to));
+
+            //if (isAlly)
+            //{
+            //    to.RefineUnitPosition(to.allies.Count + 1, to.enemies.Count, this);
+            //}
+            //else
+            //{
+            //    to.RefineUnitPosition(to.allies.Count, to.enemies.Count + 1, this);
+            //}
         }
 
         if (!isMoving && moveQueue.Count > 0)               //맨 첫번째만을 움직이게 하기 위한 것
         {
-            isMoving = true;
             StartCoroutine(moveQueue.Dequeue());
         }
     }
 
     IEnumerator MoveBetweenNodesAnimation(Node from, Node to)
     {
-        GameManager.instance.movingUnits.Add(this);
-
-        List<Unit> fromUnitList = from.units;
-        fromUnitList.Remove(this);
-        from.unitMovedThisTurn = true;
-        from.DecideAndShowMainUnit();
-        List<Unit> toUnitList = to.units;
-        toUnitList.Add(this);
-        to.unitMovedThisTurn = true;
+        isMoving = true;
+        isMoved = true;
 
         float duration = 0.5f;                                                  //여기서부터
         float deltaTime = 0;
@@ -114,12 +142,11 @@ public class Unit : MonoBehaviour, IUnitInterface
         }
         transform.position = to.transform.position;                   //여기까지의 코드를 실행하는 데 0.5초(=이동시간)이 걸림
         
-        to.DecideAndShowMainUnit();
-
-        OnMoveAnimationFinished();                  //하나의 동작이 끝나는 순간 무엇을 할 것인가?
+        isMoving = false;
+        OnMoveBetweenNodesAnimationFinished();                  //하나의 동작이 끝나는 순간 무엇을 할 것인가?
     }
 
-    public void OnMoveAnimationFinished()
+    public void OnMoveBetweenNodesAnimationFinished()
     {
         if (moveQueue.Count > 0)                                //큐에 쌓인 게 남았을 때
         {
@@ -127,24 +154,20 @@ public class Unit : MonoBehaviour, IUnitInterface
         }
         else
         {                                               //큐가 비었을 때 - 이젠 끝내야지?
-            isMoving = false;
 
-            GameManager.instance.movingUnits.Remove(this);
+            //GameManager.instance.movingUnits.Remove(this);
 
-            if(GameManager.instance.movingUnits.Count == 0)         //이동한 놈들 재배치해야지
-            {
-                Node.RefineUnitPositionInAllNodes();
-            }
-            
-            if (onMoveDone != null)                             //이건 아군 유닛일 경우 비어 있으므로 아군 움직임 턴에 대해서는 신경쓰지 않아도 됨
-            {
-                onMoveDone();
-            }
+
+            //if(GameManager.instance.movingUnits.Count == 0)         //이동한 놈들 재배치해야지
+            //{
+            //    Node.RefineUnitPositionInAllNodes();
+            //}
         }
     }
 
-    public IEnumerator MoveInNode(Vector3 destination)
+    public IEnumerator MoveInNodeAnimation(Vector3 destination)
     {
+        isMoving = true;
         Vector3 initialPosition = this.transform.position;
         float duration = movingTimeInNode;
         float deltaTime = 0;
@@ -157,6 +180,29 @@ public class Unit : MonoBehaviour, IUnitInterface
             yield return null;
         }
         transform.position = destination;
+        isMoving = false;
+        OnMoveInNodeAnimationFinished();
+
+    }
+
+    public void OnMoveInNodeAnimationFinished()
+    {
+        //isMovingInNode = false;
+        if (moveQueue.Count > 0)
+        {
+            StartCoroutine(moveQueue.Dequeue());
+        }
+        else
+        {
+            //if (GameManager.instance.currentState == GameManager.RoundState.PlayerAction)
+            //GameManager.instance.EndTurnButton.interactable = true;
+            GameManager.instance.movingUnits.Remove(this);
+            if (onMoveDone != null && isMoved)// && GameManager.instance.currentState == GameManager.RoundState.EnemyMove)
+            {
+                onMoveDone();
+            }
+            isMoved = false;
+        }
     }
 
     public int CompareTo(object obj)
@@ -170,7 +216,7 @@ public class Unit : MonoBehaviour, IUnitInterface
             return this.UD.aggro - imaginaryUnit.UD.aggro;
         }
     }
-    public Stack<Node> NextNodeCandidate= new Stack<Node>();
+    public Stack<Node> NextNodeCandidate = new Stack<Node>();
     public Queue<Node> Nodes = new Queue<Node>();
 
     public Node NextNode()

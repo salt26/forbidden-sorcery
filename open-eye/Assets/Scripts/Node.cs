@@ -23,8 +23,6 @@ public class Node : MonoBehaviour
 
     private Vector3 centralStandingPosition, allyStandingPosition, enemyStandingPosition;
 
-    public bool unitMovedThisTurn = false;
-
     public bool IsCastle
     {
         get
@@ -181,53 +179,77 @@ public class Node : MonoBehaviour
         }
     }
 
-    public static void RefineUnitPositionInAllNodes()
-    {
-        foreach (Node n in GameManager.instance.allNodes)
-        {
-            if(n.unitMovedThisTurn)
-            {
-                n.unitMovedThisTurn = false;
-                n.RefineUnitPosition();
-            }
-        }
-    }
+    //public static void RefineUnitPositionInAllNodes()
+    //{
+    //    foreach (Node n in GameManager.instance.allNodes)
+    //    {
+    //        if(n.unitMovedThisTurn)
+    //        {
+    //            n.unitMovedThisTurn = false;
+    //            n.RefineUnitPosition();
+    //        }
+    //    }
+    //}
 
-    public void RefineUnitPosition()
+    public void RefineUnitPosition(int allyNumber, int enemyNumber)//, Unit u = null)
     {
-        bool allyExisting = false;
-        bool enemyExisting = false;
-        foreach (Unit unit in units)
-        {
-            if (unit.isAlly) allyExisting = true;
-            else enemyExisting = true;
-        }
+        //if (GameManager.instance.currentState == GameManager.RoundState.PlayerAction)
+        //GameManager.instance.EndTurnButton.interactable = false;
+        //List<Unit> re = new List<Unit>();
 
-        if (allyExisting && enemyExisting)
+        if (allyNumber > 0 && enemyNumber > 0)
         {
             foreach (Unit unit in units)
             {
                 if (unit.isAlly)
                 {
-                    StartCoroutine(unit.MoveInNode(allyStandingPosition));
-                    unit.transform.SetParent(this.allyPositionIndicator.GetComponent<Transform>());
+                    unit.moveQueue.Enqueue(unit.MoveInNodeAnimation(allyStandingPosition));
+                    unit.transform.SetParent(allyPositionIndicator.GetComponent<Transform>());
                 }
                 else
                 {
-                    StartCoroutine(unit.MoveInNode(enemyStandingPosition));
-                    unit.transform.SetParent(this.enemyPositionIndicator.GetComponent<Transform>());
+                    unit.moveQueue.Enqueue(unit.MoveInNodeAnimation(enemyStandingPosition));
+                    unit.transform.SetParent(enemyPositionIndicator.GetComponent<Transform>());
                 }
+                //re.Add(unit);
             }
         }
         else
         {
             foreach (Unit unit in units)
             {
-                StartCoroutine(unit.MoveInNode(centralStandingPosition));
-                unit.transform.SetParent(this.centralPositionIndicator.GetComponent<Transform>());
+                unit.moveQueue.Enqueue(unit.MoveInNodeAnimation(centralStandingPosition));
+                unit.transform.SetParent(centralPositionIndicator.GetComponent<Transform>());
+                //re.Add(unit);
             }
         }
-        GameManager.instance.DelayTime(Unit.movingTimeInNode);
+
+
+
+        //if (u != null)
+        //{
+        //    if (allyNumber > 0 && enemyNumber > 0)
+        //    {
+        //        if (u.isAlly)
+        //        {
+        //            u.moveQueue.Enqueue(u.MoveInNodeAnimation(allyStandingPosition));
+        //            u.transform.SetParent(allyPositionIndicator.GetComponent<Transform>());
+        //        }
+        //        else
+        //        {
+        //            u.moveQueue.Enqueue(u.MoveInNodeAnimation(enemyStandingPosition));
+        //            u.transform.SetParent(enemyPositionIndicator.GetComponent<Transform>());
+        //        }
+        //        re.Add(u);
+        //    }
+        //    else
+        //    {
+        //        u.moveQueue.Enqueue(u.MoveInNodeAnimation(centralStandingPosition));
+        //        u.transform.SetParent(centralPositionIndicator.GetComponent<Transform>());
+        //        re.Add(u);
+        //    }
+        //}
+        //return re;
     }
 
     public void RedLight()
@@ -312,6 +334,11 @@ public class Node : MonoBehaviour
         foreach (Unit u in tempU)
             Destroy(u.gameObject);
         DecideAndShowMainUnit();
-        RefineUnitPosition();
+        RefineUnitPosition(allies.Count, enemies.Count);
+        foreach (Unit unit in units)
+        {
+            if (unit.moveQueue.Count > 0 && !unit.IsMoving)
+                StartCoroutine(unit.moveQueue.Dequeue());
+        }
     }
 }

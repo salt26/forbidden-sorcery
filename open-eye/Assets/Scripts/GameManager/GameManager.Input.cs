@@ -281,6 +281,22 @@ public partial class GameManager
                         }
                     }
 
+                    selectedNode.RefineUnitPosition(selectedNode.allies.Count, selectedNode.enemies.Count);
+                    selectedNode.DecideAndShowMainUnit();
+                    foreach (Unit unit in selectedNode.units)
+                    {
+                        if (unit.moveQueue.Count > 0 && !unit.IsMoving)
+                            StartCoroutine(unit.moveQueue.Dequeue());
+                    }
+
+                    node.RefineUnitPosition(node.allies.Count, node.enemies.Count);
+                    node.DecideAndShowMainUnit();
+                    foreach (Unit unit in node.units)
+                    {
+                        if (unit.moveQueue.Count > 0 && !unit.IsMoving)
+                            StartCoroutine(unit.moveQueue.Dequeue());
+                    }
+
                     if (isAllyMoving)
                     {
                         node.RedLight(); selectedNode.GetComponent<SpriteRenderer>().color = originColor;
