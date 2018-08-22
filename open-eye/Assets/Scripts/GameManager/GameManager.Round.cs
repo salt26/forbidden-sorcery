@@ -96,10 +96,6 @@ public partial class GameManager
 
     private void StandbyPhase()
     {
-        foreach (Node node in allNodes)
-        {
-            Debug.Log(node);
-        }
         currentState = RoundState.Standby;
         endTurnButton.interactable = false;
         produceButton.interactable = false;
@@ -193,7 +189,7 @@ public partial class GameManager
             destroyedEnemyControlUnit.SetActive(true);
         }
 
-        StartCoroutine(AlertPhase());
+        StartCoroutine(GameObject.Find("PhaseAlertText").GetComponent<PhaseAlertText>().AlertPhase());
     }
 
     private void UpkeepPhase()

@@ -1976,8 +1976,6 @@ MonoBehaviour:
   manaAmountText: {fileID: 758138316}
   notoriety: 0
   karma: 0
-  phaseNoticeDuration: 0.5
-  PhaseAlertText: {fileID: 1953248048}
   movingUnits: []
 --- !u!4 &545173162
 Transform:

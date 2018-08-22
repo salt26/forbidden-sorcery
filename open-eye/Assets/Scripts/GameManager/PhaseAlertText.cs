@@ -18,7 +18,6 @@ public class PhaseAlertText : MonoBehaviour
 
     public IEnumerator AlertPhase()
     {
-        Debug.Log("asd");
         phaseAlertText = GetComponent<Text>();
         isPhaseNoticeDone = false;
         this.GetComponent<Text>().enabled = true;
