@@ -145,6 +145,8 @@ public partial class GameManager
 
     private void Captive()
     {
+        foreach (var v in destroyedEnemyControlButtons)
+            v.GetComponent<DestroyedEnemyControlScrollView>().ClearItem();
         currentState = RoundState.Captive;
         endTurnButton.interactable = true;
         produceButton.interactable = false;
@@ -157,22 +159,24 @@ public partial class GameManager
         }
 
         if (destroyedEnemies.Count > 0)
+        {
             endTurnButton.interactable = false;
 
-        var unitScrollView = unitListScrollView.SetControlDestroyedEnemiesList(destroyedEnemies, OnSelectUnitForControlDestroyedEnemy);
-        foreach (var g in unitScrollView.listItems)
-        {
-            g.GetComponent<Button>().interactable = false;
-        }
+            var unitScrollView = unitListScrollView.SetControlDestroyedEnemiesList(destroyedEnemies, OnSelectUnitForControlDestroyedEnemy);
+            foreach (var g in unitScrollView.listItems)
+            {
+                g.GetComponent<Button>().interactable = false;
+            }
 
-        foreach (DestroyedEnemyControlButton button in destroyedEnemyControlButtons)
-        {
-            button.gameObject.SetActive(true);
-        }
+            foreach (DestroyedEnemyControlButton button in destroyedEnemyControlButtons)
+            {
+                button.gameObject.SetActive(true);
+            }
 
-        unitListScrollView.ShowList(true);
-        unitListScrollView.ShowUnitTab(false);
-        destroyedEnemyControlUnit.SetActive(true);
+            unitListScrollView.ShowList(true);
+            unitListScrollView.ShowUnitTab(false);
+            destroyedEnemyControlUnit.SetActive(true);
+        }
     }
 
     private void UpkeepPhase()
