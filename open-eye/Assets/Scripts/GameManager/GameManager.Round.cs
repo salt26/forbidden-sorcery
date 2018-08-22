@@ -299,7 +299,7 @@ public partial class GameManager
         foreach(Node n in allNodes)
         {
             n.RefineUnitPosition(n.allies.Count, n.enemies.Count);
-            n.DecideAndShowMainUnit();
+            //n.DecideAndShowMainUnit();
             foreach (Unit unit in n.units)
             {
                 if (unit.moveQueue.Count > 0 && !unit.IsMoving)

@@ -318,7 +318,7 @@ public partial class GameManager
                     }
 
                     selectedNode.RefineUnitPosition(selectedNode.allies.Count, selectedNode.enemies.Count);
-                    selectedNode.DecideAndShowMainUnit();
+                    //selectedNode.DecideAndShowMainUnit();
                     foreach (Unit unit in selectedNode.units)
                     {
                         if (unit.moveQueue.Count > 0 && !unit.IsMoving)
@@ -326,7 +326,7 @@ public partial class GameManager
                     }
 
                     node.RefineUnitPosition(node.allies.Count, node.enemies.Count);
-                    node.DecideAndShowMainUnit();
+                    //node.DecideAndShowMainUnit();
                     foreach (Unit unit in node.units)
                     {
                         if (unit.moveQueue.Count > 0 && !unit.IsMoving)
