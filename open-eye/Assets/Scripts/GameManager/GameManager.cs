@@ -14,9 +14,11 @@ public partial class GameManager : MonoBehaviour
     [Header("UI")]
     [SerializeField]
     private Button endTurnButton;
+    public Button EndTurnButton { get { return endTurnButton; } }
 
     [SerializeField]
     private Button produceButton;
+    public Button ProduceButton { get { return produceButton; } }
     
     [SerializeField]
     private UnitListScrollView unitListScrollView;
@@ -46,11 +48,6 @@ public partial class GameManager : MonoBehaviour
             return selectedDestroyedEnemyList;
         }
     }
-    
-    public IEnumerator DelayTime (float second)
-    {
-        yield return new WaitForSeconds(second);
-    }
 
     private void Awake()
     {
@@ -61,13 +58,7 @@ public partial class GameManager : MonoBehaviour
     {
         selectedDestroyedEnemyList = new List<Unit>();
 
-        destroyedEnemyControlUnit.SetActive(false);
-        InitializeInput();
-        InitializeMap();
-        InitializeResource();
-        InitializeGame();
-
-        StandbyPhase();
+        StartCoroutine(Initialize());
     }
 
     private void InitializeGame()

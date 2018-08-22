@@ -1976,8 +1976,6 @@ MonoBehaviour:
   manaAmountText: {fileID: 758138316}
   notoriety: 0
   karma: 0
-  phaseNoticeDuration: 0.5
-  PhaseAlertText: {fileID: 1953248048}
   movingUnits: []
 --- !u!4 &545173162
 Transform:
@@ -9917,6 +9915,7 @@ GameObject:
   - component: {fileID: 1953248047}
   - component: {fileID: 1953248049}
   - component: {fileID: 1953248048}
+  - component: {fileID: 1953248050}
   m_Layer: 5
   m_Name: PhaseAlertText
   m_TagString: Untagged
@@ -9981,6 +9980,24 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1953248046}
+--- !u!114 &1953248050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1953248046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e66c3f0b2ccc9f44ab27363e43709f3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  phaseNoticeDuration: 0.1
+  phaseMoveDuration: 0.1
+  phaseAlertText: {fileID: 1953248048}
+  isPhaseNoticeDone: 0
+  initialPosition: {x: 1920, y: 540, z: 0}
+  middlePosition: {x: 960, y: 540, z: 0}
+  finalPosition: {x: 0, y: 540, z: 0}
 --- !u!4 &1966532895 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4002299396239596, guid: 90f938416a7a98c48a411439f23bebf1,
