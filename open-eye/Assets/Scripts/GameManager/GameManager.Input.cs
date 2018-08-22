@@ -44,6 +44,10 @@ public partial class GameManager
         selectedUnitList.Clear();
         if (!show)
         {
+            if (selectedNode != null)
+            {
+                selectedNode.GetComponent<SpriteRenderer>().color = unSelectedColor;
+            }
             selectedNode = null;
         }
         unitListScrollView.ShowList(show);
@@ -188,7 +192,7 @@ public partial class GameManager
         {
             selectedNode.GetComponent<SpriteRenderer>().color = originColor;
         }
-        originColor = Color.white;
+        originColor = unSelectedColor;
         selectedNode = null;
         StartCoroutine(ChangePhase());
     }
@@ -222,7 +226,7 @@ public partial class GameManager
                 unitListScrollView.ShowList(false);
             }
             selectedUnitList.Clear();
-            originColor = Color.white;
+            originColor = unSelectedColor;
             selectedNode = null;
         }
 
@@ -249,13 +253,13 @@ public partial class GameManager
                     selectedNode = node;
                     var spriteRenderer = selectedNode.GetComponent<SpriteRenderer>();
                     originColor = spriteRenderer.color;
-                    spriteRenderer.color = Color.black;
+                    spriteRenderer.color = selectedColor;
 
                     unitListScrollView.ShowList(true);
                     unitListScrollView.ShowUnitTab(true);
                     unitListScrollView.SetUnitList(node.allies, OnSelectUnitForMove);
                 }
-                else if (selectedNode == null)
+                else if (selectedNode == null || node.units.Count == 0)
                 {
                     node.RedLight();
                 }
@@ -267,6 +271,17 @@ public partial class GameManager
                     selectedUnitList.Clear();
                     unitListScrollView.ShowList(false);
                     unitListScrollView.ShowUnitTab(false);
+                }
+                else if (selectedUnitList.Count == 0)
+                {
+                    selectedNode.GetComponent<SpriteRenderer>().color = originColor;
+                    selectedNode = node;
+                    node.GetComponent<SpriteRenderer>().color = selectedColor;
+
+                    selectedUnitList.Clear();
+                    unitListScrollView.ShowUnitTab(false);
+                    unitListScrollView.ShowUnitTab(true);
+                    unitListScrollView.SetUnitList(node.allies, OnSelectUnitForMove);
                 }
                 else if (!selectedNode.edges.Contains(node) && selectedUnitList.Count > 0)
                 {

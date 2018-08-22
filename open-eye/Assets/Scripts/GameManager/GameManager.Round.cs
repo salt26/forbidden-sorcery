@@ -141,7 +141,7 @@ public partial class GameManager
     {
         foreach(Node n in allNodes)
         {
-            n.GetComponent<SpriteRenderer>().color = Color.white;
+            n.GetComponent<SpriteRenderer>().color = unSelectedColor;
         }
         currentState = RoundState.Fight;
         endTurnButton.interactable = false;
@@ -371,17 +371,16 @@ public partial class GameManager
             string spawnName = spawnStatus[0];
             int number = int.Parse(spawnStatus[1]);
             Node spawnNode = null;
-            foreach (var enemySpawnNode in enemyData.enemySpawnNodes)
+
+            foreach (Node node in instance.allNodes)
             {
-                foreach (Node node in instance.allNodes)
+                string[] spawnNodeName = node.name.Split("_"[0]);
+                if (enemyData.enemySpawnNodes == spawnNodeName[0])
                 {
-                    string[] spawnNodeName = node.name.Split("_"[0]);
-                    if (enemySpawnNode == spawnNodeName[0])
-                    {
-                        spawnNode = node;
-                    }
+                    spawnNode = node;
                 }
             }
+
             for (int i = 0; i < number; i++)
             {
                 Unit enemy = Spawner.spawner.Spawn(AssetManager.Instance.GetUnitData(spawnName), false, spawnNode);

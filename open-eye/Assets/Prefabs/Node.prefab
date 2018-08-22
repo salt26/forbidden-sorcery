@@ -37,7 +37,7 @@ Transform:
   m_GameObject: {fileID: 1646213663049542}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -78,14 +78,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd7938cce7d8cf042a1d0bd52841c15a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isCastle: 0
-  isEnemySpawner: 0
+  allySprite: {fileID: 21300000, guid: b18450415d7744b4ea64e49ebc73fab1, type: 3}
+  enemySprite: {fileID: 21300000, guid: 946510c1e533be34fa2071ea3f1b8a1e, type: 3}
+  neutralSprite: {fileID: 21300000, guid: 9edcd6d3e79d5054ba90d99df488623b, type: 3}
+  devilKingCastleSprite: {fileID: 21300000, guid: b370dc9e6fc47af4f99718c821dd138a,
+    type: 3}
+  type: 0
+  manaValue: 0
   edges: []
-  allies: []
-  enemies: []
+  startEnemies: []
+  units: []
   destroyedEnemies: []
   isPlayerTerritory: 0
+  isNeutralTerritory: 1
   distance: 2147483647
+  isChecked: 0
+  centralPositionIndicator: {fileID: 0}
+  allyPositionIndicator: {fileID: 0}
+  enemyPositionIndicator: {fileID: 0}
 --- !u!212 &212553964481955670
 SpriteRenderer:
   m_ObjectHideFlags: 1

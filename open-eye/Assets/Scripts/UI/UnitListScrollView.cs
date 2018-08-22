@@ -27,6 +27,12 @@ public class UnitListScrollView : MonoBehaviour
     public Image enemyTabFake;
 
     [SerializeField]
+    public GameObject allyTab;
+
+    [SerializeField]
+    public GameObject enemyTab;
+
+    [SerializeField]
     public Color allyTabNormalColor;
 
     [SerializeField]
@@ -157,5 +163,7 @@ public class UnitListScrollView : MonoBehaviour
         }
         ManaTab.SetActive(!show);
         UnitTab.SetActive(show);
+        allyTab.SetActive(show);
+        enemyTab.SetActive(show);
     }
 }

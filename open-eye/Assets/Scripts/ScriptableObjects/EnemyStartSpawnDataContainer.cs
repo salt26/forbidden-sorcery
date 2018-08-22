@@ -8,7 +8,7 @@ public class EnemyStartSpawnDataContainer : ScriptableObject {
     public class EnemyData
     {
         public string enemyStatus;
-        public List<string> enemySpawnNodes;
+        public string enemySpawnNodes;
     }
     public List<EnemyData> enemySpawnDatas;
 }
