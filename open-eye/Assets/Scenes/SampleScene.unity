@@ -3533,12 +3533,12 @@ Prefab:
     - target: {fileID: 212553964481955670, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: m_Color.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 212553964481955670, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: m_Color.g
-      value: 0.8083906
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 212553964481955670, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -3628,6 +3628,12 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: devilKingSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b370dc9e6fc47af4f99718c821dd138a,
+        type: 3}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: devilKingCastleSprite
       value: 
       objectReference: {fileID: 21300000, guid: b370dc9e6fc47af4f99718c821dd138a,
         type: 3}
