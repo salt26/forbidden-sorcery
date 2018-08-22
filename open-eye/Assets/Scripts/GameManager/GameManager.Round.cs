@@ -5,13 +5,6 @@ using UnityEngine.UI;
 
 public partial class GameManager
 {
-
-    public float phaseNoticeDuration;
-
-    public Text PhaseAlertText;
-
-    private bool isPhaseNoticeDone = false;
-
     public enum RoundState
     {
         Standby,
@@ -62,39 +55,11 @@ public partial class GameManager
     }
 
     private EnemySpawnDataContainer.EnemySpawnData nextSpawnData;
-
-    IEnumerator AlertPhase()
-    {
-        isPhaseNoticeDone = false;
-        switch ((int)currentState)
-        {
-            case 0:
-                PhaseAlertText.text = "Standby";
-                break;
-            case 1:
-                PhaseAlertText.text = "EnemyMove";
-                break;
-            case 2:
-                PhaseAlertText.text = "PlayerAction";
-                break;
-            case 3:
-                PhaseAlertText.text = "Fight";
-                break;
-            case 4:
-                PhaseAlertText.text = "Captive";
-                break;
-            case 5:
-                PhaseAlertText.text = "Upkeep";
-                break;
-        }
-        yield return new WaitForSeconds(phaseNoticeDuration);
-        PhaseAlertText.text = "";
-        isPhaseNoticeDone = true;
-    }
+    
 
     IEnumerator ChangePhase()
     {
-        yield return new WaitUntil(() => isPhaseNoticeDone);
+        yield return new WaitUntil(() => GameObject.Find("PhaseAlertText").GetComponent<PhaseAlertText>().isPhaseNoticeDone);
         switch ((int)currentState)
         {
             case 0:
@@ -139,7 +104,7 @@ public partial class GameManager
         endTurnButton.interactable = false;
         produceButton.interactable = false;
 
-        StartCoroutine(AlertPhase());
+        StartCoroutine(GameObject.Find("PhaseAlertText").GetComponent<PhaseAlertText>().AlertPhase());
 
         CheckWin();
         CheckAndSpawnEnemy();
@@ -153,7 +118,7 @@ public partial class GameManager
         endTurnButton.interactable = false;
         produceButton.interactable = false;
 
-        StartCoroutine(AlertPhase());
+        StartCoroutine(GameObject.Find("PhaseAlertText").GetComponent<PhaseAlertText>().AlertPhase());
 
         MoveEnemy();
         OnEnemyMoveDone();
@@ -165,7 +130,7 @@ public partial class GameManager
         endTurnButton.interactable = true;
         produceButton.interactable = true;
 
-        StartCoroutine(AlertPhase());
+        StartCoroutine(GameObject.Find("PhaseAlertText").GetComponent<PhaseAlertText>().AlertPhase());
 
         foreach (Node n in allNodes)
         {
@@ -186,7 +151,7 @@ public partial class GameManager
         endTurnButton.interactable = false;
         produceButton.interactable = false;
 
-        StartCoroutine(AlertPhase());
+        StartCoroutine(GameObject.Find("PhaseAlertText").GetComponent<PhaseAlertText>().AlertPhase());
 
         ResolveAllFight();
 
@@ -255,7 +220,7 @@ public partial class GameManager
             n.FetchDestroy();
         }
 
-        StartCoroutine(AlertPhase());
+        StartCoroutine(GameObject.Find("PhaseAlertText").GetComponent<PhaseAlertText>().AlertPhase());
 
         CaptureTerritories();
         UpkeepResources();

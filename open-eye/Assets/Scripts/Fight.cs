@@ -127,6 +127,9 @@ class Fight
     public static ExpectedFightResult Fighting(List<Unit> us)               //특정 노드의 유닛 목록을 argument로 받는다
     {
         ExpectedFightResult result = new ExpectedFightResult();         //result 안에 unitList 있음
+        ExpectedFightResult allyResult = new ExpectedFightResult();
+        ExpectedFightResult enemyResult = new ExpectedFightResult();
+
 
         bool allyUnitIsHere = false, enemyUnitIsHere = false;
         int numberOfAllies = 0, numberOfEnemies = 0;
@@ -135,17 +138,19 @@ class Fight
         {
             ImaginaryUnit iu = new ImaginaryUnit();
             iu.isAlly = u.isAlly;
-            if (u.isAlly) { allyUnitIsHere = true; ++numberOfAllies; }                  //아군 : 0번 ~ (numberOfAllies - 1)번
-            if (!u.isAlly) { enemyUnitIsHere = true; ++numberOfEnemies; }               //적군 : (numberOfAllies)번 ~ (numberOfAllies + numberOfEnemies - 1)번
+            if (u.isAlly) { allyUnitIsHere = true; ++numberOfAllies; allyResult.unitList.Add(iu as IUnitInterface); }                  //아군 : 0번 ~ (numberOfAllies - 1)번
+            if (!u.isAlly) { enemyUnitIsHere = true; ++numberOfEnemies; enemyResult.unitList.Add(iu as IUnitInterface); }               //적군 : (numberOfAllies)번 ~ (numberOfAllies + numberOfEnemies - 1)번
             iu.ID = u.ID;
             iu.Movement = u.Movement;
             iu.CurrentHealth = u.CurrentHealth;
             iu.UD = u.UD;
-            result.unitList.Add((iu as IUnitInterface));
         }
         
-        result.unitList.Sort();     //무슨 순서에 따라 정렬이지?
-        
+        allyResult.unitList.Sort();     //무슨 순서에 따라 정렬이지?
+        enemyResult.unitList.Sort();
+        result.unitList.AddRange(allyResult.unitList);
+        result.unitList.AddRange(enemyResult.unitList);
+
         if (result.unitList.Count > 0 && allyUnitIsHere && enemyUnitIsHere)                  //전투 개시 조건 : 노드에 유닛이 하나라도 있을 때
         {
             int allyPhysicalAttack = 0, allyMagicalAttack = 0, allyAssassiationAttack = 0;
@@ -178,8 +183,9 @@ class Fight
                 leastAggroEnemy = (ImaginaryUnit)result.unitList[enemyUnitBackOrder];             //때릴 적군 유닛 결정
 
                 if (allyAssassiationAttack >= leastAggroEnemy.CurrentHealth) --enemyUnitBackOrder;    //때려서 죽으면 가장 뒤의 살아있는 적 유닛 번호 줄여야지
+                int damage = allyAssassiationAttack;
                 allyAssassiationAttack -= leastAggroEnemy.CurrentHealth;
-                leastAggroEnemy.GetDamaged(allyAssassiationAttack);
+                leastAggroEnemy.GetDamaged(damage);
             }
 
             while (enemyAssassinationAttack > 0 && allyUnitBackOrder >= allyUnitFrontOrder)
@@ -188,8 +194,9 @@ class Fight
                 leastAggroAlly = (ImaginaryUnit)result.unitList[allyUnitBackOrder];             //때릴 아군 유닛 결정
 
                 if (enemyAssassinationAttack >= leastAggroAlly.CurrentHealth) --allyUnitBackOrder;    //때려서 죽으면 가장 뒤의 살아있는 적 유닛 번호 줄여야지
+                int damage = enemyAssassinationAttack;
                 enemyAssassinationAttack -= leastAggroAlly.CurrentHealth;
-                leastAggroAlly.GetDamaged(enemyAssassinationAttack);
+                leastAggroAlly.GetDamaged(damage);
             }
             
             while(allyPhysicalAttack > 0 && enemyUnitBackOrder >= enemyUnitFrontOrder)          //아군 2페이즈
@@ -198,8 +205,9 @@ class Fight
                 mostAggroEnemy = (ImaginaryUnit)result.unitList[enemyUnitFrontOrder];
 
                 if (allyPhysicalAttack >= mostAggroEnemy.CurrentHealth) ++enemyUnitFrontOrder;
+                int damage = allyPhysicalAttack;
                 allyPhysicalAttack -= mostAggroEnemy.CurrentHealth;
-                mostAggroEnemy.GetDamaged(allyPhysicalAttack);
+                mostAggroEnemy.GetDamaged(damage);
             }
 
             while (enemyPhysicalAttack > 0 && allyUnitBackOrder >= allyUnitFrontOrder)          //적군 2페이즈
@@ -208,8 +216,9 @@ class Fight
                 mostAggroAlly = (ImaginaryUnit)result.unitList[allyUnitFrontOrder];
 
                 if (enemyPhysicalAttack >= mostAggroAlly.CurrentHealth) ++allyUnitFrontOrder;
+                int damage = enemyPhysicalAttack;
                 enemyPhysicalAttack -= mostAggroAlly.CurrentHealth;
-                mostAggroAlly.GetDamaged(enemyPhysicalAttack);
+                mostAggroAlly.GetDamaged(damage);
             }
 
             foreach(ImaginaryUnit enemy in result.unitList.FindAll((unit) => unit is ImaginaryUnit && !unit.isAlly && unit.CurrentHealth > 0))
@@ -226,3 +235,4 @@ class Fight
     }
 }
 */
+
