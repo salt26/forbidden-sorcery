@@ -163,6 +163,10 @@ public partial class GameManager
 
     private void FightPhase()
     {
+        foreach(Node n in allNodes)
+        {
+            n.GetComponent<SpriteRenderer>().color = Color.white;
+        }
         currentState = RoundState.Fight;
         endTurnButton.interactable = false;
         produceButton.interactable = false;
@@ -355,6 +359,7 @@ public partial class GameManager
             {
                 n.GetComponent<SpriteRenderer>().sprite = n.allySprite;
             }
+            // if(n.IsCastle)
         }
 
         foreach (Node n in allNodes)

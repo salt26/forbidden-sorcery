@@ -14,6 +14,7 @@ public class Node : MonoBehaviour
     public Sprite allySprite;
     public Sprite enemySprite;
     public Sprite neutralSprite;
+    public Sprite devilKingCastleSprite;
 
     [SerializeField]
     private NodeType type;
@@ -139,7 +140,8 @@ public class Node : MonoBehaviour
 
         if (isPlayerTerritory)
         {
-            this.GetComponent<SpriteRenderer>().sprite = allySprite;
+            if(isCastle) GetComponent<SpriteRenderer>().sprite = devilKingCastleSprite;
+            if (!isCastle) this.GetComponent<SpriteRenderer>().sprite = allySprite;
         }
         if (!isPlayerTerritory) 
         {

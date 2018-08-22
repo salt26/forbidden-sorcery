@@ -2,6 +2,124 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
+class Fight
+{
+    public static ExpectedFightResult Fighting(List<Unit> us)
+    {
+        ExpectedFightResult result = new ExpectedFightResult();
+        foreach (Unit u in us)
+        {
+            ImaginaryUnit iu = new ImaginaryUnit();
+            iu.isAlly = u.isAlly;
+            iu.ID = u.ID;
+            iu.Movement = u.Movement;
+            iu.CurrentHealth = u.CurrentHealth;
+            iu.UD = u.UD;
+            result.unitList.Add((iu as IUnitInterface));
+        }
+        result.unitList.Sort();
+        if (result.unitList.Count > 0)
+        {
+            int allyAttack = 0;
+            int enemyAttack = 0;
+
+            foreach (ImaginaryUnit ally in result.unitList.FindAll((unit) => unit is ImaginaryUnit && unit.isAlly))
+            {
+                allyAttack += ally.UD.attack;
+            }
+
+            foreach (ImaginaryUnit ally in result.unitList.FindAll((unit) => unit is ImaginaryUnit && unit.isAlly)) //아군 암살자 공격
+            {
+                if (ally.UD.herotype == UnitData.HeroType.mage)
+                {
+                    ImaginaryUnit targetEnemy = new ImaginaryUnit();
+                    targetEnemy.UD.aggro = int.MaxValue;
+
+                    foreach (ImaginaryUnit enemy in result.unitList.FindAll((unit) => unit is ImaginaryUnit && !unit.isAlly))
+                    {
+                        if (targetEnemy.UD.aggro > enemy.UD.aggro) targetEnemy = enemy;
+                    }
+                    targetEnemy.GetDamaged(ally.UD.attack);
+                }
+            }
+
+            foreach (ImaginaryUnit enemy in result.unitList.FindAll((unit) => unit is ImaginaryUnit && !unit.isAlly)) //적군 암살자 공격
+            {
+                if (enemy.UD.herotype == UnitData.HeroType.mage)
+                {
+                    ImaginaryUnit targetAlly = new ImaginaryUnit();
+                    targetAlly.UD.aggro = int.MaxValue;
+
+                    foreach (ImaginaryUnit ally in result.unitList.FindAll((unit) => unit is ImaginaryUnit && unit.isAlly))
+                    {
+                        if (targetAlly.UD.aggro > ally.UD.aggro) targetAlly = ally;
+                    }
+                    targetAlly.GetDamaged(enemy.UD.attack);
+                }
+            }
+
+            foreach (ImaginaryUnit enemy in result.unitList.FindAll((unit) => unit is ImaginaryUnit && !unit.isAlly))
+            {
+                enemyAttack += enemy.UD.attack;
+                if (allyAttack < enemy.CurrentHealth)
+                {
+                    enemy.GetDamaged(allyAttack);
+                    allyAttack = 0;
+                }
+                else
+                {
+                    allyAttack -= enemy.CurrentHealth;
+                    enemy.CurrentHealth = 0;
+                }
+            }
+
+            foreach (ImaginaryUnit ally in result.unitList.FindAll((unit) => unit is ImaginaryUnit && unit.isAlly))
+            {
+                if (enemyAttack < ally.CurrentHealth)
+                {
+                    ally.GetDamaged(enemyAttack);
+                    enemyAttack = 0;
+                }
+                else
+                {
+                    enemyAttack -= ally.CurrentHealth;
+                    ally.CurrentHealth = 0;
+                }
+            }
+
+            foreach (ImaginaryUnit ally in result.unitList.FindAll((unit) => unit is ImaginaryUnit && unit.isAlly)) // 아군 마법사 공격
+            {
+                if (ally.UD.herotype == UnitData.HeroType.mage)
+                {
+                    foreach (ImaginaryUnit enemy in result.unitList.FindAll((unit) => unit is ImaginaryUnit && !unit.isAlly))
+                    {
+                        enemy.GetDamaged(ally.UD.attack);
+                    }
+                }
+            }
+
+            foreach (ImaginaryUnit enemy in result.unitList.FindAll((unit) => unit is ImaginaryUnit && !unit.isAlly)) // 적군 마법사 공격
+            {
+                if (enemy.UD.herotype == UnitData.HeroType.mage)
+                {
+                    foreach (ImaginaryUnit ally in result.unitList.FindAll((unit) => unit is ImaginaryUnit && unit.isAlly))
+                    {
+                        ally.GetDamaged(enemy.UD.attack);
+                    }
+                }
+            }
+        }
+        return result;
+    }
+}
+
+
+/*
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using UnityEngine;
 
 class Fight
@@ -107,3 +225,4 @@ class Fight
         return result;
     }
 }
+*/
