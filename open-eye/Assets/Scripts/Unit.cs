@@ -83,7 +83,6 @@ public class Unit : MonoBehaviour, IUnitInterface
 
     public void MoveBetweenNodes(Node from, Node to)
     {
-        Debug.Log(moveQueue.Count);
         GetComponent<SpriteRenderer>().enabled = true;
 
         if (!GameManager.instance.movingUnits.Contains(this))

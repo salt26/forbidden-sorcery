@@ -1373,6 +1373,8 @@ MonoBehaviour:
   contentActive: {x: 0, y: 0, z: 0}
   allyTabFake: {fileID: 442681301}
   enemyTabFake: {fileID: 1757404038}
+  allyTab: {fileID: 1464234666}
+  enemyTab: {fileID: 574944284}
   allyTabNormalColor: {r: 0.78431374, g: 0.5254902, b: 0.8392157, a: 1}
   enemyTabNormalColor: {r: 0.50980395, g: 0.62352943, b: 0.8509804, a: 1}
   allyTabPressedColor: {r: 0.9098039, g: 0.80784315, b: 0.93333334, a: 1}
@@ -1962,6 +1964,8 @@ MonoBehaviour:
   produceButton: {fileID: 574573908}
   unitListScrollView: {fileID: 363567213}
   destroyedEnemyControlScrollView: {fileID: 0}
+  selectedColor: {r: 0, g: 0, b: 0, a: 1}
+  unSelectedColor: {r: 1, g: 1, b: 1, a: 1}
   destroyedEnemyControlButtons:
   - {fileID: 1844344081}
   - {fileID: 550273853}

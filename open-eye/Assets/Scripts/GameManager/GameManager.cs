@@ -30,7 +30,10 @@ public partial class GameManager : MonoBehaviour
 
     private Node selectedNode = null;
     private Color originColor = Color.white;
-
+    [SerializeField]
+    private Color selectedColor;
+    [SerializeField]
+    private Color unSelectedColor;
     private List<Unit> destroyedEnemies;
     private List<Unit> selectedDestroyedEnemyList;
     [SerializeField]
