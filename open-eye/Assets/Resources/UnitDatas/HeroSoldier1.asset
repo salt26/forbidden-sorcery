@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: HeroSoldier1
   m_EditorClassIdentifier: 
   herotype: 0
-  currentMoveType: 2
+  currentMoveType: 0
   unitName: HeroSoldier
   spriteName: Saber
   iconName: Saber

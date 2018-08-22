@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Name: EnemyStartSpawnDataContainer
   m_EditorClassIdentifier: 
   enemySpawnDatas:
-  - enemyStatus: HeroArcher1 1
+  - enemyStatus: HeroArcher1S 1
     enemySpawnNodes: 01
-  - enemyStatus: HeroSoldier1 1
+  - enemyStatus: HeroSoldier1S 1
     enemySpawnNodes: 02
-  - enemyStatus: HeroSoldier1 5
+  - enemyStatus: HeroSoldier1S 5
     enemySpawnNodes: 03
-  - enemyStatus: HeroSoldier1 5
+  - enemyStatus: HeroSoldier1S 5
     enemySpawnNodes: 04
