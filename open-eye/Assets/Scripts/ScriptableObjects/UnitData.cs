@@ -8,7 +8,8 @@ public class UnitData : ScriptableObject
     public enum MoveType
     {
         directToCastle,
-        nearTerritory
+        nearTerritory,
+        stay
     }
 
     public enum HeroType
@@ -31,6 +32,4 @@ public class UnitData : ScriptableObject
     public int aggro;
     public int movement;
     public int cost;
-    public int mageSpecialAttackDamage;
-    public int assassinSpecialAttackDamage;
 }

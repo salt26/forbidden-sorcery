@@ -31,5 +31,6 @@ public partial class GameManager
     private void InitializeMap()
     {
         castle.SetDIstance(0);
+        SpawnStartEnemyUnit();
     }
 }

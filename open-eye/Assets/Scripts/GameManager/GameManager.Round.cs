@@ -5,13 +5,6 @@ using UnityEngine.UI;
 
 public partial class GameManager
 {
-
-    public float phaseNoticeDuration;
-
-    public Text PhaseAlertText;
-
-    private bool isPhaseNoticeDone = false;
-
     public enum RoundState
     {
         Standby,
@@ -62,39 +55,11 @@ public partial class GameManager
     }
 
     private EnemySpawnDataContainer.EnemySpawnData nextSpawnData;
-
-    IEnumerator AlertPhase()
-    {
-        isPhaseNoticeDone = false;
-        switch ((int)currentState)
-        {
-            case 0:
-                PhaseAlertText.text = "Standby";
-                break;
-            case 1:
-                PhaseAlertText.text = "EnemyMove";
-                break;
-            case 2:
-                PhaseAlertText.text = "PlayerAction";
-                break;
-            case 3:
-                PhaseAlertText.text = "Fight";
-                break;
-            case 4:
-                PhaseAlertText.text = "Captive";
-                break;
-            case 5:
-                PhaseAlertText.text = "Upkeep";
-                break;
-        }
-        yield return new WaitForSeconds(phaseNoticeDuration);
-        PhaseAlertText.text = "";
-        isPhaseNoticeDone = true;
-    }
+    
 
     IEnumerator ChangePhase()
     {
-        yield return new WaitUntil(() => isPhaseNoticeDone);
+        yield return new WaitUntil(() => GameObject.Find("PhaseAlertText").GetComponent<PhaseAlertText>().isPhaseNoticeDone);
         switch ((int)currentState)
         {
             case 0:
@@ -118,13 +83,24 @@ public partial class GameManager
         }
     }
 
+    IEnumerator Initialize()
+    {
+        yield return new WaitUntil(() => allNodes.Count >= 20);
+        InitializeInput();
+        InitializeMap();
+        InitializeResource();
+        InitializeGame();
+
+        StandbyPhase();
+    }
+
     private void StandbyPhase()
     {
         currentState = RoundState.Standby;
         endTurnButton.interactable = false;
         produceButton.interactable = false;
 
-        StartCoroutine(AlertPhase());
+        StartCoroutine(GameObject.Find("PhaseAlertText").GetComponent<PhaseAlertText>().AlertPhase());
 
         CheckWin();
         CheckAndSpawnEnemy();
@@ -138,7 +114,7 @@ public partial class GameManager
         endTurnButton.interactable = false;
         produceButton.interactable = false;
 
-        StartCoroutine(AlertPhase());
+        StartCoroutine(GameObject.Find("PhaseAlertText").GetComponent<PhaseAlertText>().AlertPhase());
 
         MoveEnemy();
         OnEnemyMoveDone();
@@ -150,7 +126,7 @@ public partial class GameManager
         endTurnButton.interactable = true;
         produceButton.interactable = true;
 
-        StartCoroutine(AlertPhase());
+        StartCoroutine(GameObject.Find("PhaseAlertText").GetComponent<PhaseAlertText>().AlertPhase());
 
         foreach (Node n in allNodes)
         {
@@ -163,11 +139,15 @@ public partial class GameManager
 
     private void FightPhase()
     {
+        foreach(Node n in allNodes)
+        {
+            n.GetComponent<SpriteRenderer>().color = Color.white;
+        }
         currentState = RoundState.Fight;
         endTurnButton.interactable = false;
         produceButton.interactable = false;
 
-        StartCoroutine(AlertPhase());
+        StartCoroutine(GameObject.Find("PhaseAlertText").GetComponent<PhaseAlertText>().AlertPhase());
 
         ResolveAllFight();
 
@@ -176,6 +156,8 @@ public partial class GameManager
 
     private void Captive()
     {
+        foreach (var v in destroyedEnemyControlButtons)
+            v.GetComponent<DestroyedEnemyControlScrollView>().ClearItem();
         currentState = RoundState.Captive;
         endTurnButton.interactable = true;
         produceButton.interactable = false;
@@ -188,22 +170,26 @@ public partial class GameManager
         }
 
         if (destroyedEnemies.Count > 0)
+        {
             endTurnButton.interactable = false;
 
-        var unitScrollView = unitListScrollView.SetControlDestroyedEnemiesList(destroyedEnemies, OnSelectUnitForControlDestroyedEnemy);
-        foreach (var g in unitScrollView.listItems)
-        {
-            g.GetComponent<Button>().interactable = false;
+            var unitScrollView = unitListScrollView.SetControlDestroyedEnemiesList(destroyedEnemies, OnSelectUnitForControlDestroyedEnemy);
+            foreach (var g in unitScrollView.listItems)
+            {
+                g.GetComponent<Button>().interactable = false;
+            }
+
+            foreach (DestroyedEnemyControlButton button in destroyedEnemyControlButtons)
+            {
+                button.gameObject.SetActive(true);
+            }
+
+            unitListScrollView.ShowList(true);
+            unitListScrollView.ShowUnitTab(false);
+            destroyedEnemyControlUnit.SetActive(true);
         }
 
-        foreach (DestroyedEnemyControlButton button in destroyedEnemyControlButtons)
-        {
-            button.gameObject.SetActive(true);
-        }
-
-        unitListScrollView.ShowList(true);
-        unitListScrollView.ShowUnitTab(false);
-        destroyedEnemyControlUnit.SetActive(true);
+        StartCoroutine(GameObject.Find("PhaseAlertText").GetComponent<PhaseAlertText>().AlertPhase());
     }
 
     private void UpkeepPhase()
@@ -230,7 +216,7 @@ public partial class GameManager
             n.FetchDestroy();
         }
 
-        StartCoroutine(AlertPhase());
+        StartCoroutine(GameObject.Find("PhaseAlertText").GetComponent<PhaseAlertText>().AlertPhase());
 
         CaptureTerritories();
         UpkeepResources();
@@ -238,11 +224,7 @@ public partial class GameManager
 
         StartCoroutine(ChangePhase());
     }
-
-
-
-
-
+    
     private void CheckWin()
     {
         int numberOfEnemies = 0;
@@ -346,16 +328,13 @@ public partial class GameManager
             if (n.enemies.Count > 0)
             {
                 n.isPlayerTerritory = false;
+                n.isNeutralTerritory = false;
             }
 
             if (n.allies.Count > 0)
             {
                 n.isPlayerTerritory = true;
-            }
-
-            if (!n.IsCastle)
-            {
-                n.GetComponent<SpriteRenderer>().color = Color.white;
+                n.isNeutralTerritory = false;
             }
         }
         manaAmountText.SetManaAmount(mana, manaProduce);
@@ -367,14 +346,47 @@ public partial class GameManager
         {
             if (!n.IsCastle)
             {
-                n.GetComponent<SpriteRenderer>().color = Color.green;
+                n.GetComponent<SpriteRenderer>().sprite = n.allySprite;
             }
+            // if(n.IsCastle)
         }
+
         foreach (Node n in allNodes)
         {
+            if (!n.isPlayerTerritory && !n.isNeutralTerritory)
+            {
+                n.GetComponent<SpriteRenderer>().sprite = n.enemySprite;
+            }
             foreach (Unit enemy in n.enemies)
             {
                 enemy.Refresh();
+            }
+        }
+    }
+
+    public void SpawnStartEnemyUnit()
+    {
+        foreach (var enemyData in config.enemyStartSpawnDataContainer.enemySpawnDatas)
+        {
+            string[] spawnStatus = enemyData.enemyStatus.Split(" "[0]);
+            string spawnName = spawnStatus[0];
+            int number = int.Parse(spawnStatus[1]);
+            Node spawnNode = null;
+            foreach (var enemySpawnNode in enemyData.enemySpawnNodes)
+            {
+                foreach (Node node in instance.allNodes)
+                {
+                    string[] spawnNodeName = node.name.Split("_"[0]);
+                    if (enemySpawnNode == spawnNodeName[0])
+                    {
+                        spawnNode = node;
+                    }
+                }
+            }
+            for (int i = 0; i < number; i++)
+            {
+                Unit enemy = Spawner.spawner.Spawn(AssetManager.Instance.GetUnitData(spawnName), false, spawnNode);
+                enemy.onMoveDone += OnEnemyMoveDone;
             }
         }
     }
