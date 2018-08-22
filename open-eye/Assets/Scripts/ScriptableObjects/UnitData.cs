@@ -8,7 +8,8 @@ public class UnitData : ScriptableObject
     public enum MoveType
     {
         directToCastle,
-        nearTerritory
+        nearTerritory,
+        stay
     }
 
     public enum HeroType

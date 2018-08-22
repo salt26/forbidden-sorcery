@@ -15,6 +15,9 @@ MonoBehaviour:
   baseNotoriety: 5
   enemySpawnDataContainer: {fileID: 11400000, guid: f4326abb4553a2e45bf07b3da098ce6d,
     type: 2}
+  enemyStartSpawnDataContainer: {fileID: 11400000, guid: 9ad44dc8dfa39484385f2a39e2c51148,
+    type: 2}
   producableUnits:
-  - {fileID: 11400000, guid: c52cc95bd9c4c6747a10654882f5c566, type: 2}
-  - {fileID: 11400000, guid: e43500cbbe1771642ab4e73b5f5b3c67, type: 2}
+  - {fileID: 11400000, guid: 37aa3672f3edca64b8579ec4b870574d, type: 2}
+  - {fileID: 11400000, guid: 135a1739d09aa1b43a306d7896abb046, type: 2}
+  - {fileID: 11400000, guid: df65b61b8371d974f99a78dbfb151a96, type: 2}

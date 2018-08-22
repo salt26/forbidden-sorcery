@@ -175,7 +175,11 @@ public class Unit : MonoBehaviour, IUnitInterface
 
     public Node NextNode()
     {
-        Node nextNode = null;
+        Node nextNode = position.edges[0];
+        if ((int)unitData.currentMoveType == 2)
+        {
+            return position;
+        }
         {
             if (unitData.currentMoveType == 0)
             {

@@ -12,52 +12,25 @@ MonoBehaviour:
   m_Name: EnemySpawnDataContainer
   m_EditorClassIdentifier: 
   enemySpawnDatas:
+  - requiredKarma: 0
+    enemyDatas: []
   - requiredKarma: 15
     enemyDatas:
     - requiredNotoriety: 0
-      enemyStatus: SampleEnemy1 3
+      enemyStatus: HeroSoldier 1
       enemySpawnNodes:
       - 19
-    - requiredNotoriety: 0
-      enemyStatus: SampleEnemy2 4
-      enemySpawnNodes:
-      - 18
-    - requiredNotoriety: 0
-      enemyStatus: SampleEnemy3 5
-      enemySpawnNodes:
       - 20
-  - requiredKarma: 60
-    enemyDatas:
     - requiredNotoriety: 0
-      enemyStatus: 
-      enemySpawnNodes: []
+      enemyStatus: HeroTanker 1
+      enemySpawnNodes:
+      - 19
+      - 20
     - requiredNotoriety: 0
-      enemyStatus: 
-      enemySpawnNodes: []
-    - requiredNotoriety: 0
-      enemyStatus: 
-      enemySpawnNodes: []
-    - requiredNotoriety: 0
-      enemyStatus: 
-      enemySpawnNodes: []
-    - requiredNotoriety: 6
-      enemyStatus: 
-      enemySpawnNodes: []
-    - requiredNotoriety: 7
-      enemyStatus: 
-      enemySpawnNodes: []
-    - requiredNotoriety: 9
-      enemyStatus: 
-      enemySpawnNodes: []
-    - requiredNotoriety: 10
-      enemyStatus: 
-      enemySpawnNodes: []
-    - requiredNotoriety: 12
-      enemyStatus: 
-      enemySpawnNodes: []
-    - requiredNotoriety: 13
-      enemyStatus: 
-      enemySpawnNodes: []
+      enemyStatus: HeroArcher 1
+      enemySpawnNodes:
+      - 19
+      - 20
   - requiredKarma: 140
     enemyDatas:
     - requiredNotoriety: 0

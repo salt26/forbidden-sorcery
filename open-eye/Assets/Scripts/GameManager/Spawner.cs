@@ -20,6 +20,10 @@ public class Spawner : MonoBehaviour
         unit.transform.localPosition = n.transform.localPosition;
         unit.position = n;
 
+        if (GameManager.instance.karma == 0)
+        {
+            unit.unitData.currentMoveType = (UnitData.MoveType)2;
+        }
         n.units.Add(unit);
         n.RefineUnitPosition();
         n.DecideAndShowMainUnit();

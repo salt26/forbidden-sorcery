@@ -21,5 +21,3 @@ MonoBehaviour:
   aggro: 65
   movement: 1
   cost: 200
-  mageSpecialAttackDamage: 0
-  assassinSpecialAttackDamage: 0
