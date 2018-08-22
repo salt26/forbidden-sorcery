@@ -22,7 +22,7 @@ public class DestroyedEnemyControlScrollView : MonoBehaviour
         return this;
     }
 
-    private void ClearItem()
+    public void ClearItem()
     {
         listItems.ForEach((item) => Destroy(item.gameObject));
         listItems.Clear();
