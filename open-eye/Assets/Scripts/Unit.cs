@@ -83,8 +83,6 @@ public class Unit : MonoBehaviour, IUnitInterface
 
     public void MoveBetweenNodes(Node from, Node to)
     {
-        GetComponent<SpriteRenderer>().enabled = true;
-
         if (!GameManager.instance.movingUnits.Contains(this))
             GameManager.instance.movingUnits.Add(this);
 
@@ -127,6 +125,9 @@ public class Unit : MonoBehaviour, IUnitInterface
     {
         isMoving = true;
         isMoved = true;
+        
+        from.DecideAndShowMainUnit();
+        GetComponent<SpriteRenderer>().enabled = true;
 
         float duration = 0.5f;                                                  //여기서부터
         float deltaTime = 0;
@@ -140,7 +141,9 @@ public class Unit : MonoBehaviour, IUnitInterface
             yield return null;
         }
         transform.position = to.transform.position;                   //여기까지의 코드를 실행하는 데 0.5초(=이동시간)이 걸림
-        
+
+        to.DecideAndShowMainUnit();
+
         isMoving = false;
         OnMoveBetweenNodesAnimationFinished();                  //하나의 동작이 끝나는 순간 무엇을 할 것인가?
     }

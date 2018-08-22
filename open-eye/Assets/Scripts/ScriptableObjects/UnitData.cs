@@ -32,4 +32,34 @@ public class UnitData : ScriptableObject
     public int aggro;
     public int movement;
     public int cost;
+
+    public override bool Equals(object obj)
+    {
+        var data = obj as UnitData;
+        return data != null &&
+               base.Equals(obj) &&
+               unitName == data.unitName &&
+               spriteName == data.spriteName &&
+               iconName == data.iconName &&
+               attack == data.attack &&
+               health == data.health &&
+               aggro == data.aggro &&
+               movement == data.movement &&
+               cost == data.cost;
+    }
+
+    public override int GetHashCode()
+    {
+        var hashCode = -915280803;
+        hashCode = hashCode * -1521134295 + base.GetHashCode();
+        hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(unitName);
+        hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(spriteName);
+        hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(iconName);
+        hashCode = hashCode * -1521134295 + attack.GetHashCode();
+        hashCode = hashCode * -1521134295 + health.GetHashCode();
+        hashCode = hashCode * -1521134295 + aggro.GetHashCode();
+        hashCode = hashCode * -1521134295 + movement.GetHashCode();
+        hashCode = hashCode * -1521134295 + cost.GetHashCode();
+        return hashCode;
+    }
 }

@@ -159,7 +159,7 @@ public partial class GameManager
         foreach (var v in destroyedEnemyControlButtons)
             v.GetComponent<DestroyedEnemyControlScrollView>().ClearItem();
         currentState = RoundState.Captive;
-        endTurnButton.interactable = true;
+        endTurnButton.interactable = false;
         produceButton.interactable = false;
 
         destroyedEnemies = new List<Unit>();
@@ -181,12 +181,21 @@ public partial class GameManager
 
             foreach (DestroyedEnemyControlButton button in destroyedEnemyControlButtons)
             {
+                //
+                button.GetComponent<Button>().interactable = true;
+                button.GetComponent<Image>().color = button.normalColor;
+                button.isSelected = false;
+                //
                 button.gameObject.SetActive(true);
             }
 
             unitListScrollView.ShowList(true);
             unitListScrollView.ShowUnitTab(false);
             destroyedEnemyControlUnit.SetActive(true);
+        }
+        else
+        {
+            OnClickEndTurnButton();
         }
 
         StartCoroutine(GameObject.Find("PhaseAlertText").GetComponent<PhaseAlertText>().AlertPhase());
@@ -198,6 +207,11 @@ public partial class GameManager
         endTurnButton.interactable = false;
         produceButton.interactable = false;
 
+        foreach (var button in destroyedEnemyControlButtons)
+        {
+            button.Fetch();
+        }
+
         destroyedEnemyControlUnit.SetActive(false);
         destroyedEnemyControlButtons.ForEach((button) => button.Clear());
         
@@ -205,12 +219,7 @@ public partial class GameManager
         //{
         //    button.gameObject.SetActive(false);
         //}
-
-        foreach (var button in destroyedEnemyControlButtons)
-        {
-            button.Fetch();
-        }
-
+        
         foreach (Node n in allNodes)
         {
             n.FetchDestroy();
@@ -290,7 +299,7 @@ public partial class GameManager
         foreach(Node n in allNodes)
         {
             n.RefineUnitPosition(n.allies.Count, n.enemies.Count);
-            n.DecideAndShowMainUnit();
+            //n.DecideAndShowMainUnit();
             foreach (Unit unit in n.units)
             {
                 if (unit.moveQueue.Count > 0 && !unit.IsMoving)
