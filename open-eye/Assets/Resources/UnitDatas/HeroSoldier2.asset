@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 613be670f9fd4ca4a892bafb6de7f020, type: 3}
-  m_Name: HeroSoldier
+  m_Name: HeroSoldier2
   m_EditorClassIdentifier: 
   herotype: 0
   currentMoveType: 2

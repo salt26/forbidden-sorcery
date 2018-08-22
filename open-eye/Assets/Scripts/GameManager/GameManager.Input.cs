@@ -24,6 +24,7 @@ public partial class GameManager
     private void InitializeInput()
     {
         isMouseInMap = true;
+        destroyedEnemyControlUnit.SetActive(false);
         unitListScrollView.ShowList(false);
         unitListScrollView.ShowUnitTab(false);
     }

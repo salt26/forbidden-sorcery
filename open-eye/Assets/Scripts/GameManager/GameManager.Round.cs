@@ -118,8 +118,23 @@ public partial class GameManager
         }
     }
 
+    IEnumerator Initialize()
+    {
+        yield return new WaitUntil(() => allNodes.Count >= 20);
+        InitializeInput();
+        InitializeMap();
+        InitializeResource();
+        InitializeGame();
+
+        StandbyPhase();
+    }
+
     private void StandbyPhase()
     {
+        foreach (Node node in allNodes)
+        {
+            Debug.Log(node);
+        }
         currentState = RoundState.Standby;
         endTurnButton.interactable = false;
         produceButton.interactable = false;
@@ -212,6 +227,8 @@ public partial class GameManager
             unitListScrollView.ShowUnitTab(false);
             destroyedEnemyControlUnit.SetActive(true);
         }
+
+        StartCoroutine(AlertPhase());
     }
 
     private void UpkeepPhase()
@@ -246,11 +263,7 @@ public partial class GameManager
 
         StartCoroutine(ChangePhase());
     }
-
-
-
-
-
+    
     private void CheckWin()
     {
         int numberOfEnemies = 0;

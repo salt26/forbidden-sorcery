@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 613be670f9fd4ca4a892bafb6de7f020, type: 3}
-  m_Name: HeroTanker
+  m_Name: HeroTanker1
   m_EditorClassIdentifier: 
   herotype: 1
   currentMoveType: 1

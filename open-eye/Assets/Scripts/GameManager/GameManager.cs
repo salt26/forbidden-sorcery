@@ -61,13 +61,7 @@ public partial class GameManager : MonoBehaviour
     {
         selectedDestroyedEnemyList = new List<Unit>();
 
-        destroyedEnemyControlUnit.SetActive(false);
-        InitializeInput();
-        InitializeMap();
-        InitializeResource();
-        InitializeGame();
-
-        StandbyPhase();
+        StartCoroutine(Initialize());
     }
 
     private void InitializeGame()
