@@ -16,7 +16,28 @@ public class Spawner : MonoBehaviour
         var unit = unitObject.GetComponent<Unit>();
         unit.SetUnit(unitData);
         unit.isAlly = isAlly;
+
         unit.ID = ++id;
+        if (isAlly)
+        {
+            bool isActivated = false;
+            UnitData uD = null;
+            foreach (var unitD in GameManager.instance.producableAlliedEnemies)
+            {
+                if (unitD.Equals(unitData))
+                {
+                    isActivated = true;
+                    uD = unitD;
+                    break;
+                }
+            }
+            if (isActivated)
+            {
+                GameManager.instance.producableAlliedEnemies.Remove(uD);
+                GameManager.instance.producedAlliedEnemies.Add(uD);
+                GameManager.instance.numberOfProducableAlliedEnemies[uD] -= 1;
+            }
+        }
         unit.transform.localPosition = n.transform.localPosition;
         unit.position = n;
 

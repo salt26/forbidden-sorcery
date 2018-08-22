@@ -73,6 +73,14 @@ public partial class GameManager
             Mana -= item.unitData.cost;
             Spawner.spawner.Spawn(item.unitData, true, castle);
         }
+        List<UnitData> unitDatas = new List<UnitData>();
+        foreach (UnitData alliedEnemy in GameManager.instance.producableAlliedEnemies)
+        {
+            if (producedAlliedEnemies.FindAll((uD) => uD.Equals(alliedEnemy)).Count == 0)
+                unitDatas.Add(alliedEnemy);
+        }
+        unitDatas.AddRange(config.producableUnits);
+        unitListScrollView.SetUnitDataList(unitDatas, OnSelectUnitForProduce);
     }
 
     public void OnSelectUnitForControlDestroyedEnemy(UnitListItem item)
@@ -120,7 +128,6 @@ public partial class GameManager
                 b.GetComponent<Image>().color = b.normalColor;
                 b.isSelected = false;
             }
-            destroyedEnemyControlButton = null;
             foreach(Button g in destroyedEnemyControlResetButtons)
             {
                 g.interactable = false;
@@ -155,8 +162,7 @@ public partial class GameManager
             {
                 g.interactable = false;
             }
-            destroyedEnemyControlButton = button.gameObject;
-            destroyedEnemyControlResetButtons[(int)destroyedEnemyControlButton.GetComponent<DestroyedEnemyControlButton>().kindOfButton].interactable = true;
+            destroyedEnemyControlResetButtons[(int)button.gameObject.GetComponent<DestroyedEnemyControlButton>().kindOfButton].interactable = true;
             var unitScrollView = unitListScrollView.SetControlDestroyedEnemiesList(destroyedEnemies, OnSelectUnitForControlDestroyedEnemy);
             foreach (var g in unitScrollView.listItems)
             {
@@ -209,13 +215,27 @@ public partial class GameManager
         if (unitListScrollView.nowListShown == false)
         {
             unitListScrollView.ShowList(true);
-            unitListScrollView.SetUnitDataList(config.producableUnits, OnSelectUnitForProduce);
+            List<UnitData> unitDatas = new List<UnitData>();
+            foreach (UnitData alliedEnemy in GameManager.instance.producableAlliedEnemies)
+            {
+                if (producedAlliedEnemies.FindAll((uD) => uD.Equals(alliedEnemy)).Count == 0)
+                    unitDatas.Add(alliedEnemy);
+            }
+            unitDatas.AddRange(config.producableUnits);
+            unitListScrollView.SetUnitDataList(unitDatas, OnSelectUnitForProduce);
         }
         else
         {
             if (selectedNode != null)
             {
-                unitListScrollView.SetUnitDataList(config.producableUnits, OnSelectUnitForProduce);
+                List<UnitData> unitDatas = new List<UnitData>();
+                foreach (UnitData alliedEnemy in GameManager.instance.producableAlliedEnemies)
+                {
+                    if (producedAlliedEnemies.FindAll((uD) => uD.Equals(alliedEnemy)).Count == 0)
+                        unitDatas.Add(alliedEnemy);
+                }
+                unitDatas.AddRange(config.producableUnits);
+                unitListScrollView.SetUnitDataList(unitDatas, OnSelectUnitForProduce);
                 if (selectedNode.GetComponent<SpriteRenderer>().color != originColor)
                 {
                     selectedNode.GetComponent<SpriteRenderer>().color = originColor;

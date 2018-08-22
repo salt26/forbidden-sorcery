@@ -100,7 +100,7 @@ public class Node : MonoBehaviour
 
     void Awake()
     {
-        GetComponent<Transform>().localScale = new Vector3 (0.4f, 0.4f, 1f);
+        GetComponent<Transform>().localScale = new Vector3(0.4f, 0.4f, 1f);
         centralStandingPosition = this.GetComponent<Transform>().position;
         allyStandingPosition = centralStandingPosition + allyPositionIndicator.transform.localPosition;
         enemyStandingPosition = centralStandingPosition + enemyPositionIndicator.transform.localPosition;
@@ -138,10 +138,10 @@ public class Node : MonoBehaviour
 
         if (isPlayerTerritory)
         {
-            if(isCastle) GetComponent<SpriteRenderer>().sprite = devilKingCastleSprite;
+            if (isCastle) GetComponent<SpriteRenderer>().sprite = devilKingCastleSprite;
             if (!isCastle) this.GetComponent<SpriteRenderer>().sprite = allySprite;
         }
-        if (!isPlayerTerritory) 
+        if (!isPlayerTerritory)
         {
             if (isNeutralTerritory) GetComponent<SpriteRenderer>().sprite = neutralSprite;
             else GetComponent<SpriteRenderer>().sprite = enemySprite;
@@ -193,7 +193,7 @@ public class Node : MonoBehaviour
             }
         }
     }
-    
+
     //public static void RefineUnitPositionInAllNodes()
     //{
     //    foreach (Node n in GameManager.instance.allNodes)
@@ -349,7 +349,25 @@ public class Node : MonoBehaviour
         List<Unit> tempU = units.FindAll((unit) => unit.CurrentHealth == 0);
         units.RemoveAll((unit) => unit.CurrentHealth == 0);
         foreach (Unit u in tempU)
+        {
+            if (u.isAlly)
+            {
+                bool isActivated = false;
+                UnitData unitData = null;
+                foreach(var unitD in GameManager.instance.producedAlliedEnemies)
+                {
+                    if (unitD.Equals(u.unitData))
+                    {
+                        isActivated = true;
+                        unitData = unitD;
+                        break;
+                    }
+                }
+                if (isActivated)
+                    GameManager.instance.producedAlliedEnemies.Remove(unitData);
+            }
             Destroy(u.gameObject);
+        }
         DecideAndShowMainUnit();
         RefineUnitPosition(allies.Count, enemies.Count);
         foreach (Unit unit in units)

@@ -10,24 +10,20 @@ public partial class GameManager : MonoBehaviour
     [Header("게임데이터")]
     [SerializeField]
     public GameConfig config;
-    
+
     [Header("UI")]
     [SerializeField]
     private Button endTurnButton;
     public Button EndTurnButton { get { return endTurnButton; } }
-
     [SerializeField]
     private Button produceButton;
     public Button ProduceButton { get { return produceButton; } }
-    
     [SerializeField]
     private UnitListScrollView unitListScrollView;
-
+    [HideInInspector]
     public DestroyedEnemyControlScrollView destroyedEnemyControlScrollView;
     private DestroyedEnemyControlScrollView pastDestroyedEnemyControlScrollView;
-
     private List<Unit> selectedUnitList = new List<Unit>();
-
     private Node selectedNode = null;
     private Color originColor = Color.white;
     [SerializeField]
@@ -42,8 +38,13 @@ public partial class GameManager : MonoBehaviour
     private List<Button> destroyedEnemyControlResetButtons = new List<Button>();
     [SerializeField]
     private GameObject destroyedEnemyControlUnit;
-    [SerializeField]
-    private GameObject destroyedEnemyControlButton;
+    [HideInInspector]
+    public List<UnitData> producableAlliedEnemies = new List<UnitData>();
+    [HideInInspector]
+    public List<UnitData> producedAlliedEnemies = new List<UnitData>();
+    [HideInInspector]
+    public Dictionary<UnitData, int> numberOfProducableAlliedEnemies = new Dictionary<UnitData, int>();
+
     public List<Unit> SelectedDestroyedEnemyList
     {
         get
