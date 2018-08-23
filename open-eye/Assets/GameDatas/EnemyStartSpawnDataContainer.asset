@@ -42,3 +42,7 @@ MonoBehaviour:
     enemySpawnNodes: 24
   - enemyStatus: HeroSoldier1S 2
     enemySpawnNodes: 24
+  - enemyStatus: HeroArcher1S 2
+    enemySpawnNodes: 10
+  - enemyStatus: HeroMage1S 2
+    enemySpawnNodes: 05
