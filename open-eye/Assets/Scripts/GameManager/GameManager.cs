@@ -25,7 +25,6 @@ public partial class GameManager : MonoBehaviour
     private DestroyedEnemyControlScrollView pastDestroyedEnemyControlScrollView;
     private List<Unit> selectedUnitList = new List<Unit>();
     private Node selectedNode = null;
-    private Color originColor = Color.white;
     [SerializeField]
     private Color selectedColor;
     [SerializeField]

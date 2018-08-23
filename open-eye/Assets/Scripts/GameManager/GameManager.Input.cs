@@ -194,11 +194,10 @@ public partial class GameManager
         selectedUnitList.Clear();
         unitListScrollView.ShowList(false);
         unitListScrollView.ShowUnitTab(false);
-        if (selectedNode != null && selectedNode.GetComponent<SpriteRenderer>().color != originColor)
+        if (selectedNode != null)
         {
-            selectedNode.GetComponent<SpriteRenderer>().color = originColor;
+            selectedNode.GetComponent<SpriteRenderer>().color = unSelectedColor;
         }
-        originColor = unSelectedColor;
         selectedNode = null;
         StartCoroutine(ChangePhase());
     }
@@ -236,17 +235,13 @@ public partial class GameManager
                 }
                 unitDatas.AddRange(config.producableUnits);
                 unitListScrollView.SetUnitDataList(unitDatas, OnSelectUnitForProduce);
-                if (selectedNode.GetComponent<SpriteRenderer>().color != originColor)
-                {
-                    selectedNode.GetComponent<SpriteRenderer>().color = originColor;
-                }
+                selectedNode.GetComponent<SpriteRenderer>().color = unSelectedColor;
             }
             else
             {
                 unitListScrollView.ShowList(false);
             }
             selectedUnitList.Clear();
-            originColor = unSelectedColor;
             selectedNode = null;
         }
 
@@ -272,7 +267,6 @@ public partial class GameManager
                 {
                     selectedNode = node;
                     var spriteRenderer = selectedNode.GetComponent<SpriteRenderer>();
-                    originColor = spriteRenderer.color;
                     spriteRenderer.color = selectedColor;
 
                     unitListScrollView.ShowList(true);
@@ -285,7 +279,7 @@ public partial class GameManager
                 }
                 else if (selectedNode == node)
                 {
-                    selectedNode.GetComponent<SpriteRenderer>().color = originColor;
+                    selectedNode.GetComponent<SpriteRenderer>().color = unSelectedColor;
                     selectedNode = null;
 
                     selectedUnitList.Clear();
@@ -294,7 +288,7 @@ public partial class GameManager
                 }
                 else if (selectedUnitList.Count == 0)
                 {
-                    selectedNode.GetComponent<SpriteRenderer>().color = originColor;
+                    selectedNode.GetComponent<SpriteRenderer>().color = unSelectedColor;
                     selectedNode = node;
                     node.GetComponent<SpriteRenderer>().color = selectedColor;
 
@@ -309,10 +303,10 @@ public partial class GameManager
                 }
                 else
                 {
-                    //if (currentState == RoundState.PlayerAction)
-                    //{
-                    //    endTurnButton.interactable = false;
-                    //}
+                    if (currentState == RoundState.PlayerAction)
+                    {
+                        endTurnButton.interactable = false;
+                    }
                     foreach (Unit unit in selectedUnitList)
                     {
                         if (unit.canMove)
@@ -337,31 +331,18 @@ public partial class GameManager
                             StartCoroutine(unit.moveQueue.Dequeue());
                     }
 
-                    if (isAllyMoving)
-                    {
-                        node.RedLight(); selectedNode.GetComponent<SpriteRenderer>().color = originColor;
-                    }
-                    else
-                    {
-                        selectedNode.GetComponent<SpriteRenderer>().color = originColor;
-                    }
+                    selectedNode.GetComponent<SpriteRenderer>().color = unSelectedColor;
 
                     selectedNode = null;
                     selectedUnitList.Clear();
                     unitListScrollView.ShowList(false);
                     unitListScrollView.ShowUnitTab(false);
                     
-                    //StartCoroutine(waitUntilAllyIsNotMoving());
-
-                    //if (currentState == RoundState.PlayerAction)
-                    //{
-                    //    endTurnButton.interactable = true;
-                    //}
+                    StartCoroutine(waitUntilAllyIsNotMoving());
                 }
             }
             else
             {
-                originColor = node.GetComponent<SpriteRenderer>().color;
                 if (selectedNode == node)
                 {
                     selectedNode = null;
@@ -399,8 +380,12 @@ public partial class GameManager
         unitListScrollView.SetUnitList(selectedNode.enemies, OnSelectUnitForMove);
     }
 
-    //private IEnumerator waitUntilAllyIsNotMoving()
-    //{
-    //    yield return new WaitUntil(() => movingUnits.Count > 0);
-    //}
+    private IEnumerator waitUntilAllyIsNotMoving()
+    {
+        yield return new WaitWhile(() => isAllyMoving);
+        if (currentState == RoundState.PlayerAction)
+        {
+            endTurnButton.interactable = true;
+        }
+    }
 }
