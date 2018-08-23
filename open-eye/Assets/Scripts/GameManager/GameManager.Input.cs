@@ -309,10 +309,10 @@ public partial class GameManager
                 }
                 else
                 {
-                    //if (currentState == RoundState.PlayerAction)
-                    //{
-                    //    endTurnButton.interactable = false;
-                    //}
+                    if (currentState == RoundState.PlayerAction)
+                    {
+                        endTurnButton.interactable = false;
+                    }
                     foreach (Unit unit in selectedUnitList)
                     {
                         if (unit.canMove)
@@ -351,12 +351,7 @@ public partial class GameManager
                     unitListScrollView.ShowList(false);
                     unitListScrollView.ShowUnitTab(false);
                     
-                    //StartCoroutine(waitUntilAllyIsNotMoving());
-
-                    //if (currentState == RoundState.PlayerAction)
-                    //{
-                    //    endTurnButton.interactable = true;
-                    //}
+                    StartCoroutine(waitUntilAllyIsNotMoving());
                 }
             }
             else
@@ -399,8 +394,12 @@ public partial class GameManager
         unitListScrollView.SetUnitList(selectedNode.enemies, OnSelectUnitForMove);
     }
 
-    //private IEnumerator waitUntilAllyIsNotMoving()
-    //{
-    //    yield return new WaitUntil(() => movingUnits.Count > 0);
-    //}
+    private IEnumerator waitUntilAllyIsNotMoving()
+    {
+        yield return new WaitWhile(() => isAllyMoving);
+        if (currentState == RoundState.PlayerAction)
+        {
+            endTurnButton.interactable = true;
+        }
+    }
 }
