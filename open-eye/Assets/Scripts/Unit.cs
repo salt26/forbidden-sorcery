@@ -47,7 +47,10 @@ public class Unit : MonoBehaviour, IUnitInterface
     {
         get
         {
-            return Movement > 0 && !position.isFighting;
+            if (isAlly)
+                return Movement > 0 && !position.isFighting;
+            else
+                return unitData.currentMoveType != UnitData.MoveType.stay && Movement > 0 && !position.isFighting;
         }
     }
 
@@ -125,7 +128,7 @@ public class Unit : MonoBehaviour, IUnitInterface
     {
         isMoving = true;
         isMoved = true;
-        
+
         from.DecideAndShowMainUnit();
         GetComponent<SpriteRenderer>().enabled = true;
 
@@ -144,11 +147,10 @@ public class Unit : MonoBehaviour, IUnitInterface
 
         to.DecideAndShowMainUnit();
 
-        isMoving = false;
         OnMoveBetweenNodesAnimationFinished();                  //하나의 동작이 끝나는 순간 무엇을 할 것인가?
     }
 
-    public void OnMoveBetweenNodesAnimationFinished()
+    void OnMoveBetweenNodesAnimationFinished()
     {
         if (moveQueue.Count > 0)                                //큐에 쌓인 게 남았을 때
         {
@@ -182,12 +184,11 @@ public class Unit : MonoBehaviour, IUnitInterface
             yield return null;
         }
         transform.position = destination;
-        isMoving = false;
         OnMoveInNodeAnimationFinished();
 
     }
 
-    public void OnMoveInNodeAnimationFinished()
+    void OnMoveInNodeAnimationFinished()
     {
         //isMovingInNode = false;
         if (moveQueue.Count > 0)
@@ -204,6 +205,7 @@ public class Unit : MonoBehaviour, IUnitInterface
                 onMoveDone();
             }
             isMoved = false;
+            isMoving = false;
         }
     }
 
