@@ -372,7 +372,7 @@ public partial class GameManager
             int number = int.Parse(spawnStatus[1]);
             Node spawnNode = null;
 
-            foreach (Node node in instance.allNodes)
+            foreach (Node node in allNodes)
             {
                 string[] spawnNodeName = node.name.Split("_"[0]);
                 if (enemyData.enemySpawnNodes == spawnNodeName[0])

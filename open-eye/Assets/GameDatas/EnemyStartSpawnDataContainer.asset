@@ -12,11 +12,33 @@ MonoBehaviour:
   m_Name: EnemyStartSpawnDataContainer
   m_EditorClassIdentifier: 
   enemySpawnDatas:
-  - enemyStatus: HeroArcher1S 1
-    enemySpawnNodes: 01
-  - enemyStatus: HeroSoldier1S 1
-    enemySpawnNodes: 02
-  - enemyStatus: HeroSoldier1S 5
-    enemySpawnNodes: 03
-  - enemyStatus: HeroSoldier1S 5
-    enemySpawnNodes: 04
+  - enemyStatus: HeroTanker1S 2
+    enemySpawnNodes: 11
+  - enemyStatus: HeroSoldier1S 3
+    enemySpawnNodes: 11
+  - enemyStatus: HeroMage1S 2
+    enemySpawnNodes: 11
+  - enemyStatus: HeroMage1S 2
+    enemySpawnNodes: 06
+  - enemyStatus: HeroTanker1S 3
+    enemySpawnNodes: 06
+  - enemyStatus: HeroMage1S 2
+    enemySpawnNodes: 16
+  - enemyStatus: HeroArcher1S 2
+    enemySpawnNodes: 16
+  - enemyStatus: HeroTanker1S 2
+    enemySpawnNodes: 16
+  - enemyStatus: HeroMage1S 2
+    enemySpawnNodes: 20
+  - enemyStatus: HeroTanker1S 2
+    enemySpawnNodes: 20
+  - enemyStatus: HeroArcher1S 2
+    enemySpawnNodes: 20
+  - enemyStatus: HeroAssassin1S 2
+    enemySpawnNodes: 20
+  - enemyStatus: HeroSoldier1S 2
+    enemySpawnNodes: 20
+  - enemyStatus: HeroMage1S 2
+    enemySpawnNodes: 24
+  - enemyStatus: HeroSoldier1S 2
+    enemySpawnNodes: 24
