@@ -4387,7 +4387,8 @@ MonoBehaviour:
   - {fileID: 1993294010}
   - {fileID: 48851924}
   destroyedEnemyControlUnit: {fileID: 9897868}
-  destroyedEnemyControlButton: {fileID: 0}
+  producableAlliedEnemies: []
+  producedAlliedEnemies: []
   allNodes: []
   manaAmountText: {fileID: 758138316}
   notoriety: 0
@@ -7503,7 +7504,7 @@ Prefab:
         type: 2}
       propertyPath: edges.Array.data[0]
       value: 
-      objectReference: {fileID: 19703863}
+      objectReference: {fileID: 1334597578}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: edges.Array.data[1]
