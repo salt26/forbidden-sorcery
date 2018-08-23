@@ -85,7 +85,7 @@ public partial class GameManager
 
     IEnumerator Initialize()
     {
-        yield return new WaitUntil(() => allNodes.Count >= 20);
+        yield return new WaitUntil(() => allNodes.Count >= 47);
         InitializeInput();
         InitializeMap();
         InitializeResource();
