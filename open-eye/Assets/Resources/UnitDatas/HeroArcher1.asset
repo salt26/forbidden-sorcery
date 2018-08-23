@@ -18,6 +18,6 @@ MonoBehaviour:
   iconName: Archer
   attack: 12
   health: 15
-  aggro: 40
+  aggro: 58
   movement: 1
   cost: 1100

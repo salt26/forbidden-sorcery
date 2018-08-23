@@ -279,7 +279,7 @@ public partial class GameManager
                     unitListScrollView.ShowUnitTab(true);
                     unitListScrollView.SetUnitList(node.allies, OnSelectUnitForMove);
                 }
-                else if (selectedNode == null || node.units.Count == 0)
+                else if (selectedNode == null ||(selectedUnitList.Count == 0 && node.units.Count == 0))
                 {
                     node.RedLight();
                 }

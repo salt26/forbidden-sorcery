@@ -17,80 +17,34 @@ MonoBehaviour:
   - requiredKarma: 15
     enemyDatas:
     - requiredNotoriety: 0
-      enemyStatus: HeroSoldier 1
+      enemyStatus: HeroSoldier1 4
       enemySpawnNodes:
-      - 19
-      - 20
+      - 37
     - requiredNotoriety: 0
-      enemyStatus: HeroTanker 1
+      enemyStatus: HeroTanker1 2
       enemySpawnNodes:
-      - 19
-      - 20
+      - 41
     - requiredNotoriety: 0
-      enemyStatus: HeroArcher 1
+      enemyStatus: HeroArcher1 3
       enemySpawnNodes:
-      - 19
-      - 20
-  - requiredKarma: 140
+      - 47
+  - requiredKarma: 45
     enemyDatas:
     - requiredNotoriety: 0
-      enemyStatus: 
-      enemySpawnNodes: []
+      enemyStatus: HeroSoldier1 8
+      enemySpawnNodes:
+      - 37
     - requiredNotoriety: 0
-      enemyStatus: 
-      enemySpawnNodes: []
+      enemyStatus: HeroTanker1 5
+      enemySpawnNodes:
+      - 41
     - requiredNotoriety: 0
-      enemyStatus: 
+      enemyStatus: HeroArcher1 6
       enemySpawnNodes: []
     - requiredNotoriety: 0
       enemyStatus: 
       enemySpawnNodes: []
     - requiredNotoriety: 6
-      enemyStatus: 
-      enemySpawnNodes: []
-    - requiredNotoriety: 6
-      enemyStatus: 
-      enemySpawnNodes: []
-    - requiredNotoriety: 7
-      enemyStatus: 
-      enemySpawnNodes: []
-    - requiredNotoriety: 7
-      enemyStatus: 
-      enemySpawnNodes: []
-    - requiredNotoriety: 8
-      enemyStatus: 
-      enemySpawnNodes: []
-    - requiredNotoriety: 8
-      enemyStatus: 
-      enemySpawnNodes: []
-    - requiredNotoriety: 9
-      enemyStatus: 
-      enemySpawnNodes: []
-    - requiredNotoriety: 9
-      enemyStatus: 
-      enemySpawnNodes: []
-    - requiredNotoriety: 10
-      enemyStatus: 
-      enemySpawnNodes: []
-    - requiredNotoriety: 12
-      enemyStatus: 
-      enemySpawnNodes: []
-    - requiredNotoriety: 12
-      enemyStatus: 
-      enemySpawnNodes: []
-    - requiredNotoriety: 13
-      enemyStatus: 
-      enemySpawnNodes: []
-    - requiredNotoriety: 14
-      enemyStatus: 
-      enemySpawnNodes: []
-    - requiredNotoriety: 15
-      enemyStatus: 
-      enemySpawnNodes: []
-    - requiredNotoriety: 16
-      enemyStatus: 
-      enemySpawnNodes: []
-    - requiredNotoriety: 17
       enemyStatus: 
       enemySpawnNodes: []
   - requiredKarma: 240
