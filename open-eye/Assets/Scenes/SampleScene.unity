@@ -4439,6 +4439,7 @@ MonoBehaviour:
   destroyedEnemyControlUnit: {fileID: 9897868}
   producableAlliedEnemies: []
   producedAlliedEnemies: []
+  phaseAlertText: {fileID: 1953248046}
   allNodes: []
   manaAmountText: {fileID: 758138316}
   notoriety: 0
