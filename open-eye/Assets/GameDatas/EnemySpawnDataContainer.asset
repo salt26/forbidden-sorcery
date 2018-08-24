@@ -21,11 +21,11 @@ MonoBehaviour:
       enemySpawnNodes:
       - 37
     - requiredNotoriety: 0
-      enemyStatus: HeroTanker1 2
+      enemyStatus: HeroTanker1 4
       enemySpawnNodes:
       - 41
     - requiredNotoriety: 0
-      enemyStatus: HeroArcher1 3
+      enemyStatus: HeroArcher1 5
       enemySpawnNodes:
       - 47
   - requiredKarma: 150

@@ -99,8 +99,8 @@ public partial class GameManager
         currentState = RoundState.Standby;
         endTurnButton.interactable = false;
         produceButton.interactable = false;
-
-        StartCoroutine(GameObject.Find("PhaseAlertText").GetComponent<PhaseAlertText>().AlertPhase());
+        
+        StartCoroutine(phaseAlertText.GetComponent<PhaseAlertText>().AlertPhase());
 
         CheckWin();
         CheckAndSpawnEnemy();
@@ -114,10 +114,11 @@ public partial class GameManager
         endTurnButton.interactable = false;
         produceButton.interactable = false;
 
-        StartCoroutine(GameObject.Find("PhaseAlertText").GetComponent<PhaseAlertText>().AlertPhase());
+        StartCoroutine(phaseAlertText.GetComponent<PhaseAlertText>().AlertPhase());
 
         MoveEnemy();
         OnEnemyMoveDone();
+        
     }
 
     private void PlayerActionPhase()
@@ -125,8 +126,8 @@ public partial class GameManager
         currentState = RoundState.PlayerAction;
         endTurnButton.interactable = true;
         produceButton.interactable = true;
-
-        StartCoroutine(GameObject.Find("PhaseAlertText").GetComponent<PhaseAlertText>().AlertPhase());
+        
+        StartCoroutine(phaseAlertText.GetComponent<PhaseAlertText>().AlertPhase());
 
         foreach (Node n in allNodes)
         {
@@ -147,7 +148,7 @@ public partial class GameManager
         endTurnButton.interactable = false;
         produceButton.interactable = false;
 
-        StartCoroutine(GameObject.Find("PhaseAlertText").GetComponent<PhaseAlertText>().AlertPhase());
+        StartCoroutine(phaseAlertText.GetComponent<PhaseAlertText>().AlertPhase());
 
         ResolveAllFight();
 
@@ -198,7 +199,7 @@ public partial class GameManager
             OnClickEndTurnButton();
         }
 
-        StartCoroutine(GameObject.Find("PhaseAlertText").GetComponent<PhaseAlertText>().AlertPhase());
+        StartCoroutine(phaseAlertText.GetComponent<PhaseAlertText>().AlertPhase());
     }
 
     private void UpkeepPhase()
@@ -225,8 +226,7 @@ public partial class GameManager
             n.FetchDestroy();
         }
 
-        StartCoroutine(GameObject.Find("PhaseAlertText").GetComponent<PhaseAlertText>().AlertPhase());
-
+        StartCoroutine(phaseAlertText.GetComponent<PhaseAlertText>().AlertPhase());
         CaptureTerritories();
         UpkeepResources();
         RefreshStatus();
@@ -372,28 +372,35 @@ public partial class GameManager
         }
     }
 
-    public void SpawnStartEnemyUnit()
+    public void SpawnStartUnit()
     {
-        foreach (var enemyData in config.enemyStartSpawnDataContainer.enemySpawnDatas)
+        foreach (Node node in allNodes)
         {
-            string[] spawnStatus = enemyData.enemyStatus.Split(" "[0]);
-            string spawnName = spawnStatus[0];
-            int number = int.Parse(spawnStatus[1]);
-            Node spawnNode = null;
-
-            foreach (Node node in allNodes)
+            foreach (string enemyData in node.startEnemies)
             {
-                string[] spawnNodeName = node.name.Split("_"[0]);
-                if (enemyData.enemySpawnNodes == spawnNodeName[0])
+                string[] spawnStatus = enemyData.Split(" "[0]);
+                string spawnName = spawnStatus[0];
+                int number = int.Parse(spawnStatus[1]);
+
+                Debug.Log(node);
+                for (int i = 0; i < number; i++)
                 {
-                    spawnNode = node;
+                    Unit enemy = Spawner.spawner.Spawn(AssetManager.Instance.GetUnitData(spawnName), false, node);
+                    enemy.onMoveDone += OnEnemyMoveDone;
                 }
+
             }
 
-            for (int i = 0; i < number; i++)
+            foreach (string allyData in node.startAllies)
             {
-                Unit enemy = Spawner.spawner.Spawn(AssetManager.Instance.GetUnitData(spawnName), false, spawnNode);
-                enemy.onMoveDone += OnEnemyMoveDone;
+                string[] spawnStatus = allyData.Split(" "[0]);
+                string spawnName = spawnStatus[0];
+                int number = int.Parse(spawnStatus[1]);
+
+                for (int i = 0; i < number; i++)
+                {
+                    Unit ally = Spawner.spawner.Spawn(AssetManager.Instance.GetUnitData(spawnName), true, node);
+                }
             }
         }
     }

@@ -8,50 +8,55 @@ public class PhaseAlertText : MonoBehaviour
     public float phaseNoticeDuration;
     public float phaseMoveDuration;
 
-    public Text phaseAlertText;
+    public Image phaseAlertImage;
 
     public bool isPhaseNoticeDone = false;
 
     public Vector3 initialPosition = new Vector3();
     public Vector3 middlePosition = new Vector3();
     public Vector3 finalPosition = new Vector3();
+    [SerializeField]
+    public Sprite enemyTurn;
+    public Sprite battleStart;
+    public Sprite playerTurn;
 
     public IEnumerator AlertPhase()
     {
-        phaseAlertText = GetComponent<Text>();
+        phaseAlertImage = GetComponent<Image>();
         isPhaseNoticeDone = false;
-        this.GetComponent<Text>().enabled = true;
+        phaseAlertImage.enabled = true;
 
         switch (GameManager.instance.currentState)
         {
             case GameManager.RoundState.Standby:
-                phaseAlertText.text = "Standby";
+                phaseAlertImage.enabled = false;
                 break;
             case GameManager.RoundState.EnemyMove:
-                phaseAlertText.text = "EnemyMove";
+                phaseAlertImage.sprite = enemyTurn;
                 break;
             case GameManager.RoundState.PlayerAction:
-                phaseAlertText.text = "PlayerAction";
-                break;
-            case GameManager.RoundState.Fight:
-                phaseAlertText.text = "Fight";
+                phaseAlertImage.sprite = playerTurn;
                 break;
             case GameManager.RoundState.Captive:
-                phaseAlertText.text = "Captive";
+                phaseAlertImage.enabled = false;
                 break;
-            case GameManager.RoundState.Upkeep:
-                phaseAlertText.text = "Upkeep";
+            case GameManager.RoundState.Fight:
+                phaseAlertImage.sprite = battleStart;
                 break;
         }
-        phaseAlertText.GetComponent<Transform>().position = initialPosition;
+        phaseAlertImage.GetComponent<Transform>().position = initialPosition;
         float deltaTime = 0;
         float rate = deltaTime / phaseMoveDuration;
 
         while (rate < 1f)
         {
+            if (GameManager.instance.currentState == GameManager.RoundState.PlayerAction)
+            {
+                phaseAlertImage.enabled = true;
+            }
             deltaTime += Time.deltaTime;
             rate = deltaTime / phaseMoveDuration;
-            phaseAlertText.transform.position = Vector3.Lerp(initialPosition, middlePosition, rate);
+            phaseAlertImage.transform.position = Vector3.Lerp(initialPosition, middlePosition, rate);
             yield return null;
         }
         yield return new WaitForSeconds(phaseNoticeDuration);
@@ -61,11 +66,11 @@ public class PhaseAlertText : MonoBehaviour
         {
             deltaTime += Time.deltaTime;
             rate = deltaTime / phaseMoveDuration;
-            phaseAlertText.transform.position = Vector3.Lerp(middlePosition, finalPosition, rate);
+            phaseAlertImage.transform.position = Vector3.Lerp(middlePosition, finalPosition, rate);
             yield return null;
         }
 
-        this.GetComponent<Text>().enabled = false;
+        phaseAlertImage.enabled = false;
         isPhaseNoticeDone = true;
     }
 }

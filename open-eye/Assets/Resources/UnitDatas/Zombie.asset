@@ -16,8 +16,8 @@ MonoBehaviour:
   unitName: Skeleton
   spriteName: shielder
   iconName: shielder
-  attack: 2
-  health: 12
+  attack: 1
+  health: 9
   aggro: 80
   movement: 1
   cost: 400
