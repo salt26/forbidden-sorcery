@@ -24,8 +24,8 @@ public class Node : MonoBehaviour
 
     [SerializeField]
     public List<Node> edges;
-    public List<Unit> startEnemies;
-    public List<Unit> startAllies;
+    public List<string> startEnemies;
+    public List<string> startAllies;
 
     private Vector3 centralStandingPosition, allyStandingPosition, enemyStandingPosition;
 
@@ -56,7 +56,7 @@ public class Node : MonoBehaviour
     [HideInInspector]
     public List<Unit> destroyedEnemies = new List<Unit>();
 
-    [HideInInspector]
+    [SerializeField]
     public bool isPlayerTerritory;
 
     [HideInInspector]
@@ -118,12 +118,6 @@ public class Node : MonoBehaviour
                 edge.edges.Add(this);
             }
         }
-
-        foreach (Unit enemy in startEnemies)
-        {
-            enemies.Add(enemy);
-        }
-
     }
 
     void Start()

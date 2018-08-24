@@ -16,8 +16,8 @@ MonoBehaviour:
   unitName: Wolf
   spriteName: Assassin
   iconName: Assassin
-  attack: 6
+  attack: 2
   health: 3
   aggro: 20
   movement: 2
-  cost: 600
+  cost: 400
