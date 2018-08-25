@@ -14,7 +14,7 @@ MonoBehaviour:
   enemySpawnDatas:
   - requiredKarma: 0
     enemyDatas: []
-  - requiredKarma: 10
+  - requiredKarma: 30
     enemyDatas:
     - requiredNotoriety: 0
       enemyStatus: HeroSoldier1 2
@@ -31,14 +31,43 @@ MonoBehaviour:
   - requiredKarma: 150
     enemyDatas:
     - requiredNotoriety: 0
-      enemyStatus: HeroSoldier1 4
+      enemyStatus: HeroSoldier1 5
+      enemySpawnNodes:
+      - 41
+      - 37
+    - requiredNotoriety: 0
+      enemyStatus: HeroTanker1 3
+      enemySpawnNodes:
+      - 47
+      - 37
+    - requiredNotoriety: 0
+      enemyStatus: HeroAssassin1 3
+      enemySpawnNodes:
+      - 45
+    - requiredNotoriety: 0
+      enemyStatus: HeroArcher1 4
+      enemySpawnNodes:
+      - 41
+      - 47
+  - requiredKarma: 350
+    enemyDatas:
+    - requiredNotoriety: 0
+      enemyStatus: HeroSoldier1 5
       enemySpawnNodes:
       - 37
     - requiredNotoriety: 0
       enemyStatus: HeroTanker1 2
       enemySpawnNodes:
-      - 41
+      - 31
     - requiredNotoriety: 0
       enemyStatus: HeroArcher1 3
       enemySpawnNodes:
       - 47
+    - requiredNotoriety: 0
+      enemyStatus: HeroMage1 3
+      enemySpawnNodes:
+      - 47
+    - requiredNotoriety: 0
+      enemyStatus: HeroAssassin1 3
+      enemySpawnNodes:
+      - 45
