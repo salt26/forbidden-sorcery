@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Node : MonoBehaviour
 {
@@ -10,11 +11,6 @@ public class Node : MonoBehaviour
         Castle,
         EnemySpawner,
     }
-
-    public Sprite allySprite;
-    public Sprite enemySprite;
-    public Sprite neutralSprite;
-    public Sprite devilKingCastleSprite;
 
     [SerializeField]
     private NodeType type;
@@ -70,9 +66,7 @@ public class Node : MonoBehaviour
 
     [HideInInspector]
     public bool isChecked;
-
-    public GameObject centralPositionIndicator, allyPositionIndicator, enemyPositionIndicator;
-
+    
     private bool isCastle
     {
         get
@@ -98,13 +92,19 @@ public class Node : MonoBehaviour
     }
 
     bool isRed;
+    
 
     void Awake()
     {
+        
+    }
+
+    void Start()
+    {
         GetComponent<Transform>().localScale = new Vector3(0.4f, 0.4f, 1f);
-        centralStandingPosition = this.GetComponent<Transform>().position;
-        allyStandingPosition = centralStandingPosition + allyPositionIndicator.transform.localPosition;
-        enemyStandingPosition = centralStandingPosition + enemyPositionIndicator.transform.localPosition;
+        centralStandingPosition = GetComponent<Transform>().position;
+        allyStandingPosition = centralStandingPosition + GameManager.instance.map.allyPositionIndicator.position;
+        enemyStandingPosition = centralStandingPosition + GameManager.instance.map.enemyPositionIndicator.position;
 
         isRed = false;
         if (isCastle)
@@ -118,10 +118,6 @@ public class Node : MonoBehaviour
                 edge.edges.Add(this);
             }
         }
-    }
-
-    void Start()
-    {
         if (isCastle)
         {
             GameManager.instance.SetCastle(this);
@@ -134,13 +130,13 @@ public class Node : MonoBehaviour
 
         if (isPlayerTerritory)
         {
-            if (isCastle) GetComponent<SpriteRenderer>().sprite = devilKingCastleSprite;
-            if (!isCastle) this.GetComponent<SpriteRenderer>().sprite = allySprite;
+            if (isCastle) GetComponent<SpriteRenderer>().sprite = GameManager.instance.map.devilKingCastleSprite;
+            if (!isCastle) this.GetComponent<SpriteRenderer>().sprite = GameManager.instance.map.allySprite;
         }
         if (!isPlayerTerritory)
         {
-            if (isNeutralTerritory) GetComponent<SpriteRenderer>().sprite = neutralSprite;
-            else GetComponent<SpriteRenderer>().sprite = enemySprite;
+            if (isNeutralTerritory) GetComponent<SpriteRenderer>().sprite = GameManager.instance.map.neutralSprite;
+            else GetComponent<SpriteRenderer>().sprite = GameManager.instance.map.enemySprite;
         }
         GameManager.instance.allNodes.Add(this);
     }
@@ -215,12 +211,12 @@ public class Node : MonoBehaviour
                 if (unit.isAlly)
                 {
                     unit.moveQueue.Enqueue(unit.MoveInNodeAnimation(allyStandingPosition));
-                    unit.transform.SetParent(allyPositionIndicator.GetComponent<Transform>());
+                    unit.transform.SetParent(GameManager.instance.map.allyPositionIndicator);
                 }
                 else
                 {
                     unit.moveQueue.Enqueue(unit.MoveInNodeAnimation(enemyStandingPosition));
-                    unit.transform.SetParent(enemyPositionIndicator.GetComponent<Transform>());
+                    unit.transform.SetParent(GameManager.instance.map.enemyPositionIndicator);
                 }
                 //re.Add(unit);
             }
@@ -230,7 +226,7 @@ public class Node : MonoBehaviour
             foreach (Unit unit in units)
             {
                 unit.moveQueue.Enqueue(unit.MoveInNodeAnimation(centralStandingPosition));
-                unit.transform.SetParent(centralPositionIndicator.GetComponent<Transform>());
+                unit.transform.SetParent(GameManager.instance.map.centralPositionIndicator);
                 //re.Add(unit);
             }
         }

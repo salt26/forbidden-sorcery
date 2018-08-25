@@ -14,18 +14,18 @@ MonoBehaviour:
   enemySpawnDatas:
   - requiredKarma: 0
     enemyDatas: []
-  - requiredKarma: 15
+  - requiredKarma: 10
     enemyDatas:
     - requiredNotoriety: 0
-      enemyStatus: HeroSoldier1 4
+      enemyStatus: HeroSoldier1 2
       enemySpawnNodes:
       - 37
     - requiredNotoriety: 0
-      enemyStatus: HeroTanker1 4
+      enemyStatus: HeroTanker1 2
       enemySpawnNodes:
       - 41
     - requiredNotoriety: 0
-      enemyStatus: HeroArcher1 5
+      enemyStatus: HeroArcher1 3
       enemySpawnNodes:
       - 47
   - requiredKarma: 150
