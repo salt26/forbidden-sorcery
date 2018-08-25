@@ -356,7 +356,10 @@ public class Node : MonoBehaviour
                     }
                 }
                 if (isActivated)
+                {
                     GameManager.instance.producedAlliedEnemies.Remove(unitData);
+                    GameManager.instance.producableAlliedEnemies.Add(unitData);
+                }
             }
             Destroy(u.gameObject);
         }

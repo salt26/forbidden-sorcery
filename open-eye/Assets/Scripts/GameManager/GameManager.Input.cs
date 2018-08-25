@@ -76,8 +76,7 @@ public partial class GameManager
         List<UnitData> unitDatas = new List<UnitData>();
         foreach (UnitData alliedEnemy in GameManager.instance.producableAlliedEnemies)
         {
-            if (producedAlliedEnemies.FindAll((uD) => uD.Equals(alliedEnemy)).Count == 0)
-                unitDatas.Add(alliedEnemy);
+            unitDatas.Add(alliedEnemy);
         }
         unitDatas.AddRange(config.producableUnits);
         unitListScrollView.SetUnitDataList(unitDatas, OnSelectUnitForProduce);
@@ -128,7 +127,7 @@ public partial class GameManager
                 b.GetComponent<Image>().color = b.normalColor;
                 b.isSelected = false;
             }
-            foreach(Button g in destroyedEnemyControlResetButtons)
+            foreach (Button g in destroyedEnemyControlResetButtons)
             {
                 g.interactable = false;
             }
@@ -217,8 +216,7 @@ public partial class GameManager
             List<UnitData> unitDatas = new List<UnitData>();
             foreach (UnitData alliedEnemy in GameManager.instance.producableAlliedEnemies)
             {
-                if (producedAlliedEnemies.FindAll((uD) => uD.Equals(alliedEnemy)).Count == 0)
-                    unitDatas.Add(alliedEnemy);
+                unitDatas.Add(alliedEnemy);
             }
             unitDatas.AddRange(config.producableUnits);
             unitListScrollView.SetUnitDataList(unitDatas, OnSelectUnitForProduce);
@@ -230,8 +228,7 @@ public partial class GameManager
                 List<UnitData> unitDatas = new List<UnitData>();
                 foreach (UnitData alliedEnemy in GameManager.instance.producableAlliedEnemies)
                 {
-                    if (producedAlliedEnemies.FindAll((uD) => uD.Equals(alliedEnemy)).Count == 0)
-                        unitDatas.Add(alliedEnemy);
+                    unitDatas.Add(alliedEnemy);
                 }
                 unitDatas.AddRange(config.producableUnits);
                 unitListScrollView.SetUnitDataList(unitDatas, OnSelectUnitForProduce);
@@ -273,7 +270,7 @@ public partial class GameManager
                     unitListScrollView.ShowUnitTab(true);
                     unitListScrollView.SetUnitList(node.allies, OnSelectUnitForMove);
                 }
-                else if (selectedNode == null ||(selectedUnitList.Count == 0 && node.units.Count == 0))
+                else if (selectedNode == null || (selectedUnitList.Count == 0 && node.units.Count == 0))
                 {
                     node.RedLight();
                 }
@@ -337,7 +334,7 @@ public partial class GameManager
                     selectedUnitList.Clear();
                     unitListScrollView.ShowList(false);
                     unitListScrollView.ShowUnitTab(false);
-                    
+
                     StartCoroutine(waitUntilAllyIsNotMoving());
                 }
             }
