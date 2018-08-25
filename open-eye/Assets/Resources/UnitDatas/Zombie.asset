@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   herotype: 1
   currentMoveType: 0
-  unitName: Skeleton
+  unitName: Zombie
   spriteName: shielder
   iconName: shielder
   attack: 1

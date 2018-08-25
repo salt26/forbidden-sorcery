@@ -406,6 +406,11 @@ Prefab:
       propertyPath: edges.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: startEnemies.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4002299396239596, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_LocalPosition.x
       value: 10.649993
@@ -460,7 +465,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 300
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -522,6 +527,16 @@ Prefab:
         type: 2}
       propertyPath: notoriety
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: startEnemies.Array.data[0]
+      value: HeroAssassin2S 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: startEnemies.Array.data[1]
+      value: HeroAssassin2C 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -2614,7 +2629,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -2690,7 +2705,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: startEnemies.Array.data[1]
-      value: HeroTanker1S 1
+      value: HeroTanker1S 2
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -2785,6 +2800,11 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: edges.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: startEnemies.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4002299396239596, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -2908,6 +2928,11 @@ Prefab:
         type: 2}
       propertyPath: notoriety
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: startEnemies.Array.data[0]
+      value: HeroSoldier1S 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -3659,7 +3684,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeed: 5
-  maxCameraSize: 20
+  maxCameraSize: 35
   minCameraSize: 7
 --- !u!20 &519420031
 Camera:
@@ -5685,6 +5710,11 @@ Prefab:
       propertyPath: edges.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: startEnemies.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4002299396239596, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_LocalPosition.x
       value: 14.969996
@@ -5729,7 +5759,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 250
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -5806,6 +5836,16 @@ Prefab:
         type: 2}
       propertyPath: notoriety
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: startEnemies.Array.data[0]
+      value: HeroSoldier1S 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: startEnemies.Array.data[1]
+      value: HeroSoldier1C 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -6897,6 +6937,11 @@ Prefab:
       propertyPath: edges.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: startEnemies.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4002299396239596, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_LocalPosition.x
       value: 31.529995
@@ -7013,6 +7058,16 @@ Prefab:
         type: 2}
       propertyPath: notoriety
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: startEnemies.Array.data[0]
+      value: HeroTanker2S 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: startEnemies.Array.data[1]
+      value: HeroArcher2S 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -8588,6 +8643,11 @@ Prefab:
       propertyPath: edges.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: startEnemies.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4002299396239596, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_LocalPosition.x
       value: 14.059997
@@ -8642,7 +8702,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 150
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -8704,6 +8764,11 @@ Prefab:
         type: 2}
       propertyPath: notoriety
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: startEnemies.Array.data[0]
+      value: HeroAssassin2S 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -9693,6 +9758,11 @@ Prefab:
       propertyPath: edges.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: startEnemies.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4002299396239596, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_LocalPosition.x
       value: 12.649993
@@ -9737,7 +9807,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 250
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -9814,6 +9884,16 @@ Prefab:
         type: 2}
       propertyPath: notoriety
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: startEnemies.Array.data[0]
+      value: HeroSoldier1S 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: startEnemies.Array.data[1]
+      value: HeroSoldier1C 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -10458,6 +10538,11 @@ Prefab:
       propertyPath: edges.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: startEnemies.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4002299396239596, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_LocalPosition.x
       value: 28.289997
@@ -10574,6 +10659,21 @@ Prefab:
         type: 2}
       propertyPath: notoriety
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: startEnemies.Array.data[0]
+      value: HeroSoldier2S 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: startEnemies.Array.data[1]
+      value: HeroArcher2S 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: startEnemies.Array.data[2]
+      value: HeroArcher2C 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -12191,6 +12291,11 @@ Prefab:
       propertyPath: notoriety
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: startEnemies.Array.data[1]
+      value: HeroMage2C 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -13588,6 +13693,11 @@ Prefab:
       propertyPath: edges.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: startEnemies.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4002299396239596, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_LocalPosition.x
       value: 28.179996
@@ -13694,6 +13804,26 @@ Prefab:
         type: 2}
       propertyPath: notoriety
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: startEnemies.Array.data[0]
+      value: HeroSoldier2S 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: startEnemies.Array.data[1]
+      value: HeroMage2S 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: startEnemies.Array.data[2]
+      value: HeroSoldier2C 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: startEnemies.Array.data[3]
+      value: HeroTanker2C 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -18679,6 +18809,11 @@ Prefab:
       propertyPath: edges.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: startEnemies.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4002299396239596, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_LocalPosition.x
       value: 14.009994
@@ -18733,7 +18868,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 300
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -18795,6 +18930,16 @@ Prefab:
         type: 2}
       propertyPath: notoriety
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: startEnemies.Array.data[0]
+      value: HeroAssassin2S 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: startEnemies.Array.data[1]
+      value: HeroAssassin2C 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -18998,7 +19143,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: startEnemies.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4002299396239596, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_LocalPosition.x
@@ -19054,7 +19199,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 150
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -19105,17 +19250,17 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: startEnemies.Array.data[0]
-      value: HeroTanker1S 2
+      value: HeroTanker2S 2
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: startEnemies.Array.data[1]
-      value: HeroMage1S 1
+      value: HeroMage2S 1
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: startEnemies.Array.data[2]
-      value: HeroSoldier1S 2
+      value: HeroSoldier2S 2
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -19136,6 +19281,11 @@ Prefab:
         type: 2}
       propertyPath: notoriety
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: startEnemies.Array.data[3]
+      value: HeroArcher2S 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}

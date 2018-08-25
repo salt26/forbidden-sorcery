@@ -17,7 +17,7 @@ MonoBehaviour:
   spriteName: Caster
   iconName: Caster
   attack: 16
-  health: 16
+  health: 17
   aggro: 10
   movement: 1
   cost: 2500
