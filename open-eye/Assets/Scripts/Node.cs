@@ -55,6 +55,9 @@ public class Node : MonoBehaviour
     [SerializeField]
     public bool isPlayerTerritory;
 
+    [SerializeField]
+    public int notoriety;
+
     [HideInInspector]
     public bool isNeutralTerritory = true;
 
