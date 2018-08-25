@@ -9,7 +9,8 @@ public class UnitData : ScriptableObject
     {
         directToCastle,
         nearTerritory,
-        stay
+        stay,
+        cover
     }
 
     public enum HeroType

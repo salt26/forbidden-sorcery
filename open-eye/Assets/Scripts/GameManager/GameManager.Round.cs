@@ -265,8 +265,7 @@ public partial class GameManager
                         }
                     }
                 }
-                string[] spawnData;
-                spawnData = enemyData.enemyStatus.Split(" "[0]);
+                string[] spawnData = enemyData.enemyStatus.Split(" "[0]);
                 string spawnName = spawnData[0];
                 int howMuchSpawn = int.Parse(spawnData[1]);
                 if (enemyData.requiredNotoriety <= notoriety)
@@ -403,4 +402,5 @@ public partial class GameManager
             }
         }
     }
+    
 }

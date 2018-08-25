@@ -20,4 +20,4 @@ MonoBehaviour:
   health: 45
   aggro: 80
   movement: 1
-  cost: 800
+  cost: 900

@@ -59,9 +59,9 @@ public class UnitListScrollView : MonoBehaviour
         {
             public int Compare(Unit unit1, Unit unit2)
             {
-                if (unit1.unitData.aggro.CompareTo(unit2.unitData.aggro) != 0)
+                if (unit2.unitData.aggro.CompareTo(unit1.unitData.aggro) != 0)
                 {
-                    return unit1.unitData.aggro.CompareTo(unit2.unitData.aggro);
+                    return unit2.unitData.aggro.CompareTo(unit1.unitData.aggro);
                 }
                 else if (unit1.CurrentHealth.CompareTo(unit2.CurrentHealth) != 0)
                 {

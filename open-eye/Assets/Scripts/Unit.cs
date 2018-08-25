@@ -41,7 +41,7 @@ public class Unit : MonoBehaviour, IUnitInterface
     public bool IsMoving { get { return isMoving; } }
     private bool isMoved = false;
     //private bool isMovingInNode = false;
-    public int level;
+    private Node previousNode = null;
 
     public bool canMove
     {
@@ -226,115 +226,138 @@ public class Unit : MonoBehaviour, IUnitInterface
     public Node NextNode()
     {
         Node nextNode = position.edges[0];
-        if ((int)unitData.currentMoveType == 2)
+        if (unitData.currentMoveType == UnitData.MoveType.stay)
         {
             return position;
         }
+        if (unitData.currentMoveType == UnitData.MoveType.directToCastle)
         {
-            if (unitData.currentMoveType == 0)
+            foreach (Node node in position.edges)
             {
-                foreach (Node node in position.edges)
+                if (node.distance < nextNode.distance)
                 {
-                    if (node.distance < nextNode.distance)
-                    {
+                    nextNode = node;
+                }
+                else if (nextNode.distance == node.distance)
+                {
+                    int r = Random.Range(0, 1);
+                    if (r == 0)
                         nextNode = node;
-                    }
-                    else if (nextNode.distance == node.distance)
-                    {
-                        int r = Random.Range(0, 1);
-                        if (r == 0)
-                            nextNode = node;
-                    }
                 }
             }
-            else
+        }
+        else if (unitData.currentMoveType == UnitData.MoveType.cover)
+        {
+            if (position.allies.Count == 0 && previousNode != null)
             {
-                if (position.isPlayerTerritory)
+                return previousNode;
+            }
+            List<Node> allyExistNodes = new List<Node>();
+            foreach (Node node in position.edges)
+            {
+                if (node.allies.Count != 0)
                 {
-                    return position;
+                    allyExistNodes.Add(node);
                 }
-                var distanceMin = int.MaxValue - 1;
-                var distance = int.MaxValue;
-                Node nextNodeCandidate = null;
-                NextNodeCandidate.Clear();
-                foreach (Node node in position.edges)
-                {
-                    NextNodeCandidate.Push(node);
-                }
-                while (NextNodeCandidate.Count != 0)
-                {
-                    nextNodeCandidate = NextNodeCandidate.Pop();
-                    if (nextNodeCandidate.isPlayerTerritory)
-                    {
-                        distance = 0;
-                        nextNode = nextNodeCandidate;
-                        distanceMin = distance;
-                        if (distance == distanceMin)
-                        {
-                            int r = Random.Range(0, 1);
-                            if (r == 0)
-                                nextNode = nextNodeCandidate;
-                        }
-                        break;
+            }
 
-                    }
-                    Nodes.Clear();
-                    Nodes.Enqueue(nextNodeCandidate);
-                    distance = 1;
-                    var previousCount = 1;
-                    var currentCount = 0;
-                    bool escape = true;
-                    foreach (Node node in GameManager.instance.allNodes)
-                    {
-                        node.isChecked = false;
-                    }
-                    position.isChecked = true;
-                    while (escape)
-                    {
-                        if (previousCount == 0)
-                        {
-                            previousCount = currentCount;
-                            currentCount = 0;
-                            distance++;
-                        }
-                        previousCount--;
-                        if (Nodes.Count == 0 || distance > distanceMin)
-                        {
-                            distance = int.MaxValue;
-                            break;
-                        }
-                        Node check = null;
-                        check = Nodes.Dequeue();
-                        foreach (Node node in check.edges)
-                        {
-                            if (node.isPlayerTerritory)
-                            {
-                                escape = false;
-                                break;
-                            }
-                            else if (!node.isChecked)
-                            {
-                                Nodes.Enqueue(node);
-                                node.isChecked = true;
-                                currentCount++;
-                            }
-                        }
-                    }
-                    if (distance < distanceMin)
-                    {
-                        nextNode = nextNodeCandidate;
-                        distanceMin = distance;
-                    }
+            if (allyExistNodes.Count > 0)
+            {
+                nextNode = allyExistNodes[Random.Range(0, allyExistNodes.Count)];
+                previousNode = position;
+            }
 
+            else return position;
+        }
+        else
+        {
+            if (position.isPlayerTerritory)
+            {
+                return position;
+            }
+            var distanceMin = int.MaxValue - 1;
+            var distance = int.MaxValue;
+            Node nextNodeCandidate = null;
+            NextNodeCandidate.Clear();
+            foreach (Node node in position.edges)
+            {
+                NextNodeCandidate.Push(node);
+            }
+            while (NextNodeCandidate.Count != 0)
+            {
+                nextNodeCandidate = NextNodeCandidate.Pop();
+                if (nextNodeCandidate.isPlayerTerritory)
+                {
+                    distance = 0;
+                    nextNode = nextNodeCandidate;
+                    distanceMin = distance;
                     if (distance == distanceMin)
                     {
                         int r = Random.Range(0, 1);
                         if (r == 0)
                             nextNode = nextNodeCandidate;
                     }
+                    break;
+
+                }
+                Nodes.Clear();
+                Nodes.Enqueue(nextNodeCandidate);
+                distance = 1;
+                var previousCount = 1;
+                var currentCount = 0;
+                bool escape = true;
+                foreach (Node node in GameManager.instance.allNodes)
+                {
+                    node.isChecked = false;
+                }
+                position.isChecked = true;
+                while (escape)
+                {
+                    if (previousCount == 0)
+                    {
+                        previousCount = currentCount;
+                        currentCount = 0;
+                        distance++;
+                    }
+                    previousCount--;
+                    if (Nodes.Count == 0 || distance > distanceMin)
+                    {
+                        distance = int.MaxValue;
+                        break;
+                    }
+                    Node check = null;
+                    check = Nodes.Dequeue();
+                    foreach (Node node in check.edges)
+                    {
+                        if (node.isPlayerTerritory)
+                        {
+                            escape = false;
+                            break;
+                        }
+                        else if (!node.isChecked)
+                        {
+                            Nodes.Enqueue(node);
+                            node.isChecked = true;
+                            currentCount++;
+                        }
+                    }
+                }
+                if (distance < distanceMin)
+                {
+                    nextNode = nextNodeCandidate;
+                    distanceMin = distance;
+                }
+
+                if (distance == distanceMin)
+                {
+                    int r = Random.Range(0, 1);
+                    if (r == 0)
+                        nextNode = nextNodeCandidate;
                 }
             }
         }
+
+
         return nextNode;
     }
 }
