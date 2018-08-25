@@ -45,6 +45,8 @@ public partial class GameManager : MonoBehaviour
     public Dictionary<UnitData, int> numberOfProducableAlliedEnemies = new Dictionary<UnitData, int>();
     [SerializeField]
     public GameObject phaseAlertText;
+    [SerializeField]
+    public Map map;
 
     public List<Unit> SelectedDestroyedEnemyList
     {

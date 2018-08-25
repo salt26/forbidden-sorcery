@@ -354,7 +354,7 @@ public partial class GameManager
         {
             if (!n.IsCastle)
             {
-                n.GetComponent<SpriteRenderer>().sprite = n.allySprite;
+                n.GetComponent<SpriteRenderer>().sprite = map.allySprite;
             }
             // if(n.IsCastle)
         }
@@ -363,7 +363,7 @@ public partial class GameManager
         {
             if (!n.isPlayerTerritory && !n.isNeutralTerritory)
             {
-                n.GetComponent<SpriteRenderer>().sprite = n.enemySprite;
+                n.GetComponent<SpriteRenderer>().sprite = map.enemySprite;
             }
             foreach (Unit enemy in n.enemies)
             {
@@ -381,8 +381,7 @@ public partial class GameManager
                 string[] spawnStatus = enemyData.Split(" "[0]);
                 string spawnName = spawnStatus[0];
                 int number = int.Parse(spawnStatus[1]);
-
-                Debug.Log(node);
+                
                 for (int i = 0; i < number; i++)
                 {
                     Unit enemy = Spawner.spawner.Spawn(AssetManager.Instance.GetUnitData(spawnName), false, node);
