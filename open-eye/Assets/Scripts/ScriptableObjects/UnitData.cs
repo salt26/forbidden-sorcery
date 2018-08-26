@@ -33,6 +33,7 @@ public class UnitData : ScriptableObject
     public int aggro;
     public int movement;
     public int cost;
+    public int level;
 
     public override bool Equals(object obj)
     {
@@ -46,7 +47,8 @@ public class UnitData : ScriptableObject
                health == data.health &&
                aggro == data.aggro &&
                movement == data.movement &&
-               cost == data.cost;
+               cost == data.cost &&
+               level == data.level;
     }
 
     public override int GetHashCode()
@@ -61,6 +63,7 @@ public class UnitData : ScriptableObject
         hashCode = hashCode * -1521134295 + aggro.GetHashCode();
         hashCode = hashCode * -1521134295 + movement.GetHashCode();
         hashCode = hashCode * -1521134295 + cost.GetHashCode();
+        hashCode = hashCode * -1521134295 + level.GetHashCode();
         return hashCode;
     }
 }

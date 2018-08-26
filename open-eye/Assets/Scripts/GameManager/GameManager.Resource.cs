@@ -14,7 +14,7 @@ public partial class GameManager
     public int karma;
 
     private int mana;
-    private int Mana
+    public int Mana
     {
         get
         {
