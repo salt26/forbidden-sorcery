@@ -21,3 +21,4 @@ MonoBehaviour:
   aggro: 36
   movement: 2
   cost: 1350
+  level: 2

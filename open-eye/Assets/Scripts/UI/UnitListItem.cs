@@ -32,6 +32,9 @@ public class UnitListItem : MonoBehaviour
     Text movementValue;
 
     [SerializeField]
+    Text Level;
+
+    [SerializeField]
     Button button;
 
     [SerializeField]
@@ -69,6 +72,7 @@ public class UnitListItem : MonoBehaviour
         aggroValue.text = unitData.aggro.ToString();
         movementValue.text = unitData.movement.ToString();
         manaValue.text = unitData.cost.ToString();
+        Level.text = unitData.level.ToString();
         ShowCostObject(true);
     }
 

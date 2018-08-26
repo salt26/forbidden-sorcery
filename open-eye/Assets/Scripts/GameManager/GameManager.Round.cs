@@ -336,12 +336,17 @@ public partial class GameManager
             {
                 n.isPlayerTerritory = false;
                 n.isNeutralTerritory = false;
+                if (n.isPlayerTerritory)
+                {
+                    notoriety -= n.notoriety;
+                }                
             }
 
             if (n.allies.Count > 0)
             {
                 n.isPlayerTerritory = true;
                 n.isNeutralTerritory = false;
+                notoriety += n.notoriety;
             }
         }
         manaAmountText.SetManaAmount(mana, manaProduce);

@@ -81,6 +81,8 @@ public class DestroyedEnemyControlButton : MonoBehaviour
                 GameManager.instance.numberOfProducableAlliedEnemies[u.unitData] += 1;
             else
                 GameManager.instance.numberOfProducableAlliedEnemies[u.unitData] = 1;
+
+            GameManager.instance.notoriety += u.unitData.level;
         }
     }
 
@@ -88,7 +90,8 @@ public class DestroyedEnemyControlButton : MonoBehaviour
     {
         foreach (Unit u in selectedDestroyedEnemyList)
         {
-            //TODO
+            GameManager.instance.Mana += u.unitData.cost / 2 + u.unitData.level * 100;
+            GameManager.instance.notoriety += u.unitData.level * 2;
         }
     }
 
