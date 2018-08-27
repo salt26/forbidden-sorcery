@@ -6854,6 +6854,14 @@ MonoBehaviour:
   notoriety: 0
   karma: 0
   movingUnits: []
+  fightingNodeNumber: 0
+  fightAnimationDuration: 1.2
+  publicAllyAssassinAttack: 
+  publicAllyAttack: 
+  publicAllyMageAttack: 
+  publicEnemyAssassinAttack: 
+  publicEnemyAttack: 
+  publicEnemyMageAttack: 
 --- !u!4 &545173162
 Transform:
   m_ObjectHideFlags: 0
