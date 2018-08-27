@@ -380,6 +380,7 @@ public partial class GameManager
     {
         foreach (Node node in allNodes)
         {
+            Debug.Log(node);
             foreach (string enemyData in node.startEnemies)
             {
                 string[] spawnStatus = enemyData.Split(" "[0]);
