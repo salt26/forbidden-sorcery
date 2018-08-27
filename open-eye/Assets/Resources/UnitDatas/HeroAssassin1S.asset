@@ -14,7 +14,7 @@ MonoBehaviour:
   herotype: 4
   currentMoveType: 2
   unitName: HeroAssassin
-  spriteName: Assassin
+  spriteName: HeroAssassin
   iconName: Assassin
   attack: 6
   health: 10

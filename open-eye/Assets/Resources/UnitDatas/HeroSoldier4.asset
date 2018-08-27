@@ -14,7 +14,7 @@ MonoBehaviour:
   herotype: 0
   currentMoveType: 0
   unitName: HeroSoldier
-  spriteName: Saber
+  spriteName: HeroSaber
   iconName: Saber
   attack: 15
   health: 38

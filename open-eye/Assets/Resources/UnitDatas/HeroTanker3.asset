@@ -14,7 +14,7 @@ MonoBehaviour:
   herotype: 1
   currentMoveType: 0
   unitName: HeroTanker
-  spriteName: Shielder
+  spriteName: HeroShielder
   iconName: Shielder
   attack: 6
   health: 65

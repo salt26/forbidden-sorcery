@@ -14,7 +14,7 @@ MonoBehaviour:
   herotype: 3
   currentMoveType: 3
   unitName: HeroArcher
-  spriteName: Archer
+  spriteName: HeroArcher
   iconName: Archer
   attack: 28
   health: 27
