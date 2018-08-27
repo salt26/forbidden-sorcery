@@ -18,6 +18,8 @@ public class Node : MonoBehaviour
     [SerializeField]
     public int manaValue;
 
+    static UnitComparer unitComparer = new UnitComparer();
+
     [SerializeField]
     public List<Node> edges;
     public List<string> startEnemies;
@@ -156,6 +158,7 @@ public class Node : MonoBehaviour
 
     public void DecideAndShowMainUnit()
     {
+        units.Sort(unitComparer);
         bool decideAllyMainUnit = false, decideEnemyMainUnit = false;
 
         foreach (Unit unit in units)
@@ -181,10 +184,12 @@ public class Node : MonoBehaviour
             if (unit.mainUnitInNode)
             {
                 unit.GetComponent<SpriteRenderer>().enabled = true;
+                unit.GetComponent<SpriteRenderer>().sortingOrder = 2;
             }
             else
             {
                 unit.GetComponent<SpriteRenderer>().enabled = false;
+                unit.GetComponent<SpriteRenderer>().sortingOrder = 1;
             }
         }
     }
@@ -373,5 +378,21 @@ public class Node : MonoBehaviour
             if (unit.moveQueue.Count > 0 && !unit.IsMoving)
                 StartCoroutine(unit.moveQueue.Dequeue());
         }
+    }
+}
+
+public class UnitComparer : IComparer<Unit>
+{
+    public int Compare(Unit unitA, Unit unitB)
+    {
+        if (GameManager.instance.producedAlliedEnemies.Contains(unitA.unitData) && !GameManager.instance.producedAlliedEnemies.Contains(unitB.unitData)) return -1;
+        if (!GameManager.instance.producedAlliedEnemies.Contains(unitA.unitData) && GameManager.instance.producedAlliedEnemies.Contains(unitB.unitData)) return 1;
+        if (unitA.UD.aggro < unitB.UD.aggro) return 1;
+        if (unitA.UD.aggro > unitB.UD.aggro) return -1;
+        if (unitA.CurrentHealth < unitB.CurrentHealth) return -1;
+        if (unitA.CurrentHealth > unitB.CurrentHealth) return 1;
+        if (unitA.UD.movement < unitB.UD.movement) return 1;
+        if (unitA.UD.movement > unitB.UD.movement) return -1;
+        return 0;
     }
 }
