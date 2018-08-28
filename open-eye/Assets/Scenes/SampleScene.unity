@@ -723,6 +723,11 @@ Prefab:
       propertyPath: manaAmount
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: notoriety
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -2104,7 +2109,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: notoriety
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -3279,6 +3284,11 @@ Prefab:
       propertyPath: manaAmount
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: notoriety
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -3705,6 +3715,11 @@ Prefab:
         type: 2}
       propertyPath: startEnemies.Array.data[3]
       value: HeroSoldier2C 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: notoriety
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -6737,6 +6752,11 @@ Prefab:
       propertyPath: startEnemies.Array.data[2]
       value: HeroSoldier2C 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: notoriety
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -8089,6 +8109,11 @@ Prefab:
       propertyPath: manaAmount
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: notoriety
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -8339,6 +8364,11 @@ Prefab:
         type: 2}
       propertyPath: manaAmount
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: notoriety
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -9905,6 +9935,11 @@ Prefab:
         type: 2}
       propertyPath: startEnemies.Array.data[1]
       value: HeroAssassin3C 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: notoriety
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -11552,6 +11587,11 @@ Prefab:
       propertyPath: manaAmount
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: notoriety
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -12562,7 +12602,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: notoriety
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -13660,6 +13700,11 @@ Prefab:
       propertyPath: manaAmount
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: notoriety
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -14125,6 +14170,11 @@ Prefab:
         type: 2}
       propertyPath: manaAmount
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: notoriety
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -17203,6 +17253,11 @@ Prefab:
       propertyPath: manaAmount
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: notoriety
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -18781,6 +18836,11 @@ Prefab:
       propertyPath: manaAmount
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: notoriety
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -20341,6 +20401,11 @@ Prefab:
       propertyPath: manaAmount
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: notoriety
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -21073,6 +21138,11 @@ Prefab:
       propertyPath: startEnemies.Array.data[1]
       value: HeroAssassin3C 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: notoriety
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -21615,6 +21685,11 @@ Prefab:
       propertyPath: manaAmount
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: notoriety
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -22051,6 +22126,11 @@ Prefab:
       propertyPath: manaAmount
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: notoriety
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -22472,6 +22552,11 @@ Prefab:
       propertyPath: startEnemies.Array.data[2]
       value: HeroAssassin5S 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: notoriety
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -22662,7 +22747,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: notoriety
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -24274,6 +24359,11 @@ Prefab:
         type: 2}
       propertyPath: manaAmount
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: notoriety
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
