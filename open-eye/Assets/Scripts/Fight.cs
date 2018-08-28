@@ -56,6 +56,7 @@ class Fight
 
         if (result.unitList.Count > 0 && isAllyExist && isEnemyExist)
         {
+            GameManager.instance.fightingNodeNumber++;
             int allyAssassinAttack = 0;
             int enemyAssassinAttack = 0;
             int allyAttack = 0;
@@ -80,7 +81,9 @@ class Fight
                     enemyAssassinAttack += enemy.UD.attack;
                 }
             }
-            Debug.Log(allyAssassinAttack); Debug.Log(enemyAssassinAttack);
+
+            GameManager.instance.publicAllyAssassinAttack[GameManager.instance.fightingNodeNumber] = allyAssassinAttack;
+            GameManager.instance.publicEnemyAssassinAttack[GameManager.instance.fightingNodeNumber] = enemyAssassinAttack;
 
             foreach (ImaginaryUnit ally in result.unitList.FindAll((unit) => unit is ImaginaryUnit && unit.isAlly))
             {
@@ -128,7 +131,8 @@ class Fight
                 }
             }
 
-            Debug.Log(allyAttack); Debug.Log(enemyAttack);
+            GameManager.instance.publicAllyAttack[GameManager.instance.fightingNodeNumber] = allyAttack;
+            GameManager.instance.publicEnemyAttack[GameManager.instance.fightingNodeNumber] = enemyAttack;
 
             foreach (ImaginaryUnit ally in result.unitList.FindAll((unit) => unit is ImaginaryUnit && unit.isAlly))
             {
@@ -174,7 +178,8 @@ class Fight
                 }
             }
 
-            Debug.Log(allyMageAttack); Debug.Log(enemyMageAttack);
+            GameManager.instance.publicAllyMageAttack[GameManager.instance.fightingNodeNumber] = allyMageAttack;
+            GameManager.instance.publicEnemyMageAttack[GameManager.instance.fightingNodeNumber] = enemyMageAttack;
 
             foreach (ImaginaryUnit ally in result.unitList.FindAll((unit) => unit is ImaginaryUnit && unit.isAlly))
             {

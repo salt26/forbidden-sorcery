@@ -54,8 +54,25 @@ public partial class GameManager
         }
     }
 
+    [HideInInspector]
+    public int fightingNodeNumber = 0;
+
+    public float fightAnimationDuration;
+
+    [HideInInspector]
+    public List<int> publicAllyAssassinAttack = new List<int>();
+    [HideInInspector]
+    public List<int> publicAllyAttack = new List<int>();
+    [HideInInspector]
+    public List<int> publicAllyMageAttack = new List<int>();
+    [HideInInspector]
+    public List<int> publicEnemyAssassinAttack = new List<int>();
+    [HideInInspector]
+    public List<int> publicEnemyAttack = new List<int>();
+    [HideInInspector]
+    public List<int> publicEnemyMageAttack = new List<int>();
+
     private EnemySpawnDataContainer.EnemySpawnData nextSpawnData;
-    
 
     IEnumerator ChangePhase()
     {
@@ -91,7 +108,24 @@ public partial class GameManager
         InitializeResource();
         InitializeGame();
 
+        initializePublicLists();
+
+        FightAnimationUI.isPastFightAnimationFinished[0] = true;
+
         StandbyPhase();
+    }
+
+    void initializePublicLists()
+    {
+        for(int i = 1; i <= 100; i++)
+        {
+            publicAllyAssassinAttack.Add(0);
+            publicAllyAttack.Add(0);
+            publicAllyMageAttack.Add(0);
+            publicEnemyAssassinAttack.Add(0);
+            publicEnemyAttack.Add(0);
+            publicEnemyMageAttack.Add(0);
+        }
     }
 
     private void StandbyPhase()
@@ -138,6 +172,13 @@ public partial class GameManager
         }
     }
 
+    IEnumerator FinishFightPhase()
+    {
+        yield return new WaitUntil(() => FightAnimationUI.isPastFightAnimationFinished[fightingNodeNumber]);
+        FightAnimationUI.HideFightAnimationUI();
+        StartCoroutine(ChangePhase());
+    }
+
     private void FightPhase()
     {
         foreach(Node n in allNodes)
@@ -150,9 +191,23 @@ public partial class GameManager
 
         StartCoroutine(phaseAlertText.GetComponent<PhaseAlertText>().AlertPhase());
 
+        fightingNodeNumber = 0;
+
         ResolveAllFight();
 
-        StartCoroutine(ChangePhase());
+        for(int i = 1; i <= fightingNodeNumber; i++)
+        {
+            FightAnimationUI.isPastFightAnimationFinished[i] = false;
+        }
+
+        FightAnimationUI.ShowFightAnimationUI();
+
+        for (int i = 1; i <= fightingNodeNumber; i++)
+        {
+            StartCoroutine(FightAnimationUI.FightAnimation(i));
+        }
+
+        StartCoroutine(FinishFightPhase());
     }
 
     private void Captive()
@@ -380,7 +435,6 @@ public partial class GameManager
     {
         foreach (Node node in allNodes)
         {
-            Debug.Log(node);
             foreach (string enemyData in node.startEnemies)
             {
                 string[] spawnStatus = enemyData.Split(" "[0]);
