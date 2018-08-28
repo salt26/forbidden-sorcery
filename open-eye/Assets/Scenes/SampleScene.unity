@@ -6853,6 +6853,7 @@ MonoBehaviour:
   manaAmountText: {fileID: 758138316}
   notoriety: 0
   karma: 0
+  maxNotoriety: 50
   movingUnits: []
   fightingNodeNumber: 0
   fightAnimationDuration: 0.1
@@ -10970,6 +10971,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e3a3a5bb1d92074e99f32e2464dc485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  notorietyPivotGuage: 0
 --- !u!1 &909239694
 GameObject:
   m_ObjectHideFlags: 0
