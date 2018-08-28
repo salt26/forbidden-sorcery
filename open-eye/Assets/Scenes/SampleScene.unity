@@ -665,7 +665,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: type
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -3221,7 +3221,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: type
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -6855,7 +6855,7 @@ MonoBehaviour:
   karma: 0
   movingUnits: []
   fightingNodeNumber: 0
-  fightAnimationDuration: 1.2
+  fightAnimationDuration: 0.1
   publicAllyAssassinAttack: 
   publicAllyAttack: 
   publicAllyMageAttack: 
@@ -9838,7 +9838,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: type
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -11739,7 +11739,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: startEnemies.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4002299396239596, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_LocalPosition.x
@@ -17615,7 +17615,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: startEnemies.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4002299396239596, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_LocalPosition.x
@@ -17722,7 +17722,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: startEnemies.Array.data[0]
-      value: HeroMage1S 1
+      value: HeroAssassin1S 1
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -21557,7 +21557,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: type
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -22399,7 +22399,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: type
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
