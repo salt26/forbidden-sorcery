@@ -11,13 +11,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 613be670f9fd4ca4a892bafb6de7f020, type: 3}
   m_Name: Skeleton
   m_EditorClassIdentifier: 
-  herotype: 0
+  herotype: 3
   currentMoveType: 0
   unitName: Skeleton
-  spriteName: Saber
-  iconName: Saber
-  attack: 3
-  health: 5
+  spriteName: Archer
+  iconName: Archer
+  attack: 5
+  health: 3
   aggro: 60
   movement: 1
-  cost: 300
+  cost: 500
+  level: 0
