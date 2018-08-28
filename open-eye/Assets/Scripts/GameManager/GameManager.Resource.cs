@@ -13,6 +13,8 @@ public partial class GameManager
     [HideInInspector]
     public int karma;
 
+    public int maxNotoriety;
+
     private int mana;
     public int Mana
     {
