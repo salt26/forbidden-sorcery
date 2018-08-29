@@ -149,7 +149,6 @@ public class UnitListScrollView : MonoBehaviour
         }
     }
     
-
     public UnitListScrollView SetControlDestroyedEnemiesList(List<Unit> destroyedEnemies, UnitListItem.OnClickUnitListItem onClick = null)
     {
         ClearItem();

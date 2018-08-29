@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Name: HeroSoldier4
   m_EditorClassIdentifier: 
   herotype: 0
-  currentMoveType: 0
   unitName: HeroSoldier
   spriteName: Saber
   iconName: Saber
-  attack: 15
-  health: 38
+  attack: 17
+  health: 75
   aggro: 66
   movement: 1
   cost: 1000

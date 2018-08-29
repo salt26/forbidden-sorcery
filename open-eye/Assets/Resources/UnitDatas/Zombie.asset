@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Name: Zombie
   m_EditorClassIdentifier: 
   herotype: 1
-  currentMoveType: 0
   unitName: Zombie
   spriteName: shielder
   iconName: shielder
   attack: 1
-  health: 9
+  health: 12
   aggro: 90
   movement: 1
   cost: 400

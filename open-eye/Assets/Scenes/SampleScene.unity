@@ -807,7 +807,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: startEnemies.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4002299396239596, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_LocalPosition.x
@@ -863,7 +863,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 200
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -929,7 +929,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: startEnemies.Array.data[0]
-      value: HeroAssassin2 S 1
+      value: HeroAssassin2 C 1
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -1154,7 +1154,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -1690,7 +1690,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -2408,7 +2408,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -2674,7 +2674,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -2978,7 +2978,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -3409,7 +3409,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 250
+      value: 125
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -3720,6 +3720,11 @@ Prefab:
         type: 2}
       propertyPath: notoriety
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: manaValue
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -4349,7 +4354,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -4995,7 +5000,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -5217,7 +5222,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 100
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -5860,7 +5865,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 400
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -6071,7 +6076,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 250
+      value: 125
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -6542,7 +6547,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -6756,6 +6761,11 @@ Prefab:
         type: 2}
       propertyPath: notoriety
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: manaValue
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -7576,7 +7586,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -8497,7 +8507,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -9220,7 +9230,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: startEnemies.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4002299396239596, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_LocalPosition.x
@@ -9266,7 +9276,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 200
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -9347,7 +9357,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: startEnemies.Array.data[0]
-      value: HeroSoldier1 S 1
+      value: HeroMage1 C 1
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -9650,7 +9660,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 200
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -10067,7 +10077,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -10800,7 +10810,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 100
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -11291,7 +11301,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -11827,7 +11837,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -12361,7 +12371,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -12735,7 +12745,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -13974,7 +13984,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -14497,7 +14507,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: startEnemies.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4002299396239596, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_LocalPosition.x
@@ -14543,7 +14553,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 200
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -14624,7 +14634,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: startEnemies.Array.data[0]
-      value: HeroSoldier1 S 1
+      value: HeroSoldier1 C 1
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -14896,7 +14906,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -15333,7 +15343,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -15784,7 +15794,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -16016,7 +16026,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -16967,7 +16977,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -17385,7 +17395,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -17718,7 +17728,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -18546,7 +18556,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 350
+      value: 175
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -19099,7 +19109,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -19398,7 +19408,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -19806,7 +19816,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 400
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -20708,7 +20718,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -21338,7 +21348,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -21691,6 +21701,11 @@ Prefab:
         type: 2}
       propertyPath: notoriety
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: manaValue
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -23688,7 +23703,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 350
+      value: 175
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -24042,7 +24057,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -24366,6 +24381,11 @@ Prefab:
         type: 2}
       propertyPath: notoriety
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
+        type: 2}
+      propertyPath: manaValue
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
@@ -25149,7 +25169,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 350
+      value: 175
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -25922,7 +25942,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -26658,7 +26678,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -26840,7 +26860,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: startEnemies.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4002299396239596, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_LocalPosition.x
@@ -26896,7 +26916,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 200
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -26962,7 +26982,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: startEnemies.Array.data[0]
-      value: HeroAssassin2 S 1
+      value: HeroAssassin2 C 1
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -27171,7 +27191,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: startEnemies.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4002299396239596, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_LocalPosition.x
@@ -27227,7 +27247,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: manaValue
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -27278,12 +27298,12 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: startEnemies.Array.data[0]
-      value: HeroAssassin2 S 2
+      value: HeroAssassin2 S 1
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: startEnemies.Array.data[1]
-      value: HeroMage2 S 1
+      value: HeroSoldier2 S 1
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}

@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Name: HeroArcher1
   m_EditorClassIdentifier: 
   herotype: 3
-  currentMoveType: 0
   unitName: HeroArcher
   spriteName: Archer
   iconName: Archer
-  attack: 12
-  health: 15
+  attack: 18
+  health: 30
   aggro: 58
   movement: 1
   cost: 1200
