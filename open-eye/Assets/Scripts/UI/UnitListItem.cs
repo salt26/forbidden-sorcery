@@ -68,9 +68,9 @@ public class UnitListItem : MonoBehaviour
         unitName.text = unitData.unitName;
         unitIcon.sprite = AssetManager.Instance.GetSprite(unitData.iconName);
         attackValue.text = unitData.attack.ToString();
-        healthValue.text = unitData.health.ToString();
+        healthValue.text = string.Format("{0}/{1}", unitData.health, unitData.health);
         aggroValue.text = unitData.aggro.ToString();
-        movementValue.text = unitData.movement.ToString();
+        movementValue.text = string.Format("{0}/{1}", unitData.movement, unitData.movement);
         manaValue.text = unitData.cost.ToString();
         Level.text = unitData.level.ToString();
         ShowCostObject(true);
