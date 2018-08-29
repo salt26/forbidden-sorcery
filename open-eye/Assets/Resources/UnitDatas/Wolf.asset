@@ -19,5 +19,5 @@ MonoBehaviour:
   health: 6
   aggro: 70
   movement: 1
-  cost: 300
+  cost: 400
   level: 0

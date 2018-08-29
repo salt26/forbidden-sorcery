@@ -15,7 +15,7 @@ MonoBehaviour:
   unitName: Skeleton
   spriteName: Archer
   iconName: Archer
-  attack: 4
+  attack: 5
   health: 3
   aggro: 60
   movement: 1

@@ -15,8 +15,8 @@ MonoBehaviour:
   unitName: HeroSoldier
   spriteName: Saber
   iconName: Saber
-  attack: 16
-  health: 75
+  attack: 17
+  health: 80
   aggro: 62
   movement: 1
   cost: 1000

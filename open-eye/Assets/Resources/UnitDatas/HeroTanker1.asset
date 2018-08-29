@@ -15,8 +15,8 @@ MonoBehaviour:
   unitName: HeroTanker
   spriteName: Shielder
   iconName: Shielder
-  attack: 5
-  health: 90
+  attack: 6
+  health: 95
   aggro: 80
   movement: 1
   cost: 900
