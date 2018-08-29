@@ -38,8 +38,6 @@ public partial class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject destroyedEnemyControlUnit;
     [HideInInspector]
-    public List<UnitData> producableAlliedEnemies = new List<UnitData>();
-    [HideInInspector]
     public List<UnitData> producedAlliedEnemies = new List<UnitData>();
     [HideInInspector]
     public Dictionary<UnitData, int> numberOfProducableAlliedEnemies = new Dictionary<UnitData, int>();

@@ -15,7 +15,7 @@ MonoBehaviour:
   unitName: Wolf
   spriteName: Saber
   iconName: Saber
-  attack: 3
+  attack: 2
   health: 6
   aggro: 70
   movement: 1

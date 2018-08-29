@@ -16,7 +16,7 @@ MonoBehaviour:
   spriteName: Assassin
   iconName: Assassin
   attack: 21
-  health: 41
+  health: 50
   aggro: 30
   movement: 2
   cost: 1800

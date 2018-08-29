@@ -16,7 +16,7 @@ MonoBehaviour:
   spriteName: Shielder
   iconName: Shielder
   attack: 7
-  health: 110
+  health: 130
   aggro: 84
   movement: 1
   cost: 1300

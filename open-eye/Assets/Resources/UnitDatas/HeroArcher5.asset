@@ -16,7 +16,7 @@ MonoBehaviour:
   spriteName: Archer
   iconName: Archer
   attack: 34
-  health: 50
+  health: 70
   aggro: 50
   movement: 1
   cost: 2000

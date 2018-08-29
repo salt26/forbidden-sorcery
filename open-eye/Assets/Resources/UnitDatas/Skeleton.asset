@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Name: Skeleton
   m_EditorClassIdentifier: 
   herotype: 3
-  currentMoveType: 0
   unitName: Skeleton
   spriteName: Archer
   iconName: Archer
-  attack: 5
+  attack: 4
   health: 3
   aggro: 60
   movement: 1

@@ -366,7 +366,14 @@ public class Node : MonoBehaviour
                 if (isActivated)
                 {
                     GameManager.instance.producedAlliedEnemies.Remove(unitData);
-                    GameManager.instance.producableAlliedEnemies.Add(unitData);
+                    if (GameManager.instance.numberOfProducableAlliedEnemies.ContainsKey(unitData))
+                    {
+                        GameManager.instance.numberOfProducableAlliedEnemies[unitData] += 1;
+                    }
+                    else
+                    {
+                        GameManager.instance.numberOfProducableAlliedEnemies[unitData] = 1;
+                    }
                 }
             }
             Destroy(u.gameObject);
