@@ -16,8 +16,8 @@ MonoBehaviour:
   spriteName: Saber
   iconName: Saber
   attack: 11
-  health: 45
+  health: 55
   aggro: 60
   movement: 1
-  cost: 700
+  cost: 800
   level: 1

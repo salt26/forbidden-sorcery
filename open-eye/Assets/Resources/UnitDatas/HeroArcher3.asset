@@ -15,9 +15,9 @@ MonoBehaviour:
   unitName: HeroArcher
   spriteName: Archer
   iconName: Archer
-  attack: 26
-  health: 50
+  attack: 30
+  health: 60
   aggro: 54
   movement: 1
-  cost: 1600
+  cost: 1800
   level: 3

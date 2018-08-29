@@ -15,7 +15,7 @@ MonoBehaviour:
   unitName: HeroMage
   spriteName: Caster
   iconName: Caster
-  attack: 3
+  attack: 4
   health: 25
   aggro: 18
   movement: 1
