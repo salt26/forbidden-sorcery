@@ -74,9 +74,12 @@ public partial class GameManager
             Spawner.spawner.Spawn(item.unitData, true, castle);
         }
         List<UnitData> unitDatas = new List<UnitData>();
-        foreach (UnitData alliedEnemy in GameManager.instance.producableAlliedEnemies)
+        foreach (var alliedEnemy in GameManager.instance.numberOfProducableAlliedEnemies)
         {
-            unitDatas.Add(alliedEnemy);
+            if (alliedEnemy.Value > 0)
+                unitDatas.Add(alliedEnemy.Key);
+            Debug.Log(alliedEnemy.Value);
+            Debug.Log(alliedEnemy.Key);
         }
         unitDatas.AddRange(config.producableUnits);
         unitListScrollView.SetUnitDataList(unitDatas, OnSelectUnitForProduce);
@@ -214,9 +217,12 @@ public partial class GameManager
         {
             unitListScrollView.ShowList(true);
             List<UnitData> unitDatas = new List<UnitData>();
-            foreach (UnitData alliedEnemy in GameManager.instance.producableAlliedEnemies)
+            foreach (var alliedEnemy in GameManager.instance.numberOfProducableAlliedEnemies)
             {
-                unitDatas.Add(alliedEnemy);
+                if (alliedEnemy.Value > 0)
+                    unitDatas.Add(alliedEnemy.Key);
+                Debug.Log(alliedEnemy.Value);
+                Debug.Log(alliedEnemy.Key);
             }
             unitDatas.AddRange(config.producableUnits);
             unitListScrollView.SetUnitDataList(unitDatas, OnSelectUnitForProduce);
@@ -226,9 +232,12 @@ public partial class GameManager
             if (selectedNode != null)
             {
                 List<UnitData> unitDatas = new List<UnitData>();
-                foreach (UnitData alliedEnemy in GameManager.instance.producableAlliedEnemies)
+                foreach (var alliedEnemy in GameManager.instance.numberOfProducableAlliedEnemies)
                 {
-                    unitDatas.Add(alliedEnemy);
+                    if (alliedEnemy.Value > 0)
+                        unitDatas.Add(alliedEnemy.Key);
+                    Debug.Log(alliedEnemy.Value);
+                    Debug.Log(alliedEnemy.Key);
                 }
                 unitDatas.AddRange(config.producableUnits);
                 unitListScrollView.SetUnitDataList(unitDatas, OnSelectUnitForProduce);

@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour, IUnitInterface
 {
+    public enum MoveType
+    {
+        directToCastle,
+        nearTerritory,
+        stay,
+        cover
+    }
+
     public delegate void OnMoveDone();
 
     [HideInInspector]
@@ -21,6 +29,7 @@ public class Unit : MonoBehaviour, IUnitInterface
 
     public UnitData unitData;
     public OnMoveDone onMoveDone;
+    public MoveType currentMoveType;
 
     public UnitData UD
     {
@@ -50,7 +59,7 @@ public class Unit : MonoBehaviour, IUnitInterface
             if (isAlly)
                 return Movement > 0 && !position.isFighting;
             else
-                return unitData.currentMoveType != UnitData.MoveType.stay && Movement > 0 && !position.isFighting;
+                return currentMoveType != Unit.MoveType.stay && Movement > 0 && !position.isFighting;
         }
     }
 
@@ -226,11 +235,11 @@ public class Unit : MonoBehaviour, IUnitInterface
     public Node NextNode()
     {
         Node nextNode = position.edges[0];
-        if (unitData.currentMoveType == UnitData.MoveType.stay)
+        if (currentMoveType == MoveType.stay)
         {
             return position;
         }
-        if (unitData.currentMoveType == UnitData.MoveType.directToCastle)
+        if (currentMoveType == MoveType.directToCastle)
         {
             foreach (Node node in position.edges)
             {
@@ -246,7 +255,7 @@ public class Unit : MonoBehaviour, IUnitInterface
                 }
             }
         }
-        else if (unitData.currentMoveType == UnitData.MoveType.cover)
+        else if (currentMoveType == MoveType.cover)
         {
             if (position.allies.Count == 0 && previousNode != null)
             {
@@ -356,8 +365,6 @@ public class Unit : MonoBehaviour, IUnitInterface
                 }
             }
         }
-
-
         return nextNode;
     }
 }

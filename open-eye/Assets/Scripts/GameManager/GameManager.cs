@@ -47,6 +47,8 @@ public partial class GameManager : MonoBehaviour
     public GameObject phaseAlertText;
     [SerializeField]
     public Map map;
+    [HideInInspector]
+    private bool isLast = false;
 
     public List<Unit> SelectedDestroyedEnemyList
     {

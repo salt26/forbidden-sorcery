@@ -4,15 +4,6 @@ using UnityEngine;
 
 public class UnitData : ScriptableObject
 {
-
-    public enum MoveType
-    {
-        directToCastle,
-        nearTerritory,
-        stay,
-        cover
-    }
-
     public enum HeroType
     {
         soldier,
@@ -24,7 +15,6 @@ public class UnitData : ScriptableObject
 
     public HeroType herotype;
 
-    public MoveType currentMoveType;
     public string unitName;
     public string spriteName;
     public string iconName;
