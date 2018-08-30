@@ -130,6 +130,7 @@ public class UnitListItem : MonoBehaviour
         {
             onClick(this);
         }
+        isSelected = !isSelected;
         var colors = button.colors;
         var color = colorAlly;
         if (unit != null)
