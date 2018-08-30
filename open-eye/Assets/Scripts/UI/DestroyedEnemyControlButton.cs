@@ -76,7 +76,6 @@ public class DestroyedEnemyControlButton : MonoBehaviour
     {
         foreach (Unit u in selectedDestroyedEnemyList)
         {
-            GameManager.instance.producableAlliedEnemies.Add(u.unitData);
             if (GameManager.instance.numberOfProducableAlliedEnemies.ContainsKey(u.unitData))
                 GameManager.instance.numberOfProducableAlliedEnemies[u.unitData] += 1;
             else

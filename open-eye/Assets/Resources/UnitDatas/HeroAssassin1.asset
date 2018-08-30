@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Name: HeroAssassin1
   m_EditorClassIdentifier: 
   herotype: 4
-  currentMoveType: 0
   unitName: HeroAssassin
   spriteName: Assassin
   iconName: Assassin
-  attack: 6
-  health: 10
+  attack: 12
+  health: 35
   aggro: 38
   movement: 2
   cost: 1200

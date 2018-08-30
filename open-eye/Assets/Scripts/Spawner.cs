@@ -22,18 +22,17 @@ public class Spawner : MonoBehaviour
         {
             bool isActivated = false;
             UnitData uD = null;
-            foreach (var unitD in GameManager.instance.producableAlliedEnemies)
+            foreach (var unitD in GameManager.instance.numberOfProducableAlliedEnemies)
             {
-                if (unitD.Equals(unitData))
+                if (unitD.Key.Equals(unitData))
                 {
                     isActivated = true;
-                    uD = unitD;
+                    uD = unitD.Key;
                     break;
                 }
             }
             if (isActivated)
             {
-                GameManager.instance.producableAlliedEnemies.Remove(uD);
                 GameManager.instance.producedAlliedEnemies.Add(uD);
                 GameManager.instance.numberOfProducableAlliedEnemies[uD] -= 1;
             }

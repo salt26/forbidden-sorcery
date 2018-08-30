@@ -17,6 +17,9 @@ public class UnitListItem : MonoBehaviour
     GameObject costObject;
 
     [SerializeField]
+    GameObject ProducableCount;
+
+    [SerializeField]
     Text manaValue;
 
     [SerializeField]
@@ -32,7 +35,10 @@ public class UnitListItem : MonoBehaviour
     Text movementValue;
 
     [SerializeField]
-    Text Level;
+    Text level;
+
+    [SerializeField]
+    public Text count;
 
     [SerializeField]
     Button button;
@@ -59,6 +65,23 @@ public class UnitListItem : MonoBehaviour
         healthValue.text = string.Format("{0}/{1}", unit.CurrentHealth, unit.unitData.health);
         movementValue.text = string.Format("{0}/{1}", unit.Movement, unit.unitData.movement);
         ShowCostObject(false);
+        ShowProducableCount(false);
+    }
+
+    public void SetProducableUnitData(UnitData unitData, OnClickUnitListItem onClick)
+    {
+        this.unitData = unitData;
+        this.onClick = onClick;
+        unitName.text = unitData.unitName;
+        unitIcon.sprite = AssetManager.Instance.GetSprite(unitData.iconName);
+        attackValue.text = unitData.attack.ToString();
+        healthValue.text = string.Format("{0}/{1}", unitData.health, unitData.health);
+        aggroValue.text = unitData.aggro.ToString();
+        movementValue.text = string.Format("{0}/{1}", unitData.movement, unitData.movement);
+        manaValue.text = unitData.cost.ToString();
+        level.text = unitData.level.ToString();
+        ShowCostObject(true);
+        ShowProducableCount(true);
     }
 
     public void SetUnitData(UnitData unitData, OnClickUnitListItem onClick)
@@ -68,12 +91,13 @@ public class UnitListItem : MonoBehaviour
         unitName.text = unitData.unitName;
         unitIcon.sprite = AssetManager.Instance.GetSprite(unitData.iconName);
         attackValue.text = unitData.attack.ToString();
-        healthValue.text = unitData.health.ToString();
+        healthValue.text = string.Format("{0}/{1}", unitData.health, unitData.health);
         aggroValue.text = unitData.aggro.ToString();
-        movementValue.text = unitData.movement.ToString();
+        movementValue.text = string.Format("{0}/{1}", unitData.movement, unitData.movement);
         manaValue.text = unitData.cost.ToString();
-        Level.text = unitData.level.ToString();
+        level.text = unitData.level.ToString();
         ShowCostObject(true);
+        ShowProducableCount(false);
     }
 
     public void SetDestroyedEnemyDataForControlScrollView(Unit unit, OnClickUnitListItem onClick)
@@ -93,6 +117,11 @@ public class UnitListItem : MonoBehaviour
     public void ShowCostObject(bool show)
     {
         costObject.SetActive(show);
+    }
+
+    public void ShowProducableCount(bool show)
+    {
+        ProducableCount.SetActive(show);
     }
 
     public void OnItemClick()

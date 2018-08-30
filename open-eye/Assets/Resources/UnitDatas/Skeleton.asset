@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Name: Skeleton
   m_EditorClassIdentifier: 
   herotype: 3
-  currentMoveType: 0
   unitName: Skeleton
   spriteName: Archer
   iconName: Archer

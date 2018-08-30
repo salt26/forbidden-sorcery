@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Name: HeroMage2
   m_EditorClassIdentifier: 
   herotype: 2
-  currentMoveType: 0
   unitName: HeroMage
   spriteName: Caster
   iconName: Caster
-  attack: 7
-  health: 11
+  attack: 8
+  health: 36
   aggro: 16
   movement: 1
-  cost: 1750
+  cost: 1900
   level: 2

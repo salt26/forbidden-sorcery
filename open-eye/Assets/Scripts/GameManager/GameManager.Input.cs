@@ -73,12 +73,18 @@ public partial class GameManager
             Mana -= item.unitData.cost;
             Spawner.spawner.Spawn(item.unitData, true, castle);
         }
-        List<UnitData> unitDatas = new List<UnitData>();
-        foreach (UnitData alliedEnemy in GameManager.instance.producableAlliedEnemies)
+        Dictionary<UnitData, int> unitDatas = new Dictionary<UnitData, int>();
+        foreach (var producableAlliedEnemy in numberOfProducableAlliedEnemies)
         {
-            unitDatas.Add(alliedEnemy);
+            if (!unitDatas.ContainsKey(producableAlliedEnemy.Key))
+            {
+                unitDatas.Add(producableAlliedEnemy.Key, producableAlliedEnemy.Value);
+            }
         }
-        unitDatas.AddRange(config.producableUnits);
+        foreach (UnitData unitdata in config.producableUnits)
+        {
+            unitDatas.Add(unitdata, int.MaxValue);
+        }
         unitListScrollView.SetUnitDataList(unitDatas, OnSelectUnitForProduce);
     }
 
@@ -213,24 +219,36 @@ public partial class GameManager
         if (unitListScrollView.nowListShown == false)
         {
             unitListScrollView.ShowList(true);
-            List<UnitData> unitDatas = new List<UnitData>();
-            foreach (UnitData alliedEnemy in GameManager.instance.producableAlliedEnemies)
+            Dictionary<UnitData, int> unitDatas = new Dictionary<UnitData, int>();
+            foreach (var producableAlliedEnemy in numberOfProducableAlliedEnemies)
             {
-                unitDatas.Add(alliedEnemy);
+                if (!unitDatas.ContainsKey(producableAlliedEnemy.Key))
+                {
+                    unitDatas.Add(producableAlliedEnemy.Key, producableAlliedEnemy.Value);
+                }
             }
-            unitDatas.AddRange(config.producableUnits);
+            foreach (UnitData unitdata in config.producableUnits)
+            {
+                unitDatas.Add(unitdata, int.MaxValue);
+            }
             unitListScrollView.SetUnitDataList(unitDatas, OnSelectUnitForProduce);
         }
         else
         {
             if (selectedNode != null)
             {
-                List<UnitData> unitDatas = new List<UnitData>();
-                foreach (UnitData alliedEnemy in GameManager.instance.producableAlliedEnemies)
+                Dictionary<UnitData, int> unitDatas = new Dictionary<UnitData, int>();
+                foreach (var producableAlliedEnemy in numberOfProducableAlliedEnemies)
                 {
-                    unitDatas.Add(alliedEnemy);
+                    if (!unitDatas.ContainsKey(producableAlliedEnemy.Key))
+                    {
+                        unitDatas.Add(producableAlliedEnemy.Key, producableAlliedEnemy.Value);
+                    }
                 }
-                unitDatas.AddRange(config.producableUnits);
+                foreach (UnitData unitdata in config.producableUnits)
+                {
+                    unitDatas.Add(unitdata, int.MaxValue);
+                }
                 unitListScrollView.SetUnitDataList(unitDatas, OnSelectUnitForProduce);
                 selectedNode.GetComponent<SpriteRenderer>().color = unSelectedColor;
             }

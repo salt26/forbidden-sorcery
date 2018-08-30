@@ -138,6 +138,10 @@ public partial class GameManager
 
         CheckWin();
         CheckAndSpawnEnemy();
+        if (isLast)
+        {
+            AllEnemyAttack();
+        }
 
         StartCoroutine(ChangePhase());
     }
@@ -322,7 +326,8 @@ public partial class GameManager
                 }
                 string[] spawnData = enemyData.enemyStatus.Split(" "[0]);
                 string spawnName = spawnData[0];
-                int howMuchSpawn = int.Parse(spawnData[1]);
+                string moveType = spawnData[1];
+                int howMuchSpawn = int.Parse(spawnData[2]);
                 if (enemyData.requiredNotoriety <= notoriety)
                 {
                     for (int i=0; i<howMuchSpawn; i++)
@@ -330,10 +335,32 @@ public partial class GameManager
                         var spawnNode = spawners[Random.Range(0, spawners.Count)];
                         Unit enemy = Spawner.spawner.Spawn(AssetManager.Instance.GetUnitData(spawnName), false, spawnNode);
                         enemy.onMoveDone += OnEnemyMoveDone;
+                        switch (moveType)
+                        {
+                            case "S":
+                                enemy.currentMoveType = Unit.MoveType.stay;
+                                break;
+                            case "D":
+                                enemy.currentMoveType = Unit.MoveType.directToCastle;
+                                break;
+                            case "C":
+                                enemy.currentMoveType = Unit.MoveType.cover;
+                                break;
+                            case "N":
+                                enemy.currentMoveType = Unit.MoveType.nearTerritory;
+                                break;
+                        }
                     }
                 }
             }
-            nextSpawnData = config.enemySpawnDataContainer.GetNextEnemySpawnData(karma);
+            if (config.enemySpawnDataContainer.GetNextEnemySpawnData(karma) != null) {
+                nextSpawnData = config.enemySpawnDataContainer.GetNextEnemySpawnData(karma);
+            }
+            else
+            {
+                nextSpawnData = null;
+                isLast = true;
+            }
         }
     }
 
@@ -439,14 +466,29 @@ public partial class GameManager
             {
                 string[] spawnStatus = enemyData.Split(" "[0]);
                 string spawnName = spawnStatus[0];
-                int number = int.Parse(spawnStatus[1]);
+                string moveType = spawnStatus[1];
+                int number = int.Parse(spawnStatus[2]);
                 
                 for (int i = 0; i < number; i++)
                 {
                     Unit enemy = Spawner.spawner.Spawn(AssetManager.Instance.GetUnitData(spawnName), false, node);
                     enemy.onMoveDone += OnEnemyMoveDone;
+                    switch (moveType)
+                    {
+                        case "S":
+                            enemy.currentMoveType = Unit.MoveType.stay;
+                            break;
+                        case "D":
+                            enemy.currentMoveType = Unit.MoveType.directToCastle;
+                            break;
+                        case "C":
+                            enemy.currentMoveType = Unit.MoveType.cover;
+                            break;
+                        case "N":
+                            enemy.currentMoveType = Unit.MoveType.nearTerritory;
+                            break;
+                    }
                 }
-
             }
 
             foreach (string allyData in node.startAllies)
@@ -459,6 +501,16 @@ public partial class GameManager
                 {
                     Unit ally = Spawner.spawner.Spawn(AssetManager.Instance.GetUnitData(spawnName), true, node);
                 }
+            }
+        }
+    }
+    private void AllEnemyAttack()
+    {
+        foreach (Node node in allNodes)
+        {
+            foreach (Unit unit in node.enemies)
+            {
+                unit.currentMoveType = Unit.MoveType.directToCastle;
             }
         }
     }
