@@ -156,10 +156,10 @@ public class Unit : MonoBehaviour, IUnitInterface
         {
             deltaTime += Time.deltaTime;
             rate = deltaTime / duration;
-            transform.position = Vector3.Lerp(initialPosition, to.transform.position, rate);
+            transform.position = Vector3.Lerp(initialPosition, to.CentralStandingPosition, rate);
             yield return null;
         }
-        transform.position = to.transform.position;                   //여기까지의 코드를 실행하는 데 0.5초(=이동시간)이 걸림
+        transform.position = to.CentralStandingPosition;                   //여기까지의 코드를 실행하는 데 0.5초(=이동시간)이 걸림
 
         to.DecideAndShowMainUnit();
 

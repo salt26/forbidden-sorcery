@@ -27,6 +27,14 @@ public class Node : MonoBehaviour
 
     private Vector3 centralStandingPosition, allyStandingPosition, enemyStandingPosition;
 
+    public Vector3 CentralStandingPosition
+    {
+        get
+        {
+            return centralStandingPosition;
+        }
+    }
+
     public bool IsCastle
     {
         get
