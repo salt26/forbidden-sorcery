@@ -449,6 +449,5 @@ public class Unit : MonoBehaviour, IUnitInterface
         Debug.Log(targetNode);
         Debug.Log(nextNode);
         return nextNode;
-        
     }
 }
