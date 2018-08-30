@@ -103,6 +103,8 @@ public partial class GameManager
 
         if (destroyedEnemies.Count == 0)
             endTurnButton.interactable = true;
+        else
+            endTurnButton.interactable = false;
 
         var unitScrollView = unitListScrollView.SetControlDestroyedEnemiesList(destroyedEnemies, OnSelectUnitForControlDestroyedEnemy);
         destroyedEnemyControlScrollView.SetControlDestroyedEnemiesList(selectedDestroyedEnemyList, OnSelectUnitForControlDestroyedEnemy);
