@@ -335,9 +335,6 @@ public partial class GameManager
                         var spawnNode = spawners[Random.Range(0, spawners.Count)];
                         Unit enemy = Spawner.spawner.Spawn(AssetManager.Instance.GetUnitData(spawnName), false, spawnNode);
                         enemy.onMoveDone += OnEnemyMoveDone;
-                        Debug.Log(enemy.position);
-                        Debug.Log(enemy.currentMoveType);
-                        Debug.Log(moveType);
                         switch (moveType)
                         {
                             case "S":
@@ -353,7 +350,6 @@ public partial class GameManager
                                 enemy.currentMoveType = Unit.MoveType.nearTerritory;
                                 break;
                         }
-                        Debug.Log(enemy.currentMoveType);
                     }
                 }
             }
