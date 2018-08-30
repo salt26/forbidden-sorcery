@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   herotype: 4
   unitName: HeroAssassin
-  spriteName: Assassin
+  spriteName: HeroAssassin
   iconName: Assassin
   attack: 12
   health: 35

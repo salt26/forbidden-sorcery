@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   herotype: 2
   unitName: HeroMage
-  spriteName: Caster
+  spriteName: HeroCaster
   iconName: Caster
   attack: 8
   health: 36

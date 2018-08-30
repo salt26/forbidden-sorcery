@@ -88,7 +88,14 @@ public class Unit : MonoBehaviour, IUnitInterface
     public void SetUnit(UnitData unitData)
     {
         this.unitData = unitData;
-        GetComponent<SpriteRenderer>().sprite = AssetManager.Instance.GetSprite(unitData.spriteName);
+        if (GameManager.instance.numberOfProducableAlliedEnemies.ContainsKey(unitData))
+            GetComponent<SpriteRenderer>().sprite = AssetManager.Instance.GetSprite("Dominated" + unitData.spriteName);
+        else
+        {
+            GetComponent<SpriteRenderer>().sprite = AssetManager.Instance.GetSprite(unitData.spriteName);
+            if (unitData.spriteName.Contains("Hero"))
+                GetComponent<SpriteRenderer>().flipX = true;
+        }
         CurrentHealth = unitData.health;
         Movement = 0;
     }

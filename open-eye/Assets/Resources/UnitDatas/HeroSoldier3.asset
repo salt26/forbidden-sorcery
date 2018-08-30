@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   herotype: 0
   unitName: HeroSoldier
-  spriteName: Saber
+  spriteName: HeroSaber
   iconName: Saber
   attack: 22
   health: 100
