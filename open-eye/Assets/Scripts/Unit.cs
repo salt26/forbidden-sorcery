@@ -93,33 +93,41 @@ public class Unit : MonoBehaviour, IUnitInterface
 
     public void MoveBetweenNodes(Node from, Node to)
     {
-        if (!from.Equals(to))
+        if (!GameManager.instance.movingUnits.Contains(this))
+            GameManager.instance.movingUnits.Add(this);
+
+        if (Movement > 0)
         {
-            if (!GameManager.instance.movingUnits.Contains(this))
-                GameManager.instance.movingUnits.Add(this);
+            Movement--;
+            position = to;
 
-            if (Movement > 0)
-            {
-                Movement--;
-                position = to;
+            //if (isAlly)
+            //{
+            //    from.RefineUnitPosition(from.allies.Count - 1, from.enemies.Count, this);
+            //}
+            //else
+            //{
+            //    from.RefineUnitPosition(from.allies.Count, from.enemies.Count - 1, this);
+            //}
+            List<Unit> fromUnitList = from.units;
+            fromUnitList.Remove(this);
+            List<Unit> toUnitList = to.units;
+            toUnitList.Add(this);
+            moveQueue.Enqueue(MoveBetweenNodesAnimation(from, to));
 
-                List<Unit> fromUnitList = from.units;
-                fromUnitList.Remove(this);
-                List<Unit> toUnitList = to.units;
-                toUnitList.Add(this);
-                moveQueue.Enqueue(MoveBetweenNodesAnimation(from, to));
-                
-            }
-
-            if (!isMoving && moveQueue.Count > 0)               //맨 첫번째만을 움직이게 하기 위한 것
-            {
-                StartCoroutine(moveQueue.Dequeue());
-            }
+            //if (isAlly)
+            //{
+            //    to.RefineUnitPosition(to.allies.Count + 1, to.enemies.Count, this);
+            //}
+            //else
+            //{
+            //    to.RefineUnitPosition(to.allies.Count, to.enemies.Count + 1, this);
+            //}
         }
-        else
+
+        if (!isMoving && moveQueue.Count > 0)               //맨 첫번째만을 움직이게 하기 위한 것
         {
-            if (Movement > 0)
-                Movement--;
+            StartCoroutine(moveQueue.Dequeue());
         }
     }
 
