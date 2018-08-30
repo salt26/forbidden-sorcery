@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   herotype: 3
   unitName: HeroArcher
-  spriteName: Archer
+  spriteName: HeroArcher
   iconName: Archer
   attack: 42
   health: 95

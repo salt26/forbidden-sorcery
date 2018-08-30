@@ -27,6 +27,14 @@ public class Node : MonoBehaviour
 
     private Vector3 centralStandingPosition, allyStandingPosition, enemyStandingPosition;
 
+    public Vector3 CentralStandingPosition
+    {
+        get
+        {
+            return centralStandingPosition;
+        }
+    }
+
     public bool IsCastle
     {
         get
@@ -107,7 +115,7 @@ public class Node : MonoBehaviour
     void Start()
     {
         GetComponent<Transform>().localScale = new Vector3(0.4f, 0.4f, 1f);
-        centralStandingPosition = GetComponent<Transform>().position;
+        centralStandingPosition = GetComponent<Transform>().position + GameManager.instance.map.centralPositionIndicator.position;
         allyStandingPosition = centralStandingPosition + GameManager.instance.map.allyPositionIndicator.position;
         enemyStandingPosition = centralStandingPosition + GameManager.instance.map.enemyPositionIndicator.position;
 

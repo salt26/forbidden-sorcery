@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   herotype: 1
   unitName: HeroTanker
-  spriteName: Shielder
+  spriteName: HeroShielder
   iconName: Shielder
   attack: 18
   health: 255
