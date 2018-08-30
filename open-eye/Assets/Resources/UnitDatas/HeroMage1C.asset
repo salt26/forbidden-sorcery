@@ -14,7 +14,7 @@ MonoBehaviour:
   herotype: 2
   currentMoveType: 3
   unitName: HeroMage
-  spriteName: HeroCaster
+  spriteName: Caster
   iconName: Caster
   attack: 4
   health: 9
