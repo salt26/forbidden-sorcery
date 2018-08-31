@@ -843,7 +843,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 07_WestField
+      value: 07
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -2912,7 +2912,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 31_EastField
+      value: 31
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -3399,7 +3399,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 35_SouthField
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -4345,7 +4345,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 33_WestField
+      value: 33
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -4991,7 +4991,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 11_WestField
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -5213,7 +5213,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 14_EastField
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -5800,7 +5800,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 22_SouthField
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -6135,7 +6135,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 34_NorthField
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -6369,7 +6369,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.079998, y: -0.6499977, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -7714,7 +7714,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 01_CastleNorth
+      value: 01
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -8635,7 +8635,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 02_CastleEast
+      value: 02
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -9016,7 +9016,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 41_SouthField
+      value: 41
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -9404,7 +9404,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 13_SouthField
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -9831,7 +9831,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 00_Castle
+      value: 00
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -10273,7 +10273,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 04_CastleEastDoor
+      value: 04
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -10506,7 +10506,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 36_WestField
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -11064,7 +11064,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 19_EastField
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -12101,7 +12101,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 10_EntranceToEastVillage
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -12356,7 +12356,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 38_SouthField
+      value: 38
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -12625,7 +12625,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 21_NorthField
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -12999,7 +12999,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 09_NorthField
+      value: 09
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -14192,7 +14192,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 23_Eastfield
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -14817,7 +14817,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 12_NorthField
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -15114,7 +15114,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 29_NorthField
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -15326,7 +15326,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 40_NorthField
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -15597,7 +15597,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 18_SouthField
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -15794,7 +15794,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 37_NorthField
+      value: 37
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -16002,7 +16002,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 28_WestField
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -17253,7 +17253,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 24_WestField
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -17727,7 +17727,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 16_WestField
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -18060,7 +18060,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 05_EntranceToNorthVillage
+      value: 05
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -18832,7 +18832,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 25_NorthField
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -19509,7 +19509,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 15_EntranceToEastCastle
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -19798,7 +19798,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 20_WestField
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -20216,7 +20216,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 17_NorthField
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -21748,7 +21748,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 32_EntranceToNorthBigVillage
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -23810,7 +23810,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 39_WestField
+      value: 39
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -24053,7 +24053,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 30_SouthField
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -25519,7 +25519,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 26_SouthField
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -26292,7 +26292,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 27_EastField
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -27084,7 +27084,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 03_CastleNorthDoor
+      value: 03
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -27312,7 +27312,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 08_EastField
+      value: 08
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
@@ -27643,7 +27643,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1646213663049542, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_Name
-      value: 06_SouthField
+      value: 06
       objectReference: {fileID: 0}
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}

@@ -6,7 +6,10 @@ using UnityEngine.UI;
 public class FightAnimationUI : MonoBehaviour {
 
     [HideInInspector]
-    public static bool[] isPastFightAnimationFinished = new bool[100];
+    public static bool[] isPastFightAnimationFinished = new bool[300];
+
+    [HideInInspector]
+    public static string[] nodeName = new string[300];
 
     public static void ShowFightAnimationUI()
     {
@@ -67,6 +70,8 @@ public class FightAnimationUI : MonoBehaviour {
     public static IEnumerator FightAnimation(int i)
     {
         yield return new WaitUntil(() => isPastFightAnimationFinished[i - 1]);
+
+        GameObject.Find("Main Camera").GetComponent<Transform>().position =/* GameObject.Find(nodeName[i]).GetComponent<Transform>().position +*/ new Vector3 (0, 0, -10);
 
         ChangeFightAnimationText(i);
 
