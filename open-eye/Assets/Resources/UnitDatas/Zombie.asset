@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   herotype: 1
   unitName: Zombie
-  spriteName: shielder
+  spriteName: Zombie
   iconName: shielder
   attack: 1
   health: 11
