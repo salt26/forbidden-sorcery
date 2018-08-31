@@ -7024,7 +7024,7 @@ MonoBehaviour:
   maxNotoriety: 50
   movingUnits: []
   fightingNodeNumber: 0
-  fightAnimationDuration: 1.5
+  fightAnimationDuration: 1
   publicAllyAssassinAttack: 
   publicAllyAttack: 
   publicAllyMageAttack: 

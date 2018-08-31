@@ -71,7 +71,8 @@ public class FightAnimationUI : MonoBehaviour {
     {
         yield return new WaitUntil(() => isPastFightAnimationFinished[i - 1]);
 
-        GameObject.Find("Main Camera").GetComponent<Transform>().position =/* GameObject.Find(nodeName[i]).GetComponent<Transform>().position +*/ new Vector3 (0, 0, -10);
+        GameObject.Find("Main Camera").GetComponent<CameraController>().SetDestination
+        (GameObject.Find(nodeName[i]).GetComponent<Transform>().position + new Vector3(0, 0, -10));
 
         ChangeFightAnimationText(i);
 
