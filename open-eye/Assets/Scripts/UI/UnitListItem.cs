@@ -52,6 +52,9 @@ public class UnitListItem : MonoBehaviour
     [SerializeField]
     Color colorEnemy;
 
+    [SerializeField]
+    Color colorAuto;
+
     public Unit unit { get; private set; }
     public UnitData unitData { get; private set; }
     private OnClickUnitListItem onClick;
@@ -130,7 +133,11 @@ public class UnitListItem : MonoBehaviour
         {
             onClick(this);
         }
-        isSelected = !isSelected;
+        if (!GameManager.instance.unitListScrollView.isForProduce)
+        {
+            isSelected = !isSelected;
+            unit.isAuto = false;
+        }
         var colors = button.colors;
         var color = colorAlly;
         if (unit != null)
@@ -139,7 +146,7 @@ public class UnitListItem : MonoBehaviour
             {
                 if (unit.canMove)
                 {
-                    color = colors.normalColor == colorNormal ? colorAlly : colorNormal;
+                    color = colors.normalColor == colorNormal ? (unit.isAuto ? colorAuto : colorAlly) : colorNormal;
                 }
             }
             else
@@ -167,7 +174,7 @@ public class UnitListItem : MonoBehaviour
     public void SetColor()
     {
         var colors = button.colors;
-        var color = unit.isAlly ? colorAlly : colorEnemy;
+        var color = unit.isAlly ? (unit.isAuto ? colorAuto : colorAlly) : colorEnemy;
         colors.normalColor = color;
         colors.highlightedColor = color;
         button.colors = colors;

@@ -47,9 +47,13 @@ public class UnitListScrollView : MonoBehaviour
     [SerializeField]
     public bool nowListShown { get; private set; }
 
+    [SerializeField]
+    public bool isForProduce;
+
     void Awake()
     {
         nowListShown = false;
+        isForProduce = false;
     }
     
     public List<UnitListItem> listItems = new List<UnitListItem>();

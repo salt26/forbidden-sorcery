@@ -32,6 +32,7 @@ public class Unit : MonoBehaviour, IUnitInterface
     public UnitData unitData;
     public OnMoveDone onMoveDone;
     public MoveType currentMoveType;
+    public bool isAuto = false;
 
     public UnitData UD
     {
@@ -453,8 +454,6 @@ public class Unit : MonoBehaviour, IUnitInterface
                 }
             }
         }
-        Debug.Log(targetNode);
-        Debug.Log(nextNode);
         return nextNode;
     }
 }
