@@ -349,6 +349,18 @@ public partial class GameManager
                             case "N":
                                 enemy.currentMoveType = Unit.MoveType.nearTerritory;
                                 break;
+                            case "M":
+                                enemy.currentMoveType = Unit.MoveType.moveToSelectedNode;
+                                foreach (Node node in allNodes)
+                                {
+                                    string[] s = node.name.Split("_"[0]);
+                                    if (s[0] == spawnData[3])
+                                    {
+                                        enemy.targetNode = node;
+                                        break;
+                                    }
+                                }
+                                break;
                         }
                     }
                 }
@@ -486,6 +498,20 @@ public partial class GameManager
                             break;
                         case "N":
                             enemy.currentMoveType = Unit.MoveType.nearTerritory;
+                            break;
+                        case "M":
+                            enemy.currentMoveType = Unit.MoveType.moveToSelectedNode;
+                            foreach (Node node1 in allNodes)
+                            {
+                                Debug.Log(spawnStatus[3]);
+                                string[] s = node1.name.Split("_"[0]);
+                                Debug.Log(s[0]);
+                                if (s[0] == spawnStatus[3])
+                                {
+                                    enemy.targetNode = node1;
+                                    break;
+                                }
+                            }
                             break;
                     }
                 }

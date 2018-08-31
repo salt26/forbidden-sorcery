@@ -7,6 +7,57 @@ public partial class GameManager
 {
     public bool isMouseInMap { get; private set; }
 
+    private void Update()
+    {
+        if (Input.GetKeyUp( KeyCode.F1))
+        {
+            OnClickProduceButton();
+        }
+
+        if (Input.GetKeyUp( KeyCode.F2 ))
+        {
+            if (selectedNode != null)
+            {
+                foreach (var unitListItem in unitListScrollView.listItems)
+                {
+                    if (!unitListItem.isSelected)
+                    {
+                        unitListItem.OnItemClick();
+                    }
+                }
+            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.Alpha1))
+        {
+            if (selectedNode != null)
+            {
+                foreach (var unitListItem in unitListScrollView.listItems)
+                {
+                    if (unitListItem.unit.Movement == 1 && !unitListItem.isSelected)
+                    {
+                        unitListItem.OnItemClick();
+                    }
+                }
+            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.Alpha2))
+           
+        {
+            if (selectedNode != null)
+            {
+                foreach (var unitListItem in unitListScrollView.listItems)
+                {
+                    if (unitListItem.unit.Movement == 2 && !unitListItem.isSelected)
+                    {
+                        unitListItem.OnItemClick();
+                    }
+                }
+            }
+        }
+    }
+
     private bool isNodeInputActive
     {
         get

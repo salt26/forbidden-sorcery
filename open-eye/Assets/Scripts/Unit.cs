@@ -9,7 +9,8 @@ public class Unit : MonoBehaviour, IUnitInterface
         directToCastle,
         nearTerritory,
         stay,
-        cover
+        cover,
+        moveToSelectedNode
     }
 
     public delegate void OnMoveDone();
@@ -27,6 +28,7 @@ public class Unit : MonoBehaviour, IUnitInterface
 
     public static float movingTimeInNode = 0.2f;
 
+    public Node targetNode;
     public UnitData unitData;
     public OnMoveDone onMoveDone;
     public MoveType currentMoveType;
@@ -277,6 +279,93 @@ public class Unit : MonoBehaviour, IUnitInterface
 
             else return position;
         }
+        else if (currentMoveType == MoveType.moveToSelectedNode)
+        {
+            if (position == targetNode)
+            {
+                return position;
+            }
+            var distanceMin = int.MaxValue - 1;
+            var distance = int.MaxValue;
+            Node nextNodeCandidate = null;
+            NextNodeCandidate.Clear();
+            foreach (Node node in position.edges)
+            {
+                NextNodeCandidate.Push(node);
+            }
+            while (NextNodeCandidate.Count != 0)
+            {
+                nextNodeCandidate = NextNodeCandidate.Pop();
+                if (nextNodeCandidate == targetNode)
+                {
+                    distance = 0;
+                    nextNode = nextNodeCandidate;
+                    distanceMin = distance;
+                    if (distance == distanceMin)
+                    {
+                        int r = Random.Range(0, 1);
+                        if (r == 0)
+                            nextNode = nextNodeCandidate;
+                    }
+                    break;
+
+                }
+                Nodes.Clear();
+                Nodes.Enqueue(nextNodeCandidate);
+                distance = 1;
+                var previousCount = 1;
+                var currentCount = 0;
+                bool escape = true;
+                foreach (Node node in GameManager.instance.allNodes)
+                {
+                    node.isChecked = false;
+                }
+                position.isChecked = true;
+                while (escape)
+                {
+                    if (previousCount == 0)
+                    {
+                        previousCount = currentCount;
+                        currentCount = 0;
+                        distance++;
+                    }
+                    previousCount--;
+                    if (Nodes.Count == 0 || distance > distanceMin)
+                    {
+                        distance = int.MaxValue;
+                        break;
+                    }
+                    Node check = null;
+                    check = Nodes.Dequeue();
+                    foreach (Node node in check.edges)
+                    {
+                        if (node == targetNode)
+                        {
+                            escape = false;
+                            break;
+                        }
+                        else if (!node.isChecked)
+                        {
+                            Nodes.Enqueue(node);
+                            node.isChecked = true;
+                            currentCount++;
+                        }
+                    }
+                }
+                if (distance < distanceMin)
+                {
+                    nextNode = nextNodeCandidate;
+                    distanceMin = distance;
+                }
+
+                if (distance == distanceMin)
+                {
+                    int r = Random.Range(0, 1);
+                    if (r == 0)
+                        nextNode = nextNodeCandidate;
+                }
+            }
+        }
         else
         {
             if (position.isPlayerTerritory)
@@ -364,6 +453,8 @@ public class Unit : MonoBehaviour, IUnitInterface
                 }
             }
         }
+        Debug.Log(targetNode);
+        Debug.Log(nextNode);
         return nextNode;
     }
 }
