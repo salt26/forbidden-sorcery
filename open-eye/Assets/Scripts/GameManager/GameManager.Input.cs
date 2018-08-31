@@ -7,6 +7,57 @@ public partial class GameManager
 {
     public bool isMouseInMap { get; private set; }
 
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.W))
+        {
+            OnClickProduceButton();
+        }
+
+        if (Input.GetKeyUp(KeyCode.F2))
+        {
+            if (selectedNode != null && unitListScrollView.nowListShown && !unitListScrollView.isForProduce)
+            {
+                foreach (var unitListItem in unitListScrollView.listItems)
+                {
+                    if (!unitListItem.isSelected)
+                    {
+                        unitListItem.OnItemClick();
+                    }
+                }
+            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.Alpha1))
+        {
+            if (selectedNode != null && unitListScrollView.nowListShown && !unitListScrollView.isForProduce)
+            {
+                foreach (var unitListItem in unitListScrollView.listItems)
+                {
+                    if (unitListItem.unit.Movement == 1 && !unitListItem.isSelected)
+                    {
+                        unitListItem.OnItemClick();
+                    }
+                }
+            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.Alpha2) && unitListScrollView.nowListShown && !unitListScrollView.isForProduce)
+
+        {
+            if (selectedNode != null && unitListScrollView.nowListShown)
+            {
+                foreach (var unitListItem in unitListScrollView.listItems)
+                {
+                    if (unitListItem.unit.Movement == 2 && !unitListItem.isSelected)
+                    {
+                        unitListItem.OnItemClick();
+                    }
+                }
+            }
+        }
+    }
+
     private bool isNodeInputActive
     {
         get
@@ -29,6 +80,27 @@ public partial class GameManager
         unitListScrollView.ShowUnitTab(false);
     }
 
+    public void SetRallyPoint(Node node)
+    {
+        if (rallyPoint != null)
+        {
+            rallyPoint.isRallyPoint = false;
+            rallyPoint.GetComponent<SpriteRenderer>().color = unSelectedColor;
+        }
+        if (node.Equals(rallyPoint))
+        {
+            rallyPoint.isRallyPoint = false;
+            node.GetComponent<SpriteRenderer>().color = unSelectedColor;
+            rallyPoint = null;
+        }
+        else
+        {
+            rallyPoint = node;
+            node.isRallyPoint = true;
+            node.GetComponent<SpriteRenderer>().color = rallyPointColor;
+        }
+    }
+
     public void OnMouseEnterMap()
     {
         isMouseInMap = true;
@@ -42,11 +114,12 @@ public partial class GameManager
     public void UnitListShow(bool show)
     {
         selectedUnitList.Clear();
+        unitListScrollView.isForProduce = false;
         if (!show)
         {
             if (selectedNode != null)
             {
-                selectedNode.GetComponent<SpriteRenderer>().color = unSelectedColor;
+                selectedNode.GetComponent<SpriteRenderer>().color = selectedNode.isRallyPoint ? rallyPointColor : unSelectedColor;
             }
             selectedNode = null;
         }
@@ -71,7 +144,13 @@ public partial class GameManager
         if (item.unitData.cost <= Mana)
         {
             Mana -= item.unitData.cost;
-            Spawner.spawner.Spawn(item.unitData, true, castle);
+            Unit ally = Spawner.spawner.Spawn(item.unitData, true, castle);
+            if (rallyPoint != null)
+            {
+                ally.currentMoveType = Unit.MoveType.moveToSelectedNode;
+                ally.targetNode = rallyPoint;
+                ally.isAuto = true;
+            }
         }
         Dictionary<UnitData, int> unitDatas = new Dictionary<UnitData, int>();
         foreach (var producableAlliedEnemy in numberOfProducableAlliedEnemies)
@@ -200,10 +279,11 @@ public partial class GameManager
     {
         selectedUnitList.Clear();
         unitListScrollView.ShowList(false);
+        unitListScrollView.isForProduce = false;
         unitListScrollView.ShowUnitTab(false);
         if (selectedNode != null)
         {
-            selectedNode.GetComponent<SpriteRenderer>().color = unSelectedColor;
+            selectedNode.GetComponent<SpriteRenderer>().color = selectedNode.isRallyPoint ? rallyPointColor : unSelectedColor;
         }
         selectedNode = null;
         StartCoroutine(ChangePhase());
@@ -221,6 +301,7 @@ public partial class GameManager
         if (unitListScrollView.nowListShown == false)
         {
             unitListScrollView.ShowList(true);
+            unitListScrollView.isForProduce = true;
             Dictionary<UnitData, int> unitDatas = new Dictionary<UnitData, int>();
             foreach (var producableAlliedEnemy in numberOfProducableAlliedEnemies)
             {
@@ -239,6 +320,7 @@ public partial class GameManager
         {
             if (selectedNode != null)
             {
+                unitListScrollView.isForProduce = true;
                 Dictionary<UnitData, int> unitDatas = new Dictionary<UnitData, int>();
                 foreach (var producableAlliedEnemy in numberOfProducableAlliedEnemies)
                 {
@@ -252,11 +334,12 @@ public partial class GameManager
                     unitDatas.Add(unitdata, int.MaxValue);
                 }
                 unitListScrollView.SetUnitDataList(unitDatas, OnSelectUnitForProduce);
-                selectedNode.GetComponent<SpriteRenderer>().color = unSelectedColor;
+                selectedNode.GetComponent<SpriteRenderer>().color = selectedNode.isRallyPoint ? rallyPointColor : unSelectedColor;
             }
             else
             {
                 unitListScrollView.ShowList(false);
+                unitListScrollView.isForProduce = false;
             }
             selectedUnitList.Clear();
             selectedNode = null;
@@ -287,6 +370,7 @@ public partial class GameManager
                     spriteRenderer.color = selectedColor;
 
                     unitListScrollView.ShowList(true);
+                    unitListScrollView.isForProduce = false;
                     unitListScrollView.ShowUnitTab(true);
                     if (node.allies.Count > 0)
                     {
@@ -305,16 +389,17 @@ public partial class GameManager
                 }
                 else if (selectedNode == node)
                 {
-                    selectedNode.GetComponent<SpriteRenderer>().color = unSelectedColor;
+                    selectedNode.GetComponent<SpriteRenderer>().color = selectedNode.isRallyPoint ? rallyPointColor : unSelectedColor;
                     selectedNode = null;
 
                     selectedUnitList.Clear();
                     unitListScrollView.ShowList(false);
+                    unitListScrollView.isForProduce = false;
                     unitListScrollView.ShowUnitTab(false);
                 }
                 else if (selectedUnitList.Count == 0)
                 {
-                    selectedNode.GetComponent<SpriteRenderer>().color = unSelectedColor;
+                    selectedNode.GetComponent<SpriteRenderer>().color = selectedNode.isRallyPoint ? rallyPointColor : unSelectedColor;
                     selectedNode = node;
                     node.GetComponent<SpriteRenderer>().color = selectedColor;
 
@@ -366,11 +451,12 @@ public partial class GameManager
                             StartCoroutine(unit.moveQueue.Dequeue());
                     }
 
-                    selectedNode.GetComponent<SpriteRenderer>().color = unSelectedColor;
+                    selectedNode.GetComponent<SpriteRenderer>().color = selectedNode.isRallyPoint ? rallyPointColor : unSelectedColor;
 
                     selectedNode = null;
                     selectedUnitList.Clear();
                     unitListScrollView.ShowList(false);
+                    unitListScrollView.isForProduce = false;
                     unitListScrollView.ShowUnitTab(false);
 
                     StartCoroutine(waitUntilAllyIsNotMoving());
@@ -383,6 +469,7 @@ public partial class GameManager
                     selectedNode = null;
                     selectedUnitList.Clear();
                     unitListScrollView.ShowList(false);
+                    unitListScrollView.isForProduce = false;
                     unitListScrollView.ShowUnitTab(false);
                 }
                 else
@@ -390,6 +477,7 @@ public partial class GameManager
                     selectedNode = node;
 
                     unitListScrollView.ShowList(true);
+                    unitListScrollView.isForProduce = false;
                     unitListScrollView.ShowUnitTab(false);
                     unitListScrollView.SetUnitList(node.destroyedEnemies);
                 }

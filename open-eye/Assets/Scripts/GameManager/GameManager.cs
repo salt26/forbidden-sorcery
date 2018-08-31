@@ -19,7 +19,7 @@ public partial class GameManager : MonoBehaviour
     private Button produceButton;
     public Button ProduceButton { get { return produceButton; } }
     [SerializeField]
-    private UnitListScrollView unitListScrollView;
+    public UnitListScrollView unitListScrollView;
     [HideInInspector]
     public DestroyedEnemyControlScrollView destroyedEnemyControlScrollView;
     private DestroyedEnemyControlScrollView pastDestroyedEnemyControlScrollView;
@@ -47,6 +47,10 @@ public partial class GameManager : MonoBehaviour
     public Map map;
     [HideInInspector]
     private bool isLast = false;
+    [HideInInspector]
+    public Node rallyPoint;
+    [SerializeField]
+    public Color rallyPointColor;
 
     public List<Unit> SelectedDestroyedEnemyList
     {

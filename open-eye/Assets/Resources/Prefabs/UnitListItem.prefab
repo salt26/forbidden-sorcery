@@ -611,6 +611,7 @@ MonoBehaviour:
   colorNormal: {r: 1, g: 1, b: 1, a: 1}
   colorAlly: {r: 1, g: 0.7647059, b: 0.972549, a: 1}
   colorEnemy: {r: 0.5176471, g: 0.6117647, b: 0.72156864, a: 1}
+  colorAuto: {r: 0.056114297, g: 0.9150943, b: 0.39345312, a: 1}
 --- !u!114 &114404873197388002
 MonoBehaviour:
   m_ObjectHideFlags: 1

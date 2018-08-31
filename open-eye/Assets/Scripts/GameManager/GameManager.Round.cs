@@ -164,7 +164,7 @@ public partial class GameManager
         currentState = RoundState.PlayerAction;
         endTurnButton.interactable = true;
         produceButton.interactable = true;
-        
+
         StartCoroutine(phaseAlertText.GetComponent<PhaseAlertText>().AlertPhase());
 
         foreach (Node n in allNodes)
@@ -187,8 +187,10 @@ public partial class GameManager
     {
         foreach(Node n in allNodes)
         {
-            n.GetComponent<SpriteRenderer>().color = unSelectedColor;
+            n.GetComponent<SpriteRenderer>().color = n.isRallyPoint ? rallyPointColor : unSelectedColor;
         }
+        MoveAutoUnitToRallyPoint();
+        StartCoroutine(waitUntilAllyIsNotMoving());
         currentState = RoundState.Fight;
         endTurnButton.interactable = false;
         produceButton.interactable = false;
@@ -349,6 +351,18 @@ public partial class GameManager
                             case "N":
                                 enemy.currentMoveType = Unit.MoveType.nearTerritory;
                                 break;
+                            case "M":
+                                enemy.currentMoveType = Unit.MoveType.moveToSelectedNode;
+                                foreach (Node node in allNodes)
+                                {
+                                    string[] s = node.name.Split("_"[0]);
+                                    if (s[0] == spawnData[3])
+                                    {
+                                        enemy.targetNode = node;
+                                        break;
+                                    }
+                                }
+                                break;
                         }
                     }
                 }
@@ -487,6 +501,18 @@ public partial class GameManager
                         case "N":
                             enemy.currentMoveType = Unit.MoveType.nearTerritory;
                             break;
+                        case "M":
+                            enemy.currentMoveType = Unit.MoveType.moveToSelectedNode;
+                            foreach (Node node1 in allNodes)
+                            {
+                                string[] s = node1.name.Split("_"[0]);
+                                if (s[0] == spawnStatus[3])
+                                {
+                                    enemy.targetNode = node1;
+                                    break;
+                                }
+                            }
+                            break;
                     }
                 }
             }
@@ -500,6 +526,7 @@ public partial class GameManager
                 for (int i = 0; i < number; i++)
                 {
                     Unit ally = Spawner.spawner.Spawn(AssetManager.Instance.GetUnitData(spawnName), true, node);
+                    ally.isAuto = false;
                 }
             }
         }
@@ -514,5 +541,22 @@ public partial class GameManager
             }
         }
     }
-    
+    private void MoveAutoUnitToRallyPoint()
+    {
+        foreach (Node node in allNodes)
+        {
+            foreach (Unit ally in node.allies)
+            {
+                if (ally.isAuto && ally.canMove && !ally.position.isFighting)
+                {
+                    Node nextNode = ally.NextNode();
+                    ally.MoveBetweenNodes(ally.position, nextNode);
+                    if (ally.position.Equals(ally.targetNode))
+                    {
+                        ally.isAuto = false;
+                    }
+                }
+            }
+        }
+    }
 }

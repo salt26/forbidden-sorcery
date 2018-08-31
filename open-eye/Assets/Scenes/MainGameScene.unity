@@ -4292,6 +4292,7 @@ MonoBehaviour:
   enemyTabNormalColor: {r: 0.50980395, g: 0.62352943, b: 0.8509804, a: 1}
   allyTabPressedColor: {r: 0.9098039, g: 0.80784315, b: 0.93333334, a: 1}
   enemyTabPressedColor: {r: 0.7176471, g: 0.7882353, b: 0.9254902, a: 1}
+  isForProduce: 0
   listItems: []
 --- !u!1001 &372079140
 Prefab:
@@ -7014,6 +7015,8 @@ MonoBehaviour:
   producedAlliedEnemies: []
   phaseAlertText: {fileID: 1953248046}
   map: {fileID: 1115226233}
+  rallyPoint: {fileID: 0}
+  rallyPointColor: {r: 0.0040494935, g: 0.3272568, b: 0.8584906, a: 1}
   allNodes: []
   manaAmountText: {fileID: 758138316}
   notoriety: 0
@@ -18153,7 +18156,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: startEnemies.Array.data[1]
-      value: HeroMage2C 1
+      value: HeroArcher1 M 1 01
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 61755084985903860, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}

@@ -79,6 +79,9 @@ public class Node : MonoBehaviour
 
     [HideInInspector]
     public bool isChecked;
+
+    [SerializeField]
+    public bool isRallyPoint;
     
     private bool isCastle
     {
@@ -161,7 +164,14 @@ public class Node : MonoBehaviour
 
     void OnMouseUpAsButton()
     {
-        GameManager.instance.SetNode(this);
+        if (Input.GetKey(KeyCode.R))
+        {
+            GameManager.instance.SetRallyPoint(this);
+        }
+        else
+        {
+            GameManager.instance.SetNode(this);
+        }
     }
 
     public void DecideAndShowMainUnit()
