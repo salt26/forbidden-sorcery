@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   herotype: 0
   unitName: Wolf
-  spriteName: Saber
+  spriteName: Wolf
   iconName: Saber
   attack: 2
   health: 6
