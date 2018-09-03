@@ -551,7 +551,11 @@ public partial class GameManager
         {
             foreach (Unit ally in node.allies)
             {
-                if (ally.isAuto && ally.canMove && !ally.position.isFighting)
+                if (ally.position.isFighting)
+                {
+                    ally.isAuto = false;
+                }
+                else if (ally.isAuto && ally.canMove)
                 {
                     Node nextNode = ally.NextNode();
                     ally.MoveBetweenNodes(ally.position, nextNode);
@@ -560,6 +564,16 @@ public partial class GameManager
                         ally.isAuto = false;
                     }
                 }
+            }
+        }
+        foreach (Node n in allNodes)
+        {
+            n.RefineUnitPosition(n.allies.Count, n.enemies.Count);
+            //n.DecideAndShowMainUnit();
+            foreach (Unit unit in n.units)
+            {
+                if (unit.moveQueue.Count > 0 && !unit.IsMoving)
+                    StartCoroutine(unit.moveQueue.Dequeue());
             }
         }
     }
