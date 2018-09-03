@@ -6,7 +6,10 @@ using UnityEngine.UI;
 public class FightAnimationUI : MonoBehaviour {
 
     [HideInInspector]
-    public static bool[] isPastFightAnimationFinished = new bool[100];
+    public static bool[] isPastFightAnimationFinished = new bool[300];
+
+    [HideInInspector]
+    public static string[] nodeName = new string[300];
 
     public static void ShowFightAnimationUI()
     {
@@ -46,6 +49,12 @@ public class FightAnimationUI : MonoBehaviour {
         GameObject.Find("FightDamage(Ally->Enemy)").GetComponent<Text>().enabled = false;
         GameObject.Find("MageDamage(Ally->Enemy)").GetComponent<Text>().enabled = false;
         GameObject.Find("AssassinDamage(Ally->Enemy)").GetComponent<Text>().enabled = false;
+        GameObject.Find("AssassinDamageEffect(Enemy->Ally)").GetComponent<Image>().enabled = false;
+        GameObject.Find("MageDamageEffect(Enemy->Ally)").GetComponent<Image>().enabled = false;
+        GameObject.Find("FightDamageEffect(Enemy->Ally)").GetComponent<Image>().enabled = false;
+        GameObject.Find("FightDamageEffect(Ally->Enemy)").GetComponent<Image>().enabled = false;
+        GameObject.Find("MageDamageEffect(Ally->Enemy)").GetComponent<Image>().enabled = false;
+        GameObject.Find("AssassinDamageEffect(Ally->Enemy)").GetComponent<Image>().enabled = false;
     }
 
     public static void ChangeFightAnimationText(int i)
@@ -62,29 +71,38 @@ public class FightAnimationUI : MonoBehaviour {
     {
         yield return new WaitUntil(() => isPastFightAnimationFinished[i - 1]);
 
+        GameObject.Find("Main Camera").GetComponent<CameraController>().SetDestination
+        (GameObject.Find(nodeName[i]).GetComponent<Transform>().position + new Vector3(0, 0, -10));
+
         ChangeFightAnimationText(i);
 
         GameObject.Find("AssassinDamage(Ally->Enemy)").GetComponent<Text>().enabled = true;
+        GameObject.Find("AssassinDamageEffect(Ally->Enemy)").GetComponent<Image>().enabled = true;
         yield return new WaitForSeconds(GameManager.instance.fightAnimationDuration);
         HideFightAnimationText();
 
         GameObject.Find("AssassinDamage(Enemy->Ally)").GetComponent<Text>().enabled = true;
+        GameObject.Find("AssassinDamageEffect(Enemy->Ally)").GetComponent<Image>().enabled = true;
         yield return new WaitForSeconds(GameManager.instance.fightAnimationDuration);
         HideFightAnimationText();
 
         GameObject.Find("FightDamage(Ally->Enemy)").GetComponent<Text>().enabled = true;
+        GameObject.Find("FightDamageEffect(Ally->Enemy)").GetComponent<Image>().enabled = true;
         yield return new WaitForSeconds(GameManager.instance.fightAnimationDuration);
         HideFightAnimationText();
 
         GameObject.Find("FightDamage(Enemy->Ally)").GetComponent<Text>().enabled = true;
+        GameObject.Find("FightDamageEffect(Enemy->Ally)").GetComponent<Image>().enabled = true;
         yield return new WaitForSeconds(GameManager.instance.fightAnimationDuration);
         HideFightAnimationText();
 
         GameObject.Find("MageDamage(Ally->Enemy)").GetComponent<Text>().enabled = true;
+        GameObject.Find("MageDamageEffect(Ally->Enemy)").GetComponent<Image>().enabled = true;
         yield return new WaitForSeconds(GameManager.instance.fightAnimationDuration);
         HideFightAnimationText();
 
         GameObject.Find("MageDamage(Enemy->Ally)").GetComponent<Text>().enabled = true;
+        GameObject.Find("MageDamageEffect(Enemy->Ally)").GetComponent<Image>().enabled = true;
         yield return new WaitForSeconds(GameManager.instance.fightAnimationDuration);
         HideFightAnimationText();
 

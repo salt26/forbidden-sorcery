@@ -55,6 +55,9 @@ public partial class GameManager
     }
 
     [HideInInspector]
+    public const int indexMax = 300; 
+
+    [HideInInspector]
     public int fightingNodeNumber = 0;
 
     public float fightAnimationDuration;
@@ -117,7 +120,7 @@ public partial class GameManager
 
     void initializePublicLists()
     {
-        for(int i = 1; i <= 100; i++)
+        for(int i = 1; i <= indexMax; i++)
         {
             publicAllyAssassinAttack.Add(0);
             publicAllyAttack.Add(0);
@@ -415,6 +418,7 @@ public partial class GameManager
     {
         foreach (Node n in allNodes)
         {
+            FightAnimationUI.nodeName[fightingNodeNumber + 1] = n.name;
             n.FetchFight(Fight.Fighting(n.units));
         }
     }
