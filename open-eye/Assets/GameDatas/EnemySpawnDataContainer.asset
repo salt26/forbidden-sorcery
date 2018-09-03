@@ -41,7 +41,7 @@ MonoBehaviour:
       - 21
       - 67
     - requiredNotoriety: 0
-      enemyStatus: HeroAssassin2 D 2
+      enemyStatus: HeroAssassin1 D 2
       enemySpawnNodes:
       - 45
     - requiredNotoriety: 0
@@ -106,11 +106,11 @@ MonoBehaviour:
       enemySpawnNodes:
       - 61
     - requiredNotoriety: 0
-      enemyStatus: HeroTanker4 D 1
+      enemyStatus: HeroTanker3 D 1
       enemySpawnNodes:
       - 61
     - requiredNotoriety: 0
-      enemyStatus: HeroSoldier4 N 2
+      enemyStatus: HeroSoldier3 N 1
       enemySpawnNodes:
       - 21
       - 26

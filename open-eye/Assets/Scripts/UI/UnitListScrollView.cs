@@ -144,7 +144,7 @@ public class UnitListScrollView : MonoBehaviour
                     }
                     else
                     {
-                        unitListItem.count.text = "inf";
+                        unitListItem.count.text = "∞";
                     }
                     break;
                 }
