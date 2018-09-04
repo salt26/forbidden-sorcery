@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: HeroAssassin4
   m_EditorClassIdentifier: 
   herotype: 4
+  isHero: 1
   unitName: HeroAssassin
   spriteName: HeroAssassin
   iconName: Assassin
