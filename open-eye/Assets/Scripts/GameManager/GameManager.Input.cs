@@ -172,11 +172,35 @@ public partial class GameManager
         if (SelectedDestroyedEnemyList != null && SelectedDestroyedEnemyList.Contains(item.unit))
         {
             SelectedDestroyedEnemyList.Remove(item.unit);
+            foreach (DestroyedEnemyControlButton decb in destroyedEnemyControlButtons)
+            {
+                if (decb.isSelected)
+                {
+                    decb.dominateNotorietychange -= item.unit.unitData.level;
+                    decb.dominateManaChange += item.unit.unitData.cost / 4;
+                    decb.killManaChange -= item.unit.unitData.cost / 2 + item.unit.unitData.level * 100;
+                    decb.killNotorietyChange -= item.unit.unitData.level * 2;
+                    decb.freeNotorietyChange += item.unit.unitData.level;
+                    decb.ShowExpectedResourceChange();
+                }
+            }
             destroyedEnemies.Add(item.unit);
         }
         else if (item.unit != null)
         {
             SelectedDestroyedEnemyList.Add(item.unit);
+            foreach (DestroyedEnemyControlButton decb in destroyedEnemyControlButtons)
+            {
+                if (decb.isSelected)
+                {
+                    decb.dominateNotorietychange += item.unit.unitData.level;
+                    decb.dominateManaChange -= item.unit.unitData.cost / 4;
+                    decb.killManaChange += item.unit.unitData.cost / 2 + item.unit.unitData.level * 100;
+                    decb.killNotorietyChange += item.unit.unitData.level * 2;
+                    decb.freeNotorietyChange -= item.unit.unitData.level;
+                    decb.ShowExpectedResourceChange();
+                }
+            }
             destroyedEnemies.Remove(item.unit);
         }
 
@@ -267,6 +291,18 @@ public partial class GameManager
     {
         destroyedEnemies.AddRange(selectedDestroyedEnemyList);
         selectedDestroyedEnemyList.Clear();
+        foreach (DestroyedEnemyControlButton decb in destroyedEnemyControlButtons)
+        {
+            if (decb.isSelected)
+            {
+                decb.dominateNotorietychange = 0;
+                decb.dominateManaChange = 0;
+                decb.killManaChange = 0;
+                decb.killNotorietyChange = 0;
+                decb.freeNotorietyChange = 0;
+                decb.ShowExpectedResourceChange();
+            }
+        }
         var unitScrollView = unitListScrollView.SetControlDestroyedEnemiesList(destroyedEnemies, OnSelectUnitForControlDestroyedEnemy);
         foreach (var g in unitScrollView.listItems)
         {
