@@ -103,7 +103,7 @@ public class Unit : MonoBehaviour, IUnitInterface
         Movement = 0;
     }
 
-    public void MoveBetweenNodes(Node from, Node to)
+    public void MoveBetweenNodes(Node from, Node to)//
     {
         if (!from.Equals(to))
         {
@@ -143,6 +143,8 @@ public class Unit : MonoBehaviour, IUnitInterface
         from.DecideAndShowMainUnit();
         GetComponent<SpriteRenderer>().enabled = true;
 
+        yield return new WaitForSeconds(0.2f * GameManager.instance.unitMovingOrder);
+
         float duration = 0.5f;                                                  //여기서부터
         float deltaTime = 0;
         float rate = deltaTime / duration;
@@ -155,9 +157,8 @@ public class Unit : MonoBehaviour, IUnitInterface
             yield return null;
         }
         transform.position = to.CentralStandingPosition;                   //여기까지의 코드를 실행하는 데 0.5초(=이동시간)이 걸림
-
-        to.DecideAndShowMainUnit();
-
+        
+        
         OnMoveBetweenNodesAnimationFinished();                  //하나의 동작이 끝나는 순간 무엇을 할 것인가?
     }
 
@@ -211,12 +212,16 @@ public class Unit : MonoBehaviour, IUnitInterface
             //if (GameManager.instance.currentState == GameManager.RoundState.PlayerAction)
             //GameManager.instance.EndTurnButton.interactable = true;
             GameManager.instance.movingUnits.Remove(this);
+            
+
             if (onMoveDone != null && isMoved)// && GameManager.instance.currentState == GameManager.RoundState.EnemyMove)
             {
                 onMoveDone();
             }
             isMoved = false;
             isMoving = false;
+            position.DecideAndShowMainUnit();
+
         }
     }
 

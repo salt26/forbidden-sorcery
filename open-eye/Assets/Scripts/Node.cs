@@ -178,9 +178,11 @@ public class Node : MonoBehaviour
     {
         units.Sort(unitComparer);
         bool decideAllyMainUnit = false, decideEnemyMainUnit = false;
+        bool someUnitsAreMoving = false;
 
         foreach (Unit unit in units)
         {
+            if (unit.IsMoving) someUnitsAreMoving = true;
             if (!decideAllyMainUnit && unit.isAlly)
             {
                 unit.mainUnitInNode = true;
@@ -196,7 +198,10 @@ public class Node : MonoBehaviour
                 unit.mainUnitInNode = false;
             }
         }
-
+        if (someUnitsAreMoving)
+        {
+            return;
+        }
         foreach (Unit unit in units)
         {
             if (unit.mainUnitInNode)
