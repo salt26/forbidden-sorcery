@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: HeroArcher2
   m_EditorClassIdentifier: 
   herotype: 3
+  isHero: 1
   unitName: HeroArcher
   spriteName: HeroArcher
   iconName: Archer

@@ -15,6 +15,8 @@ public class UnitData : ScriptableObject
 
     public HeroType herotype;
 
+    public bool isHero;
+
     public string unitName;
     public string spriteName;
     public string iconName;

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: HeroMage3
   m_EditorClassIdentifier: 
   herotype: 2
+  isHero: 1
   unitName: HeroMage
   spriteName: HeroCaster
   iconName: Caster
