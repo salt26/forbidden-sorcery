@@ -75,7 +75,7 @@ public partial class GameManager
     [HideInInspector]
     public List<int> publicEnemyMageAttack = new List<int>();
 
-    private EnemySpawnDataContainer.EnemySpawnData nextSpawnData;
+    public EnemySpawnDataContainer.EnemySpawnData nextSpawnData;
 
     IEnumerator ChangePhase()
     {
@@ -434,19 +434,23 @@ public partial class GameManager
 
             if (n.enemies.Count > 0)
             {
-                n.isPlayerTerritory = false;
-                n.isNeutralTerritory = false;
                 if (n.isPlayerTerritory)
                 {
                     notoriety -= n.notoriety;
-                }                
+                }
+                n.isPlayerTerritory = false;
+                n.isNeutralTerritory = false;
+                           
             }
 
             if (n.allies.Count > 0)
             {
+                if (!n.isPlayerTerritory)
+                {
+                    notoriety += n.notoriety;
+                }
                 n.isPlayerTerritory = true;
                 n.isNeutralTerritory = false;
-                notoriety += n.notoriety;
             }
         }
         manaAmountText.SetManaAmount(mana, manaProduce);
