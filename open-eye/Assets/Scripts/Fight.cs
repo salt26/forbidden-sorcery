@@ -65,6 +65,66 @@ class Fight
             int enemyMageAttack = 0;
             // Sort for Phase 1
             result.unitList.Sort(comparerAssassin);
+            // Prepare for Fight Animation
+            foreach (ImaginaryUnit ally in result.unitList.FindAll((unit) => unit is ImaginaryUnit && unit.isAlly))
+            {
+                if (ally.UD.herotype == UnitData.HeroType.tanker && ally.UD.isHero)
+                {
+                    FightAnimationUI.isThereTanker[GameManager.instance.fightingNodeNumber] = true;
+                }
+                if (ally.UD.herotype == UnitData.HeroType.soldier && ally.UD.isHero)
+                {
+                    FightAnimationUI.isThereSoldier[GameManager.instance.fightingNodeNumber] = true;
+                }
+                if (ally.UD.herotype == UnitData.HeroType.archer && ally.UD.isHero)
+                {
+                    FightAnimationUI.isThereArcher[GameManager.instance.fightingNodeNumber] = true;
+                }
+                if (ally.UD.herotype == UnitData.HeroType.assassin)
+                {
+                    FightAnimationUI.isThereAssassin[GameManager.instance.fightingNodeNumber] = true;
+                }
+                if (ally.UD.herotype == UnitData.HeroType.mage)
+                {
+                    FightAnimationUI.isThereMage[GameManager.instance.fightingNodeNumber] = true;
+                }
+                if (ally.UD.herotype == UnitData.HeroType.tanker && !ally.UD.isHero)
+                {
+                    FightAnimationUI.isThereZombie[GameManager.instance.fightingNodeNumber] = true;
+                }
+                if (ally.UD.herotype == UnitData.HeroType.soldier && !ally.UD.isHero)
+                {
+                    FightAnimationUI.isThereWolf[GameManager.instance.fightingNodeNumber] = true;
+                }
+                if (ally.UD.herotype == UnitData.HeroType.archer && !ally.UD.isHero)
+                {
+                    FightAnimationUI.isThereSkeleton[GameManager.instance.fightingNodeNumber] = true;
+                }
+            }
+
+            foreach (ImaginaryUnit enemy in result.unitList.FindAll((unit) => unit is ImaginaryUnit && !unit.isAlly))
+            {
+                if (enemy.UD.herotype == UnitData.HeroType.tanker)
+                {
+                    FightAnimationUI.isThereEnemyTanker[GameManager.instance.fightingNodeNumber] = true;
+                }
+                if (enemy.UD.herotype == UnitData.HeroType.soldier)
+                {
+                    FightAnimationUI.isThereEnemySoldier[GameManager.instance.fightingNodeNumber] = true;
+                }
+                if (enemy.UD.herotype == UnitData.HeroType.archer)
+                {
+                    FightAnimationUI.isThereEnemyArcher[GameManager.instance.fightingNodeNumber] = true;
+                }
+                if (enemy.UD.herotype == UnitData.HeroType.assassin)
+                {
+                    FightAnimationUI.isThereEnemyAssassin[GameManager.instance.fightingNodeNumber] = true;
+                }
+                if (enemy.UD.herotype == UnitData.HeroType.mage)
+                {
+                    FightAnimationUI.isThereEnemyMage[GameManager.instance.fightingNodeNumber] = true;
+                }
+            }
             // Phase 1
             foreach (ImaginaryUnit ally in result.unitList.FindAll((unit) => unit is ImaginaryUnit && unit.isAlly))
             {

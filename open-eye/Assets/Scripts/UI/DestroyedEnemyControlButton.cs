@@ -17,11 +17,19 @@ public class DestroyedEnemyControlButton : MonoBehaviour
 
     [SerializeField]
     KindOfButton kind;
+    [SerializeField]
+    Text text;
     public KindOfButton kindOfButton { get; private set; }
 
     public bool isSelected { get; set; }
 
     List<Unit> selectedDestroyedEnemyList;
+    public int dominateNotorietychange;
+    public int dominateManaChange;
+    public int killNotorietyChange;
+    public int killManaChange;
+    public int freeNotorietyChange;
+    public int freeManaChange;
 
     private void Awake()
     {
@@ -34,14 +42,6 @@ public class DestroyedEnemyControlButton : MonoBehaviour
     {
         GameManager.instance.destroyedEnemyControlScrollView = GetComponent<DestroyedEnemyControlScrollView>();
         GameManager.instance.OnClickDestroyedEnemyControlButton(selectedDestroyedEnemyList, this);
-        //if (managerDestroyedEnemies != null && managerDestroyedEnemies.Equals(selectedDestroyedEnemyList))
-        //{
-        //    GameManager.instance.OnClickDestroyedEnemyControlButton(selectedDestroyedEnemyList, this);
-        //}
-        //else
-        //{
-        //    GameManager.instance.OnClickDestroyedEnemyControlButton(selectedDestroyedEnemyList, this);
-        //}
     }
 
     public void OnClickResetButton()
@@ -81,7 +81,8 @@ public class DestroyedEnemyControlButton : MonoBehaviour
             else
                 GameManager.instance.numberOfProducableAlliedEnemies[u.unitData] = 1;
 
-            GameManager.instance.notoriety += u.unitData.level;
+            GameManager.instance.Mana -= u.unitData.cost / 4;
+            GameManager.instance.notoriety += u.unitData.level * 2;
         }
     }
 
@@ -90,7 +91,7 @@ public class DestroyedEnemyControlButton : MonoBehaviour
         foreach (Unit u in selectedDestroyedEnemyList)
         {
             GameManager.instance.Mana += u.unitData.cost / 2 + u.unitData.level * 100;
-            GameManager.instance.notoriety += u.unitData.level * 2;
+            GameManager.instance.notoriety += u.unitData.level * 3;
         }
     }
 
@@ -99,6 +100,22 @@ public class DestroyedEnemyControlButton : MonoBehaviour
         foreach (Unit u in selectedDestroyedEnemyList)
         {
             //TODO
+        }
+    }
+    
+    public void ShowExpectedResourceChange()
+    {
+        switch ((int)kindOfButton)
+        {
+            case 0:
+                text.text = string.Format("mana- = {0} \nnotoriety+ = {1}", -dominateManaChange, dominateNotorietychange);
+                break;
+            case 1:
+                text.text = string.Format("mana+ = {0} \nnotoriety+ = {1}", killManaChange, killNotorietyChange);
+                break;
+            case 2:
+                text.text = string.Format("mana = {0} \nnotoriety- = {1}", freeManaChange, -freeNotorietyChange);
+                break;
         }
     }
 }
