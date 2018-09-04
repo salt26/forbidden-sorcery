@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: HeroTanker2
   m_EditorClassIdentifier: 
   herotype: 1
+  isHero: 1
   unitName: HeroTanker
   spriteName: HeroShielder
   iconName: Shielder
