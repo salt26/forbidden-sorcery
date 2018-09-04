@@ -271,7 +271,14 @@ public partial class GameManager
 
         foreach (var button in destroyedEnemyControlButtons)
         {
+            button.ShowExpectedResourceChange();
             button.Fetch();
+            button.dominateManaChange = 0;
+            button.dominateNotorietychange = 0;
+            button.killManaChange = 0;
+            button.killNotorietyChange = 0;
+            button.freeManaChange = 0;
+            button.freeNotorietyChange = 0;
         }
 
         destroyedEnemyControlUnit.SetActive(false);
