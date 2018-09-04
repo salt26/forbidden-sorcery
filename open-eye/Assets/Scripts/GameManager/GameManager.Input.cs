@@ -7,6 +7,8 @@ public partial class GameManager
 {
     public bool isMouseInMap { get; private set; }
 
+    public int unitMovingOrder;
+
     private void Update()
     {
         if (Input.GetKeyUp(KeyCode.W))
@@ -427,11 +429,13 @@ public partial class GameManager
                     {
                         endTurnButton.interactable = false;
                     }
+                    unitMovingOrder = 0;
                     foreach (Unit unit in selectedUnitList)
                     {
                         if (unit.canMove)
                         {
                             unit.MoveBetweenNodes(selectedNode, node);
+                            ++unitMovingOrder;
                         }
                     }
 
