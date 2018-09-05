@@ -24,6 +24,8 @@ public class Node : MonoBehaviour
     public List<Node> edges;
     public List<string> startEnemies;
     public List<string> startAllies;
+    [SerializeField]
+    private TextMesh nodeInformation;
 
     private Vector3 centralStandingPosition, allyStandingPosition, enemyStandingPosition;
 
@@ -117,6 +119,21 @@ public class Node : MonoBehaviour
 
     void Start()
     {
+        if (nodeInformation != null)
+        {
+            
+            if (manaValue/100 > 1)
+            {
+                nodeInformation.text = string.Format("{0}                   {1} \n\n\n\n\n\n{2}               {3}", allies.Count, enemies.Count, manaValue, notoriety);
+            }
+                
+            else
+            {
+                nodeInformation.text = string.Format("{0}                   {1} \n\n\n\n\n\n{2}                {3}", allies.Count, enemies.Count, manaValue, notoriety);
+            }
+                
+        }
+        
         GetComponent<Transform>().localScale = new Vector3(0.4f, 0.4f, 1f);
         centralStandingPosition = GetComponent<Transform>().position + GameManager.instance.map.centralPositionIndicator.position;
         allyStandingPosition = centralStandingPosition + GameManager.instance.map.allyPositionIndicator.position;
