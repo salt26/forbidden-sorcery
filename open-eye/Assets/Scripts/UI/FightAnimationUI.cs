@@ -245,12 +245,12 @@ public class FightAnimationUI : MonoBehaviour {
 
     public static void ChangeFightAnimationText(int i)
     {
-        GameObject.Find("AssassinDamage(Enemy->Ally)").GetComponent<Text>().text = "AD: " + GameManager.instance.publicEnemyAssassinAttack[i];
-        GameObject.Find("MageDamage(Enemy->Ally)").GetComponent<Text>().text = "MD: " + GameManager.instance.publicEnemyMageAttack[i];
-        GameObject.Find("FightDamage(Enemy->Ally)").GetComponent<Text>().text = "FD: " + GameManager.instance.publicEnemyAttack[i];
-        GameObject.Find("FightDamage(Ally->Enemy)").GetComponent<Text>().text = "FD: " + GameManager.instance.publicAllyAttack[i];
-        GameObject.Find("MageDamage(Ally->Enemy)").GetComponent<Text>().text = "MD: " + GameManager.instance.publicAllyMageAttack[i];
-        GameObject.Find("AssassinDamage(Ally->Enemy)").GetComponent<Text>().text = "AD: " + GameManager.instance.publicAllyAssassinAttack[i];
+        GameObject.Find("AssassinDamage(Enemy->Ally)").GetComponent<Text>().text = "" + GameManager.instance.publicEnemyAssassinAttack[i];
+        GameObject.Find("MageDamage(Enemy->Ally)").GetComponent<Text>().text = "" + GameManager.instance.publicEnemyMageAttack[i];
+        GameObject.Find("FightDamage(Enemy->Ally)").GetComponent<Text>().text = "" + GameManager.instance.publicEnemyAttack[i];
+        GameObject.Find("FightDamage(Ally->Enemy)").GetComponent<Text>().text = "" + GameManager.instance.publicAllyAttack[i];
+        GameObject.Find("MageDamage(Ally->Enemy)").GetComponent<Text>().text = "" + GameManager.instance.publicAllyMageAttack[i];
+        GameObject.Find("AssassinDamage(Ally->Enemy)").GetComponent<Text>().text = "" + GameManager.instance.publicAllyAssassinAttack[i];
     }
 
     public static IEnumerator FightAnimation(int i)
