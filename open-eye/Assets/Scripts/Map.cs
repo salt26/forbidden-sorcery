@@ -10,7 +10,7 @@ public class Map : MonoBehaviour {
     public Sprite neutralSprite;
     public Sprite devilKingCastleSprite;
 
-    public Sprite willloseNodeSprite;
+    public Sprite willLoseNodeSprite;
     public Sprite inferiorityNodeSprite;
     public Sprite fixedFightNodeSprite;
     public Sprite SuperiorityNodeSprite;

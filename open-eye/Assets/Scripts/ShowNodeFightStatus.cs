@@ -15,25 +15,25 @@ public class ShowNodeFightStatus : MonoBehaviour {
             if(nodeUnits.FindAll((unit) => !unit.isAlly).Count > 0)
             {
                 //while fighting
-                if(after1Turn.unitList.FindAll((unit) => unit.isAlly).Count > 0 && after1Turn.unitList.FindAll((unit) => !unit.isAlly).Count == 0)
+                if(after1Turn.unitList.FindAll((unit) => unit.isAlly).FindAll((unit) => unit.CurrentHealth > 0).Count > 0 && after1Turn.unitList.FindAll((unit) => !unit.isAlly).FindAll((unit) => unit.CurrentHealth > 0).Count == 0)
                 {
                     //will win
                     GetComponent<SpriteRenderer>().sprite = GameManager.instance.map.willWinNodeSprite;
                 }
-                else if(after1Turn.unitList.FindAll((unit) => unit.isAlly).Count == 0 && after1Turn.unitList.FindAll((unit) => !unit.isAlly).Count > 0)
+                else if(after1Turn.unitList.FindAll((unit) => unit.isAlly).FindAll((unit) => unit.CurrentHealth > 0).Count == 0 && after1Turn.unitList.FindAll((unit) => !unit.isAlly).FindAll((unit) => unit.CurrentHealth > 0).Count > 0)
                 {
                     //will lose
-                    GetComponent<SpriteRenderer>().sprite = GameManager.instance.map.willloseNodeSprite;
+                    GetComponent<SpriteRenderer>().sprite = GameManager.instance.map.willLoseNodeSprite;
                 }
                 else
                 {
                     //longer than 1 turn or all die
-                    if(after5Turn.unitList.FindAll((unit) => unit.isAlly).Count > 0 && after5Turn.unitList.FindAll((unit) => !unit.isAlly).Count == 0)
+                    if(after5Turn.unitList.FindAll((unit) => unit.isAlly).FindAll((unit) => unit.CurrentHealth > 0).Count > 0 && after5Turn.unitList.FindAll((unit) => !unit.isAlly).FindAll((unit) => unit.CurrentHealth > 0).Count == 0)
                     {
                         //Superiority
                         GetComponent<SpriteRenderer>().sprite = GameManager.instance.map.SuperiorityNodeSprite;
                     }
-                    else if(after5Turn.unitList.FindAll((unit) => unit.isAlly).Count == 0 && after5Turn.unitList.FindAll((unit) => !unit.isAlly).Count > 0)
+                    else if(after5Turn.unitList.FindAll((unit) => unit.isAlly).FindAll((unit) => unit.CurrentHealth > 0).Count == 0 && after5Turn.unitList.FindAll((unit) => !unit.isAlly).FindAll((unit) => unit.CurrentHealth > 0).Count > 0)
                     {
                         //inferiority
                         GetComponent<SpriteRenderer>().sprite = GameManager.instance.map.inferiorityNodeSprite;

@@ -3229,7 +3229,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3247,7 +3247,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 229102758}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5304396, y: -0.21298476, z: 0.021484375}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -14368,7 +14368,7 @@ MonoBehaviour:
   neutralSprite: {fileID: 21300000, guid: 9edcd6d3e79d5054ba90d99df488623b, type: 3}
   devilKingCastleSprite: {fileID: 21300000, guid: 2375f7242fcb5c94296b0d1631f1150f,
     type: 3}
-  willloseNodeSprite: {fileID: 21300000, guid: f4e891155da592c4dad5ec66c585ea3e, type: 3}
+  willLoseNodeSprite: {fileID: 21300000, guid: f4e891155da592c4dad5ec66c585ea3e, type: 3}
   inferiorityNodeSprite: {fileID: 21300000, guid: 3c992e84e43816347a18761e07926919,
     type: 3}
   fixedFightNodeSprite: {fileID: 21300000, guid: d137544331a959b42b4cc456747c7da0,
