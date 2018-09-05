@@ -12,11 +12,8 @@ public class NextSpawnTurn : MonoBehaviour {
         int rk = GameManager.instance.nextSpawnData.requiredKarma;
         int ck = GameManager.instance.karma;
         int nt = (rk - ck) / GameManager.instance.notoriety;
-        Debug.Log(rk);
-        Debug.Log(ck);
-        Debug.Log(GameManager.instance.notoriety);
-        Debug.Log(nt);
 
-        text.text = nt >= 0 ? string.Format("leftturn \n{0}", nt) : string.Format("spawned!");
+        if (nt > 100000000) text.text = string.Format("");
+        else text.text = nt >= 0 ? string.Format("leftturn \n{0}", nt) : string.Format("spawned!");
     }
 }
