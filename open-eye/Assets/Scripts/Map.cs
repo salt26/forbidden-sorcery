@@ -4,14 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Map : MonoBehaviour {
-
-    [SerializeField]
+    
     public Sprite allySprite;
     public Sprite enemySprite;
     public Sprite neutralSprite;
     public Sprite devilKingCastleSprite;
 
-    [SerializeField]
+    public Sprite willloseNodeSprite;
+    public Sprite inferiorityNodeSprite;
+    public Sprite fixedFightNodeSprite;
+    public Sprite SuperiorityNodeSprite;
+    public Sprite willWinNodeSprite;
+    
     public Transform centralPositionIndicator;
     public Transform allyPositionIndicator;
     public Transform enemyPositionIndicator;
