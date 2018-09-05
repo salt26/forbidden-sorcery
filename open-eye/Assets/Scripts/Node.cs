@@ -25,7 +25,16 @@ public class Node : MonoBehaviour
     public List<string> startEnemies;
     public List<string> startAllies;
     [SerializeField]
-    private TextMesh nodeInformation;
+    private TextMesh nodeInformationAlliesCount;
+
+    [SerializeField]
+    private TextMesh nodeInformationEnemiesCount;
+
+    [SerializeField]
+    private TextMesh nodeInformationManaValue;
+
+    [SerializeField]
+    private TextMesh nodeInformationNotoriety;
 
     private Vector3 centralStandingPosition, allyStandingPosition, enemyStandingPosition;
 
@@ -119,21 +128,7 @@ public class Node : MonoBehaviour
 
     void Start()
     {
-        if (nodeInformation != null)
-        {
-            
-            if (manaValue/100 > 1)
-            {
-                nodeInformation.text = string.Format("{0}                   {1} \n\n\n\n\n\n{2}               {3}", allies.Count, enemies.Count, manaValue, notoriety);
-            }
-                
-            else
-            {
-                nodeInformation.text = string.Format("{0}                   {1} \n\n\n\n\n\n{2}                {3}", allies.Count, enemies.Count, manaValue, notoriety);
-            }
-                
-        }
-        
+        ShowNodeInformation();
         GetComponent<Transform>().localScale = new Vector3(0.4f, 0.4f, 1f);
         centralStandingPosition = GetComponent<Transform>().position + GameManager.instance.map.centralPositionIndicator.position;
         allyStandingPosition = centralStandingPosition + GameManager.instance.map.allyPositionIndicator.position;
@@ -425,6 +420,14 @@ public class Node : MonoBehaviour
             if (unit.moveQueue.Count > 0 && !unit.IsMoving)
                 StartCoroutine(unit.moveQueue.Dequeue());
         }
+    }
+
+    public void ShowNodeInformation()
+    {
+        nodeInformationAlliesCount.text = string.Format("{0}", allies.Count);
+        nodeInformationEnemiesCount.text = string.Format("{0}", enemies.Count);
+        nodeInformationManaValue.text = string.Format("{0}", manaValue);
+        nodeInformationNotoriety.text = string.Format("{0}", notoriety);
     }
 }
 
