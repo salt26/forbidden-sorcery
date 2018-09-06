@@ -75,7 +75,7 @@ public partial class GameManager
     [HideInInspector]
     public List<int> publicEnemyMageAttack = new List<int>();
 
-    private EnemySpawnDataContainer.EnemySpawnData nextSpawnData;
+    public EnemySpawnDataContainer.EnemySpawnData nextSpawnData;
 
     IEnumerator ChangePhase()
     {
@@ -140,6 +140,7 @@ public partial class GameManager
         StartCoroutine(phaseAlertText.GetComponent<PhaseAlertText>().AlertPhase());
 
         CheckWin();
+        CheckLose();
         CheckAndSpawnEnemy();
         if (isLast)
         {
@@ -158,6 +159,10 @@ public partial class GameManager
         StartCoroutine(phaseAlertText.GetComponent<PhaseAlertText>().AlertPhase());
 
         MoveEnemy();
+        foreach(Node node in allNodes)
+        {
+            node.ShowNodeInformation();
+        }
         OnEnemyMoveDone();
         
     }
@@ -203,7 +208,12 @@ public partial class GameManager
 
         ResolveAllFight();
 
-        for(int i = 1; i <= fightingNodeNumber; i++)
+        foreach (Node node in allNodes)
+        {
+            node.ShowNodeInformation();
+        }
+
+        for (int i = 1; i <= fightingNodeNumber; i++)
         {
             FightAnimationUI.isPastFightAnimationFinished[i] = false;
         }
@@ -271,7 +281,6 @@ public partial class GameManager
 
         foreach (var button in destroyedEnemyControlButtons)
         {
-            button.ShowExpectedResourceChange();
             button.Fetch();
             button.dominateManaChange = 0;
             button.dominateNotorietychange = 0;
@@ -279,6 +288,7 @@ public partial class GameManager
             button.killNotorietyChange = 0;
             button.freeManaChange = 0;
             button.freeNotorietyChange = 0;
+            button.ShowExpectedResourceChange();
         }
 
         destroyedEnemyControlUnit.SetActive(false);
@@ -302,16 +312,36 @@ public partial class GameManager
         StartCoroutine(ChangePhase());
     }
     
+    private void CheckLose()
+    {
+        Debug.Log(castle.isPlayerTerritory);
+        if (!castle.isPlayerTerritory)
+        {
+            isLose = true;
+            gameEnd.enabled = true;
+            gameEnd.ShowVictoryOrLose(false);
+            produceButton.enabled = false;
+            endTurnButton.enabled = false;
+        }
+    }
     private void CheckWin()
     {
         int numberOfEnemies = 0;
         foreach (Node n in allNodes)
         {
-            numberOfEnemies += n.enemies.Count;
+            foreach (Unit enemy in n.enemies) {
+                if (enemy.currentMoveType != Unit.MoveType.stay)
+                {
+                    numberOfEnemies++;
+                }
+            }
         }
         if (nextSpawnData.enemyDatas == null && numberOfEnemies == 0)
         {
-            //TODO : 승리 처리
+            gameEnd.enabled = true;
+            gameEnd.ShowVictoryOrLose(true);
+            produceButton.enabled = false;
+            endTurnButton.enabled = false;
         }
     }
 
@@ -424,7 +454,7 @@ public partial class GameManager
         {
             FightAnimationUI.nodeName[fightingNodeNumber + 1] = n.name;
 
-            n.FetchFight(Fight.Fighting(n.units));
+            n.FetchFight(Fight.Fighting(n.units.ConvertAll<IUnitInterface>((unitUnit) => unitUnit as IUnitInterface)));
         }
     }
 
@@ -439,19 +469,23 @@ public partial class GameManager
 
             if (n.enemies.Count > 0)
             {
-                n.isPlayerTerritory = false;
-                n.isNeutralTerritory = false;
                 if (n.isPlayerTerritory)
                 {
                     notoriety -= n.notoriety;
-                }                
+                }
+                n.isPlayerTerritory = false;
+                n.isNeutralTerritory = false;
+                           
             }
 
             if (n.allies.Count > 0)
             {
+                if (!n.isPlayerTerritory)
+                {
+                    notoriety += n.notoriety;
+                }
                 n.isPlayerTerritory = true;
                 n.isNeutralTerritory = false;
-                notoriety += n.notoriety;
             }
         }
         manaAmountText.SetManaAmount(mana, manaProduce);
@@ -478,6 +512,11 @@ public partial class GameManager
             {
                 enemy.Refresh();
             }
+        }
+
+        foreach (Node n in allNodes)
+        {
+            n.GetComponentInChildren<ShowNodeFightStatus>().ShowExpectedFightResult();
         }
     }
 

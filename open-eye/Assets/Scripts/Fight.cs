@@ -36,12 +36,12 @@ class Fight
 {
     static Comparer comparer = new Comparer();
     static ComparerAssassin comparerAssassin = new ComparerAssassin();
-    public static ExpectedFightResult Fighting(List<Unit> us)
+    public static ExpectedFightResult Fighting(List<IUnitInterface> us)
     {
         bool isAllyExist = false;
         bool isEnemyExist = false;
         ExpectedFightResult result = new ExpectedFightResult();
-        foreach (Unit u in us)
+        foreach (IUnitInterface u in us)
         {
             ImaginaryUnit iu = new ImaginaryUnit();
             iu.isAlly = u.isAlly;
