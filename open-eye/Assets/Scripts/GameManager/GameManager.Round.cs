@@ -338,7 +338,10 @@ public partial class GameManager
         }
         if (nextSpawnData.enemyDatas == null && numberOfEnemies == 0)
         {
+            gameEnd.enabled = true;
             gameEnd.ShowVictoryOrLose(true);
+            produceButton.enabled = false;
+            endTurnButton.enabled = false;
         }
     }
 
