@@ -16,7 +16,7 @@ MonoBehaviour:
   unitName: HeroAssassin
   spriteName: HeroAssassin
   iconName: Assassin
-  attack: 12
+  attack: 13
   health: 35
   aggro: 38
   movement: 2
