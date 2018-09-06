@@ -158,6 +158,10 @@ public partial class GameManager
         StartCoroutine(phaseAlertText.GetComponent<PhaseAlertText>().AlertPhase());
 
         MoveEnemy();
+        foreach(Node node in allNodes)
+        {
+            node.ShowNodeInformation();
+        }
         OnEnemyMoveDone();
         
     }
@@ -203,7 +207,12 @@ public partial class GameManager
 
         ResolveAllFight();
 
-        for(int i = 1; i <= fightingNodeNumber; i++)
+        foreach (Node node in allNodes)
+        {
+            node.ShowNodeInformation();
+        }
+
+        for (int i = 1; i <= fightingNodeNumber; i++)
         {
             FightAnimationUI.isPastFightAnimationFinished[i] = false;
         }

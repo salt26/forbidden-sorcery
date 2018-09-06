@@ -128,6 +128,10 @@ public class Node : MonoBehaviour
 
     void Start()
     {
+        nodeInformationAlliesCount.GetComponent<Transform>().localPosition = new Vector3(-2f, 2f, 0);
+        nodeInformationEnemiesCount.GetComponent<Transform>().localPosition = new Vector3(2f, 2f, 0);
+        nodeInformationManaValue.GetComponent<Transform>().localPosition = new Vector3(-2f, -2f, 0);
+        nodeInformationNotoriety.GetComponent<Transform>().localPosition = new Vector3(2f, -2f, 0);
         ShowNodeInformation();
         GetComponent<Transform>().localScale = new Vector3(0.4f, 0.4f, 1f);
         centralStandingPosition = GetComponent<Transform>().position + GameManager.instance.map.centralPositionIndicator.position;
@@ -183,6 +187,10 @@ public class Node : MonoBehaviour
         else
         {
             GameManager.instance.SetNode(this);
+            foreach (Node node in GameManager.instance.allNodes)
+            {
+                node.ShowNodeInformation();
+            }
         }
     }
 
