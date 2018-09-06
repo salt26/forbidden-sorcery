@@ -3167,6 +3167,92 @@ Transform:
   m_Father: {fileID: 1055268474}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &229102758
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 229102761}
+  - component: {fileID: 229102760}
+  - component: {fileID: 229102759}
+  m_Layer: 0
+  m_Name: NodeFightResultDefault
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &229102759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 229102758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58fbdb659a4f3ca4ab959f8b282c972a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!212 &229102760
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 229102758}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 0
+  m_MaskInteraction: 0
+--- !u!4 &229102761
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 229102758}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &230115153 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4875684727609178, guid: 45654e04616bdfe44bcd6794e83a6409,
@@ -7094,6 +7180,7 @@ MonoBehaviour:
   map: {fileID: 1115226233}
   rallyPoint: {fileID: 0}
   rallyPointColor: {r: 0.0040494935, g: 0.3272568, b: 0.8584906, a: 1}
+  nodeFightStatusDefault: {fileID: 229102758}
   unitMovingOrder: 0
   allNodes: []
   manaAmountText: {fileID: 758138316}
@@ -14281,6 +14368,14 @@ MonoBehaviour:
   neutralSprite: {fileID: 21300000, guid: 9edcd6d3e79d5054ba90d99df488623b, type: 3}
   devilKingCastleSprite: {fileID: 21300000, guid: 2375f7242fcb5c94296b0d1631f1150f,
     type: 3}
+  willLoseNodeSprite: {fileID: 21300000, guid: f4e891155da592c4dad5ec66c585ea3e, type: 3}
+  inferiorityNodeSprite: {fileID: 21300000, guid: 3c992e84e43816347a18761e07926919,
+    type: 3}
+  fixedFightNodeSprite: {fileID: 21300000, guid: d137544331a959b42b4cc456747c7da0,
+    type: 3}
+  SuperiorityNodeSprite: {fileID: 21300000, guid: 21920687177492c4998bbcc0a676b8b4,
+    type: 3}
+  willWinNodeSprite: {fileID: 21300000, guid: 034e66928f17bce469b538880cae2c26, type: 3}
   centralPositionIndicator: {fileID: 1511745345}
   allyPositionIndicator: {fileID: 1984237438}
   enemyPositionIndicator: {fileID: 235660184}

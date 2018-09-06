@@ -51,6 +51,7 @@ public partial class GameManager : MonoBehaviour
     public Node rallyPoint;
     [SerializeField]
     public Color rallyPointColor;
+    public GameObject nodeFightStatusDefault;
 
     public List<Unit> SelectedDestroyedEnemyList
     {
