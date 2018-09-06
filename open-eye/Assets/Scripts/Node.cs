@@ -170,6 +170,7 @@ public class Node : MonoBehaviour
             if (isNeutralTerritory) GetComponent<SpriteRenderer>().sprite = GameManager.instance.map.neutralSprite;
             else GetComponent<SpriteRenderer>().sprite = GameManager.instance.map.enemySprite;
         }
+        Instantiate(GameManager.instance.nodeFightStatusDefault, this.transform);
         GameManager.instance.allNodes.Add(this);
     }
 
@@ -317,21 +318,6 @@ public class Node : MonoBehaviour
             StartCoroutine(RedLightAnimation());
         }
     }
-
-    //public Unit Spawn(UnitData unitData, bool isAlly)
-    //{
-    //    var unitObject = Instantiate(AssetManager.Instance.GetPrefab("Unit"));
-    //    var unit = unitObject.GetComponent<Unit>();
-    //    unit.SetUnit(unitData);
-    //    unit.isAlly = isAlly;
-
-    //    unit.transform.localPosition = this.transform.localPosition;
-    //    unit.position = this;
-
-    //    units.Add(unit);
-
-    //    return unit;
-    //}
 
     IEnumerator RedLightAnimation()
     {

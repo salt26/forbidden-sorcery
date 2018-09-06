@@ -433,7 +433,7 @@ public partial class GameManager
         {
             FightAnimationUI.nodeName[fightingNodeNumber + 1] = n.name;
 
-            n.FetchFight(Fight.Fighting(n.units));
+            n.FetchFight(Fight.Fighting(n.units.ConvertAll<IUnitInterface>((unitUnit) => unitUnit as IUnitInterface)));
         }
     }
 
@@ -491,6 +491,11 @@ public partial class GameManager
             {
                 enemy.Refresh();
             }
+        }
+
+        foreach (Node n in allNodes)
+        {
+            n.GetComponentInChildren<ShowNodeFightStatus>().ShowExpectedFightResult();
         }
     }
 

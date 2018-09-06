@@ -10,4 +10,14 @@ public class ExpectedFightResult
     {
         unitList = new List<IUnitInterface>();
     }
+
+    public static ExpectedFightResult ExpectFightResultAfterSomeTurn(ExpectedFightResult inReport, int n)
+    {
+        ExpectedFightResult report = inReport;
+        for(int i = 0; i < n; i++)
+        {
+            report = Fight.Fighting(report.unitList);
+        }
+        return report;
+    }
 }
