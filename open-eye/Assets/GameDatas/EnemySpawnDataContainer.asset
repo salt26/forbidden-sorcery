@@ -14,7 +14,7 @@ MonoBehaviour:
   enemySpawnDatas:
   - requiredKarma: 0
     enemyDatas: []
-  - requiredKarma: 90
+  - requiredKarma: 75
     enemyDatas:
     - requiredNotoriety: 0
       enemyStatus: HeroSoldier1 D 1

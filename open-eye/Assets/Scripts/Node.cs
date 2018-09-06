@@ -24,6 +24,17 @@ public class Node : MonoBehaviour
     public List<Node> edges;
     public List<string> startEnemies;
     public List<string> startAllies;
+    [SerializeField]
+    private TextMesh nodeInformationAlliesCount;
+
+    [SerializeField]
+    private TextMesh nodeInformationEnemiesCount;
+
+    [SerializeField]
+    private TextMesh nodeInformationManaValue;
+
+    [SerializeField]
+    private TextMesh nodeInformationNotoriety;
 
     private Vector3 centralStandingPosition, allyStandingPosition, enemyStandingPosition;
 
@@ -117,6 +128,7 @@ public class Node : MonoBehaviour
 
     void Start()
     {
+        ShowNodeInformation();
         GetComponent<Transform>().localScale = new Vector3(0.4f, 0.4f, 1f);
         centralStandingPosition = GetComponent<Transform>().position + GameManager.instance.map.centralPositionIndicator.position;
         allyStandingPosition = centralStandingPosition + GameManager.instance.map.allyPositionIndicator.position;
@@ -178,9 +190,11 @@ public class Node : MonoBehaviour
     {
         units.Sort(unitComparer);
         bool decideAllyMainUnit = false, decideEnemyMainUnit = false;
+        bool someUnitsAreMoving = false;
 
         foreach (Unit unit in units)
         {
+            if (unit.IsMoving) someUnitsAreMoving = true;
             if (!decideAllyMainUnit && unit.isAlly)
             {
                 unit.mainUnitInNode = true;
@@ -196,7 +210,10 @@ public class Node : MonoBehaviour
                 unit.mainUnitInNode = false;
             }
         }
-
+        if (someUnitsAreMoving)
+        {
+            return;
+        }
         foreach (Unit unit in units)
         {
             if (unit.mainUnitInNode)
@@ -403,6 +420,14 @@ public class Node : MonoBehaviour
             if (unit.moveQueue.Count > 0 && !unit.IsMoving)
                 StartCoroutine(unit.moveQueue.Dequeue());
         }
+    }
+
+    public void ShowNodeInformation()
+    {
+        nodeInformationAlliesCount.text = string.Format("{0}", allies.Count);
+        nodeInformationEnemiesCount.text = string.Format("{0}", enemies.Count);
+        nodeInformationManaValue.text = string.Format("{0}", manaValue);
+        nodeInformationNotoriety.text = string.Format("{0}", notoriety);
     }
 }
 
