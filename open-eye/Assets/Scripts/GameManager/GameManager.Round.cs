@@ -169,7 +169,7 @@ public partial class GameManager
     private void PlayerActionPhase()
     {
         currentState = RoundState.PlayerAction;
-        endTurnButton.interactable = true;
+        endTurnButton.interactable = false;
         produceButton.interactable = true;
 
         StartCoroutine(phaseAlertText.GetComponent<PhaseAlertText>().AlertPhase());
@@ -181,6 +181,8 @@ public partial class GameManager
                 ally.Refresh();
             }
         }
+        MoveAutoUnitToRallyPoint();
+        StartCoroutine(waitUntilAllyIsNotMoving());
     }
 
     IEnumerator FinishFightPhase()
@@ -195,8 +197,6 @@ public partial class GameManager
         {
             n.GetComponent<SpriteRenderer>().color = n.isRallyPoint ? rallyPointColor : unSelectedColor;
         }
-        MoveAutoUnitToRallyPoint();
-        StartCoroutine(waitUntilAllyIsNotMoving());
         currentState = RoundState.Fight;
         endTurnButton.interactable = false;
         produceButton.interactable = false;
