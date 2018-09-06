@@ -140,6 +140,7 @@ public partial class GameManager
         StartCoroutine(phaseAlertText.GetComponent<PhaseAlertText>().AlertPhase());
 
         CheckWin();
+        CheckLose();
         CheckAndSpawnEnemy();
         if (isLast)
         {
@@ -311,16 +312,33 @@ public partial class GameManager
         StartCoroutine(ChangePhase());
     }
     
+    private void CheckLose()
+    {
+        Debug.Log(castle.isPlayerTerritory);
+        if (!castle.isPlayerTerritory)
+        {
+            isLose = true;
+            gameEnd.enabled = true;
+            gameEnd.ShowVictoryOrLose(false);
+            produceButton.enabled = false;
+            endTurnButton.enabled = false;
+        }
+    }
     private void CheckWin()
     {
         int numberOfEnemies = 0;
         foreach (Node n in allNodes)
         {
-            numberOfEnemies += n.enemies.Count;
+            foreach (Unit enemy in n.enemies) {
+                if (enemy.currentMoveType != Unit.MoveType.stay)
+                {
+                    numberOfEnemies++;
+                }
+            }
         }
         if (nextSpawnData.enemyDatas == null && numberOfEnemies == 0)
         {
-            //TODO : 승리 처리
+            gameEnd.ShowVictoryOrLose(true);
         }
     }
 
