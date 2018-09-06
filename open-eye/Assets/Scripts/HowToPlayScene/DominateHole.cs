@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TutorialButtonScript : MonoBehaviour {
+public class DominateHole : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

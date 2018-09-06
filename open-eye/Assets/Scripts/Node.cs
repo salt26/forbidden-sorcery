@@ -162,7 +162,7 @@ public class Node : MonoBehaviour
         nodeBeingClicked = true;
     }
 
-    void OnMouseUpAsButton()
+    public void OnMouseUpAsButton()
     {
         if (Input.GetKey(KeyCode.R))
         {
