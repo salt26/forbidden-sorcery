@@ -160,6 +160,10 @@ public class Unit : MonoBehaviour, IUnitInterface
         
         
         OnMoveBetweenNodesAnimationFinished();                  //하나의 동작이 끝나는 순간 무엇을 할 것인가?
+        foreach (Node n in GameManager.instance.allNodes)
+        {
+            n.GetComponentInChildren<ShowNodeFightStatus>().ShowExpectedFightResult();
+        }
     }
 
     void OnMoveBetweenNodesAnimationFinished()
