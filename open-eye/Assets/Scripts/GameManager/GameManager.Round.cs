@@ -326,7 +326,6 @@ public partial class GameManager
     
     private void CheckLose()
     {
-        Debug.Log(castle.isPlayerTerritory);
         if (!castle.isPlayerTerritory)
         {
             isLose = true;
@@ -603,7 +602,6 @@ public partial class GameManager
     }
     private void MoveAutoUnitToRallyPoint()
     {
-        Debug.Log("Start");
         foreach (Node node in allNodes)
         {
             foreach (Unit ally in node.allies)
@@ -633,6 +631,5 @@ public partial class GameManager
                     StartCoroutine(unit.moveQueue.Dequeue());
             }
         }
-        Debug.Log("Finish");
     }
 }
