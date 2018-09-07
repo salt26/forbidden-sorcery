@@ -45158,7 +45158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.94190806, g: 0.5518868, b: 1, a: 1}
+  m_Color: {r: 0.81164163, g: 0.56470275, b: 0.8490566, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -47649,8 +47649,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66c3f0b2ccc9f44ab27363e43709f3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  phaseNoticeDuration: 0.06
-  phaseMoveDuration: 0.06
+  phaseNoticeDuration: 1
+  phaseMoveDuration: 0.2
   phaseAlertImage: {fileID: 0}
   isPhaseNoticeDone: 0
   initialPosition: {x: 2240, y: 480, z: 0}
