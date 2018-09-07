@@ -143,7 +143,8 @@ public class Unit : MonoBehaviour, IUnitInterface
         from.DecideAndShowMainUnit();
         GetComponent<SpriteRenderer>().enabled = true;
 
-        yield return new WaitForSeconds(0.2f * GameManager.instance.unitMovingOrder);
+        float sec = GameManager.instance.unitMovingOrder == 0 ? 0 : 1f / GameManager.instance.unitMovingOrder;
+        yield return new WaitForSeconds(sec * GameManager.instance.unitMovingOrderCount);
 
         float duration = 0.5f;                                                  //여기서부터
         float deltaTime = 0;

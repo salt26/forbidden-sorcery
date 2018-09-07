@@ -8,6 +8,7 @@ public partial class GameManager
     public bool isMouseInMap { get; private set; }
 
     public int unitMovingOrder;
+    public int unitMovingOrderCount;
 
     private void Update()
     {
@@ -490,15 +491,18 @@ public partial class GameManager
                         endTurnButton.interactable = false;
                     }
                     unitMovingOrder = 0;
+                    unitMovingOrderCount = 0;
+                    foreach (Unit unit in selectedUnitList)
+                        ++unitMovingOrder;
                     foreach (Unit unit in selectedUnitList)
                     {
                         if (unit.canMove)
                         {
                             unit.MoveBetweenNodes(selectedNode, node);
-                            ++unitMovingOrder;
+                            ++unitMovingOrderCount;
                         }
                     }
-
+                    unitMovingOrder = 0;
                     selectedNode.RefineUnitPosition(selectedNode.allies.Count, selectedNode.enemies.Count);
                     //selectedNode.DecideAndShowMainUnit();
                     foreach (Unit unit in selectedNode.units)
@@ -571,6 +575,7 @@ public partial class GameManager
 
     private IEnumerator waitUntilAllyIsNotMoving()
     {
+        unitMovingOrderCount = 0;
         yield return new WaitWhile(() => isAllyMoving);
         if (currentState == RoundState.PlayerAction)
         {
