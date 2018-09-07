@@ -97,7 +97,6 @@ public partial class GameManager
                 break;
             case 3:
                 FightPhase();
-                ClickSoundManager.instance.PlaySound();
                 break;
             case 4:
                 Captive();
