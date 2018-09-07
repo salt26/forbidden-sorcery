@@ -14461,7 +14461,7 @@ Prefab:
     - target: {fileID: 114827023709587056, guid: 90f938416a7a98c48a411439f23bebf1,
         type: 2}
       propertyPath: startEnemies.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4002299396239596, guid: 90f938416a7a98c48a411439f23bebf1, type: 2}
       propertyPath: m_LocalPosition.x
