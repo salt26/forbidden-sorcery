@@ -572,5 +572,9 @@ public partial class GameManager
         {
             endTurnButton.interactable = true;
         }
+        else if(currentState == RoundState.AutoMove)
+        {
+            StartCoroutine(ChangePhase());
+        }
     }
 }
