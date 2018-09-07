@@ -475,8 +475,21 @@ public partial class GameManager
             {
                 while (enemy.canMove)
                 {
+                    bool flag = false;
                     Node nextNode = enemy.NextNode();
-                    enemy.MoveBetweenNodes(enemy.position, nextNode);
+                    if (nextNode.Equals(enemy.position))
+                    {
+                        flag = true;
+                    }
+                    if (flag)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        enemy.MoveBetweenNodes(enemy.position, nextNode);
+                    }
+                    
                 }
             }
         }
