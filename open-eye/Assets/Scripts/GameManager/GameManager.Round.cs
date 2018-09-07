@@ -451,8 +451,8 @@ public partial class GameManager
                 nextSpawnData = null;
                 isLast = true;
             }
-            
-            for(int i = 1; i <= index; i++)
+
+            for (int i = 1; i <= index; i++)
             {
                 EnemySpawnAlertManager.instance.PlaySound();
                 GameObject.Find("Main Camera").GetComponent<CameraController>().SetDestination(
