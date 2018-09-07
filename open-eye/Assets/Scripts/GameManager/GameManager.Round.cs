@@ -285,8 +285,6 @@ public partial class GameManager
         {
             OnClickEndTurnButtonNoSound();
         }
-
-        StartCoroutine(phaseAlertText.GetComponent<PhaseAlertText>().AlertPhase());
     }
 
     private void UpkeepPhase()
@@ -319,8 +317,7 @@ public partial class GameManager
         {
             n.FetchDestroy();
         }
-
-        StartCoroutine(phaseAlertText.GetComponent<PhaseAlertText>().AlertPhase());
+        
         CaptureTerritories();
         UpkeepResources();
         RefreshStatus();

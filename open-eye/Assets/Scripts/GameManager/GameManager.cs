@@ -63,6 +63,7 @@ public partial class GameManager : MonoBehaviour
     public Vector3 nodeInformationAlliesCountLocalPosition;
     public Vector3 nodeInformationEnemiesCountLocalPosition;
     public Font nodeInformationFont;
+    public Vector3 nodeInformationLocalScale;
     public Material nodeInformationMaterial;
 
     public List<Unit> SelectedDestroyedEnemyList
