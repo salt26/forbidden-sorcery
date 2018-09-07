@@ -46,7 +46,7 @@ public class HowToPlayMainLogic : MonoBehaviour {
         phaseNumber = 1;
         WindowExplanation(bottomWindow, "적 용사들은 곧 마왕님은 토벌하기 위해 몰려올 것입니다. 마왕님은 아군 유닛들을 통솔하여 용사들의 공격을 막아야 합니다. 마지막까지 살아남아 마왕성을 적들로부터 지켜냅시다.");
     }
-
+    /*
     public void Phase2Turns()
     {
         phaseNumber = 2;
@@ -59,6 +59,7 @@ public class HowToPlayMainLogic : MonoBehaviour {
         WholeScreen.GetComponent<WholeScreenScript>().explanationOrder = 0;     //이것들은 설명이 여러 단계일 때 사용
         WindowExplanation(bottomWindow, "이 지역 지도는 지금 보시는 것과 같이 영토들이 배치되어 있습니다. 영토 간 이동은 정해진 길을 따라서만 할 수 있습니다.");
     }
+    */
     public void Phase4Mana()
     {
         phaseNumber = 4;
@@ -95,6 +96,7 @@ public class HowToPlayMainLogic : MonoBehaviour {
     public void Phase9Fight()
     {
         phaseNumber = 9;
+        WindowExplanation(bottomWindow, "아군 유닛과 적군 유닛이 같은 노드에 있을 때 전투 페이즈가 시작되면 전투가 발생합니다.");
     }
 
     public void Phase10EnemyControl()
