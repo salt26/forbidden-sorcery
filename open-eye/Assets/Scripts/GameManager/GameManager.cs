@@ -57,6 +57,14 @@ public partial class GameManager : MonoBehaviour
     [HideInInspector]
     public bool isLose = false;
 
+    [SerializeField]
+    public Vector3 nodeInformationManaValueLocalPosition;
+    public Vector3 nodeInformationNotorietyLocalPosition;
+    public Vector3 nodeInformationAlliesCountLocalPosition;
+    public Vector3 nodeInformationEnemiesCountLocalPosition;
+    public Font nodeInformationFont;
+    public Material nodeInformationMaterial;
+
     public List<Unit> SelectedDestroyedEnemyList
     {
         get
