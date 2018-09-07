@@ -88,10 +88,10 @@ public class Unit : MonoBehaviour, IUnitInterface
         }
     }
 
-    public void SetUnit(UnitData unitData)
+    public void SetUnit(UnitData unitData, bool isAlly)
     {
         this.unitData = unitData;
-        if (GameManager.instance.numberOfProducableAlliedEnemies.ContainsKey(unitData))
+        if (GameManager.instance.numberOfProducableAlliedEnemies.ContainsKey(unitData) && isAlly)
             GetComponent<SpriteRenderer>().sprite = AssetManager.Instance.GetSprite("Dominated" + unitData.spriteName);
         else
         {

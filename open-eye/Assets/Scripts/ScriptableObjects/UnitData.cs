@@ -32,6 +32,8 @@ public class UnitData : ScriptableObject
         var data = obj as UnitData;
         return data != null &&
                base.Equals(obj) &&
+               herotype == data.herotype &&
+               isHero == data.isHero &&
                unitName == data.unitName &&
                spriteName == data.spriteName &&
                iconName == data.iconName &&
@@ -45,8 +47,10 @@ public class UnitData : ScriptableObject
 
     public override int GetHashCode()
     {
-        var hashCode = -915280803;
+        var hashCode = 1819745940;
         hashCode = hashCode * -1521134295 + base.GetHashCode();
+        hashCode = hashCode * -1521134295 + herotype.GetHashCode();
+        hashCode = hashCode * -1521134295 + isHero.GetHashCode();
         hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(unitName);
         hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(spriteName);
         hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(iconName);
