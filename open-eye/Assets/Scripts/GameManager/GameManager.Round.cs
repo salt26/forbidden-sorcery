@@ -10,6 +10,7 @@ public partial class GameManager
         Standby,
         EnemyMove,
         PlayerAction,
+        AutoMove,
         Fight,
         Captive,
         Upkeep,
@@ -89,16 +90,19 @@ public partial class GameManager
                 PlayerActionPhase();
                 break;
             case 2:
+                AutoMovePhase();
+                break;
+            case 3:
                 FightPhase();
                 ClickSoundManager.instance.PlaySound();
                 break;
-            case 3:
+            case 4:
                 Captive();
                 break;
-            case 4:
+            case 5:
                 UpkeepPhase();
                 break;
-            case 5:
+            case 6:
                 StandbyPhase();
                 break;
         }
@@ -185,6 +189,15 @@ public partial class GameManager
         }
     }
 
+    private void AutoMovePhase()
+    {
+        currentState = RoundState.AutoMove;
+        endTurnButton.interactable = false;
+        produceButton.interactable = false;
+        MoveAutoUnitToRallyPoint();
+        StartCoroutine(waitUntilAllyIsNotMoving());
+    }
+
     IEnumerator FinishFightPhase()
     {
         yield return new WaitUntil(() => FightAnimationUI.isPastFightAnimationFinished[fightingNodeNumber]);
@@ -197,8 +210,6 @@ public partial class GameManager
         {
             n.GetComponent<SpriteRenderer>().color = n.isRallyPoint ? rallyPointColor : unSelectedColor;
         }
-        MoveAutoUnitToRallyPoint();
-        StartCoroutine(waitUntilAllyIsNotMoving());
         currentState = RoundState.Fight;
         endTurnButton.interactable = false;
         produceButton.interactable = false;
@@ -592,6 +603,7 @@ public partial class GameManager
     }
     private void MoveAutoUnitToRallyPoint()
     {
+        Debug.Log("Start");
         foreach (Node node in allNodes)
         {
             foreach (Unit ally in node.allies)
@@ -621,5 +633,6 @@ public partial class GameManager
                     StartCoroutine(unit.moveQueue.Dequeue());
             }
         }
+        Debug.Log("Finish");
     }
 }
