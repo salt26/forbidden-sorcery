@@ -285,8 +285,6 @@ public partial class GameManager
         {
             OnClickEndTurnButtonNoSound();
         }
-
-        StartCoroutine(phaseAlertText.GetComponent<PhaseAlertText>().AlertPhase());
     }
 
     private void UpkeepPhase()
@@ -319,8 +317,7 @@ public partial class GameManager
         {
             n.FetchDestroy();
         }
-
-        StartCoroutine(phaseAlertText.GetComponent<PhaseAlertText>().AlertPhase());
+        
         CaptureTerritories();
         UpkeepResources();
         RefreshStatus();
@@ -367,6 +364,8 @@ public partial class GameManager
         Vector3 tempvector = GameObject.Find("Main Camera").GetComponent<Transform>().position;
         if (karma > nextSpawnData.requiredKarma)
         {
+            EnemySpawnAlertManager.instance.PlaySound();
+
             string[] enemySpawnNodes = new string[100];
             int index = 0;
 
@@ -461,7 +460,6 @@ public partial class GameManager
                 GameObject.Find("Main Camera").GetComponent<CameraController>().SetDestination(
                 GameObject.Find(enemySpawnNodes[i]).GetComponent<Transform>().position);
                 yield return new WaitForSeconds(enemySpawnDuration);
-                Debug.Log(enemySpawnNodes[i]);
             }
         }
         isSpawnEnemyAnimationFinished = true;
