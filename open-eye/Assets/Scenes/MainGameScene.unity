@@ -12821,8 +12821,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c3824af1de4ad64bb919c9455d4225b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalColor: {r: 0.8679245, g: 0.25792095, b: 0.8420572, a: 1}
-  disabledColor: {r: 0.5943396, g: 0.1541919, b: 0.5691409, a: 1}
+  normalColor: {r: 0.8196079, g: 0.52156866, b: 0.49803925, a: 1}
+  disabledColor: {r: 0.7075472, g: 0.5312302, b: 0.51731044, a: 1}
   kind: 1
   text: {fileID: 973113826}
   dominateNotorietychange: 0
@@ -45084,8 +45084,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c3824af1de4ad64bb919c9455d4225b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalColor: {r: 0.6509434, g: 0.15045391, b: 0.15045391, a: 1}
-  disabledColor: {r: 0.4811321, g: 0.17928979, b: 0.17928979, a: 1}
+  normalColor: {r: 0.8117648, g: 0.5647059, b: 0.85098046, a: 1}
+  disabledColor: {r: 0.72264904, g: 0.5800552, b: 0.745283, a: 1}
   kind: 0
   text: {fileID: 165186189}
   dominateNotorietychange: 0
@@ -46307,8 +46307,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c3824af1de4ad64bb919c9455d4225b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalColor: {r: 0.7264151, g: 0.66816485, b: 0.66816485, a: 1}
-  disabledColor: {r: 0.509434, g: 0.48780707, b: 0.48780707, a: 1}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  disabledColor: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 1}
   kind: 2
   text: {fileID: 1263871704}
   dominateNotorietychange: 0
@@ -49671,7 +49671,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 151.29, y: 0.000030517578}
+  m_AnchoredPosition: {x: 151.29, y: -0.000056001936}
   m_SizeDelta: {x: 636.9, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2059353601
