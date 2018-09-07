@@ -90,6 +90,7 @@ public partial class GameManager
                 break;
             case 2:
                 FightPhase();
+                ClickSoundManager.instance.PlaySound();
                 break;
             case 3:
                 Captive();
@@ -267,7 +268,7 @@ public partial class GameManager
         }
         else
         {
-            OnClickEndTurnButton();
+            OnClickEndTurnButtonNoSound();
         }
 
         StartCoroutine(phaseAlertText.GetComponent<PhaseAlertText>().AlertPhase());

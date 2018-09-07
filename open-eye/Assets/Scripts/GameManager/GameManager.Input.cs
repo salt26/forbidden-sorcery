@@ -327,6 +327,20 @@ public partial class GameManager
         StartCoroutine(ChangePhase());
     }
 
+    public void OnClickEndTurnButtonNoSound()
+    {
+        selectedUnitList.Clear();
+        unitListScrollView.ShowList(false);
+        unitListScrollView.isForProduce = false;
+        unitListScrollView.ShowUnitTab(false);
+        if (selectedNode != null)
+        {
+            selectedNode.GetComponent<SpriteRenderer>().color = selectedNode.isRallyPoint ? rallyPointColor : unSelectedColor;
+        }
+        selectedNode = null;
+        StartCoroutine(ChangePhase());
+    }
+
     public void OnClickProduceButton()
     {
         ClickSoundManager.instance.PlaySound();
@@ -529,6 +543,7 @@ public partial class GameManager
 
     public void OnClickAllyTabButton()
     {
+        ClickSoundManager.instance.PlaySound();
         unitListScrollView.allyTabFake.color = unitListScrollView.allyTabPressedColor;
         unitListScrollView.enemyTabFake.color = unitListScrollView.enemyTabNormalColor;
         unitListScrollView.ShowList(true);
@@ -538,6 +553,7 @@ public partial class GameManager
 
     public void OnClickEnemyTabButton()
     {
+        ClickSoundManager.instance.PlaySound();
         unitListScrollView.enemyTabFake.color = unitListScrollView.enemyTabPressedColor;
         unitListScrollView.allyTabFake.color = unitListScrollView.allyTabNormalColor;
         unitListScrollView.ShowList(true);
