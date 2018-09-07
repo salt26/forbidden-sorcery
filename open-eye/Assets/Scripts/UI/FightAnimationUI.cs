@@ -257,7 +257,7 @@ public class FightAnimationUI : MonoBehaviour {
 
     public static IEnumerator FightAnimation(int i)
     {
-        yield return new WaitUntil(() => isPastFightAnimationFinished[i - 1]);
+        yield return new WaitUntil(() => isPastFightAnimationFinished[i - 1] && GameManager.instance.phaseAlertText.GetComponent<PhaseAlertText>().isPhaseNoticeDone);
 
         ShowFightAnimationUI(i);
 
