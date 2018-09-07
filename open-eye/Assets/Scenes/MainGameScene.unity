@@ -12721,9 +12721,10 @@ MonoBehaviour:
   notoriety: 0
   karma: 0
   maxNotoriety: 50
+  enemySpawnDuration: 1
   movingUnits: []
   fightingNodeNumber: 0
-  fightAnimationDuration: 0.05
+  fightAnimationDuration: 1
   publicAllyAssassinAttack: 
   publicAllyAttack: 
   publicAllyMageAttack: 
