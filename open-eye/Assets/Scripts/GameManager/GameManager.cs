@@ -59,12 +59,31 @@ public partial class GameManager : MonoBehaviour
 
     [SerializeField]
     public Vector3 nodeInformationManaValueLocalPosition;
+    public Color nodeInformationManaValueColor;
+    public Vector3 nodeInformationManaValueSpriteRendererLocalPosition;
+    public GameObject nodeInformationManaValueSpriteRenderer;
+
     public Vector3 nodeInformationNotorietyLocalPosition;
+    public Color nodeInformationNotorietyColor;
+    public Vector3 nodeInformationNotorietySpriteRendererLocalPosition;
+    public GameObject nodeInformationNotorietySpriteRenderer;
+
     public Vector3 nodeInformationAlliesCountLocalPosition;
+    public Color nodeInformationAlliesCountColor;
+    public Vector3 nodeInformationAlliesCountSpriteRendererLocalPosition;
+    public GameObject nodeInformationAlliesCountSpriteRenderer;
+
     public Vector3 nodeInformationEnemiesCountLocalPosition;
+    public Color nodeInformationEnemiesCountColor;
+    public Vector3 nodeInformationEnemiesCountSpriteRendererLocalPosition;
+    public GameObject nodeInformationEnemiesCountSpriteRenderer;
+
     public Font nodeInformationFont;
     public Vector3 nodeInformationLocalScale;
+    public Vector3 nodeInformationIconLocalScale;
     public Material nodeInformationMaterial;
+
+    public int fontSize;
 
     public List<Unit> SelectedDestroyedEnemyList
     {
