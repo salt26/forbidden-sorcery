@@ -149,7 +149,18 @@ public class Node : MonoBehaviour
         nodeInformationEnemiesCount.GetComponent<TextMesh>().color = GameManager.instance.nodeInformationEnemiesCountColor;
         nodeInformationManaValue.GetComponent<TextMesh>().color = GameManager.instance.nodeInformationManaValueColor;
         nodeInformationNotoriety.GetComponent<TextMesh>().color = GameManager.instance.nodeInformationNotorietyColor;
-
+        GameObject nIMVSPR = Instantiate(GameManager.instance.nodeInformationManaValueSpriteRenderer, transform);
+        GameObject nIACSPR = Instantiate(GameManager.instance.nodeInformationAlliesCountSpriteRenderer, transform);
+        GameObject nIECSPR = Instantiate(GameManager.instance.nodeInformationEnemiesCountSpriteRenderer, transform);
+        GameObject nINSPR = Instantiate(GameManager.instance.nodeInformationNotorietySpriteRenderer, transform);
+        nIMVSPR.transform.localPosition = GameManager.instance.nodeInformationManaValueSpriteRendererLocalPosition;
+        nIACSPR.transform.localPosition = GameManager.instance.nodeInformationAlliesCountSpriteRendererLocalPosition;
+        nIECSPR.transform.localPosition = GameManager.instance.nodeInformationEnemiesCountSpriteRendererLocalPosition;
+        nINSPR.transform.localPosition = GameManager.instance.nodeInformationNotorietySpriteRendererLocalPosition;
+        nIMVSPR.transform.localScale = GameManager.instance.nodeInformationIconLocalScale;
+        nIACSPR.transform.localScale = GameManager.instance.nodeInformationIconLocalScale;
+        nIECSPR.transform.localScale = GameManager.instance.nodeInformationIconLocalScale;
+        nINSPR.transform.localScale = GameManager.instance.nodeInformationIconLocalScale;
         ShowNodeInformation();
         GetComponent<Transform>().localScale = new Vector3(0.4f, 0.4f, 1f);
         centralStandingPosition = GetComponent<Transform>().position + GameManager.instance.map.centralPositionIndicator.position;
