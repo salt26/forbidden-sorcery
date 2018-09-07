@@ -176,6 +176,7 @@ public class Node : MonoBehaviour
 
     void OnMouseDown()
     {
+        ClickSoundManager.instance.PlaySound();
         nodeBeingClicked = true;
     }
 

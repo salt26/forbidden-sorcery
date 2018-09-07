@@ -129,6 +129,7 @@ public class UnitListItem : MonoBehaviour
 
     public void OnItemClick()
     {
+        ClickSoundManager.instance.PlaySound();
         if (onClick != null)
         {
             onClick(this);
@@ -165,6 +166,7 @@ public class UnitListItem : MonoBehaviour
 
     public void OnIconClick()
     {
+        ClickSoundManager.instance.PlaySound();
         if (onClick != null)
         {
             onClick(this);
