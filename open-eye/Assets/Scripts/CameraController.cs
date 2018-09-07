@@ -14,7 +14,9 @@ public class CameraController : MonoBehaviour
     private float minCameraSize = 3f;
     
     public Camera targetCamera { get; private set; }
-    private float currentCameraSize = 5f;
+
+    [HideInInspector]
+    public float currentCameraSize = 5f;
 
     [SerializeField]
     Vector3 rightTop;
