@@ -20,11 +20,12 @@ public partial class GameManager
         {
             if (selectedNode != null && unitListScrollView.nowListShown && !unitListScrollView.isForProduce)
             {
+                ClickSoundManager.instance.PlaySound();
                 foreach (var unitListItem in unitListScrollView.listItems)
                 {
                     if (!unitListItem.isSelected)
                     {
-                        unitListItem.OnItemClick();
+                        unitListItem.OnItemClickNoSound();
                     }
                 }
             }
@@ -34,11 +35,12 @@ public partial class GameManager
         {
             if (selectedNode != null && unitListScrollView.nowListShown && !unitListScrollView.isForProduce)
             {
+                ClickSoundManager.instance.PlaySound();
                 foreach (var unitListItem in unitListScrollView.listItems)
                 {
                     if (unitListItem.unit.Movement == 1 && !unitListItem.isSelected)
                     {
-                        unitListItem.OnItemClick();
+                        unitListItem.OnItemClickNoSound();
                     }
                 }
             }
@@ -51,9 +53,10 @@ public partial class GameManager
             {
                 foreach (var unitListItem in unitListScrollView.listItems)
                 {
+                    ClickSoundManager.instance.PlaySound();
                     if (unitListItem.unit.Movement == 2 && !unitListItem.isSelected)
                     {
-                        unitListItem.OnItemClick();
+                        unitListItem.OnItemClickNoSound();
                     }
                 }
             }
