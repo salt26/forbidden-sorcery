@@ -176,7 +176,6 @@ public class Node : MonoBehaviour
 
     void OnMouseDown()
     {
-        ClickSoundManager.instance.PlaySound();
         nodeBeingClicked = true;
     }
 
@@ -322,6 +321,7 @@ public class Node : MonoBehaviour
 
     IEnumerator RedLightAnimation()
     {
+        AlertSoundManager.instance.PlaySound();
         isRed = true;
         float duration = 0.5f;
         float deltaTime = 0;

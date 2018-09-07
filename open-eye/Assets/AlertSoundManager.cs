@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClickSoundManager : MonoBehaviour
+public class AlertSoundManager : MonoBehaviour
 {
-    public AudioClip soundClick; 
+
+    public AudioClip soundClick;
     AudioSource myAudio;
 
-    public static ClickSoundManager instance; 
+    public static AlertSoundManager instance;
 
     void Awake()
     {
-        if (ClickSoundManager.instance == null) 
+        if (AlertSoundManager.instance == null)
         {
-            ClickSoundManager.instance = this;
+            AlertSoundManager.instance = this;
         }
     }
     void Start()

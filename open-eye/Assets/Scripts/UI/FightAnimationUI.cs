@@ -114,6 +114,8 @@ public class FightAnimationUI : MonoBehaviour {
         if (isThereEnemyAssassin[i]) EnemyNumber++;
         if (isThereEnemyMage[i]) EnemyNumber++;
 
+        BattleCryManager.instance.PlaySound();
+
         GameObject.Find("FightAnimationUI").GetComponent<Image>().enabled = true;
 
         for (int j = 1; j <= AllyNumber; j++)
