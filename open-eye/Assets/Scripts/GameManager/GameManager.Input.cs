@@ -329,6 +329,8 @@ public partial class GameManager
 
     public void OnClickProduceButton()
     {
+        ClickSoundManager.instance.PlaySound();
+
         unitListScrollView.ShowUnitTab(false);
 
         if (currentState != RoundState.PlayerAction)
