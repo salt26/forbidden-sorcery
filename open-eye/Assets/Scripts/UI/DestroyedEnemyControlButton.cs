@@ -110,13 +110,13 @@ public class DestroyedEnemyControlButton : MonoBehaviour
         switch ((int)kindOfButton)
         {
             case 0:
-                text.text = string.Format("mana- = {0} \nnotoriety+ = {1}", -dominateManaChange, dominateNotorietychange);
+                text.text = string.Format("{0}", dominateManaChange);
                 break;
             case 1:
-                text.text = string.Format("mana+ = {0} \nnotoriety+ = {1}", killManaChange, killNotorietyChange);
+                text.text = string.Format("{0}", killManaChange);
                 break;
             case 2:
-                text.text = string.Format("mana = {0} \nnotoriety- = {1}", freeManaChange, -freeNotorietyChange);
+                text.text = string.Format("{0}", freeManaChange);
                 break;
         }
     }
