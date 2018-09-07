@@ -419,6 +419,7 @@ public partial class GameManager
             {
                 if (selectedNode == null && node.units.Count > 0)
                 {
+                    ClickSoundManager.instance.PlaySound();
                     selectedNode = node;
                     var spriteRenderer = selectedNode.GetComponent<SpriteRenderer>();
                     spriteRenderer.color = selectedColor;
@@ -443,6 +444,7 @@ public partial class GameManager
                 }
                 else if (selectedNode == node)
                 {
+                    ClickSoundManager.instance.PlaySound();
                     selectedNode.GetComponent<SpriteRenderer>().color = selectedNode.isRallyPoint ? rallyPointColor : unSelectedColor;
                     selectedNode = null;
 
@@ -453,6 +455,7 @@ public partial class GameManager
                 }
                 else if (selectedUnitList.Count == 0)
                 {
+                    ClickSoundManager.instance.PlaySound();
                     selectedNode.GetComponent<SpriteRenderer>().color = selectedNode.isRallyPoint ? rallyPointColor : unSelectedColor;
                     selectedNode = node;
                     node.GetComponent<SpriteRenderer>().color = selectedColor;
@@ -477,6 +480,7 @@ public partial class GameManager
                 }
                 else
                 {
+                    ClickSoundManager.instance.PlaySound();
                     if (currentState == RoundState.PlayerAction)
                     {
                         endTurnButton.interactable = false;

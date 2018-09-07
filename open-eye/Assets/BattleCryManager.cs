@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClickSoundManager : MonoBehaviour
-{
-    public AudioClip soundClick; 
+public class BattleCryManager : MonoBehaviour {
+
+    public AudioClip soundClick;
     AudioSource myAudio;
 
-    public static ClickSoundManager instance; 
+    public static BattleCryManager instance;
 
     void Awake()
     {
-        if (ClickSoundManager.instance == null) 
+        if (BattleCryManager.instance == null)
         {
-            ClickSoundManager.instance = this;
+            BattleCryManager.instance = this;
         }
     }
     void Start()
