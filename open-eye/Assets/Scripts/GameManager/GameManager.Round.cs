@@ -178,8 +178,6 @@ public partial class GameManager
     private void PlayerActionPhase()
     {
         currentState = RoundState.PlayerAction;
-        endTurnButton.interactable = true;
-        produceButton.interactable = true;
 
         StartCoroutine(phaseAlertText.GetComponent<PhaseAlertText>().AlertPhase());
 
