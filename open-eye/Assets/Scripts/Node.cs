@@ -24,17 +24,9 @@ public class Node : MonoBehaviour
     public List<Node> edges;
     public List<string> startEnemies;
     public List<string> startAllies;
-    [SerializeField]
-    private TextMesh nodeInformationAlliesCount;
-
-    [SerializeField]
-    private TextMesh nodeInformationEnemiesCount;
 
     [SerializeField]
     private TextMesh nodeInformationManaValue;
-
-    [SerializeField]
-    private TextMesh nodeInformationNotoriety;
 
     private Vector3 centralStandingPosition, allyStandingPosition, enemyStandingPosition;
 
@@ -129,38 +121,14 @@ public class Node : MonoBehaviour
 
     void Start()
     {
-        nodeInformationAlliesCount.GetComponent<Transform>().localPosition = GameManager.instance.nodeInformationAlliesCountLocalPosition;
-        nodeInformationEnemiesCount.GetComponent<Transform>().localPosition = GameManager.instance.nodeInformationEnemiesCountLocalPosition;
         nodeInformationManaValue.GetComponent<Transform>().localPosition = GameManager.instance.nodeInformationManaValueLocalPosition;
-        nodeInformationNotoriety.GetComponent<Transform>().localPosition = GameManager.instance.nodeInformationNotorietyLocalPosition;
-        nodeInformationAlliesCount.GetComponent<TextMesh>().font = GameManager.instance.nodeInformationFont;
-        nodeInformationEnemiesCount.GetComponent<TextMesh>().font = GameManager.instance.nodeInformationFont;
         nodeInformationManaValue.GetComponent<TextMesh>().font = GameManager.instance.nodeInformationFont;
-        nodeInformationNotoriety.GetComponent<TextMesh>().font = GameManager.instance.nodeInformationFont;
-        nodeInformationAlliesCount.GetComponent<MeshRenderer>().materials = new Material[1] { GameManager.instance.nodeInformationMaterial };
-        nodeInformationEnemiesCount.GetComponent<MeshRenderer>().materials = new Material[1] { GameManager.instance.nodeInformationMaterial };
         nodeInformationManaValue.GetComponent<MeshRenderer>().materials = new Material[1] { GameManager.instance.nodeInformationMaterial };
-        nodeInformationNotoriety.GetComponent<MeshRenderer>().materials = new Material[1] { GameManager.instance.nodeInformationMaterial };
-        nodeInformationAlliesCount.GetComponent<Transform>().localScale = GameManager.instance.nodeInformationLocalScale;
-        nodeInformationEnemiesCount.GetComponent<Transform>().localScale = GameManager.instance.nodeInformationLocalScale;
         nodeInformationManaValue.GetComponent<Transform>().localScale = GameManager.instance.nodeInformationLocalScale;
-        nodeInformationNotoriety.GetComponent<Transform>().localScale = GameManager.instance.nodeInformationLocalScale;
-        nodeInformationAlliesCount.GetComponent<TextMesh>().color = GameManager.instance.nodeInformationAlliesCountColor;
-        nodeInformationEnemiesCount.GetComponent<TextMesh>().color = GameManager.instance.nodeInformationEnemiesCountColor;
         nodeInformationManaValue.GetComponent<TextMesh>().color = GameManager.instance.nodeInformationManaValueColor;
-        nodeInformationNotoriety.GetComponent<TextMesh>().color = GameManager.instance.nodeInformationNotorietyColor;
         GameObject nIMVSPR = Instantiate(GameManager.instance.nodeInformationManaValueSpriteRenderer, transform);
-        GameObject nIACSPR = Instantiate(GameManager.instance.nodeInformationAlliesCountSpriteRenderer, transform);
-        GameObject nIECSPR = Instantiate(GameManager.instance.nodeInformationEnemiesCountSpriteRenderer, transform);
-        GameObject nINSPR = Instantiate(GameManager.instance.nodeInformationNotorietySpriteRenderer, transform);
         nIMVSPR.transform.localPosition = GameManager.instance.nodeInformationManaValueSpriteRendererLocalPosition;
-        nIACSPR.transform.localPosition = GameManager.instance.nodeInformationAlliesCountSpriteRendererLocalPosition;
-        nIECSPR.transform.localPosition = GameManager.instance.nodeInformationEnemiesCountSpriteRendererLocalPosition;
-        nINSPR.transform.localPosition = GameManager.instance.nodeInformationNotorietySpriteRendererLocalPosition;
         nIMVSPR.transform.localScale = GameManager.instance.nodeInformationIconLocalScale;
-        nIACSPR.transform.localScale = GameManager.instance.nodeInformationIconLocalScale;
-        nIECSPR.transform.localScale = GameManager.instance.nodeInformationIconLocalScale;
-        nINSPR.transform.localScale = GameManager.instance.nodeInformationIconLocalScale;
         ShowNodeInformation();
         GetComponent<Transform>().localScale = new Vector3(0.4f, 0.4f, 1f);
         centralStandingPosition = GetComponent<Transform>().position + GameManager.instance.map.centralPositionIndicator.position;
@@ -448,10 +416,7 @@ public class Node : MonoBehaviour
 
     public void ShowNodeInformation()
     {
-        nodeInformationAlliesCount.text = string.Format("{0}", allies.Count);
-        nodeInformationEnemiesCount.text = string.Format("{0}", enemies.Count);
         nodeInformationManaValue.text = string.Format("{0}", manaValue);
-        nodeInformationNotoriety.text = string.Format("{0}", notoriety);
     }
 }
 
