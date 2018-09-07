@@ -16,6 +16,11 @@ public class CameraController : MonoBehaviour
     public Camera targetCamera { get; private set; }
     private float currentCameraSize = 5f;
 
+    [SerializeField]
+    Vector3 rightTop;
+    [SerializeField]
+    Vector3 leftBottom;
+
     public Vector3 cameraDestination { get; private set; }
     
     private void Awake()
@@ -41,6 +46,7 @@ public class CameraController : MonoBehaviour
             currentCameraSize = Mathf.Clamp(currentCameraSize, minCameraSize, maxCameraSize);
 
             targetCamera.orthographicSize = currentCameraSize;
+            SetDestination(cameraDestination);
         }
         
         float moveRatio = 0.5f;
@@ -51,6 +57,9 @@ public class CameraController : MonoBehaviour
 
     public void SetDestination(Vector3 destination)
     {
+        var vertExtent = targetCamera.orthographicSize;
+        var horzExtent = vertExtent * Screen.width / Screen.height;
+        destination = new Vector3(Mathf.Clamp(destination.x, leftBottom.x + horzExtent, rightTop.x - horzExtent), Mathf.Clamp(destination.y, leftBottom.y + vertExtent, rightTop.y - vertExtent), destination.z);
         cameraDestination = destination;
     }
 }

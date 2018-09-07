@@ -87,14 +87,17 @@ public class UnitListItem : MonoBehaviour
         ShowProducableCount(true);
     }
 
-    public void SetUnitData(UnitData unitData, OnClickUnitListItem onClick)
+    public void SetUnitData(UnitData unitData, OnClickUnitListItem onClick, bool isForDestroyed = false)
     {
         this.unitData = unitData;
         this.onClick = onClick;
         unitName.text = unitData.unitName;
         unitIcon.sprite = AssetManager.Instance.GetSprite(unitData.iconName);
         attackValue.text = unitData.attack.ToString();
-        healthValue.text = string.Format("{0}/{1}", unitData.health, unitData.health);
+        if (isForDestroyed)
+            healthValue.text = string.Format("{0}/{1}", 0, unitData.health);
+        else
+            healthValue.text = string.Format("{0}/{1}", unitData.health, unitData.health);
         aggroValue.text = unitData.aggro.ToString();
         movementValue.text = string.Format("{0}/{1}", unitData.movement, unitData.movement);
         manaValue.text = unitData.cost.ToString();
@@ -114,9 +117,9 @@ public class UnitListItem : MonoBehaviour
     public void SetDestroyedEnemyDataForUnitList(Unit unit, OnClickUnitListItem onClick)
     {
         this.unit = unit;
-        SetUnitData(unit.unitData, onClick);
+        SetUnitData(unit.unitData, onClick, true);
     }
-    
+
     public void ShowCostObject(bool show)
     {
         costObject.SetActive(show);
@@ -172,7 +175,7 @@ public class UnitListItem : MonoBehaviour
             onClick(this);
         }
     }
-    
+
     public void SetColor()
     {
         var colors = button.colors;

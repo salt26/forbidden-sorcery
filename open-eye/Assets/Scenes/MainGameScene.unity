@@ -12031,6 +12031,8 @@ MonoBehaviour:
   scrollSpeed: 5
   maxCameraSize: 12
   minCameraSize: 7
+  rightTop: {x: 64.5, y: 15, z: -10}
+  leftBottom: {x: -19.2, y: -46.5, z: -10}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
