@@ -8942,7 +8942,7 @@ MonoBehaviour:
   produceButton: {fileID: 574573908}
   unitListScrollView: {fileID: 363567213}
   destroyedEnemyControlScrollView: {fileID: 0}
-  selectedColor: {r: 0, g: 0, b: 0, a: 1}
+  selectedColor: {r: 0.5188679, g: 0.5188679, b: 0.5188679, a: 1}
   unSelectedColor: {r: 1, g: 1, b: 1, a: 1}
   destroyedEnemyControlButtons:
   - {fileID: 1844344081}
@@ -8957,7 +8957,7 @@ MonoBehaviour:
   phaseAlertText: {fileID: 1953248046}
   map: {fileID: 1115226233}
   rallyPoint: {fileID: 0}
-  rallyPointColor: {r: 0.0040494935, g: 0.3272568, b: 0.8584906, a: 1}
+  rallyPointColor: {r: 1, g: 1, b: 1, a: 1}
   nodeFightStatusDefault: {fileID: 229102758}
   gameEnd: {fileID: 287211188}
   isLose: 0
