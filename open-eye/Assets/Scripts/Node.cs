@@ -93,7 +93,8 @@ public class Node : MonoBehaviour
 
     [SerializeField]
     public bool isRallyPoint;
-    
+
+
     private bool isCastle
     {
         get
@@ -128,10 +129,22 @@ public class Node : MonoBehaviour
 
     void Start()
     {
-        nodeInformationAlliesCount.GetComponent<Transform>().localPosition = new Vector3(-2f, 2f, 0);
-        nodeInformationEnemiesCount.GetComponent<Transform>().localPosition = new Vector3(2f, 2f, 0);
-        nodeInformationManaValue.GetComponent<Transform>().localPosition = new Vector3(-2f, -2f, 0);
-        nodeInformationNotoriety.GetComponent<Transform>().localPosition = new Vector3(2f, -2f, 0);
+        nodeInformationAlliesCount.GetComponent<Transform>().localPosition = GameManager.instance.nodeInformationAlliesCountLocalPosition;
+        nodeInformationEnemiesCount.GetComponent<Transform>().localPosition = GameManager.instance.nodeInformationEnemiesCountLocalPosition;
+        nodeInformationManaValue.GetComponent<Transform>().localPosition = GameManager.instance.nodeInformationManaValueLocalPosition;
+        nodeInformationNotoriety.GetComponent<Transform>().localPosition = GameManager.instance.nodeInformationNotorietyLocalPosition;
+        nodeInformationAlliesCount.GetComponent<TextMesh>().font = GameManager.instance.nodeInformationFont;
+        nodeInformationEnemiesCount.GetComponent<TextMesh>().font = GameManager.instance.nodeInformationFont;
+        nodeInformationManaValue.GetComponent<TextMesh>().font = GameManager.instance.nodeInformationFont;
+        nodeInformationNotoriety.GetComponent<TextMesh>().font = GameManager.instance.nodeInformationFont;
+        nodeInformationAlliesCount.GetComponent<MeshRenderer>().materials = new Material[1] { GameManager.instance.nodeInformationMaterial };
+        nodeInformationEnemiesCount.GetComponent<MeshRenderer>().materials = new Material[1] { GameManager.instance.nodeInformationMaterial };
+        nodeInformationManaValue.GetComponent<MeshRenderer>().materials = new Material[1] { GameManager.instance.nodeInformationMaterial };
+        nodeInformationNotoriety.GetComponent<MeshRenderer>().materials = new Material[1] { GameManager.instance.nodeInformationMaterial };
+        nodeInformationAlliesCount.GetComponent<Transform>().localScale = GameManager.instance.nodeInformationLocalScale;
+        nodeInformationEnemiesCount.GetComponent<Transform>().localScale = GameManager.instance.nodeInformationLocalScale;
+        nodeInformationManaValue.GetComponent<Transform>().localScale = GameManager.instance.nodeInformationLocalScale;
+        nodeInformationNotoriety.GetComponent<Transform>().localScale = GameManager.instance.nodeInformationLocalScale;
         ShowNodeInformation();
         GetComponent<Transform>().localScale = new Vector3(0.4f, 0.4f, 1f);
         centralStandingPosition = GetComponent<Transform>().position + GameManager.instance.map.centralPositionIndicator.position;

@@ -19,6 +19,7 @@ public class PhaseAlertText : MonoBehaviour
     public Sprite enemyTurn;
     public Sprite battleStart;
     public Sprite playerTurn;
+    public GameObject phaseAlertTextBackGround;
 
     public IEnumerator AlertPhase()
     {
@@ -29,18 +30,23 @@ public class PhaseAlertText : MonoBehaviour
         switch (GameManager.instance.currentState)
         {
             case GameManager.RoundState.Standby:
+                phaseAlertTextBackGround.GetComponent<Image>().enabled = false;
                 phaseAlertImage.enabled = false;
                 break;
             case GameManager.RoundState.EnemyMove:
+                phaseAlertTextBackGround.GetComponent<Image>().enabled = true;
                 phaseAlertImage.sprite = enemyTurn;
                 break;
             case GameManager.RoundState.PlayerAction:
+                phaseAlertTextBackGround.GetComponent<Image>().enabled = true;
                 phaseAlertImage.sprite = playerTurn;
                 break;
             case GameManager.RoundState.Captive:
+                phaseAlertTextBackGround.GetComponent<Image>().enabled = false;
                 phaseAlertImage.enabled = false;
                 break;
             case GameManager.RoundState.Fight:
+                phaseAlertTextBackGround.GetComponent<Image>().enabled = true;
                 phaseAlertImage.sprite = battleStart;
                 break;
         }
@@ -71,6 +77,7 @@ public class PhaseAlertText : MonoBehaviour
         }
 
         phaseAlertImage.enabled = false;
+        phaseAlertTextBackGround.GetComponent<Image>().enabled = false;
         isPhaseNoticeDone = true;
     }
 }
