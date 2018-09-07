@@ -443,8 +443,8 @@ public class UnitComparer : IComparer<Unit>
 {
     public int Compare(Unit unitA, Unit unitB)
     {
-        if (GameManager.instance.producedAlliedEnemies.Contains(unitA.unitData) && !GameManager.instance.producedAlliedEnemies.Contains(unitB.unitData)) return -1;
-        if (!GameManager.instance.producedAlliedEnemies.Contains(unitA.unitData) && GameManager.instance.producedAlliedEnemies.Contains(unitB.unitData)) return 1;
+        if (unitA.isAlly && unitB.isAlly && GameManager.instance.producedAlliedEnemies.Contains(unitA.unitData) && !GameManager.instance.producedAlliedEnemies.Contains(unitB.unitData)) return -1;
+        if (unitA.isAlly && unitB.isAlly && !GameManager.instance.producedAlliedEnemies.Contains(unitA.unitData) && GameManager.instance.producedAlliedEnemies.Contains(unitB.unitData)) return 1;
         if (unitA.UD.aggro < unitB.UD.aggro) return 1;
         if (unitA.UD.aggro > unitB.UD.aggro) return -1;
         if (unitA.CurrentHealth < unitB.CurrentHealth) return -1;
