@@ -266,35 +266,53 @@ public class FightAnimationUI : MonoBehaviour {
 
         ChangeFightAnimationText(i);
 
-        GameObject.Find("AssassinDamage(Ally->Enemy)").GetComponent<Text>().enabled = true;
-        GameObject.Find("AssassinDamageEffect(Ally->Enemy)").GetComponent<Image>().enabled = true;
-        yield return new WaitForSeconds(GameManager.instance.fightAnimationDuration);
-        HideFightAnimationText();
+        if(GameManager.instance.publicAllyAssassinAttack[i] > 0)
+        {
+            GameObject.Find("AssassinDamage(Ally->Enemy)").GetComponent<Text>().enabled = true;
+            GameObject.Find("AssassinDamageEffect(Ally->Enemy)").GetComponent<Image>().enabled = true;
+            yield return new WaitForSeconds(GameManager.instance.fightAnimationDuration);
+            HideFightAnimationText();
+        }
 
-        GameObject.Find("AssassinDamage(Enemy->Ally)").GetComponent<Text>().enabled = true;
-        GameObject.Find("AssassinDamageEffect(Enemy->Ally)").GetComponent<Image>().enabled = true;
-        yield return new WaitForSeconds(GameManager.instance.fightAnimationDuration);
-        HideFightAnimationText();
+        if (GameManager.instance.publicEnemyAssassinAttack[i] > 0)
+        {
+            GameObject.Find("AssassinDamage(Enemy->Ally)").GetComponent<Text>().enabled = true;
+            GameObject.Find("AssassinDamageEffect(Enemy->Ally)").GetComponent<Image>().enabled = true;
+            yield return new WaitForSeconds(GameManager.instance.fightAnimationDuration);
+            HideFightAnimationText();
+        }
 
-        GameObject.Find("FightDamage(Ally->Enemy)").GetComponent<Text>().enabled = true;
-        GameObject.Find("FightDamageEffect(Ally->Enemy)").GetComponent<Image>().enabled = true;
-        yield return new WaitForSeconds(GameManager.instance.fightAnimationDuration);
-        HideFightAnimationText();
+        if (GameManager.instance.publicAllyAttack[i] > 0)
+        {
+            GameObject.Find("FightDamage(Ally->Enemy)").GetComponent<Text>().enabled = true;
+            GameObject.Find("FightDamageEffect(Ally->Enemy)").GetComponent<Image>().enabled = true;
+            yield return new WaitForSeconds(GameManager.instance.fightAnimationDuration);
+            HideFightAnimationText();
+        }
 
-        GameObject.Find("FightDamage(Enemy->Ally)").GetComponent<Text>().enabled = true;
-        GameObject.Find("FightDamageEffect(Enemy->Ally)").GetComponent<Image>().enabled = true;
-        yield return new WaitForSeconds(GameManager.instance.fightAnimationDuration);
-        HideFightAnimationText();
+        if (GameManager.instance.publicEnemyAttack[i] > 0)
+        {
+            GameObject.Find("FightDamage(Enemy->Ally)").GetComponent<Text>().enabled = true;
+            GameObject.Find("FightDamageEffect(Enemy->Ally)").GetComponent<Image>().enabled = true;
+            yield return new WaitForSeconds(GameManager.instance.fightAnimationDuration);
+            HideFightAnimationText();
+        }
 
-        GameObject.Find("MageDamage(Ally->Enemy)").GetComponent<Text>().enabled = true;
-        GameObject.Find("MageDamageEffect(Ally->Enemy)").GetComponent<Image>().enabled = true;
-        yield return new WaitForSeconds(GameManager.instance.fightAnimationDuration);
-        HideFightAnimationText();
+        if (GameManager.instance.publicAllyMageAttack[i] > 0)
+        {
+            GameObject.Find("MageDamage(Ally->Enemy)").GetComponent<Text>().enabled = true;
+            GameObject.Find("MageDamageEffect(Ally->Enemy)").GetComponent<Image>().enabled = true;
+            yield return new WaitForSeconds(GameManager.instance.fightAnimationDuration);
+            HideFightAnimationText();
+        }
 
-        GameObject.Find("MageDamage(Enemy->Ally)").GetComponent<Text>().enabled = true;
-        GameObject.Find("MageDamageEffect(Enemy->Ally)").GetComponent<Image>().enabled = true;
-        yield return new WaitForSeconds(GameManager.instance.fightAnimationDuration);
-        HideFightAnimationText();
+        if (GameManager.instance.publicEnemyMageAttack[i] > 0)
+        {
+            GameObject.Find("MageDamage(Enemy->Ally)").GetComponent<Text>().enabled = true;
+            GameObject.Find("MageDamageEffect(Enemy->Ally)").GetComponent<Image>().enabled = true;
+            yield return new WaitForSeconds(GameManager.instance.fightAnimationDuration);
+            HideFightAnimationText();
+        }
 
         HideFightAnimationUI();
 
