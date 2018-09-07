@@ -363,8 +363,6 @@ public partial class GameManager
         Vector3 tempvector = GameObject.Find("Main Camera").GetComponent<Transform>().position;
         if (karma > nextSpawnData.requiredKarma)
         {
-            EnemySpawnAlertManager.instance.PlaySound();
-
             string[] enemySpawnNodes = new string[100];
             int index = 0;
 
@@ -456,10 +454,13 @@ public partial class GameManager
             
             for(int i = 1; i <= index; i++)
             {
+                EnemySpawnAlertManager.instance.PlaySound();
                 GameObject.Find("Main Camera").GetComponent<CameraController>().SetDestination(
                 GameObject.Find(enemySpawnNodes[i]).GetComponent<Transform>().position);
                 yield return new WaitForSeconds(enemySpawnDuration);
             }
+
+            // EnemySpawnAlertManager.instance.PlaySound();
         }
         isSpawnEnemyAnimationFinished = true;
         GameObject.Find("Main Camera").GetComponent<CameraController>().SetDestination(tempvector);
