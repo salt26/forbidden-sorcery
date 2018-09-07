@@ -14,7 +14,7 @@ public class Spawner : MonoBehaviour
     {
         var unitObject = Instantiate(AssetManager.Instance.GetPrefab("Unit"));
         var unit = unitObject.GetComponent<Unit>();
-        unit.SetUnit(unitData);
+        unit.SetUnit(unitData, isAlly);
         unit.isAlly = isAlly;
 
         unit.ID = ++id;

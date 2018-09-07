@@ -40,12 +40,14 @@ public class DestroyedEnemyControlButton : MonoBehaviour
 
     public void OnClick()
     {
+        ClickSoundManager.instance.PlaySound();
         GameManager.instance.destroyedEnemyControlScrollView = GetComponent<DestroyedEnemyControlScrollView>();
         GameManager.instance.OnClickDestroyedEnemyControlButton(selectedDestroyedEnemyList, this);
     }
 
     public void OnClickResetButton()
     {
+        ClickSoundManager.instance.PlaySound();
         GameManager.instance.OnClickRefreshControlButton();
     }
 

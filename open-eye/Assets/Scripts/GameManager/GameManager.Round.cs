@@ -10,6 +10,7 @@ public partial class GameManager
         Standby,
         EnemyMove,
         PlayerAction,
+        AutoMove,
         Fight,
         Captive,
         Upkeep,
@@ -20,6 +21,8 @@ public partial class GameManager
         get;
         private set;
     }
+
+    public float enemySpawnDuration;
 
     [HideInInspector]
     public List<Unit> movingUnits = new List<Unit>();
@@ -83,21 +86,26 @@ public partial class GameManager
         switch ((int)currentState)
         {
             case 0:
+                yield return new WaitUntil(() => isSpawnEnemyAnimationFinished);
                 EnemyMovePhase();
                 break;
             case 1:
                 PlayerActionPhase();
                 break;
             case 2:
-                FightPhase();
+                AutoMovePhase();
                 break;
             case 3:
-                Captive();
+                FightPhase();
+                ClickSoundManager.instance.PlaySound();
                 break;
             case 4:
-                UpkeepPhase();
+                Captive();
                 break;
             case 5:
+                UpkeepPhase();
+                break;
+            case 6:
                 StandbyPhase();
                 break;
         }
@@ -141,7 +149,8 @@ public partial class GameManager
 
         CheckWin();
         CheckLose();
-        CheckAndSpawnEnemy();
+        isSpawnEnemyAnimationFinished = false;
+        StartCoroutine(CheckAndSpawnEnemy());
         if (isLast)
         {
             AllEnemyAttack();
@@ -184,6 +193,15 @@ public partial class GameManager
         }
     }
 
+    private void AutoMovePhase()
+    {
+        currentState = RoundState.AutoMove;
+        endTurnButton.interactable = false;
+        produceButton.interactable = false;
+        MoveAutoUnitToRallyPoint();
+        StartCoroutine(waitUntilAllyIsNotMoving());
+    }
+
     IEnumerator FinishFightPhase()
     {
         yield return new WaitUntil(() => FightAnimationUI.isPastFightAnimationFinished[fightingNodeNumber]);
@@ -196,8 +214,6 @@ public partial class GameManager
         {
             n.GetComponent<SpriteRenderer>().color = n.isRallyPoint ? rallyPointColor : unSelectedColor;
         }
-        MoveAutoUnitToRallyPoint();
-        StartCoroutine(waitUntilAllyIsNotMoving());
         currentState = RoundState.Fight;
         endTurnButton.interactable = false;
         produceButton.interactable = false;
@@ -267,10 +283,8 @@ public partial class GameManager
         }
         else
         {
-            OnClickEndTurnButton();
+            OnClickEndTurnButtonNoSound();
         }
-
-        StartCoroutine(phaseAlertText.GetComponent<PhaseAlertText>().AlertPhase());
     }
 
     private void UpkeepPhase()
@@ -303,8 +317,7 @@ public partial class GameManager
         {
             n.FetchDestroy();
         }
-
-        StartCoroutine(phaseAlertText.GetComponent<PhaseAlertText>().AlertPhase());
+        
         CaptureTerritories();
         UpkeepResources();
         RefreshStatus();
@@ -314,7 +327,6 @@ public partial class GameManager
     
     private void CheckLose()
     {
-        Debug.Log(castle.isPlayerTerritory);
         if (!castle.isPlayerTerritory)
         {
             isLose = true;
@@ -345,13 +357,42 @@ public partial class GameManager
         }
     }
 
-    private void CheckAndSpawnEnemy()
+    bool isSpawnEnemyAnimationFinished = false;
+
+    private IEnumerator CheckAndSpawnEnemy()
     {
+        Vector3 tempvector = GameObject.Find("Main Camera").GetComponent<Transform>().position;
         if (karma > nextSpawnData.requiredKarma)
         {
+            EnemySpawnAlertManager.instance.PlaySound();
+
+            string[] enemySpawnNodes = new string[100];
+            int index = 0;
+
+            foreach (var enemyData in nextSpawnData.enemyDatas)
+            {
+                foreach (var enemySpawnNode in enemyData.enemySpawnNodes)
+                {
+                    if (index == 0)
+                    {
+                        index = 1;
+                        enemySpawnNodes[index] = enemySpawnNode;
+                    }
+                    for (int i = 1; i <= index; i++)
+                    {
+                        if (enemySpawnNode == enemySpawnNodes[i]) break;
+                        if (i == index)
+                        {
+                            index++;
+                            enemySpawnNodes[index] = enemySpawnNode;
+                        }
+                    }
+                }
+            }
             foreach (var enemyData in nextSpawnData.enemyDatas)
             {
                 List<Node> spawners = new List<Node>();
+
                 foreach (var enemySpawnNode in enemyData.enemySpawnNodes)
                 {
                     foreach (Node spawner in enemySpawners)
@@ -369,7 +410,7 @@ public partial class GameManager
                 int howMuchSpawn = int.Parse(spawnData[2]);
                 if (enemyData.requiredNotoriety <= notoriety)
                 {
-                    for (int i=0; i<howMuchSpawn; i++)
+                    for (int i = 0; i < howMuchSpawn; i++)
                     {
                         var spawnNode = spawners[Random.Range(0, spawners.Count)];
                         Unit enemy = Spawner.spawner.Spawn(AssetManager.Instance.GetUnitData(spawnName), false, spawnNode);
@@ -404,7 +445,8 @@ public partial class GameManager
                     }
                 }
             }
-            if (config.enemySpawnDataContainer.GetNextEnemySpawnData(karma) != null) {
+            if (config.enemySpawnDataContainer.GetNextEnemySpawnData(karma) != null)
+            {
                 nextSpawnData = config.enemySpawnDataContainer.GetNextEnemySpawnData(karma);
             }
             else
@@ -412,7 +454,17 @@ public partial class GameManager
                 nextSpawnData = null;
                 isLast = true;
             }
+            
+            for(int i = 1; i <= index; i++)
+            {
+                GameObject.Find("Main Camera").GetComponent<CameraController>().SetDestination(
+                GameObject.Find(enemySpawnNodes[i]).GetComponent<Transform>().position);
+                yield return new WaitForSeconds(enemySpawnDuration);
+            }
         }
+        isSpawnEnemyAnimationFinished = true;
+        GameObject.Find("Main Camera").GetComponent<CameraController>().SetDestination(tempvector);
+        yield return null;
     }
 
     private void MoveEnemy()

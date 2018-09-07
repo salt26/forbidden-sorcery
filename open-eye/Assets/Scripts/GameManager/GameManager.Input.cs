@@ -328,8 +328,24 @@ public partial class GameManager
         StartCoroutine(ChangePhase());
     }
 
+    public void OnClickEndTurnButtonNoSound()
+    {
+        selectedUnitList.Clear();
+        unitListScrollView.ShowList(false);
+        unitListScrollView.isForProduce = false;
+        unitListScrollView.ShowUnitTab(false);
+        if (selectedNode != null)
+        {
+            selectedNode.GetComponent<SpriteRenderer>().color = selectedNode.isRallyPoint ? rallyPointColor : unSelectedColor;
+        }
+        selectedNode = null;
+        StartCoroutine(ChangePhase());
+    }
+
     public void OnClickProduceButton()
     {
+        ClickSoundManager.instance.PlaySound();
+
         unitListScrollView.ShowUnitTab(false);
 
         if (currentState != RoundState.PlayerAction)
@@ -404,6 +420,7 @@ public partial class GameManager
             {
                 if (selectedNode == null && node.units.Count > 0)
                 {
+                    ClickSoundManager.instance.PlaySound();
                     selectedNode = node;
                     var spriteRenderer = selectedNode.GetComponent<SpriteRenderer>();
                     spriteRenderer.color = selectedColor;
@@ -428,6 +445,7 @@ public partial class GameManager
                 }
                 else if (selectedNode == node)
                 {
+                    ClickSoundManager.instance.PlaySound();
                     selectedNode.GetComponent<SpriteRenderer>().color = selectedNode.isRallyPoint ? rallyPointColor : unSelectedColor;
                     selectedNode = null;
 
@@ -438,6 +456,7 @@ public partial class GameManager
                 }
                 else if (selectedUnitList.Count == 0)
                 {
+                    ClickSoundManager.instance.PlaySound();
                     selectedNode.GetComponent<SpriteRenderer>().color = selectedNode.isRallyPoint ? rallyPointColor : unSelectedColor;
                     selectedNode = node;
                     node.GetComponent<SpriteRenderer>().color = selectedColor;
@@ -462,6 +481,7 @@ public partial class GameManager
                 }
                 else
                 {
+                    ClickSoundManager.instance.PlaySound();
                     if (currentState == RoundState.PlayerAction)
                     {
                         endTurnButton.interactable = false;
@@ -528,6 +548,7 @@ public partial class GameManager
 
     public void OnClickAllyTabButton()
     {
+        ClickSoundManager.instance.PlaySound();
         unitListScrollView.allyTabFake.color = unitListScrollView.allyTabPressedColor;
         unitListScrollView.enemyTabFake.color = unitListScrollView.enemyTabNormalColor;
         unitListScrollView.ShowList(true);
@@ -537,6 +558,7 @@ public partial class GameManager
 
     public void OnClickEnemyTabButton()
     {
+        ClickSoundManager.instance.PlaySound();
         unitListScrollView.enemyTabFake.color = unitListScrollView.enemyTabPressedColor;
         unitListScrollView.allyTabFake.color = unitListScrollView.allyTabNormalColor;
         unitListScrollView.ShowList(true);
@@ -550,6 +572,10 @@ public partial class GameManager
         if (currentState == RoundState.PlayerAction)
         {
             endTurnButton.interactable = true;
+        }
+        else if(currentState == RoundState.AutoMove)
+        {
+            StartCoroutine(ChangePhase());
         }
     }
 }
