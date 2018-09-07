@@ -341,7 +341,7 @@ public partial class GameManager
         foreach (Node n in allNodes)
         {
             foreach (Unit enemy in n.enemies) {
-                if (enemy.currentMoveType != Unit.MoveType.stay)
+                if (enemy.currentMoveType != Unit.MoveType.stay && enemy.currentMoveType != Unit.MoveType.cover)
                 {
                     numberOfEnemies++;
                 }
