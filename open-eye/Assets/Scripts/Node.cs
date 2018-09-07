@@ -13,7 +13,7 @@ public class Node : MonoBehaviour
     }
 
     [SerializeField]
-    private NodeType type;
+    public NodeType type;
 
     [SerializeField]
     public int manaValue;
@@ -185,7 +185,7 @@ public class Node : MonoBehaviour
         {
             GameManager.instance.SetRallyPoint(this);
         }
-        else
+        else if (!GameManager.instance.isLose)
         {
             GameManager.instance.SetNode(this);
             foreach (Node node in GameManager.instance.allNodes)

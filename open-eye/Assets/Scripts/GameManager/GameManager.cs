@@ -52,6 +52,10 @@ public partial class GameManager : MonoBehaviour
     [SerializeField]
     public Color rallyPointColor;
     public GameObject nodeFightStatusDefault;
+    [SerializeField]
+    public GameEnd gameEnd;
+    [HideInInspector]
+    public bool isLose = false;
 
     public List<Unit> SelectedDestroyedEnemyList
     {
