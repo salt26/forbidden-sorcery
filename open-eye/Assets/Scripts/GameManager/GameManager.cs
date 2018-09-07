@@ -59,9 +59,17 @@ public partial class GameManager : MonoBehaviour
 
     [SerializeField]
     public Vector3 nodeInformationManaValueLocalPosition;
+    public Color nodeInformationManaValueColor;
+
     public Vector3 nodeInformationNotorietyLocalPosition;
+    public Color nodeInformationNotorietyColor;
+
     public Vector3 nodeInformationAlliesCountLocalPosition;
+    public Color nodeInformationAlliesCountColor;
+
     public Vector3 nodeInformationEnemiesCountLocalPosition;
+    public Color nodeInformationEnemiesCountColor;
+
     public Font nodeInformationFont;
     public Vector3 nodeInformationLocalScale;
     public Material nodeInformationMaterial;

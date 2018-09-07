@@ -145,6 +145,11 @@ public class Node : MonoBehaviour
         nodeInformationEnemiesCount.GetComponent<Transform>().localScale = GameManager.instance.nodeInformationLocalScale;
         nodeInformationManaValue.GetComponent<Transform>().localScale = GameManager.instance.nodeInformationLocalScale;
         nodeInformationNotoriety.GetComponent<Transform>().localScale = GameManager.instance.nodeInformationLocalScale;
+        nodeInformationAlliesCount.GetComponent<TextMesh>().color = GameManager.instance.nodeInformationAlliesCountColor;
+        nodeInformationEnemiesCount.GetComponent<TextMesh>().color = GameManager.instance.nodeInformationEnemiesCountColor;
+        nodeInformationManaValue.GetComponent<TextMesh>().color = GameManager.instance.nodeInformationManaValueColor;
+        nodeInformationNotoriety.GetComponent<TextMesh>().color = GameManager.instance.nodeInformationNotorietyColor;
+
         ShowNodeInformation();
         GetComponent<Transform>().localScale = new Vector3(0.4f, 0.4f, 1f);
         centralStandingPosition = GetComponent<Transform>().position + GameManager.instance.map.centralPositionIndicator.position;
