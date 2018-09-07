@@ -318,6 +318,7 @@ public partial class GameManager
 
     public void OnClickEndTurnButton()
     {
+        ClickSoundManager.instance.PlaySound();
         selectedUnitList.Clear();
         unitListScrollView.ShowList(false);
         unitListScrollView.isForProduce = false;
