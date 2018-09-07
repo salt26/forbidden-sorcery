@@ -55,6 +55,10 @@ public partial class GameManager
     {
         karma += notoriety;
         Mana += manaProduce;
+        if(karma > config.enemySpawnDataContainer.enemySpawnDatas[GameManager.instance.config.enemySpawnDataContainer.enemySpawnDatas.Count - 1].requiredKarma)
+        {
+            karma = config.enemySpawnDataContainer.enemySpawnDatas[GameManager.instance.config.enemySpawnDataContainer.enemySpawnDatas.Count - 1].requiredKarma;
+        }
         GameObject.Find("KarmaGaugeMid").GetComponent<KarmaGaugeIncrease>().ChangeKarmaGauge();
         GameObject.Find("NotorietyAlert").GetComponent<NotorietyColorChange>().ChangeNotorietyColor();
     }
