@@ -2,19 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class WholeScreen : MonoBehaviour {
 
-    int screenShotNumber = 0;
+    int screenShotNumber = 1;
 
 	public void ScreenBeingClicked()
     {
-        if (screenShotNumber > 0)
+        Debug.Log("asd");
+        if (screenShotNumber == 19)
+        {
+            SceneManager.LoadScene("MainMenuScene");
+        }
+        else
         {
             GameObject.Find(screenShotNumber.ToString()).GetComponent<Image>().enabled = false;
+            ++screenShotNumber;
+            GameObject.Find(screenShotNumber.ToString()).GetComponent<Image>().enabled = true;
         }
-        ++screenShotNumber;
-        GameObject.Find(screenShotNumber.ToString()).GetComponent<Image>().enabled = true;
+        
     }
     
 }

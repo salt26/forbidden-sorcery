@@ -7,7 +7,7 @@ public class HowToPlayLogic : MonoBehaviour {
     
 	void Awake()
     {
-        for ( int i = 1 ; i <= 17 ; ++i )
+        for ( int i = 2 ; i <= 19 ; ++i )
         {
             GameObject.Find(i.ToString()).GetComponent<Image>().enabled = false;
         }
