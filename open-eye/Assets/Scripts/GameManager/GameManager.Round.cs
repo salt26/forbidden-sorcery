@@ -178,8 +178,6 @@ public partial class GameManager
     private void PlayerActionPhase()
     {
         currentState = RoundState.PlayerAction;
-        endTurnButton.interactable = true;
-        produceButton.interactable = true;
 
         StartCoroutine(phaseAlertText.GetComponent<PhaseAlertText>().AlertPhase());
 
@@ -451,8 +449,8 @@ public partial class GameManager
                 nextSpawnData = null;
                 isLast = true;
             }
-            
-            for(int i = 1; i <= index; i++)
+
+            for (int i = 1; i <= index; i++)
             {
                 EnemySpawnAlertManager.instance.PlaySound();
                 GameObject.Find("Main Camera").GetComponent<CameraController>().SetDestination(
@@ -475,8 +473,21 @@ public partial class GameManager
             {
                 while (enemy.canMove)
                 {
+                    bool flag = false;
                     Node nextNode = enemy.NextNode();
-                    enemy.MoveBetweenNodes(enemy.position, nextNode);
+                    if (nextNode.Equals(enemy.position))
+                    {
+                        flag = true;
+                    }
+                    if (flag)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        enemy.MoveBetweenNodes(enemy.position, nextNode);
+                    }
+                    
                 }
             }
         }
