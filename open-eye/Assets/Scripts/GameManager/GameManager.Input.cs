@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public partial class GameManager
 {
@@ -422,7 +423,7 @@ public partial class GameManager
 
     public void SetNode(Node node)
     {
-        if (isNodeInputActive)
+        if (isNodeInputActive || SceneManager.GetActiveScene().buildIndex == 2)
         {
             if (currentState == RoundState.PlayerAction)
             {
