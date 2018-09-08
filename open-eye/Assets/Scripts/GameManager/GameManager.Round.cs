@@ -303,12 +303,16 @@ public partial class GameManager
 
         destroyedEnemyControlUnit.SetActive(false);
         destroyedEnemyControlButtons.ForEach((button) => button.Clear());
-        
+
         //foreach (DestroyedEnemyControlButton button in destroyedEnemyControlButtons)
         //{
         //    button.gameObject.SetActive(false);
         //}
         
+        Color defaultColor = new Color32(25, 26, 54, 255);
+        GameObject.Find("TurnLeft").GetComponent<Text>().color = defaultColor;
+
+
         foreach (Node n in allNodes)
         {
             n.FetchDestroy();
@@ -461,7 +465,7 @@ public partial class GameManager
         }
         isSpawnEnemyAnimationFinished = true;
         GameObject.Find("Main Camera").GetComponent<CameraController>().SetDestination(tempvector);
-        GameObject.Find("NextEnemySpawnKarma").GetComponent<NextSpawnTurn>().CalculateNextTurn();
+        GameObject.Find("NextEnemySpawnKarma").GetComponent<NextSpawnTurn>().CalculateNextTurn(notoriety);
         yield return null;
     }
 
