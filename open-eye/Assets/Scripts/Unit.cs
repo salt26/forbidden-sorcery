@@ -33,6 +33,7 @@ public class Unit : MonoBehaviour, IUnitInterface
     public OnMoveDone onMoveDone;
     public MoveType currentMoveType;
     public bool isAuto = false;
+    public GameObject caution;
 
     public UnitData UD
     {
@@ -280,6 +281,8 @@ public class Unit : MonoBehaviour, IUnitInterface
                 {
                     allyExistNodes.Add(node);
                 }
+                //GameObject psuedoCaution = Instantiate(caution);
+                //psuedoCaution.GetComponent<Transform>().position = GetComponent<Transform>().position;
             }
 
             if (allyExistNodes.Count > 0)

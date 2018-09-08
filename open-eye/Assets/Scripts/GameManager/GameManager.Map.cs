@@ -30,7 +30,10 @@ public partial class GameManager
 
     private void InitializeMap()
     {
+        GameObject rallyPointFlag = GameObject.Find("RallyPointFlag");
         castle.SetDIstance(0);
+        Vector3 rallyPointFlagPosition = new Vector3(0f, -0.8f, 0f);
+        rallyPointFlag.GetComponent<Transform>().position = castle.GetComponent<Transform>().position + rallyPointFlagPosition;
         SpawnStartUnit();
     }
 }

@@ -112,11 +112,11 @@ public partial class GameManager
 
     IEnumerator Initialize()
     {
-        yield return new WaitUntil(() => allNodes.Count >= 47);
+        yield return new WaitUntil(() => allNodes.Count >= 61);
         InitializeInput();
         InitializeMap();
-        InitializeResource();
         InitializeGame();
+        InitializeResource();
 
         initializePublicLists();
 
@@ -154,7 +154,6 @@ public partial class GameManager
         {
             AllEnemyAttack();
         }
-
         StartCoroutine(ChangePhase());
     }
 
@@ -209,7 +208,7 @@ public partial class GameManager
     {
         foreach(Node n in allNodes)
         {
-            n.GetComponent<SpriteRenderer>().color = n.isRallyPoint ? rallyPointColor : unSelectedColor;
+            n.GetComponent<SpriteRenderer>().color = unSelectedColor;
         }
         currentState = RoundState.Fight;
         endTurnButton.interactable = false;
@@ -462,6 +461,7 @@ public partial class GameManager
         }
         isSpawnEnemyAnimationFinished = true;
         GameObject.Find("Main Camera").GetComponent<CameraController>().SetDestination(tempvector);
+        GameObject.Find("NextEnemySpawnKarma").GetComponent<NextSpawnTurn>().CalculateNextTurn();
         yield return null;
     }
 

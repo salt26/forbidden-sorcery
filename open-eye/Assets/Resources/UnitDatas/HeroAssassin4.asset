@@ -16,8 +16,8 @@ MonoBehaviour:
   unitName: HeroAssassin
   spriteName: HeroAssassin
   iconName: Assassin
-  attack: 25
-  health: 80
+  attack: 23
+  health: 75
   aggro: 32
   movement: 2
   cost: 2100
