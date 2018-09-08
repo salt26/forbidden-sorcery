@@ -230,11 +230,36 @@ public partial class GameManager
                     break;
             }
         }
+
+        int tempNotoriety = notoriety;
+        foreach (DestroyedEnemyControlButton decb in destroyedEnemyControlButtons)
+        {
+            switch ((int)decb.kindOfButton)
+            {
+                case 0:
+                    tempNotoriety += decb.dominateNotorietychange;
+                    break;
+                case 1:
+                    tempNotoriety += decb.killNotorietyChange;
+                    break;
+                case 2:
+                    tempNotoriety += decb.freeNotorietyChange;
+                    break;
+            }
+        }
         totalManaAmount = Mana + totalManaAmount;
         if (destroyedEnemies.Count == 0 && totalManaAmount >= 0)
             endTurnButton.interactable = true;
         else
             endTurnButton.interactable = false;
+
+        GameObject.Find("NextEnemySpawnKarma").GetComponent<NextSpawnTurn>().CalculateNextTurn(tempNotoriety);
+        Color defaultColor = new Color32(25, 26, 54, 255);
+        Color changeColor = new Color32(72, 27, 20, 255);
+        if (tempNotoriety != notoriety)
+            GameObject.Find("TurnLeft").GetComponent<Text>().color = changeColor;
+        else
+            GameObject.Find("TurnLeft").GetComponent<Text>().color = defaultColor;
 
         var unitScrollView = unitListScrollView.SetControlDestroyedEnemiesList(destroyedEnemies, OnSelectUnitForControlDestroyedEnemy);
         destroyedEnemyControlScrollView.SetControlDestroyedEnemiesList(selectedDestroyedEnemyList, OnSelectUnitForControlDestroyedEnemy);
@@ -330,6 +355,31 @@ public partial class GameManager
                 decb.ShowExpectedResourceChange();
             }
         }
+
+        int tempNotoriety = notoriety;
+        foreach (DestroyedEnemyControlButton decb in destroyedEnemyControlButtons)
+        {
+            switch ((int)decb.kindOfButton)
+            {
+                case 0:
+                    tempNotoriety += decb.dominateNotorietychange;
+                    break;
+                case 1:
+                    tempNotoriety += decb.killNotorietyChange;
+                    break;
+                case 2:
+                    tempNotoriety += decb.freeNotorietyChange;
+                    break;
+            }
+        }
+        GameObject.Find("NextEnemySpawnKarma").GetComponent<NextSpawnTurn>().CalculateNextTurn(tempNotoriety);
+        Color defaultColor = new Color32(25, 26, 54, 255);
+        Color changeColor = new Color32(72, 27, 20, 255);
+        if (tempNotoriety != notoriety)
+            GameObject.Find("TurnLeft").GetComponent<Text>().color = changeColor;
+        else
+            GameObject.Find("TurnLeft").GetComponent<Text>().color = defaultColor;
+
         var unitScrollView = unitListScrollView.SetControlDestroyedEnemiesList(destroyedEnemies, OnSelectUnitForControlDestroyedEnemy);
         foreach (var g in unitScrollView.listItems)
         {
