@@ -52,9 +52,9 @@ public partial class GameManager
         {
             if (selectedNode != null && unitListScrollView.nowListShown)
             {
+                ClickSoundManager.instance.PlaySound();
                 foreach (var unitListItem in unitListScrollView.listItems)
                 {
-                    ClickSoundManager.instance.PlaySound();
                     if (unitListItem.unit.Movement == 2 && !unitListItem.isSelected)
                     {
                         unitListItem.OnItemClickNoSound();
