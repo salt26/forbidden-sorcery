@@ -217,9 +217,19 @@ public partial class GameManager
         int totalManaAmount = 0;
         foreach (DestroyedEnemyControlButton decb in destroyedEnemyControlButtons)
         {
-            totalManaAmount += decb.dominateManaChange + decb.killManaChange + decb.freeManaChange;
+            switch ((int)decb.kindOfButton)
+            {
+                case 0:
+                    totalManaAmount += decb.dominateManaChange;
+                    break;
+                case 1:
+                    totalManaAmount += decb.killManaChange;
+                    break;
+                default:
+                    break;
+            }
         }
-
+        totalManaAmount = Mana + totalManaAmount;
         if (destroyedEnemies.Count == 0 && totalManaAmount >= 0)
             endTurnButton.interactable = true;
         else
@@ -591,7 +601,7 @@ public partial class GameManager
         {
             endTurnButton.interactable = true;
         }
-        else if(currentState == RoundState.AutoMove)
+        else if (currentState == RoundState.AutoMove)
         {
             StartCoroutine(ChangePhase());
         }
