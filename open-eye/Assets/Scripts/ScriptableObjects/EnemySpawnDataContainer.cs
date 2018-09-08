@@ -38,7 +38,7 @@ public class EnemySpawnDataContainer : ScriptableObject
                 data = spawnData;
             }
         }
-
+        
         return data;
     }
 }

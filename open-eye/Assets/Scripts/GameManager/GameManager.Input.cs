@@ -89,22 +89,26 @@ public partial class GameManager
 
     public void SetRallyPoint(Node node)
     {
+        GameObject rallyPointFlag = GameObject.Find("RallyPointFlag");
+
         if (rallyPoint != null)
         {
             rallyPoint.isRallyPoint = false;
-            rallyPoint.GetComponent<SpriteRenderer>().color = unSelectedColor;
+            rallyPointFlag.GetComponent<SpriteRenderer>().enabled = false;
         }
         if (node.Equals(rallyPoint))
         {
             rallyPoint.isRallyPoint = false;
-            node.GetComponent<SpriteRenderer>().color = unSelectedColor;
+            rallyPointFlag.GetComponent<SpriteRenderer>().enabled = false;
             rallyPoint = null;
         }
         else
         {
             rallyPoint = node;
             node.isRallyPoint = true;
-            node.GetComponent<SpriteRenderer>().color = rallyPointColor;
+            Vector3 rallyPointFlagPosition = new Vector3(0f, -0.8f, 0f);
+            rallyPointFlag.GetComponent<SpriteRenderer>().enabled = true;
+            rallyPointFlag.GetComponent<Transform>().position = node.GetComponent<Transform>().position + rallyPointFlagPosition;
         }
     }
 
@@ -126,7 +130,7 @@ public partial class GameManager
         {
             if (selectedNode != null)
             {
-                selectedNode.GetComponent<SpriteRenderer>().color = selectedNode.isRallyPoint ? rallyPointColor : unSelectedColor;
+                selectedNode.GetComponent<SpriteRenderer>().color = unSelectedColor;
             }
             selectedNode = null;
         }
@@ -327,7 +331,7 @@ public partial class GameManager
         unitListScrollView.ShowUnitTab(false);
         if (selectedNode != null)
         {
-            selectedNode.GetComponent<SpriteRenderer>().color = selectedNode.isRallyPoint ? rallyPointColor : unSelectedColor;
+            selectedNode.GetComponent<SpriteRenderer>().color = unSelectedColor;
         }
         selectedNode = null;
         StartCoroutine(ChangePhase());
@@ -341,7 +345,7 @@ public partial class GameManager
         unitListScrollView.ShowUnitTab(false);
         if (selectedNode != null)
         {
-            selectedNode.GetComponent<SpriteRenderer>().color = selectedNode.isRallyPoint ? rallyPointColor : unSelectedColor;
+            selectedNode.GetComponent<SpriteRenderer>().color = unSelectedColor;
         }
         selectedNode = null;
         StartCoroutine(ChangePhase());
@@ -394,7 +398,7 @@ public partial class GameManager
                     unitDatas.Add(unitdata, int.MaxValue);
                 }
                 unitListScrollView.SetUnitDataList(unitDatas, OnSelectUnitForProduce);
-                selectedNode.GetComponent<SpriteRenderer>().color = selectedNode.isRallyPoint ? rallyPointColor : unSelectedColor;
+                selectedNode.GetComponent<SpriteRenderer>().color = unSelectedColor;
             }
             else
             {
@@ -451,7 +455,7 @@ public partial class GameManager
                 else if (selectedNode == node)
                 {
                     ClickSoundManager.instance.PlaySound();
-                    selectedNode.GetComponent<SpriteRenderer>().color = selectedNode.isRallyPoint ? rallyPointColor : unSelectedColor;
+                    selectedNode.GetComponent<SpriteRenderer>().color = unSelectedColor;
                     selectedNode = null;
 
                     selectedUnitList.Clear();
@@ -462,7 +466,7 @@ public partial class GameManager
                 else if (selectedUnitList.Count == 0)
                 {
                     ClickSoundManager.instance.PlaySound();
-                    selectedNode.GetComponent<SpriteRenderer>().color = selectedNode.isRallyPoint ? rallyPointColor : unSelectedColor;
+                    selectedNode.GetComponent<SpriteRenderer>().color = unSelectedColor;
                     selectedNode = node;
                     node.GetComponent<SpriteRenderer>().color = selectedColor;
 
@@ -520,7 +524,7 @@ public partial class GameManager
                             StartCoroutine(unit.moveQueue.Dequeue());
                     }
 
-                    selectedNode.GetComponent<SpriteRenderer>().color = selectedNode.isRallyPoint ? rallyPointColor : unSelectedColor;
+                    selectedNode.GetComponent<SpriteRenderer>().color = unSelectedColor;
 
                     selectedNode = null;
                     selectedUnitList.Clear();

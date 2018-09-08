@@ -23,23 +23,23 @@ MonoBehaviour:
     - requiredNotoriety: 0
       enemyStatus: HeroTanker1 D 1
       enemySpawnNodes:
-      - 67
+      - 65
     - requiredNotoriety: 0
       enemyStatus: HeroArcher1 D 1
       enemySpawnNodes:
-      - 26
-  - requiredKarma: 500
+      - 27
+  - requiredKarma: 450
     enemyDatas:
     - requiredNotoriety: 0
       enemyStatus: HeroSoldier1 D 2
       enemySpawnNodes:
       - 21
-      - 26
+      - 27
     - requiredNotoriety: 0
       enemyStatus: HeroTanker1 D 1
       enemySpawnNodes:
       - 21
-      - 67
+      - 65
     - requiredNotoriety: 0
       enemyStatus: HeroAssassin1 D 2
       enemySpawnNodes:
@@ -47,25 +47,25 @@ MonoBehaviour:
     - requiredNotoriety: 0
       enemyStatus: HeroArcher1 D 1
       enemySpawnNodes:
-      - 26
-      - 67
-  - requiredKarma: 1700
+      - 27
+      - 65
+  - requiredKarma: 1500
     enemyDatas:
     - requiredNotoriety: 0
       enemyStatus: HeroSoldier2 D 2
       enemySpawnNodes:
       - 21
-      - 26
+      - 27
     - requiredNotoriety: 0
       enemyStatus: HeroTanker2 D 1
       enemySpawnNodes:
-      - 26
-      - 67
+      - 27
+      - 65
     - requiredNotoriety: 0
       enemyStatus: HeroArcher2 D 2
       enemySpawnNodes:
       - 21
-      - 67
+      - 65
     - requiredNotoriety: 0
       enemyStatus: HeroMage2 D 1
       enemySpawnNodes:
@@ -74,29 +74,29 @@ MonoBehaviour:
       enemyStatus: HeroAssassin2 D 2
       enemySpawnNodes:
       - 45
-  - requiredKarma: 5200
+  - requiredKarma: 4500
     enemyDatas:
     - requiredNotoriety: 0
       enemyStatus: HeroSoldier3 D 2
       enemySpawnNodes:
       - 21
-      - 26
+      - 27
     - requiredNotoriety: 0
       enemyStatus: HeroTanker3 D 2
       enemySpawnNodes:
       - 21
-      - 67
+      - 65
     - requiredNotoriety: 0
       enemyStatus: HeroArcher3 D 1
       enemySpawnNodes:
-      - 26
-      - 67
+      - 27
+      - 65
     - requiredNotoriety: 0
       enemyStatus: HeroMage3 D 2
       enemySpawnNodes:
       - 21
-      - 26
-      - 67
+      - 27
+      - 65
     - requiredNotoriety: 0
       enemyStatus: HeroAssassin3 D 2
       enemySpawnNodes:
@@ -113,34 +113,34 @@ MonoBehaviour:
       enemyStatus: HeroSoldier3 N 1
       enemySpawnNodes:
       - 21
-      - 26
+      - 27
     - requiredNotoriety: 0
       enemyStatus: HeroSoldier4 D 1
       enemySpawnNodes:
       - 61
-  - requiredKarma: 13000
+  - requiredKarma: 11000
     enemyDatas:
     - requiredNotoriety: 0
       enemyStatus: HeroSoldier5 D 2
       enemySpawnNodes:
       - 21
-      - 26
+      - 27
     - requiredNotoriety: 0
       enemyStatus: HeroTanker5 D 1
       enemySpawnNodes:
-      - 26
-      - 67
+      - 27
+      - 65
     - requiredNotoriety: 0
       enemyStatus: HeroArcher5 D 1
       enemySpawnNodes:
       - 21
-      - 67
+      - 65
     - requiredNotoriety: 0
       enemyStatus: HeroMage5 D 2
       enemySpawnNodes:
       - 21
-      - 26
-      - 67
+      - 27
+      - 65
     - requiredNotoriety: 0
       enemyStatus: HeroAssassin4 D 3
       enemySpawnNodes:

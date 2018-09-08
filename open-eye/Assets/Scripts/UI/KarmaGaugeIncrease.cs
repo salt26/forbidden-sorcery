@@ -59,6 +59,5 @@ public class KarmaGaugeIncrease : MonoBehaviour {
         GetComponent<RectTransform>().localPosition = new Vector3(0f, 300.5f - 552f + 552f * pivotGuage, 0f);
         GameObject.Find("NextTurnKarma").GetComponent<RectTransform>().localPosition = new Vector3(0f, 552f * NextTurnpivotGuage + 55.5f, 0f);
         GameObject.Find("NextEnemySpawnKarma").GetComponent<RectTransform>().localPosition = new Vector3(0f, 552f * NextEnemySpawnPivotGuage + 55.5f, 0f);
-        nextSpawnTurn.CalculateNextTurn();
     }
 }

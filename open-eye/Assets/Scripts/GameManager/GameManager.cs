@@ -94,4 +94,9 @@ public partial class GameManager : MonoBehaviour
     {
         nextSpawnData = config.enemySpawnDataContainer.GetNextEnemySpawnData(karma);
     }
+
+    private void WaitForSecond()
+    {
+
+    }
 }
