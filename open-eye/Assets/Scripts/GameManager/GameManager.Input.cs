@@ -214,7 +214,13 @@ public partial class GameManager
             destroyedEnemies.Remove(item.unit);
         }
 
-        if (destroyedEnemies.Count == 0)
+        int totalManaAmount = 0;
+        foreach (DestroyedEnemyControlButton decb in destroyedEnemyControlButtons)
+        {
+            totalManaAmount += decb.dominateManaChange + decb.killManaChange + decb.freeManaChange;
+        }
+
+        if (destroyedEnemies.Count == 0 && totalManaAmount >= 0)
             endTurnButton.interactable = true;
         else
             endTurnButton.interactable = false;
