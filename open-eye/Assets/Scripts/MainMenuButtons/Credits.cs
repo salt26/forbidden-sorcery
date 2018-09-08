@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Credits : MonoBehaviour {
 
-    public GameObject credits;
 	// Use this for initialization
 	void Start () {
 		
@@ -14,9 +13,4 @@ public class Credits : MonoBehaviour {
 	void Update () {
 		
 	}
-
-    void MakeCreditsActive()
-    {
-        credits.SetActive(true);
-    }
 }
